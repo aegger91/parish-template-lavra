@@ -151,7 +151,7 @@ function SlipOptions({ slip, onChange }: { slip: Slip; onChange: (s: Slip) => vo
                     {t("zapiski.suggested")} {fmtMoney(c.suggestedDonation)}
                   </span>
                 </span>
-                <span className="block text-[0.9rem] text-ink-soft">{tr(c.hint)}</span>
+                {c.hint && <span className="block text-[0.9rem] text-ink-soft">{tr(c.hint)}</span>}
               </span>
             </label>
           ))}
@@ -181,7 +181,7 @@ export function Zapiski({ section }: SectionProps) {
   const seq = useRef(1);
   const makeSlip = (type: SlipType): Slip => {
     const id = `s${seq.current++}`;
-    return { id, type, rows: [{ id: `${id}-r0`, prefix: "", name: "" }], commemoration: typesFor(type)[0]?.id ?? "", candle: "" };
+    return { id, type, rows: [0, 1, 2].map((n) => ({ id: `${id}-r${n}`, prefix: "", name: "" })), commemoration: typesFor(type)[0]?.id ?? "", candle: "" };
   };
   const [slips, setSlips] = useState<Slip[]>(() => [makeSlip("health")]);
   const [gift, setGift] = useState("");

@@ -297,7 +297,7 @@ export function ContactPanel({ section }: SectionProps) {
               </Field>
               <Field id="c-topic" label={t("contact.topic")} required>
                 <select id="c-topic" value={form.topic} onChange={(e) => set("topic")(e.target.value)} className={cn(fieldClass, "w-full rounded-md border px-3")}>
-                  {["general", "visit", "sacraments", "clergy"].map((k) => (
+                  {["general", "sacraments", "clergy"].map((k) => (
                     <option key={k} value={k}>
                       {t(`contact.topic.${k}`)}
                     </option>

@@ -33,11 +33,11 @@ function FastMark({ d, withLabel = false }: { d: DayInfo; withLabel?: boolean })
   );
 }
 
-function ServiceLine({ s, compact = false }: { s: DayInfo["services"][number]; compact?: boolean }) {
+function ServiceLine({ s, compact = false, stacked = false }: { s: DayInfo["services"][number]; compact?: boolean; stacked?: boolean }) {
   const { tr, t, fmtTime } = useI18n();
   return (
-    <li className={cn("flex gap-2.5", compact ? "text-[0.8rem] leading-snug" : "text-[0.97rem]")}>
-      <span className={cn("shrink-0 tabular-nums font-bold text-lapis", compact ? "w-auto" : "w-16")}>{fmtTime(s.time)}</span>
+    <li className={cn(stacked ? "grid gap-0.5" : "flex gap-2.5", compact ? "text-[0.8rem] leading-snug" : "text-[0.97rem] leading-snug")}>
+      <span className={cn("shrink-0 tabular-nums font-bold text-lapis", compact || stacked ? "w-auto" : "w-16")}>{fmtTime(s.time)}</span>
       <span className="min-w-0">
         {tr(s.name)}
         {s.livestream && site.features.livestream && (
@@ -69,7 +69,7 @@ function DayCard({ d, today }: { d: DayInfo; today: number }) {
   return (
     <div
       className={cn(
-        "fresco-card candle-glow flex h-full flex-col p-4",
+        "fresco-card candle-glow flex h-full flex-col p-4 xl:p-3.5",
         d.jdn === today && "ring-2 ring-ochre ring-offset-2 ring-offset-parchment",
         feast && (feast.rank === "great" || feast.rank === "pascha") && "bg-[linear-gradient(180deg,#fbeedd,var(--lavra-vellum))]",
       )}
@@ -92,9 +92,9 @@ function DayCard({ d, today }: { d: DayInfo; today: number }) {
           </p>
         ))}
         {d.services.length ? (
-          <ul className="mt-3 space-y-2">
+          <ul className="mt-3 space-y-2.5">
             {d.services.map((s) => (
-              <ServiceLine key={s.id} s={s} />
+              <ServiceLine key={s.id} s={s} stacked />
             ))}
           </ul>
         ) : (
@@ -346,8 +346,6 @@ export function Schedule({ section }: SectionProps) {
         ) : (
           <MonthView days={days} today={now.jdn} year={ym!.y} month={ym!.m} onPick={setPicked} />
         )}
-
-        <p className="mt-5 text-[0.85rem] text-ink-faint">{t("schedule.fastNote")}</p>
       </div>
 
       <Dialog open={!!picked} onOpenChange={(o) => !o && setPicked(null)}>

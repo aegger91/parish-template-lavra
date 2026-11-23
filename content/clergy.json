@@ -6,13 +6,13 @@
       "order": 1,
       "monogram": "IE",
       "photo": null,
-      "name": { "en": "V. Rev. Fr. John Example", "sr": "протојереј Јован Пример", "ro": "Pr. Ioan Exemplu" },
-      "role": { "en": "Rector", "sr": "Старешина храма", "ro": "Paroh" },
+      "name": {"en": "V. Rev. Fr. John Example", "sr": "протојереј Јован Пример", "ro": "Pr. Ioan Exemplu"},
+      "role": {"en": "Rector", "sr": "Старешина храма", "ro": "Paroh"},
       "email": "rector@example.org",
       "bio": {
-        "en": "This is a sample biography. Here a parish would say where the rector studied, when he was ordained, and what he loves about serving this community. Fr. John is the placeholder rector of St. Example and is happy to meet anyone after the Liturgy.",
-        "sr": "Ово је пример биографије. Овде би парохија навела где је старешина студирао, када је рукоположен и шта воли у служењу овој заједници. Отац Јован је замишљени старешина храма Светог Примера и радо се упознаје са свима после Литургије.",
-        "ro": "Aceasta este o biografie exemplu. Aici parohia ar spune unde a studiat parohul, când a fost hirotonit și ce iubește la slujirea acestei comunități. Părintele Ioan este parohul fictiv al bisericii Sfântul Exemplu și se bucură să cunoască pe oricine după Liturghie."
+        "en": "Sample biography. A few lines about this person go here.",
+        "sr": "Пример биографије. Овде иде неколико редова о овој особи.",
+        "ro": "Biografie exemplu. Aici vin câteva rânduri despre această persoană."
       }
     },
     {
@@ -20,13 +20,13 @@
       "order": 2,
       "monogram": "SS",
       "photo": null,
-      "name": { "en": "Fr. Stefan Sample", "sr": "јереј Стефан Узорић", "ro": "Pr. Ștefan Model" },
-      "role": { "en": "Assistant priest", "sr": "Парох", "ro": "Preot slujitor" },
+      "name": {"en": "Fr. Stefan Sample", "sr": "јереј Стефан Узорић", "ro": "Pr. Ștefan Model"},
+      "role": {"en": "Assistant priest", "sr": "Парох", "ro": "Preot slujitor"},
       "email": "fr.stefan@example.org",
       "bio": {
-        "en": "A sample biography for a second priest. He leads the adult class on Thursday evenings and visits the sick and the elderly at home.",
-        "sr": "Пример биографије другог свештеника. Води разговоре о вери четвртком увече и посећује болесне и старије по кућама.",
-        "ro": "O biografie exemplu pentru al doilea preot. Ține cateheza de joi seara și îi vizitează acasă pe bolnavi și vârstnici."
+        "en": "Sample biography. A few lines about this person go here.",
+        "sr": "Пример биографије. Овде иде неколико редова о овој особи.",
+        "ro": "Biografie exemplu. Aici vin câteva rânduri despre această persoană."
       }
     },
     {
@@ -34,13 +34,13 @@
       "order": 3,
       "monogram": "MP",
       "photo": null,
-      "name": { "en": "Dn. Mihai Example", "sr": "ђакон Михаило Примеровић", "ro": "Diac. Mihai Exemplu" },
-      "role": { "en": "Deacon", "sr": "Ђакон", "ro": "Diacon" },
+      "name": {"en": "Dn. Mihai Example", "sr": "ђакон Михаило Примеровић", "ro": "Diac. Mihai Exemplu"},
+      "role": {"en": "Deacon", "sr": "Ђакон", "ro": "Diacon"},
       "email": "deacon@example.org",
       "bio": {
-        "en": "A sample biography for the deacon. He serves at the Liturgy, teaches church school and helps families prepare for Baptism.",
-        "sr": "Пример биографије ђакона. Служи на Литургији, предаје веронауку и помаже породицама у припреми за крштење.",
-        "ro": "O biografie exemplu pentru diacon. Slujește la Liturghie, predă la școala parohială și ajută familiile să se pregătească pentru Botez."
+        "en": "Sample biography. A few lines about this person go here.",
+        "sr": "Пример биографије. Овде иде неколико редова о овој особи.",
+        "ro": "Biografie exemplu. Aici vin câteva rânduri despre această persoană."
       }
     },
     {
@@ -48,13 +48,13 @@
       "order": 4,
       "monogram": "AU",
       "photo": null,
-      "name": { "en": "Ana Sample", "sr": "Ана Узорић", "ro": "Ana Model" },
-      "role": { "en": "Choir director", "sr": "Диригент хора", "ro": "Dirijoarea corului" },
+      "name": {"en": "Ana Sample", "sr": "Ана Узорић", "ro": "Ana Model"},
+      "role": {"en": "Choir director", "sr": "Диригент хора", "ro": "Dirijoarea corului"},
       "email": "choir@example.org",
       "bio": {
-        "en": "A sample biography for the choir director. The choir sings in three languages and welcomes new voices at practice on Wednesday evenings.",
-        "sr": "Пример биографије диригента. Хор пева на три језика и радо прима нове гласове на проби средом увече.",
-        "ro": "O biografie exemplu pentru dirijoare. Corul cântă în trei limbi și primește cu drag voci noi la repetiția de miercuri seara."
+        "en": "Sample biography. A few lines about this person go here.",
+        "sr": "Пример биографије. Овде иде неколико редова о овој особи.",
+        "ro": "Biografie exemplu. Aici vin câteva rânduri despre această persoană."
       }
     }
   ]

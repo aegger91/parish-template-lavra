@@ -7,11 +7,11 @@
       "parentId": null,
       "order": 1,
       "showInNav": true,
-      "title": { "en": "Home", "sr": "Почетна", "ro": "Acasă" },
+      "title": {"en": "Home", "sr": "Почетна", "ro": "Acasă"},
       "description": {
-        "en": "Welcome to St. Example Orthodox Church, a sample parish website. See service times, find directions and watch the livestream.",
-        "sr": "Добро дошли у храм Светог Примера, пример парохијског сајта. Погледајте распоред богослужења, упутства за долазак и пренос уживо.",
-        "ro": "Bine ați venit la Biserica Sfântul Exemplu, un exemplu de site parohial. Vedeți programul slujbelor, cum ajungeți și transmisiunea live."
+        "en": "Sample parish website for St. Example Orthodox Church. Service times, directions and livestream.",
+        "sr": "Пример парохијског сајта храма Светог Примера. Распоред богослужења, долазак и пренос уживо.",
+        "ro": "Site parohial exemplu pentru Biserica Sfântul Exemplu. Programul slujbelor, cum ajungeți și transmisiunea live."
       },
       "sections": [
         {
@@ -19,11 +19,11 @@
           "type": "hero",
           "enabled": true,
           "props": {
-            "eyebrow": { "en": "Chapter I · Welcome", "sr": "Глава I · Добродошлица", "ro": "Capitolul I · Bun venit" },
+            "eyebrow": {"en": "Chapter I · Welcome", "sr": "Глава I · Добродошлица", "ro": "Capitolul I · Bun venit"},
             "lead": {
-              "en": "An Orthodox parish where the services are sung every week, newcomers are greeted at the door, and the coffee is always on after Liturgy.",
-              "sr": "Православна парохија у којој се богослужења поју сваке недеље, нови људи се дочекују на вратима, а после Литургије увек има кафе.",
-              "ro": "O parohie ortodoxă unde slujbele se cântă în fiecare săptămână, cei noi sunt întâmpinați la ușă, iar după Liturghie ne strângem la o cafea."
+              "en": "Welcome text goes here. One or two lines about your parish.",
+              "sr": "Овде иде текст добродошлице. Један или два реда о вашој парохији.",
+              "ro": "Aici vine textul de bun venit. Unul sau două rânduri despre parohia voastră."
             },
             "image": "/images/hero-fresco.svg",
             "imageAlt": {
@@ -36,15 +36,14 @@
               "sr": "Пример илустрације у духу моравске школе",
               "ro": "Ilustrație exemplu în stilul bisericilor școlii moravene"
             },
-            "primaryCta": { "label": { "en": "Plan your first visit", "sr": "Планирајте први долазак", "ro": "Planificați prima vizită" }, "link": { "page": "contact", "hash": "directions" } },
-            "secondaryCta": { "label": { "en": "Service times", "sr": "Распоред богослужења", "ro": "Programul slujbelor" }, "link": { "page": "services" } },
+            "primaryCta": {"label": {"en": "Get directions", "sr": "Како до нас", "ro": "Cum ajungeți"}, "link": {"page": "contact", "hash": "directions"}},
+            "secondaryCta": {"label": {"en": "Service times", "sr": "Распоред богослужења", "ro": "Programul slujbelor"}, "link": {"page": "services"}},
             "showCommemorationShortcut": true,
             "chapters": [
-              { "target": "home-week", "label": { "en": "This week", "sr": "Ове недеље", "ro": "Săptămâna aceasta" } },
-              { "target": "home-story", "label": { "en": "Our parish", "sr": "Наша парохија", "ro": "Parohia noastră" } },
-              { "target": "home-involved", "label": { "en": "Get involved", "sr": "Укључите се", "ro": "Implicați-vă" } },
-              { "target": "home-news", "label": { "en": "News", "sr": "Вести", "ro": "Noutăți" } },
-              { "target": "home-visit", "label": { "en": "Visit", "sr": "Посета", "ro": "Vizită" } }
+              {"target": "home-week", "label": {"en": "This week", "sr": "Ове недеље", "ro": "Săptămâna aceasta"}},
+              {"target": "home-welcome", "label": {"en": "About us", "sr": "О нама", "ro": "Despre noi"}},
+              {"target": "home-involved", "label": {"en": "Get involved", "sr": "Укључите се", "ro": "Implicați-vă"}},
+              {"target": "home-news", "label": {"en": "News", "sr": "Вести", "ro": "Noutăți"}}
             ]
           }
         },
@@ -54,39 +53,41 @@
           "enabled": true,
           "chapter": true,
           "props": {
-            "title": { "en": "Services this week", "sr": "Богослужења ове недеље", "ro": "Slujbele din această săptămână" },
+            "title": {"en": "Services this week", "sr": "Богослужења ове недеље", "ro": "Slujbele din această săptămână"},
             "intro": {
-              "en": "Come a few minutes early to light a candle and venerate the icons. Everyone is welcome to stand with us in prayer.",
-              "sr": "Дођите неколико минута раније да упалите свећу и целивате иконе. Свако је добродошао да се моли са нама.",
-              "ro": "Veniți cu câteva minute mai devreme să aprindeți o lumânare și să sărutați icoanele. Oricine este binevenit să se roage cu noi."
+              "en": "Sample text. Services for the next seven days.",
+              "sr": "Пример текста. Богослужења за наредних седам дана.",
+              "ro": "Text exemplu. Slujbele din următoarele șapte zile."
             },
-            "cta": { "label": { "en": "Full schedule and calendar", "sr": "Цео распоред и календар", "ro": "Programul complet și calendarul" }, "link": { "page": "services" } }
+            "cta": {
+              "label": {"en": "Full schedule and calendar", "sr": "Цео распоред и календар", "ro": "Programul complet și calendarul"},
+              "link": {"page": "services"}
+            }
           }
         },
         {
-          "id": "home-story",
-          "type": "chapter-story",
+          "id": "home-welcome",
+          "type": "welcome-text",
           "enabled": true,
           "chapter": true,
           "props": {
-            "title": { "en": "A parish family, gathered around the altar", "sr": "Парохијска породица окупљена око олтара", "ro": "O familie parohială adunată în jurul altarului" },
+            "title": {"en": "About us", "sr": "О нама", "ro": "Despre noi"},
             "paragraphs": [
               {
-                "en": "St. Example is a sample parish used to show this website design. Here a real community would tell its own story: who founded it, which languages are heard in the services, and what a Sunday looks like from the first bell to the last cup of coffee.",
-                "sr": "Свети Пример је пример парохије који служи да прикаже овај дизајн. Овде би права заједница испричала своју причу: ко ју је основао, који се језици чују на богослужењима и како изгледа недеља од првог звона до последње шољице кафе.",
-                "ro": "Sfântul Exemplu este o parohie exemplu, folosită pentru a prezenta acest design. Aici o comunitate reală și-ar spune propria poveste: cine a întemeiat-o, ce limbi se aud la slujbe și cum arată o duminică de la primul clopot până la ultima cafea."
-              },
-              {
-                "en": "Families, students, newcomers and those returning to the Church after many years all stand together here. Ask any of us about the services, the icons, or how to begin.",
-                "sr": "Породице, студенти, нови људи и они који се враћају Цркви после много година стоје овде заједно. Питајте било кога од нас о богослужењима, иконама или како да почнете.",
-                "ro": "Familii, studenți, oameni noi și cei care se întorc la Biserică după mulți ani stau aici împreună. Întrebați-ne oricând despre slujbe, icoane sau cum să începeți."
+                "en": "Welcome text goes here. Use one or two short lines to introduce your parish.",
+                "sr": "Овде иде текст добродошлице. Један или два кратка реда да представите парохију.",
+                "ro": "Aici vine textul de bun venit. Unul sau două rânduri scurte despre parohie."
               }
             ],
             "image": "/images/gallery/iconostasis.svg",
-            "imageAlt": { "en": "Painted illustration of a carved iconostasis with gilded arches", "sr": "Сликана илустрација резбареног иконостаса са позлаћеним луковима", "ro": "Ilustrație pictată a unui iconostas sculptat cu arcade aurite" },
+            "imageAlt": {
+              "en": "Painted illustration of a carved iconostasis with gilded arches",
+              "sr": "Сликана илустрација резбареног иконостаса са позлаћеним луковима",
+              "ro": "Ilustrație pictată a unui iconostas sculptat cu arcade aurite"
+            },
             "links": [
-              { "label": { "en": "Meet the clergy", "sr": "Упознајте свештенство", "ro": "Cunoașteți clerul" }, "link": { "page": "clergy" } },
-              { "label": { "en": "Read our history", "sr": "Прочитајте нашу историју", "ro": "Citiți istoria noastră" }, "link": { "page": "history" } }
+              {"label": {"en": "Meet the clergy", "sr": "Упознајте свештенство", "ro": "Cunoașteți clerul"}, "link": {"page": "clergy"}},
+              {"label": {"en": "Read our history", "sr": "Прочитајте нашу историју", "ro": "Citiți istoria noastră"}, "link": {"page": "history"}}
             ]
           }
         },
@@ -97,7 +98,7 @@
           "chapter": true,
           "feature": "getInvolved",
           "props": {
-            "title": { "en": "Lend a hand this month", "sr": "Помозите овог месеца", "ro": "Dați o mână de ajutor luna aceasta" },
+            "title": {"en": "Lend a hand this month", "sr": "Помозите овог месеца", "ro": "Dați o mână de ajutor luna aceasta"},
             "intro": {
               "en": "Events and volunteer sign-ups are shared with the OrthodoxConnect app, so the parish sees one list.",
               "sr": "Догађаји и пријаве за волонтирање деле се са апликацијом OrthodoxConnect, па парохија види један списак.",
@@ -110,79 +111,27 @@
           "type": "latest-news",
           "enabled": true,
           "chapter": true,
-          "props": {
-            "title": { "en": "From the parish bulletin", "sr": "Из парохијског билтена", "ro": "Din buletinul parohial" },
-            "count": 3
-          }
+          "props": {"title": {"en": "From the parish bulletin", "sr": "Из парохијског билтена", "ro": "Din buletinul parohial"}, "count": 3}
         },
         {
           "id": "home-sermons",
           "type": "latest-sermons",
           "enabled": true,
           "feature": "sermons",
-          "props": {
-            "title": { "en": "Recent sermons", "sr": "Недавне беседе", "ro": "Predici recente" },
-            "count": 2
-          }
-        },
-        {
-          "id": "home-visit",
-          "type": "visit",
-          "enabled": true,
-          "chapter": true,
-          "props": {
-            "title": { "en": "Your first visit", "sr": "Ваш први долазак", "ro": "Prima dumneavoastră vizită" },
-            "intro": {
-              "en": "There is no need to know the services before you come. Here is what to expect.",
-              "sr": "Не морате познавати богослужења пре доласка. Ево шта можете очекивати.",
-              "ro": "Nu trebuie să cunoașteți slujbele înainte să veniți. Iată la ce să vă așteptați."
-            },
-            "steps": [
-              {
-                "id": "visit-arrive",
-                "icon": "candle",
-                "title": { "en": "Light a candle", "sr": "Упалите свећу", "ro": "Aprindeți o lumânare" },
-                "text": {
-                  "en": "Candles are by the door. Light one, say a short prayer, and find a place to stand or sit.",
-                  "sr": "Свеће су код улаза. Упалите једну, кажите кратку молитву и нађите место да станете или седнете.",
-                  "ro": "Lumânările sunt lângă ușă. Aprindeți una, spuneți o scurtă rugăciune și găsiți un loc."
-                }
-              },
-              {
-                "id": "visit-pray",
-                "icon": "gospel",
-                "title": { "en": "Pray with us", "sr": "Молите се са нама", "ro": "Rugați-vă cu noi" },
-                "text": {
-                  "en": "The Divine Liturgy lasts about ninety minutes. Service books are on the stand near the choir.",
-                  "sr": "Света Литургија траје око деведесет минута. Богослужбене књиге су на сталку крај певнице.",
-                  "ro": "Sfânta Liturghie durează cam o oră și jumătate. Cărțile de slujbă sunt pe analogul de lângă strană."
-                }
-              },
-              {
-                "id": "visit-stay",
-                "icon": "church",
-                "title": { "en": "Stay for coffee", "sr": "Останите на кафи", "ro": "Rămâneți la cafea" },
-                "text": {
-                  "en": "Join us in the parish hall after the service. Our clergy are glad to answer questions.",
-                  "sr": "Придружите нам се у парохијском дому после службе. Свештеници радо одговарају на питања.",
-                  "ro": "Veniți în casa parohială după slujbă. Preoții răspund cu drag la întrebări."
-                }
-              }
-            ]
-          }
+          "props": {"title": {"en": "Recent sermons", "sr": "Недавне беседе", "ro": "Predici recente"}, "count": 2}
         },
         {
           "id": "home-donate",
           "type": "donate-cta",
           "enabled": true,
           "props": {
-            "title": { "en": "Keep the lamps burning", "sr": "Да кандила горе", "ro": "Ca să ardă candelele" },
+            "title": {"en": "Support the parish", "sr": "Помозите парохију", "ro": "Sprijiniți parohia"},
             "text": {
-              "en": "Your gifts pay for the candles, the heating and the care of families in need. Give once or every month.",
-              "sr": "Ваши прилози плаћају свеће, грејање и бригу о породицама у потреби. Дајте једном или сваког месеца.",
-              "ro": "Darurile voastre plătesc lumânările, încălzirea și grija pentru familiile în nevoie. Dăruiți o dată sau lunar."
+              "en": "Sample text. One line about giving goes here.",
+              "sr": "Пример текста. Овде иде један ред о прилозима.",
+              "ro": "Text exemplu. Aici vine un rând despre daruri."
             },
-            "cta": { "label": { "en": "Give to the parish", "sr": "Дајте прилог", "ro": "Dăruiți parohiei" }, "link": { "page": "donate" } }
+            "cta": {"label": {"en": "Give to the parish", "sr": "Дајте прилог", "ro": "Dăruiți parohiei"}, "link": {"page": "donate"}}
           }
         }
       ]
@@ -193,8 +142,8 @@
       "parentId": null,
       "order": 2,
       "showInNav": true,
-      "overviewLabel": { "en": "About the parish", "sr": "О парохији", "ro": "Despre parohie" },
-      "title": { "en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră" },
+      "overviewLabel": {"en": "About the parish", "sr": "О парохији", "ro": "Despre parohie"},
+      "title": {"en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră"},
       "description": {
         "en": "Learn about St. Example Orthodox Church, its clergy, history and parish life.",
         "sr": "Сазнајте више о храму Светог Примера, свештенству, историји и парохијском животу.",
@@ -206,36 +155,35 @@
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră" },
-            "title": { "en": "A small church with an open door", "sr": "Мали храм отворених врата", "ro": "O biserică mică, cu ușa deschisă" },
+            "label": {"en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră"},
+            "title": {"en": "Our parish", "sr": "Наша парохија", "ro": "Parohia noastră"},
             "intro": {
-              "en": "This page introduces the parish. A real parish would replace this sample text with its own words.",
-              "sr": "Ова страница представља парохију. Права парохија би овај пример текста заменила својим речима.",
-              "ro": "Această pagină prezintă parohia. O parohie reală ar înlocui acest text exemplu cu propriile cuvinte."
+              "en": "Sample text. A short introduction to the parish goes here.",
+              "sr": "Пример текста. Овде иде кратко представљање парохије.",
+              "ro": "Text exemplu. Aici vine o scurtă prezentare a parohiei."
             }
           }
         },
         {
-          "id": "parish-story",
-          "type": "chapter-story",
+          "id": "parish-welcome",
+          "type": "welcome-text",
           "enabled": true,
           "chapter": true,
           "props": {
-            "title": { "en": "Who we are", "sr": "Ко смо ми", "ro": "Cine suntem" },
+            "title": {"en": "About us", "sr": "О нама", "ro": "Despre noi"},
             "paragraphs": [
               {
-                "en": "We are an Orthodox Christian parish of the Sample Diocese. Our services follow the Byzantine rite, sung by a small choir in English, Serbian and Romanian.",
-                "sr": "Ми смо православна парохија Пример епархије. Богослужења служимо по византијском обреду, а мали хор пева на енглеском, српском и румунском.",
-                "ro": "Suntem o parohie ortodoxă din Eparhia Exemplu. Slujbele urmează ritul bizantin și sunt cântate de un cor mic în engleză, sârbă și română."
-              },
-              {
-                "en": "During the week the church is a place of quiet prayer, church school, choir practice and simple help for neighbors.",
-                "sr": "Током седмице храм је место тихе молитве, веронауке, пробе хора и обичне помоћи комшијама.",
-                "ro": "În timpul săptămânii biserica este loc de rugăciune liniștită, școală parohială, repetiții de cor și ajutor pentru vecini."
+                "en": "About text goes here. One or two lines on who you are and where you are.",
+                "sr": "Овде иде текст о парохији. Један или два реда о томе ко сте и где сте.",
+                "ro": "Aici vine textul despre parohie. Unul sau două rânduri despre cine sunteți și unde vă aflați."
               }
             ],
             "image": "/images/gallery/church-winter.svg",
-            "imageAlt": { "en": "Painted illustration of the church in winter", "sr": "Сликана илустрација храма зими", "ro": "Ilustrație pictată a bisericii iarna" },
+            "imageAlt": {
+              "en": "Painted illustration of the church in winter",
+              "sr": "Сликана илустрација храма зими",
+              "ro": "Ilustrație pictată a bisericii iarna"
+            },
             "links": []
           }
         },
@@ -243,9 +191,7 @@
           "id": "parish-subpages",
           "type": "subpage-cards",
           "enabled": true,
-          "props": {
-            "title": { "en": "Explore the parish", "sr": "Упознајте парохију", "ro": "Descoperiți parohia" }
-          }
+          "props": {"title": {"en": "Explore the parish", "sr": "Упознајте парохију", "ro": "Descoperiți parohia"}}
         }
       ]
     },
@@ -256,17 +202,25 @@
       "order": 1,
       "showInNav": true,
       "icon": "chalice",
-      "title": { "en": "Clergy", "sr": "Свештенство", "ro": "Clerul" },
-      "summary": { "en": "The priests, deacon and staff who serve the parish.", "sr": "Свештеници, ђакон и сарадници који служе парохији.", "ro": "Preoții, diaconul și cei care slujesc parohia." },
-      "description": { "en": "Meet the clergy and staff of St. Example Orthodox Church.", "sr": "Упознајте свештенство и сараднике храма Светог Примера.", "ro": "Cunoașteți clerul și slujitorii Bisericii Sfântul Exemplu." },
+      "title": {"en": "Clergy", "sr": "Свештенство", "ro": "Clerul"},
+      "summary": {
+        "en": "The priests, deacon and staff who serve the parish.",
+        "sr": "Свештеници, ђакон и сарадници који служе парохији.",
+        "ro": "Preoții, diaconul și cei care slujesc parohia."
+      },
+      "description": {
+        "en": "Meet the clergy and staff of St. Example Orthodox Church.",
+        "sr": "Упознајте свештенство и сараднике храма Светог Примера.",
+        "ro": "Cunoașteți clerul și slujitorii Bisericii Sfântul Exemplu."
+      },
       "sections": [
         {
           "id": "clergy-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră" },
-            "title": { "en": "Clergy and staff", "sr": "Свештенство и сарадници", "ro": "Clerul și slujitorii" },
+            "label": {"en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră"},
+            "title": {"en": "Clergy and staff", "sr": "Свештенство и сарадници", "ro": "Clerul și slujitorii"},
             "intro": {
               "en": "All names and biographies on this page are samples. Open a card to read more.",
               "sr": "Сва имена и биографије на овој страници су примери. Отворите картицу да прочитате више.",
@@ -274,7 +228,7 @@
             }
           }
         },
-        { "id": "clergy-cards", "type": "clergy-cards", "enabled": true, "props": {} }
+        {"id": "clergy-cards", "type": "clergy-cards", "enabled": true, "props": {}}
       ]
     },
     {
@@ -284,17 +238,25 @@
       "order": 2,
       "showInNav": true,
       "icon": "bells",
-      "title": { "en": "History", "sr": "Историја", "ro": "Istoric" },
-      "summary": { "en": "A sample timeline of the parish from its first services.", "sr": "Пример хронологије парохије од првих богослужења.", "ro": "O cronologie exemplu a parohiei de la primele slujbe." },
-      "description": { "en": "The history of St. Example Orthodox Church, told as a timeline.", "sr": "Историја храма Светог Примера у хронологији.", "ro": "Istoria Bisericii Sfântul Exemplu, ca o cronologie." },
+      "title": {"en": "History", "sr": "Историја", "ro": "Istoric"},
+      "summary": {
+        "en": "A sample timeline of the parish from its first services.",
+        "sr": "Пример хронологије парохије од првих богослужења.",
+        "ro": "O cronologie exemplu a parohiei de la primele slujbe."
+      },
+      "description": {
+        "en": "The history of St. Example Orthodox Church, told as a timeline.",
+        "sr": "Историја храма Светог Примера у хронологији.",
+        "ro": "Istoria Bisericii Sfântul Exemplu, ca o cronologie."
+      },
       "sections": [
         {
           "id": "history-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră" },
-            "title": { "en": "A history in chapters", "sr": "Историја у главама", "ro": "O istorie în capitole" },
+            "label": {"en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră"},
+            "title": {"en": "A history in chapters", "sr": "Историја у главама", "ro": "O istorie în capitole"},
             "intro": {
               "en": "This sample timeline shows how a parish might tell its story. The years and events are placeholders.",
               "sr": "Ова хронологија показује како парохија може испричати своју причу. Године и догађаји су примери.",
@@ -302,7 +264,7 @@
             }
           }
         },
-        { "id": "history-timeline", "type": "history-timeline", "enabled": true, "props": {} }
+        {"id": "history-timeline", "type": "history-timeline", "enabled": true, "props": {}}
       ]
     },
     {
@@ -312,17 +274,25 @@
       "order": 3,
       "showInNav": true,
       "icon": "icon-frame",
-      "title": { "en": "Gallery", "sr": "Галерија", "ro": "Galerie" },
-      "summary": { "en": "Pictures of the church, feasts and parish life.", "sr": "Слике храма, празника и парохијског живота.", "ro": "Imagini cu biserica, praznicele și viața parohiei." },
-      "description": { "en": "Photo gallery of St. Example Orthodox Church.", "sr": "Галерија храма Светог Примера.", "ro": "Galeria foto a Bisericii Sfântul Exemplu." },
+      "title": {"en": "Gallery", "sr": "Галерија", "ro": "Galerie"},
+      "summary": {
+        "en": "Pictures of the church, feasts and parish life.",
+        "sr": "Слике храма, празника и парохијског живота.",
+        "ro": "Imagini cu biserica, praznicele și viața parohiei."
+      },
+      "description": {
+        "en": "Photo gallery of St. Example Orthodox Church.",
+        "sr": "Галерија храма Светог Примера.",
+        "ro": "Galeria foto a Bisericii Sfântul Exemplu."
+      },
       "sections": [
         {
           "id": "gallery-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră" },
-            "title": { "en": "Gallery", "sr": "Галерија", "ro": "Galerie" },
+            "label": {"en": "Our Parish", "sr": "Наша парохија", "ro": "Parohia noastră"},
+            "title": {"en": "Gallery", "sr": "Галерија", "ro": "Galerie"},
             "intro": {
               "en": "Painted placeholders stand in for parish photos. Filter by theme and open any picture to see it larger.",
               "sr": "Сликани примери замењују фотографије парохије. Филтрирајте по теми и отворите слику да је видите већу.",
@@ -330,7 +300,7 @@
             }
           }
         },
-        { "id": "gallery-grid", "type": "gallery-grid", "enabled": true, "props": {} }
+        {"id": "gallery-grid", "type": "gallery-grid", "enabled": true, "props": {}}
       ]
     },
     {
@@ -340,17 +310,25 @@
       "order": 4,
       "showInNav": true,
       "icon": "gospel",
-      "title": { "en": "News", "sr": "Вести", "ro": "Noutăți" },
-      "summary": { "en": "Announcements and stories from parish life.", "sr": "Обавештења и приче из парохијског живота.", "ro": "Anunțuri și povești din viața parohiei." },
-      "description": { "en": "News and announcements from St. Example Orthodox Church.", "sr": "Вести и обавештења храма Светог Примера.", "ro": "Noutăți și anunțuri de la Biserica Sfântul Exemplu." },
+      "title": {"en": "News", "sr": "Вести", "ro": "Noutăți"},
+      "summary": {
+        "en": "Announcements and stories from parish life.",
+        "sr": "Обавештења и приче из парохијског живота.",
+        "ro": "Anunțuri și povești din viața parohiei."
+      },
+      "description": {
+        "en": "News and announcements from St. Example Orthodox Church.",
+        "sr": "Вести и обавештења храма Светог Примера.",
+        "ro": "Noutăți și anunțuri de la Biserica Sfântul Exemplu."
+      },
       "sections": [
         {
           "id": "news-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Parish bulletin", "sr": "Парохијски билтен", "ro": "Buletin parohial" },
-            "title": { "en": "News", "sr": "Вести", "ro": "Noutăți" },
+            "label": {"en": "Parish bulletin", "sr": "Парохијски билтен", "ro": "Buletin parohial"},
+            "title": {"en": "News", "sr": "Вести", "ro": "Noutăți"},
             "intro": {
               "en": "Sample announcements, grouped by category.",
               "sr": "Пример обавештења, по категоријама.",
@@ -358,7 +336,7 @@
             }
           }
         },
-        { "id": "news-list", "type": "news-list", "enabled": true, "props": {} }
+        {"id": "news-list", "type": "news-list", "enabled": true, "props": {}}
       ]
     },
     {
@@ -367,76 +345,41 @@
       "parentId": null,
       "order": 3,
       "showInNav": true,
-      "navLabel": { "en": "Services", "sr": "Богослужења", "ro": "Slujbe" },
-      "overviewLabel": { "en": "Schedule", "sr": "Распоред", "ro": "Program" },
+      "navLabel": {"en": "Services", "sr": "Богослужења", "ro": "Slujbe"},
+      "overviewLabel": {"en": "Schedule", "sr": "Распоред", "ro": "Program"},
       "icon": "censer",
-      "title": { "en": "Services & Schedule", "sr": "Богослужења и распоред", "ro": "Slujbe și program" },
-      "summary": { "en": "Weekly and monthly calendar of services and feasts.", "sr": "Седмични и месечни календар богослужења и празника.", "ro": "Calendarul săptămânal și lunar al slujbelor și praznicelor." },
-      "description": { "en": "Weekly and monthly service schedule with feasts and fasting days.", "sr": "Седмични и месечни распоред богослужења са празницима и постовима.", "ro": "Programul săptămânal și lunar al slujbelor, cu praznice și zile de post." },
+      "title": {"en": "Services & Schedule", "sr": "Богослужења и распоред", "ro": "Slujbe și program"},
+      "summary": {
+        "en": "Weekly and monthly calendar of services and feasts.",
+        "sr": "Седмични и месечни календар богослужења и празника.",
+        "ro": "Calendarul săptămânal și lunar al slujbelor și praznicelor."
+      },
+      "description": {
+        "en": "Weekly and monthly service schedule with feasts and fasting days.",
+        "sr": "Седмични и месечни распоред богослужења са празницима и постовима.",
+        "ro": "Programul săptămânal și lunar al slujbelor, cu praznice și zile de post."
+      },
       "sections": [
         {
           "id": "services-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Services & Schedule", "sr": "Богослужења и распоред", "ro": "Slujbe și program" },
-            "title": { "en": "The church calendar", "sr": "Црквени календар", "ro": "Calendarul bisericii" },
+            "label": {"en": "Services & Schedule", "sr": "Богослужења и распоред", "ro": "Slujbe și program"},
+            "title": {"en": "The church calendar", "sr": "Црквени календар", "ro": "Calendarul bisericii"},
             "intro": {
-              "en": "Switch between this week and the whole month. Great feasts are written in red, as on a church wall calendar.",
-              "sr": "Пребацујте између ове недеље и целог месеца. Велики празници су исписани црвеним словима, као на црквеном зидном календару.",
-              "ro": "Comutați între săptămâna aceasta și luna întreagă. Praznicele împărătești sunt scrise cu roșu, ca în calendarul bisericesc de perete."
+              "en": "Services and feasts for this week or the whole month.",
+              "sr": "Богослужења и празници за ову недељу или цео месец.",
+              "ro": "Slujbele și praznicele pentru săptămâna aceasta sau pentru toată luna."
             }
           }
         },
-        { "id": "services-schedule", "type": "schedule", "enabled": true, "props": { "defaultView": "week" } },
-        {
-          "id": "services-guide",
-          "type": "service-guide",
-          "enabled": true,
-          "props": {
-            "title": { "en": "About the services", "sr": "О богослужењима", "ro": "Despre slujbe" },
-            "items": [
-              {
-                "id": "guide-liturgy",
-                "icon": "chalice",
-                "title": { "en": "Divine Liturgy", "sr": "Света Литургија", "ro": "Sfânta Liturghie" },
-                "text": {
-                  "en": "The main service of the Church, celebrated on Sundays and feasts. Holy Communion is offered to Orthodox Christians who have prepared with prayer, fasting and confession.",
-                  "sr": "Главно богослужење Цркве, служи се недељом и празником. Свето причешће примају православни хришћани који су се припремили молитвом, постом и исповешћу.",
-                  "ro": "Slujba centrală a Bisericii, săvârșită duminica și la praznice. Sfânta Împărtășanie se dă creștinilor ortodocși pregătiți prin rugăciune, post și spovedanie."
-                }
-              },
-              {
-                "id": "guide-vespers",
-                "icon": "censer",
-                "title": { "en": "Vespers and Vigil", "sr": "Вечерње и бденије", "ro": "Vecernia și privegherea" },
-                "text": {
-                  "en": "The evening service begins the liturgical day. On the eve of great feasts we serve the All-Night Vigil.",
-                  "sr": "Вечерње почиње богослужбени дан. Уочи великих празника служимо бденије.",
-                  "ro": "Vecernia începe ziua liturgică. În ajunul praznicelor mari săvârșim privegherea."
-                }
-              },
-              {
-                "id": "guide-confession",
-                "icon": "prayer-rope",
-                "title": { "en": "Confession", "sr": "Исповест", "ro": "Spovedania" },
-                "text": {
-                  "en": "Offered after Saturday Vespers and by appointment. Ask a priest after any service.",
-                  "sr": "После суботњег вечерња и по договору. Обратите се свештенику после било које службе.",
-                  "ro": "După vecernia de sâmbătă și cu programare. Întrebați un preot după orice slujbă."
-                }
-              }
-            ]
-          }
-        },
+        {"id": "services-schedule", "type": "schedule", "enabled": true, "props": {"defaultView": "week"}},
         {
           "id": "services-modules",
           "type": "module-links",
           "enabled": true,
-          "props": {
-            "title": { "en": "Prayers and requests", "sr": "Молитве и молбе", "ro": "Rugăciuni și cereri" },
-            "pages": ["request-a-service", "zapiski"]
-          }
+          "props": {"title": {"en": "Prayers and requests", "sr": "Молитве и молбе", "ro": "Rugăciuni și cereri"}, "pages": ["request-a-service", "zapiski"]}
         }
       ]
     },
@@ -448,25 +391,33 @@
       "showInNav": true,
       "feature": "serviceRequests",
       "icon": "gospel",
-      "title": { "en": "Request a Service", "sr": "Затражите обред", "ro": "Solicitați o slujbă" },
-      "summary": { "en": "Ask the priest for a Moleben, Baptism, house blessing and more.", "sr": "Затражите од свештеника молебан, крштење, освећење дома и друго.", "ro": "Cereți preotului un paraclis, un botez, o sfeștanie și altele." },
-      "description": { "en": "Request a sacrament or service from the parish clergy.", "sr": "Затражите свету тајну или обред од свештенства парохије.", "ro": "Solicitați o Sfântă Taină sau o slujbă de la clerul parohiei." },
+      "title": {"en": "Request a Service", "sr": "Затражите обред", "ro": "Solicitați o slujbă"},
+      "summary": {
+        "en": "Ask the priest for a Moleben, Baptism, house blessing and more.",
+        "sr": "Затражите од свештеника молебан, крштење, освећење дома и друго.",
+        "ro": "Cereți preotului un paraclis, un botez, o sfeștanie și altele."
+      },
+      "description": {
+        "en": "Request a sacrament or service from the parish clergy.",
+        "sr": "Затражите свету тајну или обред од свештенства парохије.",
+        "ro": "Solicitați o Sfântă Taină sau o slujbă de la clerul parohiei."
+      },
       "sections": [
         {
           "id": "request-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Services", "sr": "Богослужења", "ro": "Slujbe" },
-            "title": { "en": "Request a service", "sr": "Затражите обред", "ro": "Solicitați o slujbă" },
+            "label": {"en": "Services", "sr": "Богослужења", "ro": "Slujbe"},
+            "title": {"en": "Request a service", "sr": "Затражите обред", "ro": "Solicitați o slujbă"},
             "intro": {
-              "en": "Choose a service and send a short request. The priest or parish office will contact you to agree on a date. Sacraments are never sold; gifts are a free offering.",
-              "sr": "Изаберите обред и пошаљите кратку молбу. Свештеник или канцеларија ће вас контактирати да договорите датум. Свете тајне се не продају; прилог је добровољан.",
-              "ro": "Alegeți slujba și trimiteți o cerere scurtă. Preotul sau cancelaria vă va contacta pentru a stabili data. Tainele nu se vând; darul este de bunăvoie."
+              "en": "Sample text. Choose a service and send a request. The parish office will reply.",
+              "sr": "Пример текста. Изаберите обред и пошаљите молбу. Канцеларија ће вам одговорити.",
+              "ro": "Text exemplu. Alegeți slujba și trimiteți cererea. Cancelaria vă va răspunde."
             }
           }
         },
-        { "id": "request-grid", "type": "service-requests", "enabled": true, "props": {} }
+        {"id": "request-grid", "type": "service-requests", "enabled": true, "props": {}}
       ]
     },
     {
@@ -477,25 +428,33 @@
       "showInNav": true,
       "feature": "zapiski",
       "icon": "candle",
-      "title": { "en": "Zapiski and Candles", "sr": "Цедуље и свеће", "ro": "Pomelnice și lumânări" },
-      "summary": { "en": "Send names for commemoration and ask for a candle to be lit.", "sr": "Пошаљите имена за помен и замолите да се упали свећа.", "ro": "Trimiteți nume spre pomenire și cereți să se aprindă o lumânare." },
-      "description": { "en": "Submit commemoration notes for health or repose and request candles.", "sr": "Пошаљите цедуље за здравље или за упокојене и затражите свеће.", "ro": "Trimiteți pomelnice pentru vii sau pentru cei adormiți și cereți lumânări." },
+      "title": {"en": "Zapiski and Candles", "sr": "Цедуље и свеће", "ro": "Pomelnice și lumânări"},
+      "summary": {
+        "en": "Send names for commemoration and ask for a candle to be lit.",
+        "sr": "Пошаљите имена за помен и замолите да се упали свећа.",
+        "ro": "Trimiteți nume spre pomenire și cereți să se aprindă o lumânare."
+      },
+      "description": {
+        "en": "Submit commemoration notes for health or repose and request candles.",
+        "sr": "Пошаљите цедуље за здравље или за упокојене и затражите свеће.",
+        "ro": "Trimiteți pomelnice pentru vii sau pentru cei adormiți și cereți lumânări."
+      },
       "sections": [
         {
           "id": "zapiski-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Services", "sr": "Богослужења", "ro": "Slujbe" },
-            "title": { "en": "Zapiski and candles", "sr": "Цедуље и свеће", "ro": "Pomelnice și lumânări" },
+            "label": {"en": "Services", "sr": "Богослужења", "ro": "Slujbe"},
+            "title": {"en": "Zapiski and candles", "sr": "Цедуље и свеће", "ro": "Pomelnice și lumânări"},
             "intro": {
-              "en": "Write the names of those you want the priest to remember at the altar, just as on the paper slips at the candle desk.",
-              "sr": "Упишите имена оних које желите да свештеник помене у олтару, као на папирним цедуљама код свећњака.",
-              "ro": "Scrieți numele celor pe care doriți să-i pomenească preotul în altar, la fel ca pe pomelnicele de hârtie de la pangar."
+              "en": "Sample text. Send names for commemoration and request candles.",
+              "sr": "Пример текста. Пошаљите имена за помен и затражите свеће.",
+              "ro": "Text exemplu. Trimiteți nume spre pomenire și cereți lumânări."
             }
           }
         },
-        { "id": "zapiski-form", "type": "zapiski", "enabled": true, "props": {} }
+        {"id": "zapiski-form", "type": "zapiski", "enabled": true, "props": {}}
       ]
     },
     {
@@ -507,25 +466,29 @@
       "navPriority": "secondary",
       "feature": "livestream",
       "icon": "bells",
-      "title": { "en": "Livestream & Sermons", "sr": "Пренос и беседе", "ro": "Transmisiuni și predici" },
-      "description": { "en": "Watch services live and listen to recent sermons.", "sr": "Гледајте богослужења уживо и слушајте недавне беседе.", "ro": "Urmăriți slujbele live și ascultați predicile recente." },
+      "title": {"en": "Livestream & Sermons", "sr": "Пренос и беседе", "ro": "Transmisiuni și predici"},
+      "description": {
+        "en": "Watch services live and listen to recent sermons.",
+        "sr": "Гледајте богослужења уживо и слушајте недавне беседе.",
+        "ro": "Urmăriți slujbele live și ascultați predicile recente."
+      },
       "sections": [
         {
           "id": "livestream-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Livestream & Sermons", "sr": "Пренос и беседе", "ro": "Transmisiuni și predici" },
-            "title": { "en": "Pray with us from home", "sr": "Молите се са нама од куће", "ro": "Rugați-vă cu noi de acasă" },
+            "label": {"en": "Livestream & Sermons", "sr": "Пренос и беседе", "ro": "Transmisiuni și predici"},
+            "title": {"en": "Livestream and sermons", "sr": "Пренос и беседе", "ro": "Transmisiuni și predici"},
             "intro": {
-              "en": "For those who are sick, traveling or far away. Nothing replaces being in church, but no one needs to be left out.",
-              "sr": "За оне који су болесни, на путу или далеко. Ништа не замењује долазак у храм, али нико не треба да остане по страни.",
-              "ro": "Pentru cei bolnavi, plecați sau departe. Nimic nu înlocuiește prezența în biserică, dar nimeni nu trebuie lăsat deoparte."
+              "en": "Sample text. One or two lines about the broadcast go here.",
+              "sr": "Пример текста. Овде иде ред или два о преносу.",
+              "ro": "Text exemplu. Aici vin unul sau două rânduri despre transmisiune."
             }
           }
         },
-        { "id": "livestream-player", "type": "livestream", "enabled": true, "props": {} },
-        { "id": "sermon-archive", "type": "sermon-archive", "enabled": true, "feature": "sermons", "props": {} }
+        {"id": "livestream-player", "type": "livestream", "enabled": true, "props": {}},
+        {"id": "sermon-archive", "type": "sermon-archive", "enabled": true, "feature": "sermons", "props": {}}
       ]
     },
     {
@@ -535,17 +498,21 @@
       "order": 5,
       "showInNav": true,
       "feature": "getInvolved",
-      "overviewLabel": { "en": "Overview", "sr": "Преглед", "ro": "Prezentare" },
-      "title": { "en": "Get Involved", "sr": "Укључите се", "ro": "Implicați-vă" },
-      "description": { "en": "Parish events, volunteer opportunities and needs, shared with OrthodoxConnect.", "sr": "Парохијски догађаји, волонтирање и потребе, повезано са OrthodoxConnect.", "ro": "Evenimente parohiale, voluntariat și nevoi, împreună cu OrthodoxConnect." },
+      "overviewLabel": {"en": "Overview", "sr": "Преглед", "ro": "Prezentare"},
+      "title": {"en": "Get Involved", "sr": "Укључите се", "ro": "Implicați-vă"},
+      "description": {
+        "en": "Parish events, volunteer opportunities and needs, shared with OrthodoxConnect.",
+        "sr": "Парохијски догађаји, волонтирање и потребе, повезано са OrthodoxConnect.",
+        "ro": "Evenimente parohiale, voluntariat și nevoi, împreună cu OrthodoxConnect."
+      },
       "sections": [
         {
           "id": "involved-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Get Involved", "sr": "Укључите се", "ro": "Implicați-vă" },
-            "title": { "en": "Many hands, one parish", "sr": "Много руку, једна парохија", "ro": "Multe mâini, o singură parohie" },
+            "label": {"en": "Get Involved", "sr": "Укључите се", "ro": "Implicați-vă"},
+            "title": {"en": "Many hands, one parish", "sr": "Много руку, једна парохија", "ro": "Multe mâini, o singură parohie"},
             "intro": {
               "en": "Find an event or take a slot on the volunteer list. Sign-ups run through your OrthodoxConnect account.",
               "sr": "Пронађите догађај или се упишите на списак волонтера. Пријаве иду преко вашег OrthodoxConnect налога.",
@@ -553,8 +520,13 @@
             }
           }
         },
-        { "id": "involved-highlights", "type": "involved-highlights", "enabled": true, "props": {} },
-        { "id": "involved-subpages", "type": "subpage-cards", "enabled": true, "props": { "title": { "en": "Choose where to start", "sr": "Изаберите одакле да почнете", "ro": "Alegeți de unde începeți" } } }
+        {"id": "involved-highlights", "type": "involved-highlights", "enabled": true, "props": {}},
+        {
+          "id": "involved-subpages",
+          "type": "subpage-cards",
+          "enabled": true,
+          "props": {"title": {"en": "Choose where to start", "sr": "Изаберите одакле да почнете", "ro": "Alegeți de unde începeți"}}
+        }
       ]
     },
     {
@@ -565,17 +537,25 @@
       "showInNav": true,
       "feature": "getInvolved",
       "icon": "bells",
-      "title": { "en": "Events", "sr": "Догађаји", "ro": "Evenimente" },
-      "summary": { "en": "Parish gatherings with RSVP through OrthodoxConnect.", "sr": "Парохијска окупљања са пријавом преко OrthodoxConnect.", "ro": "Întâlniri parohiale cu confirmare prin OrthodoxConnect." },
-      "description": { "en": "Upcoming parish events with RSVP.", "sr": "Предстојећи парохијски догађаји са пријавом.", "ro": "Evenimente parohiale viitoare, cu confirmare." },
+      "title": {"en": "Events", "sr": "Догађаји", "ro": "Evenimente"},
+      "summary": {
+        "en": "Parish gatherings with RSVP through OrthodoxConnect.",
+        "sr": "Парохијска окупљања са пријавом преко OrthodoxConnect.",
+        "ro": "Întâlniri parohiale cu confirmare prin OrthodoxConnect."
+      },
+      "description": {
+        "en": "Upcoming parish events with RSVP.",
+        "sr": "Предстојећи парохијски догађаји са пријавом.",
+        "ro": "Evenimente parohiale viitoare, cu confirmare."
+      },
       "sections": [
         {
           "id": "events-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Get Involved", "sr": "Укључите се", "ro": "Implicați-vă" },
-            "title": { "en": "Parish events", "sr": "Парохијски догађаји", "ro": "Evenimente parohiale" },
+            "label": {"en": "Get Involved", "sr": "Укључите се", "ro": "Implicați-vă"},
+            "title": {"en": "Parish events", "sr": "Парохијски догађаји", "ro": "Evenimente parohiale"},
             "intro": {
               "en": "These sample events would come straight from OrthodoxConnect. RSVP with your account and the organizer sees the count.",
               "sr": "Ови пример догађаји би долазили директно из OrthodoxConnect. Пријавите се налогом и организатор види број.",
@@ -583,7 +563,7 @@
             }
           }
         },
-        { "id": "events-board", "type": "events", "enabled": true, "props": { "defaultView": "list" } }
+        {"id": "events-board", "type": "events", "enabled": true, "props": {"defaultView": "list"}}
       ]
     },
     {
@@ -594,17 +574,25 @@
       "showInNav": true,
       "feature": "getInvolved",
       "icon": "church",
-      "title": { "en": "Volunteer and Needs", "sr": "Волонтирање и потребе", "ro": "Voluntariat și nevoi" },
-      "summary": { "en": "Coffee hour, cleaning, choir, food drive and meals for families.", "sr": "Кафа после службе, чишћење, хор, сакупљање хране и оброци за породице.", "ro": "Cafeaua de după slujbă, curățenie, cor, colectă de alimente și mese pentru familii." },
-      "description": { "en": "Volunteer opportunities and parish needs with sign-up slots.", "sr": "Прилике за волонтирање и потребе парохије са терминима.", "ro": "Oportunități de voluntariat și nevoi ale parohiei, cu locuri de înscriere." },
+      "title": {"en": "Volunteer and Needs", "sr": "Волонтирање и потребе", "ro": "Voluntariat și nevoi"},
+      "summary": {
+        "en": "Coffee hour, cleaning, choir, food drive and meals for families.",
+        "sr": "Кафа после службе, чишћење, хор, сакупљање хране и оброци за породице.",
+        "ro": "Cafeaua de după slujbă, curățenie, cor, colectă de alimente și mese pentru familii."
+      },
+      "description": {
+        "en": "Volunteer opportunities and parish needs with sign-up slots.",
+        "sr": "Прилике за волонтирање и потребе парохије са терминима.",
+        "ro": "Oportunități de voluntariat și nevoi ale parohiei, cu locuri de înscriere."
+      },
       "sections": [
         {
           "id": "volunteer-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Get Involved", "sr": "Укључите се", "ro": "Implicați-vă" },
-            "title": { "en": "Volunteer and needs", "sr": "Волонтирање и потребе", "ro": "Voluntariat și nevoi" },
+            "label": {"en": "Get Involved", "sr": "Укључите се", "ro": "Implicați-vă"},
+            "title": {"en": "Volunteer and needs", "sr": "Волонтирање и потребе", "ro": "Voluntariat și nevoi"},
             "intro": {
               "en": "Pick a slot that fits your week. Each slot shows how many helpers are still needed.",
               "sr": "Изаберите термин који вам одговара. Сваки термин показује колико још помоћника треба.",
@@ -612,7 +600,7 @@
             }
           }
         },
-        { "id": "volunteer-board", "type": "needs", "enabled": true, "props": {} }
+        {"id": "volunteer-board", "type": "needs", "enabled": true, "props": {}}
       ]
     },
     {
@@ -622,16 +610,20 @@
       "order": 6,
       "showInNav": true,
       "feature": "store",
-      "title": { "en": "Store", "sr": "Продавница", "ro": "Magazin" },
-      "description": { "en": "Icons, candles, books, prayer ropes, incense, crosses and gifts from the parish store.", "sr": "Иконе, свеће, књиге, бројанице, тамјан, крстови и поклони из парохијске продавнице.", "ro": "Icoane, lumânări, cărți, metanii, tămâie, cruci și daruri din magazinul parohiei." },
+      "title": {"en": "Store", "sr": "Продавница", "ro": "Magazin"},
+      "description": {
+        "en": "Icons, candles, books, prayer ropes, incense, crosses and gifts from the parish store.",
+        "sr": "Иконе, свеће, књиге, бројанице, тамјан, крстови и поклони из парохијске продавнице.",
+        "ro": "Icoane, lumânări, cărți, metanii, tămâie, cruci și daruri din magazinul parohiei."
+      },
       "sections": [
         {
           "id": "store-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Parish store", "sr": "Парохијска продавница", "ro": "Magazinul parohiei" },
-            "title": { "en": "From the candle desk", "sr": "Са свећњака", "ro": "De la pangar" },
+            "label": {"en": "Parish store", "sr": "Парохијска продавница", "ro": "Magazinul parohiei"},
+            "title": {"en": "From the candle desk", "sr": "Са свећњака", "ro": "De la pangar"},
             "intro": {
               "en": "Sample listings. Every purchase supports the parish. Ship to your home or pick up at the church after a service.",
               "sr": "Пример понуде. Свака куповина помаже парохију. Пошаљите на кућну адресу или преузмите у храму после службе.",
@@ -639,7 +631,7 @@
             }
           }
         },
-        { "id": "store-catalog", "type": "store-catalog", "enabled": true, "props": {} }
+        {"id": "store-catalog", "type": "store-catalog", "enabled": true, "props": {}}
       ]
     },
     {
@@ -649,9 +641,9 @@
       "order": 90,
       "showInNav": false,
       "feature": "store",
-      "title": { "en": "Your cart", "sr": "Ваша корпа", "ro": "Coșul dumneavoastră" },
-      "description": { "en": "Review your cart.", "sr": "Прегледајте корпу.", "ro": "Verificați coșul." },
-      "sections": [{ "id": "cart-view", "type": "cart", "enabled": true, "props": {} }]
+      "title": {"en": "Your cart", "sr": "Ваша корпа", "ro": "Coșul dumneavoastră"},
+      "description": {"en": "Review your cart.", "sr": "Прегледајте корпу.", "ro": "Verificați coșul."},
+      "sections": [{"id": "cart-view", "type": "cart", "enabled": true, "props": {}}]
     },
     {
       "id": "checkout",
@@ -660,9 +652,9 @@
       "order": 91,
       "showInNav": false,
       "feature": "store",
-      "title": { "en": "Checkout", "sr": "Плаћање", "ro": "Finalizare comandă" },
-      "description": { "en": "Complete your order.", "sr": "Завршите поруџбину.", "ro": "Finalizați comanda." },
-      "sections": [{ "id": "checkout-form", "type": "checkout", "enabled": true, "props": {} }]
+      "title": {"en": "Checkout", "sr": "Плаћање", "ro": "Finalizare comandă"},
+      "description": {"en": "Complete your order.", "sr": "Завршите поруџбину.", "ro": "Finalizați comanda."},
+      "sections": [{"id": "checkout-form", "type": "checkout", "enabled": true, "props": {}}]
     },
     {
       "id": "donate",
@@ -671,48 +663,64 @@
       "order": 7,
       "showInNav": true,
       "navStyle": "button",
-      "title": { "en": "Donate", "sr": "Прилог", "ro": "Donează" },
-      "description": { "en": "Support St. Example Orthodox Church with a one-time or monthly gift.", "sr": "Помозите храм Светог Примера једнократним или месечним прилогом.", "ro": "Sprijiniți Biserica Sfântul Exemplu cu un dar unic sau lunar." },
+      "title": {"en": "Donate", "sr": "Прилог", "ro": "Donează"},
+      "description": {
+        "en": "Support St. Example Orthodox Church with a one-time or monthly gift.",
+        "sr": "Помозите храм Светог Примера једнократним или месечним прилогом.",
+        "ro": "Sprijiniți Biserica Sfântul Exemplu cu un dar unic sau lunar."
+      },
       "sections": [
         {
           "id": "donate-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Stewardship", "sr": "Прилози", "ro": "Daruri" },
-            "title": { "en": "Give to the parish", "sr": "Дајте прилог парохији", "ro": "Dăruiți parohiei" },
+            "label": {"en": "Stewardship", "sr": "Прилози", "ro": "Daruri"},
+            "title": {"en": "Give to the parish", "sr": "Дајте прилог парохији", "ro": "Dăruiți parohiei"},
             "intro": {
-              "en": "The parish lives from the gifts of its people. Choose an amount, how often, and where it should go.",
-              "sr": "Парохија живи од прилога својих верника. Изаберите износ, учесталост и намену.",
-              "ro": "Parohia trăiește din darurile credincioșilor. Alegeți suma, cât de des și unde să meargă."
+              "en": "Sample text. Choose an amount, how often, and where it should go.",
+              "sr": "Пример текста. Изаберите износ, учесталост и намену.",
+              "ro": "Text exemplu. Alegeți suma, cât de des și unde să meargă."
             }
           }
         },
-        { "id": "donate-picker", "type": "donation-picker", "enabled": true, "props": {} },
+        {"id": "donate-picker", "type": "donation-picker", "enabled": true, "props": {}},
         {
           "id": "donate-ways",
           "type": "giving-ways",
           "enabled": true,
           "props": {
-            "title": { "en": "Other ways to give", "sr": "Други начини давања", "ro": "Alte moduri de a dărui" },
+            "title": {"en": "Other ways to give", "sr": "Други начини давања", "ro": "Alte moduri de a dărui"},
             "items": [
               {
                 "id": "give-plate",
                 "icon": "church",
-                "title": { "en": "In church", "sr": "У храму", "ro": "În biserică" },
-                "text": { "en": "Use the offering box by the candle desk on any day the church is open.", "sr": "Користите кутију за прилоге код свећњака када је храм отворен.", "ro": "Folosiți cutia milei de lângă pangar în orice zi când biserica e deschisă." }
+                "title": {"en": "In church", "sr": "У храму", "ro": "În biserică"},
+                "text": {
+                  "en": "Sample text. One line about giving in church.",
+                  "sr": "Пример текста. Један ред о давању у храму.",
+                  "ro": "Text exemplu. Un rând despre dăruirea în biserică."
+                }
               },
               {
                 "id": "give-check",
                 "icon": "gospel",
-                "title": { "en": "By check", "sr": "Чеком", "ro": "Prin cec" },
-                "text": { "en": "Make checks payable to the parish and mail them to the parish office.", "sr": "Чек испишите на парохију и пошаљите у канцеларију.", "ro": "Emiteți cecul pe numele parohiei și trimiteți-l la cancelarie." }
+                "title": {"en": "By check", "sr": "Чеком", "ro": "Prin cec"},
+                "text": {
+                  "en": "Sample text. One line about giving by check.",
+                  "sr": "Пример текста. Један ред о давању чеком.",
+                  "ro": "Text exemplu. Un rând despre dăruirea prin cec."
+                }
               },
               {
                 "id": "give-time",
                 "icon": "candle",
-                "title": { "en": "With your time", "sr": "Својим временом", "ro": "Cu timpul vostru" },
-                "text": { "en": "Help with coffee hour, the choir, cleaning or visiting the sick.", "sr": "Помозите око кафе, у хору, при чишћењу или у посети болеснима.", "ro": "Ajutați la cafea, în cor, la curățenie sau la vizitarea bolnavilor." }
+                "title": {"en": "With your time", "sr": "Својим временом", "ro": "Cu timpul vostru"},
+                "text": {
+                  "en": "Sample text. One line about volunteering.",
+                  "sr": "Пример текста. Један ред о волонтирању.",
+                  "ro": "Text exemplu. Un rând despre voluntariat."
+                }
               }
             ]
           }
@@ -722,22 +730,25 @@
           "type": "faq",
           "enabled": true,
           "props": {
-            "title": { "en": "Questions about giving", "sr": "Питања о прилозима", "ro": "Întrebări despre daruri" },
+            "title": {"en": "Questions", "sr": "Питања", "ro": "Întrebări"},
             "items": [
               {
                 "id": "faq-receipt",
-                "q": { "en": "Will I get a receipt?", "sr": "Да ли добијам потврду?", "ro": "Primesc chitanță?" },
-                "a": { "en": "Yes. Once online giving is connected, a receipt is emailed for every gift, and a yearly summary is sent each January.", "sr": "Да. Када се повеже онлајн давање, потврда стиже мејлом за сваки прилог, а годишњи преглед у јануару.", "ro": "Da. După conectarea plăților online, primiți chitanță pe e-mail pentru fiecare dar și un rezumat anual în ianuarie." }
-              },
-              {
-                "id": "faq-cancel",
-                "q": { "en": "Can I change or stop a monthly gift?", "sr": "Могу ли да променим или прекинем месечни прилог?", "ro": "Pot modifica sau opri darul lunar?" },
-                "a": { "en": "Yes, at any time. Contact the parish office and we will update it the same week.", "sr": "Да, било када. Јавите се канцеларији и променићемо исте недеље.", "ro": "Da, oricând. Contactați cancelaria și îl actualizăm în aceeași săptămână." }
+                "q": {"en": "Will I get a receipt?", "sr": "Да ли добијам потврду?", "ro": "Primesc chitanță?"},
+                "a": {
+                  "en": "Sample answer. One or two lines from the parish go here.",
+                  "sr": "Пример одговора. Овде иде ред или два од парохије.",
+                  "ro": "Răspuns exemplu. Aici vin unul sau două rânduri de la parohie."
+                }
               },
               {
                 "id": "faq-sample",
-                "q": { "en": "Is this form real?", "sr": "Да ли је овај образац прави?", "ro": "Acest formular este real?" },
-                "a": { "en": "No. This is a sample site and no payment is taken.", "sr": "Не. Ово је пример сајта и никаква уплата се не наплаћује.", "ro": "Nu. Acesta este un site exemplu și nu se încasează nicio plată." }
+                "q": {"en": "Is this form real?", "sr": "Да ли је овај образац прави?", "ro": "Acest formular este real?"},
+                "a": {
+                  "en": "No. This is a sample site and no payment is taken.",
+                  "sr": "Не. Ово је пример сајта и никаква уплата се не наплаћује.",
+                  "ro": "Nu. Acesta este un site exemplu și nu se încasează nicio plată."
+                }
               }
             ]
           }
@@ -751,16 +762,20 @@
       "order": 8,
       "showInNav": true,
       "navPriority": "secondary",
-      "title": { "en": "Contact", "sr": "Контакт", "ro": "Contact" },
-      "description": { "en": "Address, directions, office hours and a contact form.", "sr": "Адреса, упутства, радно време канцеларије и образац за контакт.", "ro": "Adresă, indicații, programul cancelariei și formular de contact." },
+      "title": {"en": "Contact", "sr": "Контакт", "ro": "Contact"},
+      "description": {
+        "en": "Address, directions, office hours and a contact form.",
+        "sr": "Адреса, упутства, радно време канцеларије и образац за контакт.",
+        "ro": "Adresă, indicații, programul cancelariei și formular de contact."
+      },
       "sections": [
         {
           "id": "contact-header",
           "type": "page-header",
           "enabled": true,
           "props": {
-            "label": { "en": "Contact", "sr": "Контакт", "ro": "Contact" },
-            "title": { "en": "Find us and write to us", "sr": "Пронађите нас и пишите нам", "ro": "Găsiți-ne și scrieți-ne" },
+            "label": {"en": "Contact", "sr": "Контакт", "ro": "Contact"},
+            "title": {"en": "Find us and write to us", "sr": "Пронађите нас и пишите нам", "ro": "Găsiți-ne și scrieți-ne"},
             "intro": {
               "en": "The address and phone number below are samples.",
               "sr": "Адреса и број телефона испод су примери.",
@@ -768,7 +783,7 @@
             }
           }
         },
-        { "id": "contact-panel", "type": "contact", "enabled": true, "props": {} }
+        {"id": "contact-panel", "type": "contact", "enabled": true, "props": {}}
       ]
     }
   ]

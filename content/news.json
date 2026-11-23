@@ -1,10 +1,10 @@
 {
   "$schema": "./schemas/news.schema.json",
   "categories": [
-    { "id": "announcements", "label": { "en": "Announcements", "sr": "Обавештења", "ro": "Anunțuri" } },
-    { "id": "liturgical", "label": { "en": "Liturgical life", "sr": "Богослужбени живот", "ro": "Viața liturgică" } },
-    { "id": "youth", "label": { "en": "Youth and church school", "sr": "Омладина и веронаука", "ro": "Tineri și școala parohială" } },
-    { "id": "charity", "label": { "en": "Charity", "sr": "Добротворство", "ro": "Filantropie" } }
+    {"id": "announcements", "label": {"en": "Announcements", "sr": "Обавештења", "ro": "Anunțuri"}},
+    {"id": "liturgical", "label": {"en": "Liturgical life", "sr": "Богослужбени живот", "ro": "Viața liturgică"}},
+    {"id": "youth", "label": {"en": "Youth and church school", "sr": "Омладина и веронаука", "ro": "Tineri și școala parohială"}},
+    {"id": "charity", "label": {"en": "Charity", "sr": "Добротворство", "ro": "Filantropie"}}
   ],
   "items": [
     {
@@ -12,20 +12,17 @@
       "date": "2026-11-20",
       "category": "liturgical",
       "image": "/images/gallery/candle-stand.svg",
-      "title": { "en": "The Nativity Fast begins", "sr": "Почиње Божићни пост", "ro": "Începe Postul Nașterii Domnului" },
+      "title": {"en": "The Nativity Fast begins", "sr": "Почиње Божићни пост", "ro": "Începe Postul Nașterii Domnului"},
       "summary": {
-        "en": "Forty days of preparation for the feast. Here is the parish schedule for the fast.",
-        "sr": "Четрдесет дана припреме за празник. Ево распореда парохије током поста.",
-        "ro": "Patruzeci de zile de pregătire pentru praznic. Iată programul parohiei în post."
+        "en": "Sample summary. The parish schedule for the fast.",
+        "sr": "Пример сажетка. Парохијски распоред за време поста.",
+        "ro": "Rezumat exemplu. Programul parohiei pentru post."
       },
       "body": [
         {
-          "en": "This is a sample article. The Nativity Fast prepares us for the feast of the Nativity of Christ. During these weeks the parish adds an Akathist on Wednesday evenings and extra times for confession.",
-          "sr": "Ово је пример чланка. Божићни пост нас припрема за празник Рождества Христовог. Током ових недеља парохија додаје акатист средом увече и више термина за исповест.",
-          "ro": "Acesta este un articol exemplu. Postul Nașterii Domnului ne pregătește pentru praznicul Crăciunului. În aceste săptămâni parohia adaugă un acatist miercuri seara și mai multe ore de spovedanie."
-        },
-        {
-          "en": "Please speak with a priest about how to keep the fast in a way that fits your health and family life."
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
         }
       ]
     },
@@ -34,7 +31,7 @@
       "date": "2026-11-15",
       "category": "charity",
       "image": "/images/gallery/refectory.svg",
-      "title": { "en": "Winter food drive", "sr": "Зимско сакупљање хране", "ro": "Colecta de alimente de iarnă" },
+      "title": {"en": "Winter food drive", "sr": "Зимско сакупљање хране", "ro": "Colecta de alimente de iarnă"},
       "summary": {
         "en": "Bring canned goods, flour and oil to the parish hall through December.",
         "sr": "Донесите конзерве, брашно и уље у парохијски дом током децембра.",
@@ -42,8 +39,9 @@
       },
       "body": [
         {
-          "en": "This is a sample article. Boxes are by the hall door. Volunteers sort them after the Liturgy on Sundays and deliver them before the feast.",
-          "ro": "Acesta este un articol exemplu. Cutiile sunt lângă ușa casei parohiale. Voluntarii le sortează duminica după Liturghie și le duc înainte de praznic."
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
         }
       ]
     },
@@ -52,15 +50,21 @@
       "date": "2026-11-08",
       "category": "youth",
       "image": "/images/gallery/garden.svg",
-      "title": { "en": "Church school prepares for St. Nicholas", "sr": "Веронаука се спрема за Светог Николу", "ro": "Școala parohială se pregătește de Sfântul Nicolae" },
+      "title": {
+        "en": "Church school prepares for St. Nicholas",
+        "sr": "Веронаука се спрема за Светог Николу",
+        "ro": "Școala parohială se pregătește de Sfântul Nicolae"
+      },
       "summary": {
-        "en": "The children are learning the troparion and making cards for the elderly.",
-        "sr": "Деца уче тропар и праве честитке за старије.",
-        "ro": "Copiii învață troparul și fac felicitări pentru vârstnici."
+        "en": "Sample summary. Church school news for December.",
+        "sr": "Пример сажетка. Вести из веронауке за децембар.",
+        "ro": "Rezumat exemplu. Noutăți de la școala parohială pentru decembrie."
       },
       "body": [
         {
-          "en": "This is a sample article. Classes meet after the Liturgy. Parents are welcome to help with the cards and the small gathering in December."
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
         }
       ]
     },
@@ -69,7 +73,7 @@
       "date": "2026-10-30",
       "category": "announcements",
       "image": "/images/gallery/church-winter.svg",
-      "title": { "en": "Annual parish assembly", "sr": "Годишња парохијска скупштина", "ro": "Adunarea parohială anuală" },
+      "title": {"en": "Annual parish assembly", "sr": "Годишња парохијска скупштина", "ro": "Adunarea parohială anuală"},
       "summary": {
         "en": "All members are invited to hear the year's report and plans for the roof repair.",
         "sr": "Сви чланови су позвани да чују годишњи извештај и планове за поправку крова.",
@@ -77,7 +81,9 @@
       },
       "body": [
         {
-          "en": "This is a sample article. The assembly meets in the parish hall after the Liturgy. Lunch is provided."
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
         }
       ]
     },
@@ -86,7 +92,7 @@
       "date": "2026-10-12",
       "category": "liturgical",
       "image": "/images/gallery/starry-vault.svg",
-      "title": { "en": "The vault frescoes are cleaned", "sr": "Очишћен живопис на своду", "ro": "Frescele bolții au fost curățate" },
+      "title": {"en": "The vault frescoes are cleaned", "sr": "Очишћен живопис на своду", "ro": "Frescele bolții au fost curățate"},
       "summary": {
         "en": "After a summer of careful work, the stars on the vault shine again.",
         "sr": "После лета пажљивог рада, звезде на своду поново сијају.",
@@ -94,7 +100,9 @@
       },
       "body": [
         {
-          "en": "This is a sample article. Thank you to everyone who gave to the iconography fund."
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
         }
       ]
     }

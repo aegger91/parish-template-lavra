@@ -32,7 +32,7 @@ export interface CommemorationType {
   appliesTo: ("health" | "repose")[];
   suggestedDonation: number;
   label: Localized;
-  hint: Localized;
+  hint?: Localized;
 }
 
 export interface CandleOption {

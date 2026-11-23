@@ -92,7 +92,8 @@ export function ServicesWeek({ section, numeral }: SectionProps) {
   );
 }
 
-export function ChapterStory({ section, numeral }: SectionProps) {
+/** Optional About / Welcome block: a title, one or two short paragraphs, optional links and image. */
+export function WelcomeText({ section, numeral }: SectionProps) {
   const { lang, tr } = useI18n();
   const p = section.props;
   const paragraphs: string[] = (p.paragraphs ?? []).map((x: never) => tr(x));
@@ -124,31 +125,6 @@ export function ChapterStory({ section, numeral }: SectionProps) {
           </Reveal>
         )}
       </div>
-    </ChapterSection>
-  );
-}
-
-export function Visit({ section, numeral }: SectionProps) {
-  const { tr } = useI18n();
-  const p = section.props;
-  return (
-    <ChapterSection id={section.id} numeral={numeral} title={tr(p.title)} intro={tr(p.intro)} tone="lapis">
-      <ol className="grid gap-5 md:grid-cols-3">
-        {p.steps.map((s: { id: string; icon: string; title: never; text: never }, i: number) => (
-          <Reveal as="li" key={s.id} delay={i * 80}>
-            <div className="h-full rounded-md border border-ochre-light/30 bg-white/[0.06] p-6 transition hover:border-ochre-light/70 hover:bg-white/[0.09] hover:shadow-[0_0_40px_-10px_rgb(var(--lavra-candle)/0.6)]">
-              <div className="flex items-center gap-3">
-                <span className="grid size-12 place-items-center rounded-full border border-ochre-light/50 text-ochre-light">
-                  <Pictogram name={s.icon} className="size-7" />
-                </span>
-                <span className="label-sc text-ochre-light">{String(i + 1).padStart(2, "0")}</span>
-              </div>
-              <h3 className="mt-4 text-2xl">{tr(s.title)}</h3>
-              <p className="mt-2 text-[#efe2c4]">{tr(s.text)}</p>
-            </div>
-          </Reveal>
-        ))}
-      </ol>
     </ChapterSection>
   );
 }

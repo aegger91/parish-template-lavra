@@ -8,8 +8,8 @@
       "speaker": "fr-john",
       "reading": "Luke 10:25-37",
       "durationMinutes": 14,
-      "media": { "src": "/media/sample-sermon.wav", "poster": null, "embedUrl": null },
-      "title": { "en": "Who is my neighbor?", "sr": "Ко је мој ближњи?", "ro": "Cine este aproapele meu?" },
+      "media": {"src": "/media/sample-sermon.wav", "poster": null, "embedUrl": null},
+      "title": {"en": "Who is my neighbor?", "sr": "Ко је мој ближњи?", "ro": "Cine este aproapele meu?"},
       "summary": {
         "en": "A sample homily on the parable of the Good Samaritan.",
         "sr": "Пример беседе о причи о милостивом Самарјанину.",
@@ -17,12 +17,9 @@
       },
       "transcript": [
         {
-          "en": "This is a sample transcript. In today's Gospel a lawyer asks the Lord a question that sounds simple: who is my neighbor? The answer is not a definition but a story.",
-          "sr": "Ово је пример преписа. У данашњем Јеванђељу законик пита Господа нешто што звучи једноставно: ко је мој ближњи? Одговор није дефиниција, него прича."
-        },
-        {
-          "en": "The priest and the Levite pass by. The one who stops is the stranger. We are asked not to measure who deserves our help, but to become a neighbor to whoever is lying by the road.",
-          "sr": "Свештеник и левит пролазе. Зауставља се странац. Од нас се не тражи да меримо ко заслужује помоћ, већ да постанемо ближњи ономе ко лежи крај пута."
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
         }
       ]
     },
@@ -33,8 +30,8 @@
       "speaker": "fr-stefan",
       "reading": "Luke 12:16-21",
       "durationMinutes": 11,
-      "media": { "src": null, "poster": "/images/gallery/iconostasis.svg", "embedUrl": null },
-      "title": { "en": "Rich toward God", "sr": "Богат у Богу", "ro": "Bogat întru Dumnezeu" },
+      "media": {"src": null, "poster": "/images/gallery/iconostasis.svg", "embedUrl": null},
+      "title": {"en": "Rich toward God", "sr": "Богат у Богу", "ro": "Bogat întru Dumnezeu"},
       "summary": {
         "en": "A sample video homily on the parable of the rich man and his barns.",
         "sr": "Пример видео беседе о богаташу и његовим житницама.",
@@ -42,7 +39,9 @@
       },
       "transcript": [
         {
-          "en": "This is a sample transcript. The man in the parable talks only to himself. He plans, he builds, he rests, and in all of it there is no one else, not his neighbor and not God."
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
         }
       ]
     },
@@ -53,8 +52,8 @@
       "speaker": "fr-john",
       "reading": "Luke 10:38-42; 11:27-28",
       "durationMinutes": 6,
-      "media": { "src": null, "poster": null, "embedUrl": null },
-      "title": { "en": "A child in the temple", "sr": "Дете у храму", "ro": "Un copil în templu" },
+      "media": {"src": null, "poster": null, "embedUrl": null},
+      "title": {"en": "A child in the temple", "sr": "Дете у храму", "ro": "Un copil în templu"},
       "summary": {
         "en": "A sample written reflection for the feast of the Entry of the Theotokos.",
         "sr": "Пример писане беседе за празник Ваведења.",
@@ -62,11 +61,9 @@
       },
       "transcript": [
         {
-          "en": "This is a sample text. The feast shows us a small girl brought by her parents into the temple. Everything that follows in the Gospel begins with this quiet offering.",
-          "ro": "Acesta este un text exemplu. Praznicul ne arată o fetiță adusă de părinți în templu. Tot ce urmează în Evanghelie începe cu această jertfă tăcută."
-        },
-        {
-          "en": "We bring our children to church for the same reason: not because they understand everything, but because this is home."
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
         }
       ]
     },
@@ -77,8 +74,8 @@
       "speaker": "dn-mihai",
       "reading": "Luke 8:41-56",
       "durationMinutes": 9,
-      "media": { "src": "/media/sample-sermon.wav", "poster": null, "embedUrl": null },
-      "title": { "en": "Do not be afraid, only believe", "sr": "Не бој се, само веруј", "ro": "Nu te teme, crede numai" },
+      "media": {"src": "/media/sample-sermon.wav", "poster": null, "embedUrl": null},
+      "title": {"en": "Do not be afraid, only believe", "sr": "Не бој се, само веруј", "ro": "Nu te teme, crede numai"},
       "summary": {
         "en": "A sample homily on the healing of Jairus' daughter.",
         "sr": "Пример беседе о исцељењу Јаирове кћери.",
@@ -86,7 +83,9 @@
       },
       "transcript": [
         {
-          "en": "This is a sample transcript. On the way to Jairus' house the Lord is stopped by a woman who touches His garment. The delay looks like a disaster to the father, yet it becomes a lesson in faith for him."
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
         }
       ]
     },
@@ -97,8 +96,8 @@
       "speaker": "fr-stefan",
       "reading": "Luke 8:5-15",
       "durationMinutes": 12,
-      "media": { "src": null, "poster": "/images/gallery/garden.svg", "embedUrl": null },
-      "title": { "en": "The seed and the soil", "sr": "Семе и земља", "ro": "Sămânța și pământul" },
+      "media": {"src": null, "poster": "/images/gallery/garden.svg", "embedUrl": null},
+      "title": {"en": "The seed and the soil", "sr": "Семе и земља", "ro": "Sămânța și pământul"},
       "summary": {
         "en": "A sample video homily on the parable of the sower.",
         "sr": "Пример видео беседе о причи о сејачу.",
@@ -106,7 +105,9 @@
       },
       "transcript": [
         {
-          "en": "This is a sample transcript. The sower does not choose only good soil. He throws the seed everywhere, generously, and leaves the growth to God."
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
         }
       ]
     }

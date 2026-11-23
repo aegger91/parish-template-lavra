@@ -121,6 +121,10 @@
   p {
     text-wrap: pretty;
   }
+  /* Grid children may shrink below their content width, so long words and form rows never push the page sideways. */
+  .grid > * {
+    min-width: 0;
+  }
   ::selection {
     background: rgb(196 138 44 / 0.35);
   }

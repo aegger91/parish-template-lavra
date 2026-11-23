@@ -8,7 +8,6 @@ import { firstPageWithSection, pagePath } from "@/lib/routes";
 import type { Localized, NewsItem, Sermon } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/components/providers";
-import { Cross } from "@/components/orthodox/Cross";
 import { FrescoFrame } from "@/components/orthodox/Ornaments";
 import { Pictogram } from "@/components/orthodox/Pictogram";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -551,10 +550,6 @@ export function Livestream({ section }: SectionProps) {
             ) : (
               <p className="mt-3 text-ink-soft">{t("live.none")}</p>
             )}
-            <p className="mt-4 flex items-start gap-2 text-[0.88rem] text-ink-faint">
-              <Cross className="mt-0.5 h-4 shrink-0 text-ochre-deep" />
-              {t("live.etiquette")}
-            </p>
           </div>
         </aside>
       </div>

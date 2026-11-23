@@ -3,7 +3,7 @@ import { isFeatureOn } from "@/lib/content";
 import { toRoman } from "@/lib/i18n";
 import type { Page, Section } from "@/lib/types";
 import { Hero } from "@/components/sections/Hero";
-import { ChapterStory, DonateCta, ServicesWeek, Visit } from "@/components/sections/HomeSections";
+import { DonateCta, ServicesWeek, WelcomeText } from "@/components/sections/HomeSections";
 import { ClergyCards, Faq, HistoryTimeline, IconCards, ModuleLinks, PageHeader, SubpageCards, type SectionProps } from "@/components/sections/ContentSections";
 import { Schedule } from "@/components/sections/Schedule";
 import { GalleryGrid, LatestNews, LatestSermons, Livestream, NewsList, SermonArchive } from "@/components/sections/MediaSections";
@@ -16,13 +16,11 @@ import { Events, InvolvedHighlights, Needs } from "@/components/modules/GetInvol
 /** Every section type a page can list in content/pages.json. */
 export const SECTION_COMPONENTS: Record<string, ComponentType<SectionProps>> = {
   "services-week": ServicesWeek,
-  "chapter-story": ChapterStory,
-  visit: Visit,
+  "welcome-text": WelcomeText,
   "donate-cta": DonateCta,
   "page-header": PageHeader,
   "subpage-cards": SubpageCards,
   "module-links": ModuleLinks,
-  "service-guide": IconCards,
   "giving-ways": IconCards,
   faq: Faq,
   "clergy-cards": ClergyCards,

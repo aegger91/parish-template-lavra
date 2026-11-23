@@ -54,7 +54,7 @@ function Newsletter() {
     <div className="fresco-card p-5 text-ink sm:p-6">
       <div className="relative z-10">
         <p className="rubric text-sm">{t("newsletter.label")}</p>
-        <h2 className="mt-1 text-2xl">{t("newsletter.title")}</h2>
+        <h2 className="mt-1 text-2xl text-ink">{t("newsletter.title")}</h2>
         <p className="mt-1.5 text-[0.95rem] text-ink-soft">{t("newsletter.text")}</p>
         {state === "done" ? (
           <p role="status" className="mt-4 rounded border border-verdigris/40 bg-verdigris/10 px-3 py-2 text-[0.95rem]">
@@ -163,7 +163,7 @@ export function Footer() {
                     <dt className="font-heading font-bold capitalize text-[#fbf1da]">{weekdayName(d)}</dt>
                     {list.map((s) => (
                       <dd key={s.id} className="flex gap-2 text-[#efe2c4]">
-                        <span className="tabular-nums text-ochre-light">{fmtTime(s.time)}</span>
+                        <span className="w-[4.6rem] shrink-0 whitespace-nowrap tabular-nums text-ochre-light">{fmtTime(s.time)}</span>
                         <span>{tr(s.name)}</span>
                       </dd>
                     ))}

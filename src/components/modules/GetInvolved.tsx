@@ -396,9 +396,9 @@ function SlotRow({ slot, joined, onSign }: { slot: NeedSlot; joined: boolean; on
   const full = signups >= slot.capacity;
   return (
     <li className="grid gap-2 py-3 sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)_auto] sm:items-center sm:gap-4">
-      <p className="font-bold">
-        <span className="capitalize">{fmtIso(slot.date, { weekday: "short", month: "short", day: "numeric" })}</span>
-        <span className="ms-2 font-normal text-ink-soft tabular-nums">{fmtTime(slot.time)}</span>
+      <p className="leading-tight">
+        <span className="block font-bold whitespace-nowrap capitalize">{fmtIso(slot.date, { weekday: "short", month: "short", day: "numeric" })}</span>
+        <span className="text-[0.92rem] text-ink-soft tabular-nums">{fmtTime(slot.time)}</span>
       </p>
       <Capacity signups={signups} capacity={slot.capacity} />
       {joined ? (
