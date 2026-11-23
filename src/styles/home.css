@@ -57,10 +57,13 @@
   position: relative;
   z-index: 2;
   width: min(100% - 2rem, var(--page));
+  /* Left-align into the dark scrim (not centered over pale stone) */
   margin-inline: auto;
+  margin-left: max(1rem, calc((100% - min(100% - 2rem, var(--page))) / 2));
   padding-block: var(--space-8) var(--space-7);
+  padding-inline: 0.25rem 1rem;
   animation: brandReveal 0.9s ease both;
-  max-width: min(36rem, 92%);
+  max-width: min(34rem, 92%);
 }
 
 /* Local panel behind copy: keeps gold eyebrow readable on pale masonry */
@@ -68,21 +71,21 @@
   content: '';
   position: absolute;
   z-index: -1;
-  inset: 10% -8% 6% -10%;
-  background: linear-gradient(
-    90deg,
-    rgb(8 20 40 / 0.78) 0%,
-    rgb(8 20 40 / 0.62) 55%,
-    rgb(8 20 40 / 0.2) 100%
-  );
-  filter: blur(0.5px);
+  inset: 6% -12% 2% -14%;
+  background: rgb(8 20 40 / 0.78);
   pointer-events: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .home-hero__content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min(100% - 2rem, 34rem);
+  }
+
   .home-hero__content::before {
-    inset: 8% -4% 4% -4%;
-    background: rgb(8 20 40 / 0.72);
+    inset: 4% -6% 0 -6%;
+    background: rgb(8 20 40 / 0.8);
   }
 }
 
