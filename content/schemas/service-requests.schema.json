@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "service-requests.schema.json",
+  "title": "Request a Service cards",
+  "description": "Cards in display order. action form opens the request form; link sends people to another page.",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "order",
+          "illustration",
+          "image",
+          "price",
+          "durationMinutes",
+          "action",
+          "title",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "order": {
+            "type": "number"
+          },
+          "illustration": {
+            "description": "Pictogram drawn on the card panel",
+            "type": "string"
+          },
+          "image": {
+            "description": "Optional photo that replaces the drawn panel",
+            "oneOf": [
+              {
+                "$ref": "common.schema.json#/$defs/imagePath"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "price": {
+            "enum": [
+              "free",
+              "donation"
+            ]
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "action": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "form",
+                  "link"
+                ]
+              },
+              "page": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "title": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "text": {
+            "$ref": "common.schema.json#/$defs/localized"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

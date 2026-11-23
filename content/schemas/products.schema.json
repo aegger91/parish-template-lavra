@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "products.schema.json",
+  "title": "Store products",
+  "description": "Products with variants, price and stock. Used only when features.store is on.",
+  "type": "object",
+  "required": [
+    "categories",
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/category"
+      },
+      "minItems": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "images",
+          "featured",
+          "name",
+          "description",
+          "variants"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "category": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/imagePath"
+            },
+            "minItems": 1
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "name": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "description": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "label",
+                "price",
+                "stock"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "common.schema.json#/$defs/id"
+                },
+                "label": {
+                  "$ref": "common.schema.json#/$defs/localized"
+                },
+                "price": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "stock": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

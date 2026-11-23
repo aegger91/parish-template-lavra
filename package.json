@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "next dev -p 4317",
+    "build": "npm run validate && next build",
+    "start": "npx --yes serve out -l 4318",
+    "lint": "eslint",
+    "validate": "node scripts/validate-content.mjs",
+    "art": "node scripts/generate-art.mts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

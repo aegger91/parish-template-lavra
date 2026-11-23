@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "clergy.schema.json",
+  "title": "Clergy and staff",
+  "description": "Cards on the Clergy page, in order.",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "order",
+          "monogram",
+          "photo",
+          "name",
+          "role",
+          "email",
+          "bio"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "order": {
+            "type": "number"
+          },
+          "monogram": {
+            "type": "string",
+            "maxLength": 3
+          },
+          "photo": {
+            "oneOf": [
+              {
+                "$ref": "common.schema.json#/$defs/imagePath"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "role": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "email": {
+            "type": "string"
+          },
+          "bio": {
+            "$ref": "common.schema.json#/$defs/localized"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

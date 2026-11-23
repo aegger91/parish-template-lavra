@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ui.schema.json",
+  "title": "Interface strings",
+  "description": "Fixed labels used by the template, one entry per key with a value for each language. {name} placeholders are filled in by the code.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": {
+    "type": "object",
+    "minProperties": 1,
+    "additionalProperties": {
+      "type": "string"
+    }
+  }
+}

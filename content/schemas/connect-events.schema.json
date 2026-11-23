@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "connect-events.schema.json",
+  "title": "OrthodoxConnect events",
+  "description": "Mirror of OrthodoxConnect event fields. In production this list is fetched from Connect.",
+  "type": "object",
+  "required": [
+    "source",
+    "categories",
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "source": {
+      "description": "Where the list comes from. orthodoxconnect-sample until the live feed is connected.",
+      "type": "string"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/category"
+      },
+      "minItems": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "date",
+          "time",
+          "location",
+          "capacity",
+          "signups",
+          "organizer",
+          "category",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "title": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "date": {
+            "$ref": "common.schema.json#/$defs/date"
+          },
+          "time": {
+            "$ref": "common.schema.json#/$defs/time"
+          },
+          "endTime": {
+            "$ref": "common.schema.json#/$defs/time"
+          },
+          "location": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "capacity": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "signups": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "organizer": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "category": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "description": {
+            "$ref": "common.schema.json#/$defs/localized"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

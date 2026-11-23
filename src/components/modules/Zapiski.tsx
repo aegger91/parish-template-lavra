@@ -174,16 +174,16 @@ function SlipOptions({ slip, onChange }: { slip: Slip; onChange: (s: Slip) => vo
   );
 }
 
+function makeSlip(type: SlipType, id: string): Slip {
+  return { id, type, rows: [0, 1, 2].map((n) => ({ id: `${id}-r${n}`, prefix: "", name: "" })), commemoration: typesFor(type)[0]?.id ?? "", candle: "" };
+}
+
 export function Zapiski({ section }: SectionProps) {
   const { lang, t, tr, fmtMoney } = useI18n();
   const cart = useCart();
   const storeOn = isFeatureOn("store");
   const seq = useRef(1);
-  const makeSlip = (type: SlipType): Slip => {
-    const id = `s${seq.current++}`;
-    return { id, type, rows: [0, 1, 2].map((n) => ({ id: `${id}-r${n}`, prefix: "", name: "" })), commemoration: typesFor(type)[0]?.id ?? "", candle: "" };
-  };
-  const [slips, setSlips] = useState<Slip[]>(() => [makeSlip("health")]);
+  const [slips, setSlips] = useState<Slip[]>(() => [makeSlip("health", "s0")]);
   const [gift, setGift] = useState("");
   const [consent, setConsent] = useState(false);
   const [contact, setContact] = useState({ name: "", email: "" });
@@ -203,7 +203,7 @@ export function Zapiski({ section }: SectionProps) {
   };
   const addSlip = (type: SlipType) => {
     if (slips.length >= cfg.maxSlips) return;
-    const s = makeSlip(type);
+    const s = makeSlip(type, `s${seq.current++}`);
     setSlips((l) => [...l, s]);
     requestAnimationFrame(() => document.getElementById(`${s.id}-r0-name`)?.scrollIntoView({ behavior: "smooth", block: "center" }));
   };
@@ -226,7 +226,7 @@ export function Zapiski({ section }: SectionProps) {
 
   const reset = () => {
     seq.current = 1;
-    setSlips([makeSlip("health")]);
+    setSlips([makeSlip("health", "s0")]);
     setGift("");
     setConsent(false);
   };
