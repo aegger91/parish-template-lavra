@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SchedulePanel from '../../components/SchedulePanel';
 import MoravaBorder from '../../icons/MoravaBorder.astro';
-import SerbianCross from '../../icons/SerbianCross.astro';
 import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
 import { siteConfig } from '../../config/site';
 import { images } from '../../config/images';
@@ -77,9 +76,6 @@ const iconItems = [
       />
     </div>
     <div class="home-hero__veil" aria-hidden="true"></div>
-    <div class="home-hero__cross" aria-hidden="true">
-      <SerbianCross size={40} decorative />
-    </div>
     <div class="home-hero__content">
       <p class="home-hero__tag slavonic">{siteConfig.tagline[locale]}</p>
       <h1 class="home-hero__brand">{siteConfig.parishName[locale]}</h1>
