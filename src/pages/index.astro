@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Ornament from '../components/Ornament.astro';
+import ScheduleList from '../components/ScheduleList.astro';
+import { siteConfig } from '../config/site';
+import { images } from '../config/images';
+import { thisWeekServices, nextFeast, newsItems } from '../config/schedule';
+import { t } from '../i18n/ui';
+import { formatShortDate, displayDates } from '../utils/dates';
+
+const locale = 'ro' as const;
+const dict = t(locale);
+const feastDates = displayDates(nextFeast.date, locale);
+---
+<BaseLayout locale={locale} title={dict.nav.home} current="home" description={siteConfig.tagline.ro}>
+  <section class="hero" aria-label="Hero">
+    <div class="hero__media">
+      <img src={images.hero.src} alt={images.hero.alt.ro} width="1600" height="1000" fetchpriority="high" />
+    </div>
+    <div class="hero__shade"></div>
+    <div class="container hero__content">
+      <p class="hero__brand">{siteConfig.name.ro}</p>
+      <p class="hero__headline">{siteConfig.tagline.ro}</p>
+      <p class="hero__text">Slujire ortodoxă românească pentru comunitatea locală.</p>
+      <div class="hero__actions">
+        <a class="btn btn-primary" href={dict.paths.schedule}>{dict.home.heroCta}</a>
+        <a class="btn btn-ghost" href={dict.paths.contact}>{dict.home.heroSecondary}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+        <div>
+          <p class="eyebrow">{dict.home.thisWeek}</p>
+          <h2 style="margin:0;">{dict.home.thisWeek}</h2>
+        </div>
+        <span class="calendar-badge">
+          {siteConfig.calendarStyle === 'old' ? dict.schedule.calendarOld : dict.schedule.calendarNew}
+        </span>
+      </div>
+      <Ornament />
+      <ScheduleList locale={locale} items={thisWeekServices} />
+      <p style="margin-top:1.25rem;">
+        <a href={dict.paths.schedule}>{dict.home.viewAll}</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight" style="background:rgba(42,95,143,0.06);border-block:1px solid var(--line);">
+    <div class="container grid-2">
+      <div>
+        <p class="eyebrow">{dict.home.nextFeast}</p>
+        <h2>{nextFeast.title.ro}</h2>
+        <p>{nextFeast.description.ro}</p>
+        <p>
+          <strong>{feastDates.primary}</strong>
+          · {nextFeast.startTime}–{nextFeast.endTime}
+        </p>
+        {feastDates.secondary && (
+          <p class="old-style">{dict.schedule.oldStyleLabel}: {feastDates.secondary}</p>
+        )}
+        <a class="btn btn-secondary" href={dict.paths.news}>{dict.home.viewAll}</a>
+      </div>
+      <div class="media-frame">
+        <img src={images.parish.src} alt={images.parish.alt.ro} width="900" height="675" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">{dict.home.news}</p>
+      <h2>{dict.home.news}</h2>
+      <Ornament variant="embroidery" />
+      <ul class="news-list">
+        {newsItems.slice(0, 3).map((item) => (
+          <li class="news-item">
+            <time datetime={item.date}>{formatShortDate(item.date, locale)}</time>
+            <h3>{item.title.ro}</h3>
+            <p style="margin:0;">{item.summary.ro}</p>
+          </li>
+        ))}
+      </ul>
+      <p style="margin-top:1rem;"><a href={dict.paths.news}>{dict.home.viewAll}</a></p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <p class="eyebrow">{dict.home.gallery}</p>
+      <h2>{dict.home.gallery}</h2>
+      <div class="gallery-strip" role="list">
+        {images.gallery.map((img) => (
+          <figure role="listitem">
+            <img src={img.src} alt={img.alt.ro} width="640" height="512" loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="donate-band">
+    <div class="donate-band__media">
+      <img src={images.donate.src} alt={images.donate.alt.ro} width="1400" height="700" loading="lazy" />
+    </div>
+    <div class="donate-band__shade"></div>
+    <div class="container donate-band__content">
+      <h2 style="color:var(--white);">{dict.home.donateBandTitle}</h2>
+      <p style="max-width:36ch;color:rgba(255,250,243,0.9);">{dict.home.donateBandText}</p>
+      <a class="btn btn-ghost" href={dict.paths.donate}>{dict.home.donateBandCta}</a>
+    </div>
+  </section>
+</BaseLayout>

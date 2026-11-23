@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { t } from '../i18n/ui';
+
+// Default 404 uses Romanian; English visitors can switch via nav.
+const locale = 'ro' as const;
+const dict = t(locale);
+---
+<BaseLayout locale={locale} title={dict.notFound.title} current="home">
+  <section class="section">
+    <div class="container" style="text-align:center;padding-block:4rem;">
+      <img src="/icons/cross-trefoil.svg" alt="" width="48" height="48" style="margin:0 auto 1rem;" />
+      <h1>{dict.notFound.title}</h1>
+      <p class="lede" style="margin-inline:auto;">{dict.notFound.text}</p>
+      <p>
+        <a class="btn btn-primary" href="/">{dict.notFound.home}</a>
+        <a class="btn btn-secondary" href="/en/">Home (EN)</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

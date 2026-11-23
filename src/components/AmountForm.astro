@@ -1,0 +1,120 @@
+---
+import type { Locale } from '../config/site';
+import { siteConfig } from '../config/site';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  kind: 'donate' | 'pomelnice';
+}
+const { locale, kind } = Astro.props;
+const dict = t(locale);
+const copy = kind === 'donate' ? dict.donate : dict.pomelnice;
+const amounts = siteConfig.donation.suggestedAmounts;
+const currency = siteConfig.donation.currency;
+const showProgress =
+  kind === 'donate' &&
+  siteConfig.features.donationProgress &&
+  siteConfig.features.donationAutoCount;
+---
+<form class="amount-form" data-amount-form novalidate>
+  <div class="form-success" data-form-success hidden>{copy.success}</div>
+
+  {kind === 'pomelnice' && (
+    <>
+      <div class="field">
+        <label for="living">{copy.living}</label>
+        <textarea id="living" name="living" rows="4"></textarea>
+      </div>
+      <div class="field">
+        <label for="departed">{copy.departed}</label>
+        <textarea id="departed" name="departed" rows="4"></textarea>
+      </div>
+    </>
+  )}
+
+  {kind === 'donate' && (
+    <>
+      <div class="field">
+        <label for="donor-name">{dict.donate.name}</label>
+        <input id="donor-name" name="name" type="text" autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="donor-email">{dict.donate.email}</label>
+        <input id="donor-email" name="email" type="email" autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="donor-message">{dict.donate.message}</label>
+        <textarea id="donor-message" name="message" rows="3"></textarea>
+      </div>
+    </>
+  )}
+
+  <fieldset class="field" style="border:0;padding:0;margin:0 0 1rem;">
+    <legend style="font-family:var(--font-ui);font-size:0.9rem;font-weight:600;color:var(--ink-muted);margin-bottom:0.5rem;">
+      {copy.amount} ({currency})
+    </legend>
+    <p class="form-note" style="margin-top:0;">{copy.suggested}</p>
+    <div class="chip-row" role="group" aria-label={copy.suggested}>
+      {amounts.map((n) => (
+        <button type="button" class="chip" data-amount-chip={n} aria-pressed="false">{n}</button>
+      ))}
+    </div>
+    <label for="amount-free" class="sr-only">{copy.freeAmount}</label>
+    <input
+      id="amount-free"
+      name="amount"
+      type="number"
+      min="0"
+      step="1"
+      value="0"
+      inputmode="decimal"
+      data-amount-input
+      aria-describedby="amount-help"
+    />
+    <p id="amount-help" class="form-note">{copy.freeAmount} — min 0</p>
+  </fieldset>
+
+  {showProgress && (
+    <div>
+      <p class="eyebrow">{dict.donate.progressLabel}</p>
+      <div class="progress" aria-hidden="true"><span style="width:42%"></span></div>
+    </div>
+  )}
+
+  <button type="submit" class="btn btn-primary">{copy.submit}</button>
+  <p class="form-note">{copy.note}</p>
+</form>
+
+<script>
+  document.querySelectorAll('[data-amount-form]').forEach((form) => {
+    const input = form.querySelector('[data-amount-input]');
+    const chips = form.querySelectorAll('[data-amount-chip]');
+    const success = form.querySelector('[data-form-success]');
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const value = chip.getAttribute('data-amount-chip') || '0';
+        if (input) input.value = value;
+        chips.forEach((c) => c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'));
+      });
+    });
+
+    input?.addEventListener('input', () => {
+      chips.forEach((c) => {
+        c.setAttribute('aria-pressed', c.getAttribute('data-amount-chip') === input.value ? 'true' : 'false');
+      });
+      if (Number(input.value) < 0) input.value = '0';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input && (input.value === '' || Number(input.value) < 0)) input.value = '0';
+      success.hidden = false;
+      success.focus?.();
+      form.reset();
+      if (input) input.value = '0';
+      chips.forEach((c) => c.setAttribute('aria-pressed', 'false'));
+    });
+  });
+</script>

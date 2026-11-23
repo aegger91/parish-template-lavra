@@ -1,0 +1,83 @@
+# Romanian Orthodox Parish Template
+
+Static-exportable parish website in Romanian Orthodox visual style (Brâncovenesc / Moldavian fresco palette / Maramureș wood / subtle embroidery). Built with **Astro** — no CMS, no Vercel-specific dependencies.
+
+**Languages:** Romanian (default, `/`) and English (`/en/…`), with a RO | EN switcher in the main nav.
+
+## Setup
+
+```bash
+npm install
+npm run dev      # local preview
+npm run build    # writes static site to dist/
+```
+
+Serve `dist/` with any static host or drop the folder into a website builder.
+
+## Configuration
+
+| File | Purpose |
+|------|---------|
+| `src/config/site.ts` | Parish name, address, phone, email, livestream URL, clergy, feature flags |
+| `src/config/images.ts` | Image paths and alt text (swap photos in one place) |
+| `src/config/schedule.ts` | Weekly services, feasts, news items |
+| `src/i18n/ui.ts` | All UI strings (RO / EN) |
+
+### `calendarStyle`
+
+In `site.ts`, set:
+
+```ts
+calendarStyle: 'new' // or 'old'
+```
+
+- `'new'` (default) — civil / Revised Julian dates; badge shows “Calendar nou / New calendar”
+- `'old'` — also shows Old Style (Julian, −13 days) next to schedule items
+
+### Optional blocks
+
+```ts
+features: {
+  aboutBlock: true,      // About section on Our Parish
+  visitingBlock: true,   // Visiting / office hours copy
+  donationProgress: false,
+  donationAutoCount: false, // progress only if both true
+}
+```
+
+## Swapping images
+
+1. Replace WebP files under `public/images/` (keep filenames) **or** point `src/config/images.ts` to new paths.
+2. Update `public/images/CREDITS.md`.
+
+## Swapping text
+
+Edit `src/i18n/ui.ts` for labels and placeholders. Parish-specific prose also lives in `site.ts` (names) and schedule/news config.
+
+## Pages
+
+| RO | EN |
+|----|----|
+| `/` | `/en/` |
+| `/parohie/` | `/en/parish/` |
+| `/program/` | `/en/schedule/` |
+| `/stiri/` | `/en/news/` |
+| `/transmisie/` | `/en/livestream/` |
+| `/pomelnice/` | `/en/commemoration/` |
+| `/donatii/` | `/en/donate/` |
+| `/contact/` | `/en/contact/` |
+| `404` | (shared; language switcher available) |
+
+## Forms & schedule
+
+- Donation and Pomelnice / Commemoration forms: amount starts at **0**, suggested chips + free field, **no minimum**, no QR codes.
+- Schedule rows open a detail panel with **.ics** download, **Google Calendar** link, and directions.
+- Contact phone field uses mask `(000)-000-0000`.
+
+## QA script
+
+```bash
+npm run build
+npx playwright install chromium
+node scripts/qa.mjs
+```

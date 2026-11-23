@@ -1,0 +1,76 @@
+---
+import type { Locale } from '../config/site';
+import { siteConfig } from '../config/site';
+import { t } from '../i18n/ui';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+  current?: string;
+}
+const { locale, current = 'home' } = Astro.props;
+const dict = t(locale);
+const name = siteConfig.name[locale];
+const tag = siteConfig.tagline[locale];
+
+const links = [
+  { key: 'home', href: dict.paths.home, label: dict.nav.home },
+  { key: 'parish', href: dict.paths.parish, label: dict.nav.parish },
+  { key: 'schedule', href: dict.paths.schedule, label: dict.nav.schedule },
+  { key: 'news', href: dict.paths.news, label: dict.nav.news },
+  { key: 'livestream', href: dict.paths.livestream, label: dict.nav.livestream },
+  { key: 'pomelnice', href: dict.paths.pomelnice, label: dict.nav.pomelnice },
+  { key: 'donate', href: dict.paths.donate, label: dict.nav.donate },
+  { key: 'contact', href: dict.paths.contact, label: dict.nav.contact },
+] as const;
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href={dict.paths.home}>
+      <img class="cross-mark" src="/icons/cross-trefoil.svg" alt="" width="24" height="24" />
+      <span class="brand__text">
+        <span class="brand__name">{name}</span>
+        <span class="brand__tag">{tag}</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      {links.map((link) => (
+        <a href={link.href} aria-current={current === link.key ? 'page' : undefined}>{link.label}</a>
+      ))}
+    </nav>
+
+    <div class="header-tools">
+      <LanguageSwitcher locale={locale} />
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-menu-toggle
+      >
+        <span class="sr-only">{dict.nav.menu}</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile">
+      {links.map((link) => (
+        <a href={link.href} aria-current={current === link.key ? 'page' : undefined}>{link.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const panel = document.querySelector('[data-mobile-nav]');
+  toggle?.addEventListener('click', () => {
+    const open = panel?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>

@@ -1,0 +1,16 @@
+---
+import type { Locale } from '../config/site';
+import { switchLocalePath } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const path = Astro.url.pathname;
+const roHref = switchLocalePath(path, 'ro');
+const enHref = switchLocalePath(path, 'en');
+---
+<nav class="lang-switch" aria-label={locale === 'ro' ? 'Limbă' : 'Language'}>
+  <a href={roHref} lang="ro" aria-current={locale === 'ro' ? 'true' : undefined}>RO</a>
+  <a href={enHref} lang="en" aria-current={locale === 'en' ? 'true' : undefined}>EN</a>
+</nav>

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Ornament from '../../components/Ornament.astro';
+import { siteConfig } from '../../config/site';
+import { images } from '../../config/images';
+import { t } from '../../i18n/ui';
+
+const locale = 'ro' as const;
+const dict = t(locale);
+---
+<BaseLayout locale={locale} title={dict.parish.title} current="parish">
+  <header class="page-hero">
+    <div class="container">
+      <p class="eyebrow">{dict.nav.parish}</p>
+      <h1>{dict.parish.title}</h1>
+      <Ornament />
+    </div>
+  </header>
+
+  {siteConfig.features.aboutBlock && (
+    <section class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>{dict.parish.aboutTitle}</h2>
+          <p class="lede">{dict.parish.aboutText}</p>
+          <div class="icon-row" aria-hidden="true">
+            <img src="/icons/censer.svg" alt="" width="44" height="44" />
+            <img src="/icons/candela.svg" alt="" width="44" height="44" />
+            <img src="/icons/gospel.svg" alt="" width="44" height="44" />
+            <img src="/icons/prosphora.svg" alt="" width="44" height="44" />
+          </div>
+        </div>
+        <div class="media-frame">
+          <img src={images.parish.src} alt={images.parish.alt.ro} width="900" height="675" />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section-tight" style="background:rgba(61,107,79,0.08);">
+    <div class="container">
+      <h2>{dict.parish.clergyTitle}</h2>
+      <Ornament variant="embroidery" />
+      <div class="clergy-list">
+        {siteConfig.clergy.map((person) => (
+          <article class="clergy-card">
+            <img src={person.photo} alt="" width="400" height="400" loading="lazy" />
+            <div>
+              <h3>{person.name}</h3>
+              <p>{person.role.ro}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div class="media-frame">
+        <img src={images.interior.src} alt={images.interior.alt.ro} width="900" height="675" loading="lazy" />
+      </div>
+      <div>
+        <h2>{dict.parish.historyTitle}</h2>
+        <p>{dict.parish.historyText}</p>
+        {siteConfig.features.visitingBlock && (
+          <>
+            <h3>{dict.parish.visitingTitle}</h3>
+            <p>{dict.parish.visitingText}</p>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

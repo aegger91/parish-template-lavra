@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Ornament from '../../components/Ornament.astro';
+import ScheduleList from '../../components/ScheduleList.astro';
+import { upcomingEvents, newsItems } from '../../config/schedule';
+import { t } from '../../i18n/ui';
+import { formatShortDate } from '../../utils/dates';
+
+const locale = 'ro' as const;
+const dict = t(locale);
+---
+<BaseLayout locale={locale} title={dict.news.title} current="news">
+  <header class="page-hero">
+    <div class="container">
+      <p class="eyebrow">{dict.nav.news}</p>
+      <h1>{dict.news.title}</h1>
+      <p class="lede">{dict.news.intro}</p>
+      <Ornament />
+    </div>
+  </header>
+  <section class="section">
+    <div class="container">
+      <h2>{dict.news.upcoming}</h2>
+      <ScheduleList locale={locale} items={upcomingEvents} />
+    </div>
+  </section>
+  <section class="section-tight" style="background:rgba(184,137,61,0.08);">
+    <div class="container">
+      <h2>{dict.news.archive}</h2>
+      <Ornament variant="embroidery" />
+      <ul class="news-list">
+        {newsItems.map((item) => (
+          <li class="news-item">
+            <time datetime={item.date}>{formatShortDate(item.date, locale)}</time>
+            <h3>{item.title.ro}</h3>
+            <p style="margin:0;">{item.summary.ro}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

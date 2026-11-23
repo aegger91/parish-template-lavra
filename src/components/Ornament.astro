@@ -1,0 +1,10 @@
+---
+interface Props {
+  variant?: 'vine' | 'embroidery';
+}
+const { variant = 'vine' } = Astro.props;
+const src = variant === 'embroidery' ? '/icons/ornament-embroidery.svg' : '/icons/ornament-vine.svg';
+---
+<div class="ornament" aria-hidden="true">
+  <img src={src} alt="" width="320" height="24" />
+</div>
