@@ -1,0 +1,155 @@
+{
+  "$schema": "./schemas/service-requests.schema.json",
+  "items": [
+    {
+      "id": "zapiska",
+      "order": 1,
+      "illustration": "zapiska",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 2,
+      "action": { "type": "link", "page": "zapiski" },
+      "title": { "en": "Submit a Commemoration Note (Zapiska)", "sr": "Предајте цедуљу за помен", "ro": "Trimiteți un pomelnic" },
+      "text": {
+        "en": "Send names for health or for the repose, to be read at the altar.",
+        "sr": "Пошаљите имена за здравље или за упокојене, да се прочитају у олтару.",
+        "ro": "Trimiteți nume pentru vii sau pentru cei adormiți, ca să fie citite în altar."
+      }
+    },
+    {
+      "id": "moleben",
+      "order": 2,
+      "illustration": "censer",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 30,
+      "action": { "type": "form" },
+      "title": { "en": "Moleben (Prayer Service)", "sr": "Молебан", "ro": "Paraclis sau Te Deum" },
+      "text": {
+        "en": "A service of prayer for health, travel, a new job, or thanksgiving.",
+        "sr": "Молитва за здравље, пут, нови посао или благодарност.",
+        "ro": "Rugăciune pentru sănătate, călătorie, un loc de muncă nou sau mulțumire."
+      }
+    },
+    {
+      "id": "baptism",
+      "order": 3,
+      "illustration": "font",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 60,
+      "action": { "type": "form" },
+      "title": { "en": "Baptism", "sr": "Крштење", "ro": "Botezul" },
+      "text": {
+        "en": "For infants and adults. The priest will meet the family and godparents first.",
+        "sr": "За децу и одрасле. Свештеник се прво састаје са породицом и кумовима.",
+        "ro": "Pentru prunci și adulți. Preotul se întâlnește mai întâi cu familia și nașii."
+      }
+    },
+    {
+      "id": "confession",
+      "order": 4,
+      "illustration": "epitrachelion",
+      "image": null,
+      "price": "free",
+      "durationMinutes": 15,
+      "action": { "type": "form" },
+      "title": { "en": "Confession", "sr": "Исповест", "ro": "Spovedania" },
+      "text": {
+        "en": "Ask for a time outside the usual hours after Saturday Vespers.",
+        "sr": "Затражите термин ван уобичајеног времена после суботњег вечерња.",
+        "ro": "Cereți o oră în afara programului obișnuit de după vecernia de sâmbătă."
+      }
+    },
+    {
+      "id": "chrismation",
+      "order": 5,
+      "illustration": "chrism",
+      "image": null,
+      "price": "free",
+      "durationMinutes": 30,
+      "action": { "type": "form" },
+      "title": { "en": "Chrismation", "sr": "Миропомазање", "ro": "Mirungerea" },
+      "text": {
+        "en": "For those entering the Orthodox Church after a time of preparation.",
+        "sr": "За оне који после припреме улазе у Православну цркву.",
+        "ro": "Pentru cei care intră în Biserica Ortodoxă după o perioadă de pregătire."
+      }
+    },
+    {
+      "id": "wedding",
+      "order": 6,
+      "illustration": "crowns",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 60,
+      "action": { "type": "form" },
+      "title": { "en": "Wedding (Crowning)", "sr": "Венчање", "ro": "Cununia" },
+      "text": {
+        "en": "Please write at least three months ahead so we can plan the preparation.",
+        "sr": "Јавите се бар три месеца раније да планирамо припрему.",
+        "ro": "Scrieți-ne cu cel puțin trei luni înainte, ca să plănuim pregătirea."
+      }
+    },
+    {
+      "id": "unction",
+      "order": 7,
+      "illustration": "unction",
+      "image": null,
+      "price": "free",
+      "durationMinutes": 60,
+      "action": { "type": "form" },
+      "title": { "en": "Holy Unction", "sr": "Јелеосвећење", "ro": "Sfântul Maslu" },
+      "text": {
+        "en": "Anointing of the sick, in church or at home and in hospital.",
+        "sr": "Света тајна за болесне, у храму, код куће или у болници.",
+        "ro": "Taina pentru cei bolnavi, în biserică, acasă sau la spital."
+      }
+    },
+    {
+      "id": "blessing",
+      "order": 8,
+      "illustration": "aspergillum",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 30,
+      "action": { "type": "form" },
+      "title": { "en": "House / Car Blessing", "sr": "Освећење дома или аутомобила", "ro": "Sfeștanie pentru casă sau mașină" },
+      "text": {
+        "en": "A blessing with holy water. After Theophany the priest visits every home that asks.",
+        "sr": "Освећење светом водом. После Богојављења свештеник обилази сваки дом који то затражи.",
+        "ro": "Binecuvântare cu agheasmă. După Bobotează preotul vizitează fiecare casă care cere."
+      }
+    },
+    {
+      "id": "funeral",
+      "order": 9,
+      "illustration": "memorial",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 60,
+      "action": { "type": "form" },
+      "title": { "en": "Funeral and Panikhida", "sr": "Опело и парастос", "ro": "Înmormântare și parastas" },
+      "text": {
+        "en": "Call the priest as soon as you can. Memorial services are also served on the 40th day and at one year.",
+        "sr": "Позовите свештеника што пре. Парастос се служи и четрдесетог дана и о годишњици.",
+        "ro": "Sunați preotul cât mai repede. Parastasul se face și la 40 de zile și la un an."
+      }
+    },
+    {
+      "id": "counseling",
+      "order": 10,
+      "illustration": "lamp",
+      "image": null,
+      "price": "free",
+      "durationMinutes": 45,
+      "action": { "type": "form" },
+      "title": { "en": "Pastoral Counseling", "sr": "Духовни разговор", "ro": "Sfat duhovnicesc" },
+      "text": {
+        "en": "A quiet conversation with a priest about faith, family or a hard season.",
+        "sr": "Миран разговор са свештеником о вери, породици или тешком периоду.",
+        "ro": "O discuție liniștită cu un preot despre credință, familie sau o perioadă grea."
+      }
+    }
+  ]
+}

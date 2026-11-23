@@ -1,0 +1,235 @@
+{
+  "$schema": "./schemas/products.schema.json",
+  "categories": [
+    { "id": "icons", "icon": "icon-frame", "label": { "en": "Icons", "sr": "Иконе", "ro": "Icoane" } },
+    { "id": "candles", "icon": "candle", "label": { "en": "Candles and lamps", "sr": "Свеће и кандила", "ro": "Lumânări și candele" } },
+    { "id": "books", "icon": "gospel", "label": { "en": "Books", "sr": "Књиге", "ro": "Cărți" } },
+    { "id": "prayer-ropes", "icon": "prayer-rope", "label": { "en": "Prayer ropes", "sr": "Бројанице", "ro": "Metanii" } },
+    { "id": "incense", "icon": "censer", "label": { "en": "Incense", "sr": "Тамјан", "ro": "Tămâie" } },
+    { "id": "crosses", "icon": "cross", "label": { "en": "Crosses", "sr": "Крстови", "ro": "Cruci" } },
+    { "id": "gifts", "icon": "church", "label": { "en": "Gifts", "sr": "Поклони", "ro": "Daruri" } }
+  ],
+  "items": [
+    {
+      "id": "icon-holy-cross-print",
+      "category": "icons",
+      "images": ["/images/store/icon-cross.svg"],
+      "featured": true,
+      "name": { "en": "Icon of the Holy Cross, mounted print", "sr": "Икона Часног Крста, штампа на дрвету", "ro": "Icoana Sfintei Cruci, print pe lemn" },
+      "description": {
+        "en": "Sample listing. A print mounted on a wooden board with a gilded edge, blessed at the parish.",
+        "sr": "Пример понуде. Штампа на дрвеној дасци са позлаћеном ивицом, освећена у парохији.",
+        "ro": "Produs exemplu. Print pe tăbliță de lemn cu margine aurită, sfințit la parohie."
+      },
+      "variants": [
+        { "id": "small", "label": { "en": "10 × 13 cm", "sr": "10 × 13 cm", "ro": "10 × 13 cm" }, "price": 18, "stock": 12 },
+        { "id": "large", "label": { "en": "15 × 20 cm", "sr": "15 × 20 cm", "ro": "15 × 20 cm" }, "price": 32, "stock": 4 }
+      ]
+    },
+    {
+      "id": "kiot-corner-shelf",
+      "category": "icons",
+      "images": ["/images/store/kiot.svg"],
+      "featured": false,
+      "name": { "en": "Wooden icon corner shelf", "sr": "Дрвена полица за иконе", "ro": "Raft de colț pentru icoane" },
+      "description": {
+        "en": "Sample listing. A carved shelf for the icon corner at home, with room for a vigil lamp.",
+        "sr": "Пример понуде. Резбарена полица за кутак са иконама, са местом за кандило.",
+        "ro": "Produs exemplu. Raft sculptat pentru colțul de rugăciune, cu loc pentru candelă."
+      },
+      "variants": [
+        { "id": "oak", "label": { "en": "Oak finish", "sr": "Храст", "ro": "Stejar" }, "price": 85, "stock": 3 },
+        { "id": "walnut", "label": { "en": "Walnut finish", "sr": "Орах", "ro": "Nuc" }, "price": 95, "stock": 0 }
+      ]
+    },
+    {
+      "id": "beeswax-tapers",
+      "category": "candles",
+      "images": ["/images/store/tapers.svg"],
+      "featured": true,
+      "name": { "en": "Beeswax tapers", "sr": "Воштане свеће", "ro": "Lumânări din ceară de albine" },
+      "description": {
+        "en": "Sample listing. Pure beeswax tapers for home prayer.",
+        "sr": "Пример понуде. Свеће од чистог воска за кућну молитву.",
+        "ro": "Produs exemplu. Lumânări din ceară curată pentru rugăciunea de acasă."
+      },
+      "variants": [
+        { "id": "thin-20", "label": { "en": "20 thin tapers", "sr": "20 танких свећа", "ro": "20 lumânări subțiri" }, "price": 12, "stock": 40 },
+        { "id": "medium-10", "label": { "en": "10 medium tapers", "sr": "10 средњих свећа", "ro": "10 lumânări medii" }, "price": 15, "stock": 25 }
+      ]
+    },
+    {
+      "id": "vigil-lamp",
+      "category": "candles",
+      "images": ["/images/store/vigil-lamp.svg"],
+      "featured": false,
+      "name": { "en": "Glass vigil lamp", "sr": "Стаклено кандило", "ro": "Candelă de sticlă" },
+      "description": {
+        "en": "Sample listing. A hanging vigil lamp with brass chains and a glass cup.",
+        "sr": "Пример понуде. Висеће кандило са месинганим ланчићима и стакленом чашом.",
+        "ro": "Produs exemplu. Candelă suspendată cu lanțuri de alamă și pahar de sticlă."
+      },
+      "variants": [
+        { "id": "red", "label": { "en": "Red glass", "sr": "Црвено стакло", "ro": "Sticlă roșie" }, "price": 24, "stock": 9 },
+        { "id": "blue", "label": { "en": "Blue glass", "sr": "Плаво стакло", "ro": "Sticlă albastră" }, "price": 24, "stock": 6 }
+      ]
+    },
+    {
+      "id": "prayer-book",
+      "category": "books",
+      "images": ["/images/store/prayer-book.svg"],
+      "featured": true,
+      "name": { "en": "Pocket prayer book", "sr": "Џепни молитвеник", "ro": "Carte de rugăciuni de buzunar" },
+      "description": {
+        "en": "Sample listing. Morning and evening prayers and prayers before Communion.",
+        "sr": "Пример понуде. Јутарње и вечерње молитве и молитве пред причешће.",
+        "ro": "Produs exemplu. Rugăciunile de dimineață, de seară și înainte de Împărtășanie."
+      },
+      "variants": [
+        { "id": "en", "label": { "en": "English", "sr": "Енглески", "ro": "Engleză" }, "price": 16, "stock": 20 },
+        { "id": "sr", "label": { "en": "Serbian", "sr": "Српски", "ro": "Sârbă" }, "price": 16, "stock": 14 },
+        { "id": "ro", "label": { "en": "Romanian", "sr": "Румунски", "ro": "Română" }, "price": 16, "stock": 11 }
+      ]
+    },
+    {
+      "id": "psalter",
+      "category": "books",
+      "images": ["/images/store/psalter.svg"],
+      "featured": false,
+      "name": { "en": "The Psalter, pocket edition", "sr": "Псалтир, џепно издање", "ro": "Psaltirea, ediție de buzunar" },
+      "description": {
+        "en": "Sample listing. The Psalms arranged in kathismata for daily reading.",
+        "sr": "Пример понуде. Псалми подељени на катизме за свакодневно читање.",
+        "ro": "Produs exemplu. Psalmii împărțiți pe catisme pentru citirea zilnică."
+      },
+      "variants": [
+        { "id": "standard", "label": { "en": "Cloth cover", "sr": "Платнени повез", "ro": "Copertă de pânză" }, "price": 22, "stock": 8 }
+      ]
+    },
+    {
+      "id": "prayer-rope-33",
+      "category": "prayer-ropes",
+      "images": ["/images/store/prayer-rope.svg"],
+      "featured": true,
+      "name": { "en": "Wool prayer rope, 33 knots", "sr": "Вунена бројаница, 33 чвора", "ro": "Metanie din lână, 33 de noduri" },
+      "description": {
+        "en": "Sample listing. Hand-tied wool prayer rope with a knotted cross and tassel.",
+        "sr": "Пример понуде. Ручно плетена вунена бројаница са плетеним крстом и кићанком.",
+        "ro": "Produs exemplu. Metanie din lână împletită de mână, cu cruce și ciucure."
+      },
+      "variants": [
+        { "id": "black", "label": { "en": "Black", "sr": "Црна", "ro": "Neagră" }, "price": 14, "stock": 30 },
+        { "id": "maroon", "label": { "en": "Maroon", "sr": "Бордо", "ro": "Vișinie" }, "price": 14, "stock": 12 }
+      ]
+    },
+    {
+      "id": "prayer-rope-100",
+      "category": "prayer-ropes",
+      "images": ["/images/store/prayer-rope.svg"],
+      "featured": false,
+      "name": { "en": "Wool prayer rope, 100 knots", "sr": "Вунена бројаница, 100 чворова", "ro": "Metanie din lână, 100 de noduri" },
+      "description": {
+        "en": "Sample listing. A longer rope with bead markers every 25 knots.",
+        "sr": "Пример понуде. Дужа бројаница са зрнима на сваких 25 чворова.",
+        "ro": "Produs exemplu. O metanie lungă cu mărgele la fiecare 25 de noduri."
+      },
+      "variants": [
+        { "id": "black", "label": { "en": "Black", "sr": "Црна", "ro": "Neagră" }, "price": 28, "stock": 0 }
+      ]
+    },
+    {
+      "id": "monastery-incense",
+      "category": "incense",
+      "images": ["/images/store/incense.svg"],
+      "featured": true,
+      "name": { "en": "Monastery-style incense, 100 g", "sr": "Манастирски тамјан, 100 г", "ro": "Tămâie de mănăstire, 100 g" },
+      "description": {
+        "en": "Sample listing. Resin incense for the home censer.",
+        "sr": "Пример понуде. Тамјан од смоле за кућну кадионицу.",
+        "ro": "Produs exemplu. Tămâie din rășină pentru cădelnița de acasă."
+      },
+      "variants": [
+        { "id": "rose", "label": { "en": "Rose", "sr": "Ружа", "ro": "Trandafir" }, "price": 11, "stock": 18 },
+        { "id": "lavender", "label": { "en": "Lavender", "sr": "Лаванда", "ro": "Lavandă" }, "price": 11, "stock": 10 },
+        { "id": "frankincense", "label": { "en": "Frankincense", "sr": "Чисти тамјан", "ro": "Tămâie curată" }, "price": 13, "stock": 7 }
+      ]
+    },
+    {
+      "id": "censer-charcoal",
+      "category": "incense",
+      "images": ["/images/store/charcoal.svg"],
+      "featured": false,
+      "name": { "en": "Charcoal tablets", "sr": "Угљен за кадионицу", "ro": "Cărbuni pentru cădelniță" },
+      "description": {
+        "en": "Sample listing. A box of ten quick-lighting tablets.",
+        "sr": "Пример понуде. Кутија од десет таблета које се брзо пале.",
+        "ro": "Produs exemplu. O cutie cu zece tablete care se aprind repede."
+      },
+      "variants": [
+        { "id": "box-10", "label": { "en": "Box of 10", "sr": "Кутија од 10", "ro": "Cutie de 10" }, "price": 6, "stock": 50 }
+      ]
+    },
+    {
+      "id": "baptismal-cross",
+      "category": "crosses",
+      "images": ["/images/store/neck-cross.svg"],
+      "featured": true,
+      "name": { "en": "Baptismal neck cross, silver", "sr": "Крштени крстић, сребро", "ro": "Cruciuliță de botez, argint" },
+      "description": {
+        "en": "Sample listing. An eight-pointed cross on a simple cord.",
+        "sr": "Пример понуде. Осмокраки крстић на једноставној врпци.",
+        "ro": "Produs exemplu. O cruce cu opt brațe pe un șnur simplu."
+      },
+      "variants": [
+        { "id": "child", "label": { "en": "Child size", "sr": "Дечја величина", "ro": "Mărime pentru copii" }, "price": 38, "stock": 6 },
+        { "id": "adult", "label": { "en": "Adult size", "sr": "Величина за одрасле", "ro": "Mărime pentru adulți" }, "price": 45, "stock": 5 }
+      ]
+    },
+    {
+      "id": "carved-wall-cross",
+      "category": "crosses",
+      "images": ["/images/store/wall-cross.svg"],
+      "featured": false,
+      "name": { "en": "Carved wooden wall cross", "sr": "Резбарени дрвени крст", "ro": "Cruce de perete sculptată în lemn" },
+      "description": {
+        "en": "Sample listing. Hand-carved linden wood cross for the home.",
+        "sr": "Пример понуде. Ручно резбарен крст од липовог дрвета за дом.",
+        "ro": "Produs exemplu. Cruce sculptată manual în lemn de tei, pentru casă."
+      },
+      "variants": [
+        { "id": "12cm", "label": { "en": "12 cm", "sr": "12 cm", "ro": "12 cm" }, "price": 26, "stock": 7 },
+        { "id": "20cm", "label": { "en": "20 cm", "sr": "20 cm", "ro": "20 cm" }, "price": 39, "stock": 3 }
+      ]
+    },
+    {
+      "id": "pascha-egg",
+      "category": "gifts",
+      "images": ["/images/store/pascha-egg.svg"],
+      "featured": false,
+      "name": { "en": "Painted wooden Pascha egg", "sr": "Осликано дрвено васкршње јаје", "ro": "Ou de Paști din lemn, pictat" },
+      "description": {
+        "en": "Sample listing. Hand-painted in red and gold with a traditional pattern.",
+        "sr": "Пример понуде. Ручно осликано црвеном и златном бојом, са традиционалним шарама.",
+        "ro": "Produs exemplu. Pictat manual în roșu și auriu, cu motive tradiționale."
+      },
+      "variants": [
+        { "id": "single", "label": { "en": "One egg", "sr": "Једно јаје", "ro": "Un ou" }, "price": 9, "stock": 22 }
+      ]
+    },
+    {
+      "id": "home-censer",
+      "category": "gifts",
+      "images": ["/images/store/home-censer.svg"],
+      "featured": false,
+      "name": { "en": "Home censer with handle", "sr": "Кућна кадионица са дршком", "ro": "Cădelniță de casă cu mâner" },
+      "description": {
+        "en": "Sample listing. A small brass censer for the family prayer corner.",
+        "sr": "Пример понуде. Мала месингана кадионица за породични кутак за молитву.",
+        "ro": "Produs exemplu. O cădelniță mică de alamă pentru colțul de rugăciune al familiei."
+      },
+      "variants": [
+        { "id": "brass", "label": { "en": "Brass", "sr": "Месинг", "ro": "Alamă" }, "price": 34, "stock": 5 }
+      ]
+    }
+  ]
+}

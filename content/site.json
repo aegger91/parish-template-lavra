@@ -1,0 +1,251 @@
+{
+  "$schema": "./schemas/site.schema.json",
+  "id": "parish-template-lavra",
+  "template": {
+    "name": "Lavra",
+    "slug": "parish-template-lavra",
+    "version": "1.0.0"
+  },
+  "sampleNotice": true,
+  "defaultLanguage": "en",
+  "languages": [
+    { "code": "en", "label": "English", "nativeName": "English", "shortLabel": "EN", "locale": "en-US", "dir": "ltr" },
+    { "code": "sr", "label": "Serbian", "nativeName": "Српски", "shortLabel": "СР", "locale": "sr-Cyrl-RS", "dir": "ltr" },
+    { "code": "ro", "label": "Romanian", "nativeName": "Română", "shortLabel": "RO", "locale": "ro-RO", "dir": "ltr" }
+  ],
+  "parish": {
+    "name": {
+      "en": "St. Example Orthodox Church",
+      "sr": "Православни храм Светог Примера",
+      "ro": "Biserica Ortodoxă Sfântul Exemplu"
+    },
+    "shortName": {
+      "en": "St. Example",
+      "sr": "Свети Пример",
+      "ro": "Sfântul Exemplu"
+    },
+    "tagline": {
+      "en": "A sample Orthodox parish website",
+      "sr": "Пример веб-сајта православне парохије",
+      "ro": "Un exemplu de site pentru o parohie ortodoxă"
+    },
+    "jurisdiction": {
+      "en": "Sample Diocese of the Orthodox Church",
+      "sr": "Пример епархије Православне цркве",
+      "ro": "Exemplu de eparhie a Bisericii Ortodoxe"
+    },
+    "timeZone": "America/Chicago"
+  },
+  "logo": {
+    "style": "square-image",
+    "image": "/images/logo-icon.svg",
+    "alt": {
+      "en": "Painted emblem of St. Example Orthodox Church",
+      "sr": "Сликани амблем храма Светог Примера",
+      "ro": "Emblema pictată a Bisericii Sfântul Exemplu"
+    },
+    "showName": true
+  },
+  "calendar": {
+    "style": "julian",
+    "showChurchDate": true,
+    "showFasting": true,
+    "autoServiceRanks": ["great"],
+    "feastEveService": {
+      "time": "18:00",
+      "durationMinutes": 120,
+      "kind": "vigil",
+      "livestream": true,
+      "name": {
+        "en": "All-Night Vigil",
+        "sr": "Бденије",
+        "ro": "Priveghere"
+      }
+    },
+    "feastDayService": {
+      "time": "09:00",
+      "durationMinutes": 120,
+      "kind": "liturgy",
+      "livestream": true,
+      "name": {
+        "en": "Divine Liturgy for the feast",
+        "sr": "Света Литургија за празник",
+        "ro": "Sfânta Liturghie de praznic"
+      }
+    }
+  },
+  "features": {
+    "livestream": true,
+    "sermons": true,
+    "store": true,
+    "serviceRequests": true,
+    "zapiski": true,
+    "getInvolved": true
+  },
+  "store": {
+    "currency": "USD",
+    "shipping": {
+      "flatRate": 8,
+      "freeOver": 75,
+      "countries": ["US"]
+    },
+    "pickup": {
+      "label": {
+        "en": "Pick up at the candle desk after any Sunday Liturgy or during office hours.",
+        "sr": "Преузмите код свећњака после недељне Литургије или у радно време канцеларије.",
+        "ro": "Ridicați de la pangar după Liturghia de duminică sau în programul cancelariei."
+      }
+    }
+  },
+  "zapiski": {
+    "maxNamesPerSlip": 10,
+    "maxSlips": 10,
+    "commemorationTypes": [
+      {
+        "id": "proskomedia",
+        "appliesTo": ["health", "repose"],
+        "suggestedDonation": 5,
+        "label": { "en": "Proskomedia", "sr": "Проскомидија", "ro": "Proscomidie" },
+        "hint": {
+          "en": "Names are read at the preparation of the Gifts, and a particle is taken for each one.",
+          "sr": "Имена се читају на проскомидији и за свако се вади честица.",
+          "ro": "Numele se citesc la Proscomidie și pentru fiecare se scoate o părticică."
+        }
+      },
+      {
+        "id": "liturgy",
+        "appliesTo": ["health", "repose"],
+        "suggestedDonation": 5,
+        "label": { "en": "At the Divine Liturgy", "sr": "На Литургији", "ro": "La Sfânta Liturghie" },
+        "hint": {
+          "en": "Names are read aloud in the litany during the Liturgy.",
+          "sr": "Имена се читају наглас на јектенији током Литургије.",
+          "ro": "Numele se citesc cu glas tare la ectenie, în timpul Liturghiei."
+        }
+      },
+      {
+        "id": "moleben",
+        "appliesTo": ["health"],
+        "suggestedDonation": 15,
+        "label": { "en": "Moleben", "sr": "Молебан", "ro": "Paraclis" },
+        "hint": {
+          "en": "A short service of prayer for the living, served after the Liturgy.",
+          "sr": "Кратко молитвено богослужење за живе, после Литургије.",
+          "ro": "O slujbă scurtă de rugăciune pentru cei vii, după Liturghie."
+        }
+      },
+      {
+        "id": "panikhida",
+        "appliesTo": ["repose"],
+        "suggestedDonation": 15,
+        "label": { "en": "Panikhida", "sr": "Парастос", "ro": "Parastas" },
+        "hint": {
+          "en": "A memorial service for the departed.",
+          "sr": "Помен за упокојене.",
+          "ro": "Slujbă de pomenire pentru cei adormiți."
+        }
+      },
+      {
+        "id": "sorokoust",
+        "appliesTo": ["health", "repose"],
+        "suggestedDonation": 40,
+        "label": { "en": "Sorokoust (40 days)", "sr": "Сарандар (40 дана)", "ro": "Sărindar (40 de zile)" },
+        "hint": {
+          "en": "Names are commemorated at forty Liturgies in a row.",
+          "sr": "Имена се помињу на четрдесет узастопних Литургија.",
+          "ro": "Numele sunt pomenite la patruzeci de Liturghii la rând."
+        }
+      }
+    ],
+    "candles": [
+      { "id": "small", "price": 2, "label": { "en": "Small taper", "sr": "Мала свећа", "ro": "Lumânare mică" } },
+      { "id": "medium", "price": 5, "label": { "en": "Medium beeswax candle", "sr": "Средња воштана свећа", "ro": "Lumânare medie din ceară" } },
+      { "id": "large", "price": 10, "label": { "en": "Large beeswax candle", "sr": "Велика воштана свећа", "ro": "Lumânare mare din ceară" } },
+      { "id": "lampada", "price": 20, "label": { "en": "Vigil lamp for one week", "sr": "Кандило током једне недеље", "ro": "Candelă timp de o săptămână" } }
+    ]
+  },
+  "livestream": {
+    "status": "live",
+    "url": "https://example.org/sample-livestream",
+    "embedUrl": null,
+    "platformLabel": {
+      "en": "Sample stream page",
+      "sr": "Пример странице за пренос",
+      "ro": "Exemplu de pagină de transmisiune"
+    }
+  },
+  "orthodoxConnect": {
+    "appUrl": "https://example.org/orthodoxconnect",
+    "parishId": "sample-parish-id",
+    "newsletter": {
+      "enabled": true,
+      "listId": "sample-weekly-bulletin"
+    },
+    "calendarFeed": {
+      "enabled": false,
+      "url": null
+    },
+    "deepLinks": {
+      "createEvent": "{appUrl}/parish/{parishId}/events/new",
+      "postNeed": "{appUrl}/parish/{parishId}/needs/new",
+      "event": "{appUrl}/parish/{parishId}/events/{id}",
+      "need": "{appUrl}/parish/{parishId}/needs/{id}",
+      "signIn": "{appUrl}/sign-in?parish={parishId}"
+    }
+  },
+  "contact": {
+    "addressLines": ["100 Example Street", "Sampletown, ST 00000"],
+    "email": "office@example.org",
+    "phone": "+1 (555) 010-0100",
+    "officeHours": {
+      "en": "Tuesday to Friday, 10:00 to 14:00",
+      "sr": "Од уторка до петка, 10:00 до 14:00",
+      "ro": "De marți până vineri, 10:00 - 14:00"
+    },
+    "parking": {
+      "en": "Free parking behind the parish hall. The side entrance has a ramp.",
+      "sr": "Бесплатан паркинг иза парохијског дома. Бочни улаз има рампу.",
+      "ro": "Parcare gratuită în spatele casei parohiale. Intrarea laterală are rampă."
+    },
+    "transit": {
+      "en": "Sample bus lines 4 and 12 stop at Example Square, a two-minute walk.",
+      "sr": "Пример аутобуских линија 4 и 12 стаје на Тргу Примера, два минута хода.",
+      "ro": "Liniile de autobuz exemplu 4 și 12 opresc la Piața Exemplu, la două minute de mers."
+    },
+    "map": {
+      "embedUrl": null,
+      "directionsUrl": "https://www.openstreetmap.org/search?query=100%20Example%20Street%20Sampletown"
+    }
+  },
+  "donate": {
+    "currency": "USD",
+    "provider": "none",
+    "minimumAmount": 5,
+    "oneTimePresets": [25, 50, 100, 250],
+    "monthlyPresets": [10, 25, 50, 100],
+    "defaultFund": "general",
+    "funds": [
+      {
+        "id": "general",
+        "label": { "en": "Where most needed", "sr": "Где је најпотребније", "ro": "Unde este cea mai mare nevoie" }
+      },
+      {
+        "id": "building",
+        "label": { "en": "Church building and iconography", "sr": "Храм и живопис", "ro": "Clădirea bisericii și pictura" }
+      },
+      {
+        "id": "charity",
+        "label": { "en": "Help for families in need", "sr": "Помоћ породицама у потреби", "ro": "Ajutor pentru familiile în nevoie" }
+      },
+      {
+        "id": "youth",
+        "label": { "en": "Church school and youth", "sr": "Веронаука и омладина", "ro": "Școala parohială și tinerii" }
+      }
+    ]
+  },
+  "socials": [
+    { "id": "facebook", "network": "facebook", "url": "https://example.org/sample-facebook", "label": "Facebook" },
+    { "id": "youtube", "network": "youtube", "url": "https://example.org/sample-youtube", "label": "YouTube" },
+    { "id": "instagram", "network": "instagram", "url": "https://example.org/sample-instagram", "label": "Instagram" }
+  ]
+}

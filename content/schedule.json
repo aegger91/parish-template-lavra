@@ -1,0 +1,73 @@
+{
+  "$schema": "./schemas/schedule.schema.json",
+  "weekly": [
+    {
+      "id": "sun-hours",
+      "dayOfWeek": 0,
+      "time": "09:30",
+      "durationMinutes": 30,
+      "kind": "hours",
+      "livestream": false,
+      "name": { "en": "Third and Sixth Hours", "sr": "Трећи и шести час", "ro": "Ceasurile al treilea și al șaselea" }
+    },
+    {
+      "id": "sun-liturgy",
+      "dayOfWeek": 0,
+      "time": "10:00",
+      "durationMinutes": 100,
+      "kind": "liturgy",
+      "livestream": true,
+      "name": { "en": "Divine Liturgy", "sr": "Света Литургија", "ro": "Sfânta Liturghie" },
+      "note": { "en": "Coffee hour follows in the parish hall", "sr": "После службе кафа у парохијском дому", "ro": "Urmează cafeaua în casa parohială" }
+    },
+    {
+      "id": "wed-akathist",
+      "dayOfWeek": 3,
+      "time": "18:30",
+      "durationMinutes": 45,
+      "kind": "akathist",
+      "livestream": false,
+      "name": { "en": "Akathist to the Most Holy Theotokos", "sr": "Акатист Пресветој Богородици", "ro": "Acatistul Maicii Domnului" }
+    },
+    {
+      "id": "thu-class",
+      "dayOfWeek": 4,
+      "time": "19:00",
+      "durationMinutes": 60,
+      "kind": "class",
+      "livestream": false,
+      "name": { "en": "Adult class on the Faith", "sr": "Разговор о вери за одрасле", "ro": "Cateheză pentru adulți" },
+      "note": { "en": "Parish hall library", "sr": "Библиотека парохијског дома", "ro": "Biblioteca casei parohiale" }
+    },
+    {
+      "id": "sat-vespers",
+      "dayOfWeek": 6,
+      "time": "17:00",
+      "durationMinutes": 60,
+      "kind": "vespers",
+      "livestream": true,
+      "name": { "en": "Great Vespers", "sr": "Велико вечерње", "ro": "Vecernia mare" },
+      "note": { "en": "Confession after the service", "sr": "Исповест после службе", "ro": "Spovedanie după slujbă" }
+    }
+  ],
+  "special": [
+    {
+      "id": "special-2026-12-12-cleanup",
+      "date": "2026-12-12",
+      "time": "10:00",
+      "durationMinutes": 180,
+      "kind": "community",
+      "livestream": false,
+      "name": { "en": "Church cleaning before the Nativity (sample)", "sr": "Чишћење храма пред Божић (пример)", "ro": "Curățenia bisericii înainte de Crăciun (exemplu)" }
+    },
+    {
+      "id": "special-2026-12-19-moleben",
+      "date": "2026-12-19",
+      "time": "12:00",
+      "durationMinutes": 40,
+      "kind": "moleben",
+      "livestream": false,
+      "name": { "en": "Moleben to St. Nicholas", "sr": "Молебан Светом Николи", "ro": "Paraclisul Sfântului Ierarh Nicolae" }
+    }
+  ]
+}

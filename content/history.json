@@ -1,0 +1,71 @@
+{
+  "$schema": "./schemas/history.schema.json",
+  "items": [
+    {
+      "id": "history-first-liturgy",
+      "year": "1921",
+      "icon": "chalice",
+      "title": { "en": "The first Liturgy", "sr": "Прва Литургија", "ro": "Prima Liturghie" },
+      "text": {
+        "en": "Sample event. A few families gather in a rented room and a visiting priest serves the first Divine Liturgy.",
+        "sr": "Пример догађаја. Неколико породица се окупља у изнајмљеној соби и свештеник у пролазу служи прву Литургију.",
+        "ro": "Eveniment exemplu. Câteva familii se adună într-o cameră închiriată și un preot venit în vizită săvârșește prima Liturghie."
+      }
+    },
+    {
+      "id": "history-church-built",
+      "year": "1934",
+      "icon": "church",
+      "title": { "en": "A church of stone and brick", "sr": "Храм од камена и опеке", "ro": "O biserică din piatră și cărămidă" },
+      "text": {
+        "en": "Sample event. The parish builds its church in the Morava style, with banded walls and a single dome.",
+        "sr": "Пример догађаја. Парохија зида храм у моравском стилу, са пругастим зидовима и једним кубетом.",
+        "ro": "Eveniment exemplu. Parohia își zidește biserica în stil moravian, cu ziduri în benzi și o singură turlă."
+      }
+    },
+    {
+      "id": "history-bells",
+      "year": "1962",
+      "icon": "bells",
+      "title": { "en": "The bells arrive", "sr": "Стижу звона", "ro": "Sosesc clopotele" },
+      "text": {
+        "en": "Sample event. Three bells are cast and blessed, and the bell tower is finished the following spring.",
+        "sr": "Пример догађаја. Изливена су и освећена три звона, а звоник је завршен следећег пролећа.",
+        "ro": "Eveniment exemplu. Trei clopote sunt turnate și sfințite, iar clopotnița este gata în primăvara următoare."
+      }
+    },
+    {
+      "id": "history-frescoes",
+      "year": "1988",
+      "icon": "icon-frame",
+      "title": { "en": "Walls painted with frescoes", "sr": "Зидови добијају живопис", "ro": "Pereții sunt pictați în frescă" },
+      "text": {
+        "en": "Sample event. Iconographers paint the apse and the dome over three summers.",
+        "sr": "Пример догађаја. Иконописци током три лета живопишу апсиду и кубе.",
+        "ro": "Eveniment exemplu. Iconarii pictează absida și turla în trei veri."
+      }
+    },
+    {
+      "id": "history-hall",
+      "year": "2004",
+      "icon": "candle",
+      "title": { "en": "A parish hall for the community", "sr": "Парохијски дом за заједницу", "ro": "O casă parohială pentru comunitate" },
+      "text": {
+        "en": "Sample event. The hall opens for church school, coffee hour and the winter food drive.",
+        "sr": "Пример догађаја. Дом се отвара за веронауку, кафу после службе и зимско сакупљање хране.",
+        "ro": "Eveniment exemplu. Casa parohială se deschide pentru școala parohială, cafea și colecta de iarnă."
+      }
+    },
+    {
+      "id": "history-today",
+      "year": "2026",
+      "icon": "gospel",
+      "title": { "en": "Today", "sr": "Данас", "ro": "Astăzi" },
+      "text": {
+        "en": "Sample event. Services in three languages, a livestream for the homebound, and a parish that keeps growing.",
+        "sr": "Пример догађаја. Богослужења на три језика, пренос за непокретне и парохија која расте.",
+        "ro": "Eveniment exemplu. Slujbe în trei limbi, transmisiune pentru cei care nu pot ieși din casă și o parohie care crește."
+      }
+    }
+  ]
+}

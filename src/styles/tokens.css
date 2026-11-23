@@ -1,0 +1,56 @@
+/*
+  Lavra design tokens.
+  Builders: change colors, font roles and ornament settings here.
+  Everything else in the template reads from these variables.
+*/
+
+:root {
+  /* Fresco palette */
+  --lavra-parchment: #f2e6cc;
+  --lavra-parchment-deep: #e6d3ab;
+  --lavra-vellum: #fbf5e6;
+  --lavra-ink: #2a1c12;
+  --lavra-ink-soft: #5b4634;
+  --lavra-ink-faint: #8a7560;
+  --lavra-ochre: #c48a2c;
+  --lavra-ochre-deep: #94651b;
+  --lavra-ochre-light: #e7c27a;
+  --lavra-terracotta: #b0502b;
+  --lavra-terracotta-deep: #87381c;
+  --lavra-cinnabar: #a32c1b;
+  --lavra-lapis: #24497c;
+  --lavra-lapis-deep: #152f55;
+  --lavra-lapis-light: #5a7fae;
+  --lavra-verdigris: #5d7d5f;
+  --lavra-gold: #d3a443;
+  --lavra-wood: #6a4126;
+  --lavra-wood-dark: #3b2213;
+  --lavra-wood-light: #9a6a3f;
+  --lavra-candle: 255 196 110;
+
+  /* Font roles */
+  --lavra-font-heading: "Alegreya", "PT Serif", Georgia, serif;
+  --lavra-font-label: "Alegreya SC", "Alegreya", Georgia, serif;
+  --lavra-font-body: "PT Serif", Georgia, "Times New Roman", serif;
+  --lavra-font-ornament: "Alegreya SC", "Alegreya", Georgia, serif;
+  --lavra-font-button: "Alegreya SC", "Alegreya", Georgia, serif;
+
+  /* Type scale */
+  --lavra-text-body: 1.0625rem;
+  --lavra-leading-body: 1.7;
+  --lavra-tracking-label: 0.08em;
+
+  /* Shape and depth */
+  --lavra-radius: 0.375rem;
+  --lavra-radius-card: 0.5rem;
+  --lavra-shadow-card: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 10px 24px -14px rgb(59 34 19 / 0.45);
+  --lavra-shadow-lift: 0 18px 40px -18px rgb(59 34 19 / 0.55);
+
+  /* Layout */
+  --lavra-container: 78rem;
+  --lavra-header-h: 5.5rem;
+  --lavra-header-h-condensed: 4rem;
+
+  /* Paper texture strength (0 to 1) */
+  --lavra-paper-grain: 0.5;
+}
