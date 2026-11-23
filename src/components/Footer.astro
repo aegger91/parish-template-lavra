@@ -2,7 +2,8 @@
 import type { Locale } from '../i18n/ui';
 import { t, localizedPath } from '../i18n/ui';
 import { siteConfig } from '../config/site';
-import Rosette from '../icons/Rosette.astro';
+import SerbianCross from '../icons/SerbianCross.astro';
+import MoravaBorder from '../icons/MoravaBorder.astro';
 
 interface Props {
   locale: Locale;
@@ -10,52 +11,169 @@ interface Props {
 const { locale } = Astro.props;
 const dict = t(locale);
 const year = new Date().getFullYear();
+
+const footerLinks = [
+  { href: 'schedule', label: dict.nav.schedule },
+  { href: 'slava', label: dict.nav.slava },
+  { href: 'pomen', label: dict.nav.pomen },
+  { href: 'donate', label: dict.nav.donate },
+  { href: 'contact', label: dict.nav.contact },
+];
 ---
-<footer style="margin-top: var(--space-8); background: var(--lapis-deep); color: var(--stone);">
-  <div class="morava-band" aria-hidden="true"></div>
-  <div class="container" style="padding-block: var(--space-7);">
-    <div class="section-ornament" style="color: var(--gold);">
-      <Rosette size={28} />
-    </div>
-    <div class="split-2">
-      <div>
-        <p class="slavonic" style="color: var(--gold-soft); margin: 0 0 var(--space-2);">
-          ✠ IC XC NI KA ✠
-        </p>
-        <h2 style="color: var(--marble); margin: 0 0 var(--space-3); font-size: 1.5rem;">
-          {siteConfig.parishName[locale]}
-        </h2>
-        <p style="margin: 0; color: var(--stone-warm);">
-          {siteConfig.tagline[locale]}
-        </p>
+<footer class="site-footer">
+  <MoravaBorder variant="band" />
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <div class="site-footer__mark" aria-hidden="true">
+        <SerbianCross size={44} decorative />
       </div>
+      <p class="slavonic site-footer__icxc">✠ IC XC NIKA ✠</p>
+      <h2>{siteConfig.parishName[locale]}</h2>
+      <p class="site-footer__tag">{siteConfig.tagline[locale]}</p>
+      <div class="site-footer__ornament">
+        <MoravaBorder variant="rosette-line" />
+      </div>
+    </div>
+
+    <div class="site-footer__cols">
       <div>
-        <p style="margin: 0 0 var(--space-2);">
-          <strong>{dict.footer.address}:</strong><br />
+        <h3>{dict.footer.address}</h3>
+        <p>
           {siteConfig.address.street}<br />
           {siteConfig.address.city}, {siteConfig.address.region} {siteConfig.address.postal}<br />
           {siteConfig.address.country}
         </p>
-        <p style="margin: 0 0 var(--space-2);">
-          <strong>{dict.footer.phone}:</strong>
-          <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} style="color: var(--gold-soft);">
-            {siteConfig.phone}
-          </a>
-        </p>
-        <p style="margin: 0;">
-          <strong>{dict.footer.email}:</strong>
-          <a href={`mailto:${siteConfig.email}`} style="color: var(--gold-soft);">
-            {siteConfig.email}
-          </a>
+        <p>
+          <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}>{siteConfig.phone}</a><br />
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
         </p>
       </div>
+      <div>
+        <h3>{dict.nav.home}</h3>
+        <ul class="site-footer__links">
+          {
+            footerLinks.map((l) => (
+              <li>
+                <a href={localizedPath(locale, l.href)}>{l.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
-    <p style="margin: var(--space-6) 0 0; font-size: 0.95rem; color: var(--stone-dark);">
-      © {year} {siteConfig.parishName[locale]}. {dict.footer.rights}
-      ·
-      <a href={localizedPath(locale, 'contact')} style="color: var(--gold-soft);">
-        {dict.nav.contact}
-      </a>
-    </p>
+  </div>
+  <div class="site-footer__base">
+    <div class="container">
+      <p>
+        © {year} {siteConfig.parishName[locale]}. {dict.footer.rights}
+      </p>
+    </div>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-8);
+    background:
+      linear-gradient(180deg, var(--lapis-deep) 0%, #081528 100%);
+    color: var(--parchment);
+  }
+
+  .site-footer__inner {
+    padding-block: var(--space-7) var(--space-6);
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 900px) {
+    .site-footer__inner {
+      grid-template-columns: 1.1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .site-footer__mark {
+    color: var(--gold-soft);
+    margin-bottom: var(--space-3);
+  }
+
+  .site-footer__icxc {
+    color: var(--gold-soft);
+    margin: 0 0 var(--space-2);
+  }
+
+  .site-footer h2 {
+    color: var(--marble);
+    margin: 0 0 var(--space-2);
+    font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+  }
+
+  .site-footer h3 {
+    color: var(--gold-soft);
+    margin: 0 0 var(--space-3);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .site-footer__tag {
+    margin: 0;
+    color: color-mix(in srgb, var(--parchment) 75%, transparent);
+  }
+
+  .site-footer__ornament {
+    margin-top: var(--space-4);
+    color: var(--gold);
+    justify-content: flex-start;
+  }
+
+  .site-footer__ornament :global(.morava-ornament) {
+    justify-content: flex-start;
+    margin-bottom: 0;
+  }
+
+  .site-footer__cols {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 600px) {
+    .site-footer__cols {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  .site-footer p {
+    margin: 0 0 var(--space-3);
+    color: color-mix(in srgb, var(--parchment) 82%, transparent);
+  }
+
+  .site-footer a {
+    color: var(--gold-soft);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: var(--gold-bright);
+    text-decoration: underline;
+  }
+
+  .site-footer__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .site-footer__base {
+    border-top: 1px solid color-mix(in srgb, var(--gold) 22%, transparent);
+    padding-block: var(--space-4);
+  }
+
+  .site-footer__base p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: color-mix(in srgb, var(--parchment) 55%, transparent);
+  }
+</style>

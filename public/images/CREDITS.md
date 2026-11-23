@@ -4,7 +4,8 @@ All photographs are free-licensed (Wikimedia Commons). Swap images via `src/conf
 
 | File | Source | Author / credit | License |
 |------|--------|-----------------|---------|
-| `hero-monastery.webp` | [Gracanica Monastery (Kosovo).jpg](https://commons.wikimedia.org/wiki/File:Gracanica_Monastery_(Kosovo).jpg) | InaMyrtollari | CC BY-SA 4.0 |
+| `hero-monastery.webp` | [Temple of Saint Sava.jpg](https://commons.wikimedia.org/wiki/File:Temple_of_Saint_Sava.jpg) | Wikimedia Commons (see file page) | CC BY 2.0 |
+| `gallery-fresco.webp` | [The White Angel, Mileseva 25.jpg](https://commons.wikimedia.org/wiki/File:The_White_Angel,_Mileseva_25.jpg) | Unknown | Public domain |
 | `parish-exterior.webp` | [Monastery Studenica, St. Nicholas church.JPG](https://commons.wikimedia.org/wiki/File:Monastery_Studenica,_St._Nicholas_church.JPG) | Cornelius Bechtler | CC BY-SA 3.0 |
 | `church-interior.webp` | [Serbian Orthodox Church Gyor iconostasis.jpg](https://commons.wikimedia.org/wiki/File:Serbian_Orthodox_Church_Gyor_iconostasis.jpg) | Wikimedia Commons | CC0 |
 | `gallery-1.webp` | [Despotovac l Manastir Manasija 001.jpg](https://commons.wikimedia.org/wiki/File:Despotovac_l_Manastir_Manasija_001.jpg) | Wikimedia Commons | Public domain |

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Rosette from '../../icons/Rosette.astro';
+import MoravaBorder from '../../icons/MoravaBorder.astro';
 import { locales, t, type Locale } from '../../i18n/ui';
 import { siteConfig } from '../../config/site';
 import { images } from '../../config/images';
@@ -15,6 +15,7 @@ const dict = t(locale);
 <BaseLayout locale={locale} title={dict.parish.title} path="parish">
   <section class="page-hero">
     <div class="container">
+      <MoravaBorder variant="line" />
       <p class="slavonic">✠</p>
       <h1>{dict.parish.title}</h1>
     </div>
@@ -22,10 +23,7 @@ const dict = t(locale);
 
   <section class="section" style="padding-top: 0;">
     <div class="container split-2">
-      <div>
-        <div class="section-ornament" style="justify-content: flex-start;">
-          <Rosette size={28} />
-        </div>
+      <div class="card">
         <h2>{dict.parish.about}</h2>
         <div class="prose">
           <p>{dict.parish.aboutText}</p>
@@ -47,8 +45,9 @@ const dict = t(locale);
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--parchment">
     <div class="container">
+      <MoravaBorder variant="rosette-line" />
       <div class="section-head">
         <h2>{dict.parish.clergy}</h2>
       </div>
@@ -66,8 +65,9 @@ const dict = t(locale);
     </div>
   </section>
 
-  <section class="section" style="padding-top: 0;">
+  <section class="section">
     <div class="container">
+      <MoravaBorder variant="line" />
       <div class="media-frame">
         <img
           src={images.interior.src}

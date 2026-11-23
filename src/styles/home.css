@@ -1,6 +1,6 @@
 .home-hero {
   position: relative;
-  min-height: min(92vh, 52rem);
+  min-height: min(94vh, 56rem);
   display: flex;
   align-items: flex-end;
   color: var(--marble);
@@ -17,7 +17,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  animation: heroKen 18s ease-in-out infinite alternate;
+  object-position: center 35%;
+  animation: heroKen 22s ease-in-out infinite alternate;
 }
 
 @keyframes heroKen {
@@ -25,7 +26,7 @@
     transform: scale(1);
   }
   to {
-    transform: scale(1.06);
+    transform: scale(1.05);
   }
 }
 
@@ -33,14 +34,20 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Light top/mid so masonry reads; stronger only behind lower text */
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    transparent 42%,
-    color-mix(in srgb, var(--lapis-deep) 35%, transparent) 68%,
-    color-mix(in srgb, var(--lapis-deep) 72%, transparent) 100%
-  );
+  background:
+    linear-gradient(
+      115deg,
+      color-mix(in srgb, var(--lapis-deep) 58%, transparent) 0%,
+      color-mix(in srgb, var(--lapis-deep) 22%, transparent) 48%,
+      color-mix(in srgb, var(--lapis-deep) 8%, transparent) 72%,
+      color-mix(in srgb, var(--serbian-red-deep) 18%, transparent) 100%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--lapis-deep) 12%, transparent) 0%,
+      transparent 40%,
+      color-mix(in srgb, var(--lapis-deep) 48%, transparent) 100%
+    );
 }
 
 .home-hero__content {
@@ -49,37 +56,38 @@
   width: min(100% - 2rem, var(--page));
   margin-inline: auto;
   padding-block: var(--space-8) var(--space-7);
-  animation: brandReveal 0.8s ease both;
+  animation: brandReveal 0.9s ease both;
+  max-width: 40rem;
 }
 
 .home-hero__brand {
   margin: 0 0 var(--space-3);
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
-  font-weight: 700;
-  line-height: 1.05;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6.5vw, 4.6rem);
+  font-weight: 650;
+  line-height: 1.02;
   color: var(--marble);
   text-shadow:
     0 1px 2px color-mix(in srgb, var(--ink) 55%, transparent),
-    0 4px 28px color-mix(in srgb, var(--ink) 45%, transparent);
-  max-width: 14ch;
+    0 8px 36px color-mix(in srgb, var(--ink) 40%, transparent);
 }
 
 .home-hero__tag {
   margin: 0 0 var(--space-4);
   font-family: var(--font-display);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  font-size: clamp(0.72rem, 1.4vw, 0.88rem);
   color: var(--gold-soft);
-  animation: softGlow 4s ease-in-out infinite;
+  animation: softGlow 4.5s ease-in-out infinite;
 }
 
 .home-hero__lead {
   margin: 0 0 var(--space-5);
   max-width: 28rem;
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
-  color: color-mix(in srgb, var(--marble) 96%, transparent);
-  text-shadow: 0 1px 12px color-mix(in srgb, var(--ink) 50%, transparent);
+  font-size: clamp(1.12rem, 2vw, 1.35rem);
+  color: color-mix(in srgb, var(--marble) 95%, transparent);
+  text-shadow: 0 1px 14px color-mix(in srgb, var(--ink) 45%, transparent);
 }
 
 .home-hero__cta {
@@ -91,47 +99,44 @@
 .home-hero__cross {
   position: absolute;
   right: clamp(1.25rem, 5vw, 3.5rem);
-  top: clamp(5.5rem, 16vh, 8.5rem);
+  top: clamp(5.5rem, 15vh, 8rem);
   z-index: 2;
-  opacity: 0.35;
-  width: clamp(2.75rem, 5vw, 3.75rem);
-  color: var(--marble);
-  filter: drop-shadow(0 1px 10px color-mix(in srgb, var(--ink) 30%, transparent));
+  opacity: 0.32;
+  color: var(--gold-soft);
+  filter: drop-shadow(0 1px 12px color-mix(in srgb, var(--ink) 35%, transparent));
   animation: softGlow 5s ease-in-out infinite;
   pointer-events: none;
+  line-height: 0;
 }
 
 @media (max-width: 600px) {
   .home-hero__cross {
-    opacity: 0.22;
-    width: 2.25rem;
+    display: none;
   }
 }
 
-.feast-highlight {
-  display: grid;
-  gap: var(--space-4);
+.home-layer {
+  position: relative;
+  margin-top: -2.5rem;
+  z-index: 3;
+}
+
+.home-layer__inner {
+  background: var(--marble);
+  border: 1px solid color-mix(in srgb, var(--gold-dim) 30%, transparent);
+  box-shadow: var(--shadow-soft);
   padding: var(--space-5);
-  background: color-mix(in srgb, var(--lapis) 6%, var(--band-white));
-  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
 }
 
-.feast-highlight .label {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--oxblood);
-  margin: 0;
-}
-
-.feast-highlight h3 {
-  margin: 0;
+@media (min-width: 768px) {
+  .home-layer__inner {
+    padding: var(--space-6);
+  }
 }
 
 .optional-blocks {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 
 @media (min-width: 768px) {
@@ -141,5 +146,35 @@
 }
 
 .optional-block h2 {
+  margin-top: 0;
+}
+
+.fresco-panel {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 900px) {
+  .fresco-panel {
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+  }
+}
+
+.fresco-panel__frame {
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
+  box-shadow: var(--shadow-soft);
+  background: var(--lapis-deep);
+}
+
+.fresco-panel__frame img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.fresco-panel__copy h2 {
   margin-top: 0;
 }

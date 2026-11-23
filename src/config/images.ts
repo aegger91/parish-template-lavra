@@ -6,9 +6,17 @@ export const images = {
   hero: {
     src: '/images/hero-monastery.webp',
     alt: {
-      sr: 'Манастир Грачаница',
-      lat: 'Manastir Gračanica',
-      en: 'Gračanica Monastery',
+      sr: 'Храм Светог Саве у Београду',
+      lat: 'Hram Svetog Save u Beogradu',
+      en: 'Church of Saint Sava in Belgrade',
+    },
+  },
+  fresco: {
+    src: '/images/gallery-fresco.webp',
+    alt: {
+      sr: 'Бели анђео, фреска из Милешеве',
+      lat: 'Beli anđeo, freska iz Mileševe',
+      en: 'White Angel fresco from Mileševa',
     },
   },
   parish: {

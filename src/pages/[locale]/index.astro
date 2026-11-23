@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SchedulePanel from '../../components/SchedulePanel';
-import Rosette from '../../icons/Rosette.astro';
+import MoravaBorder from '../../icons/MoravaBorder.astro';
 import SerbianCross from '../../icons/SerbianCross.astro';
 import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
 import { siteConfig } from '../../config/site';
 import { images } from '../../config/images';
 import { weekServices, nextFeast } from '../../config/schedule';
 import { newsItems } from '../../config/news';
-import { formatDate } from '../../i18n/utils';
+import { formatDate, formatServiceDateLabel } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -41,11 +41,29 @@ const feastItem = {
   feast: nextFeast.feast?.[locale],
 };
 
+const feastDateLabel = formatServiceDateLabel(
+  nextFeast.date,
+  locale,
+  siteConfig.calendarStyle,
+  nextFeast.oldStyleDate,
+  dict.schedule.oldStyleSuffix,
+);
+
 const lead = {
   sr: 'Добродошли у нашу парохију. Богослужења, вести и контакт на једном месту.',
   lat: 'Dobrodošli u našu parohiju. Bogosluženja, vesti i kontakt na jednom mestu.',
   en: 'Welcome to our parish. Services, news, and contact in one place.',
 }[locale];
+
+const iconItems = [
+  { src: '/icons/censer.svg', label: dict.home.icons.censer },
+  { src: '/icons/kandilo.svg', label: dict.home.icons.kandilo },
+  { src: '/icons/candle.svg', label: dict.home.icons.candle },
+  { src: '/icons/iconostasis.svg', label: dict.home.icons.iconostasis },
+  { src: '/icons/gospel.svg', label: dict.home.icons.gospel },
+  { src: '/icons/prosphora.svg', label: dict.home.icons.prosphora },
+  { src: '/icons/slava-kolac.svg', label: dict.home.icons.kolac },
+];
 ---
 <BaseLayout locale={locale} title="" path="">
   <section class="home-hero">
@@ -53,14 +71,14 @@ const lead = {
       <img
         src={images.hero.src}
         alt={images.hero.alt[locale]}
-        width="1600"
-        height="1200"
+        width="2400"
+        height="1800"
         fetchpriority="high"
       />
     </div>
     <div class="home-hero__veil" aria-hidden="true"></div>
     <div class="home-hero__cross" aria-hidden="true">
-      <SerbianCross size={56} decorative />
+      <SerbianCross size={40} decorative />
     </div>
     <div class="home-hero__content">
       <p class="home-hero__tag slavonic">{siteConfig.tagline[locale]}</p>
@@ -68,42 +86,28 @@ const lead = {
       <p class="home-hero__lead">{lead}</p>
       <div class="home-hero__cta">
         <a class="btn btn--gold" href={localizedPath(locale, 'schedule')}>{dict.home.viewSchedule}</a>
-        <a class="btn btn--ghost" href={localizedPath(locale, 'contact')} style="border-color: var(--gold-soft); color: var(--marble);">
+        <a
+          class="btn btn--ghost"
+          href={localizedPath(locale, 'contact')}
+          style="border-color: var(--gold-soft); color: var(--marble);"
+        >
           {dict.nav.contact}
         </a>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section home-layer">
     <div class="container">
-      <div class="section-ornament"><Rosette size={32} /></div>
-      <div class="section-head">
-        <h2>{dict.home.thisWeek}</h2>
-        <a href={localizedPath(locale, 'schedule')}>{dict.home.viewSchedule}</a>
-      </div>
-      <SchedulePanel
-        client:load
-        items={scheduleItems}
-        locale={locale}
-        calendarStyle={siteConfig.calendarStyle}
-        mapQuery={siteConfig.mapQuery}
-        labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
-      />
-    </div>
-  </section>
-
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="section-head">
-        <h2>{dict.home.nextFeast}</h2>
-      </div>
-      <div class="feast-highlight">
-        <p class="label">{feastItem.feast}</p>
-        <h3>{feastItem.title}</h3>
+      <div class="home-layer__inner">
+        <MoravaBorder variant="rosette-line" />
+        <div class="section-head">
+          <h2>{dict.home.thisWeek}</h2>
+          <a href={localizedPath(locale, 'schedule')}>{dict.home.viewSchedule}</a>
+        </div>
         <SchedulePanel
           client:load
-          items={[feastItem]}
+          items={scheduleItems}
           locale={locale}
           calendarStyle={siteConfig.calendarStyle}
           mapQuery={siteConfig.mapQuery}
@@ -113,53 +117,115 @@ const lead = {
     </div>
   </section>
 
+  <section class="section section--parchment">
+    <div class="container">
+      <MoravaBorder variant="line" />
+      <div class="feast-feature">
+        <p class="feast-feature__label">{dict.home.featuredSlava} · {dict.home.nextFeast}</p>
+        <h3>{feastItem.title}</h3>
+        <p class="feast-feature__meta">
+          {feastDateLabel} · {feastItem.start}-{feastItem.end} · {feastItem.location}
+        </p>
+        <p>{feastItem.description}</p>
+        <SchedulePanel
+          client:load
+          items={[feastItem]}
+          locale={locale}
+          calendarStyle={siteConfig.calendarStyle}
+          mapQuery={siteConfig.mapQuery}
+          labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
+        />
+        <p>
+          <a class="btn btn--red" href={localizedPath(locale, 'slava')}>{dict.nav.slava}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
   {
     (siteConfig.showAboutBlock || siteConfig.showVisitingBlock) && (
-      <section class="section" style="padding-top: 0;">
-        <div class="container optional-blocks">
-          {siteConfig.showAboutBlock && (
-            <div class="optional-block">
-              <h2>{dict.home.aboutTitle}</h2>
-              <p>{dict.home.aboutText}</p>
-              <a href={localizedPath(locale, 'parish')}>{dict.nav.parish}</a>
-            </div>
-          )}
-          {siteConfig.showVisitingBlock && (
-            <div class="optional-block">
-              <h2>{dict.home.visitingTitle}</h2>
-              <p>{dict.home.visitingText}</p>
-              <a href={localizedPath(locale, 'contact')}>{dict.nav.contact}</a>
-            </div>
-          )}
+      <section class="section">
+        <div class="container">
+          <MoravaBorder variant="rosette-line" />
+          <div class="optional-blocks card-grid card-grid--2">
+            {siteConfig.showAboutBlock && (
+              <div class="card optional-block">
+                <h2>{dict.home.aboutTitle}</h2>
+                <p>{dict.home.aboutText}</p>
+                <a href={localizedPath(locale, 'parish')}>{dict.nav.parish}</a>
+              </div>
+            )}
+            {siteConfig.showVisitingBlock && (
+              <div class="card optional-block">
+                <h2>{dict.home.visitingTitle}</h2>
+                <p>{dict.home.visitingText}</p>
+                <a href={localizedPath(locale, 'contact')}>{dict.nav.contact}</a>
+              </div>
+            )}
+          </div>
         </div>
       </section>
     )
   }
 
-  <section class="section" style="padding-top: 0;">
+  <section class="section section--parchment">
     <div class="container">
+      <MoravaBorder variant="line" />
       <div class="section-head">
-        <h2>{dict.home.news}</h2>
-        <a href={localizedPath(locale, 'events')}>{dict.home.viewAll}</a>
+        <h2>{dict.home.iconGallery}</h2>
       </div>
-      <ul class="news-list">
+      <div class="icon-gallery">
         {
-          newsItems.slice(0, 2).map((n) => (
-            <li class="news-item">
-              <time datetime={n.date}>{formatDate(n.date, locale)}</time>
-              <h3>
-                <a href={localizedPath(locale, `events/${n.id}`)}>{n.title[locale]}</a>
-              </h3>
-              <p>{n.summary[locale]}</p>
-            </li>
+          iconItems.map((item) => (
+            <div class="icon-gallery__item">
+              <img src={item.src} alt="" width="48" height="48" loading="lazy" />
+              <span>{item.label}</span>
+            </div>
           ))
         }
-      </ul>
+      </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top: 0;">
+  <section class="section">
+    <div class="container fresco-panel">
+      <div class="fresco-panel__frame">
+        <img
+          src={images.fresco.src}
+          alt={images.fresco.alt[locale]}
+          width="1200"
+          height="1700"
+          loading="lazy"
+        />
+      </div>
+      <div class="fresco-panel__copy">
+        <MoravaBorder variant="line" />
+        <h2>{dict.home.frescoTitle}</h2>
+        <p>{dict.home.frescoText}</p>
+        <div class="section-head" style="margin-top: var(--space-5);">
+          <h3 style="margin:0;">{dict.home.news}</h3>
+          <a href={localizedPath(locale, 'events')}>{dict.home.viewAll}</a>
+        </div>
+        <ul class="news-list">
+          {
+            newsItems.slice(0, 2).map((n) => (
+              <li class="news-item">
+                <time datetime={n.date}>{formatDate(n.date, locale)}</time>
+                <h3>
+                  <a href={localizedPath(locale, `events/${n.id}`)}>{n.title[locale]}</a>
+                </h3>
+                <p>{n.summary[locale]}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
+      <MoravaBorder variant="rosette-line" />
       <div class="section-head">
         <h2>{dict.home.gallery}</h2>
       </div>
@@ -177,6 +243,7 @@ const lead = {
 
   <section class="donate-band">
     <div class="container">
+      <MoravaBorder variant="line" />
       <h2>{dict.home.donateBand}</h2>
       <p>{dict.home.donateBandText}</p>
       <a class="btn btn--gold" href={localizedPath(locale, 'donate')}>{dict.home.donateCta}</a>

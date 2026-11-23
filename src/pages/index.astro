@@ -1,3 +1,19 @@
 ---
-return Astro.redirect('/sr/');
+/**
+ * Clean root redirect to Serbian Cyrillic default locale.
+ * Static export emits a zero-delay refresh + script replace.
+ */
 ---
+<!doctype html>
+<html lang="sr-Cyrl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/sr/" />
+    <link rel="canonical" href="/sr/" />
+    <title>Храм Светог Саве</title>
+    <script is:inline>location.replace('/sr/');</script>
+  </head>
+  <body>
+    <p><a href="/sr/">Ћирилица / Serbian</a></p>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+---
+interface Props {
+  class?: string;
+  variant?: 'band' | 'line' | 'rosette-line';
+}
+const { class: className = '', variant = 'band' } = Astro.props;
+---
+{variant === 'band' && (
+  <div class:list={['morava-ornament', 'morava-ornament--band', className]} aria-hidden="true">
+    <svg viewBox="0 0 800 16" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="moravaBrick" width="28" height="16" patternUnits="userSpaceOnUse">
+          <rect width="14" height="16" fill="var(--serbian-red)" />
+          <rect x="14" width="14" height="16" fill="var(--parchment)" />
+          <rect y="0" width="28" height="2" fill="var(--lapis-deep)" />
+          <rect y="14" width="28" height="2" fill="var(--lapis-deep)" />
+        </pattern>
+      </defs>
+      <rect width="800" height="16" fill="url(#moravaBrick)" />
+    </svg>
+  </div>
+)}
+{variant === 'line' && (
+  <div class:list={['morava-ornament', 'morava-ornament--line', className]} aria-hidden="true">
+    <svg viewBox="0 0 240 12" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0 6 H88 M152 6 H240"
+        stroke="currentColor"
+        stroke-width="1"
+        opacity="0.55"
+      />
+      <!-- Interlace knot center -->
+      <path
+        d="M108 6c0-6 6-6 12-6s12 0 12 6-6 6-12 6-12 0-12-6zm12-4.5c-2.5 0-4.5 1.5-4.5 4.5s2 4.5 4.5 4.5 4.5-1.5 4.5-4.5-2-4.5-4.5-4.5z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.2"
+      />
+      <circle cx="120" cy="6" r="1.6" fill="currentColor" />
+    </svg>
+  </div>
+)}
+{variant === 'rosette-line' && (
+  <div class:list={['morava-ornament', 'morava-ornament--rosette', className]} aria-hidden="true">
+    <svg viewBox="0 0 320 40" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 20 H120" stroke="currentColor" stroke-width="1" opacity="0.5" />
+      <path d="M200 20 H320" stroke="currentColor" stroke-width="1" opacity="0.5" />
+      <circle cx="160" cy="20" r="16" fill="none" stroke="currentColor" stroke-width="1.2" />
+      <circle cx="160" cy="20" r="5" fill="none" stroke="currentColor" stroke-width="1" />
+      {
+        Array.from({ length: 8 }).map((_, i) => {
+          const a = (i * Math.PI) / 4;
+          return (
+            <line
+              x1={160 + Math.cos(a) * 6}
+              y1={20 + Math.sin(a) * 6}
+              x2={160 + Math.cos(a) * 14}
+              y2={20 + Math.sin(a) * 14}
+              stroke="currentColor"
+              stroke-width="1"
+            />
+          );
+        })
+      }
+    </svg>
+  </div>
+)}

@@ -2,9 +2,10 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--marble) 96%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid color-mix(in srgb, var(--brick) 30%, transparent);
+  background: color-mix(in srgb, var(--parchment) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-dim) 28%, transparent);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--serbian-red) 18%, transparent);
 }
 
 .site-header__inner {
@@ -44,8 +45,8 @@
 }
 
 .brand__name {
-  font-family: var(--font-serif);
-  font-size: clamp(0.95rem, 2.4vw, 1.2rem);
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2.4vw, 1.25rem);
   font-weight: 700;
   line-height: 1.15;
   white-space: nowrap;
