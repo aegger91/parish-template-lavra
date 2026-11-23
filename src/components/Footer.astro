@@ -14,32 +14,41 @@ const addr = siteConfig.address;
 <footer class="site-footer">
   <div class="container site-footer__grid">
     <div>
-      <h2 style="color: var(--white); font-size: 1.35rem; margin-bottom: 0.75rem;">
-        {siteConfig.name[locale]}
-      </h2>
-      <p style="margin: 0; max-width: 28ch;">
-        {addr.street}, {addr.city}, {addr.region} {addr.postal}<br />
-        {addr.country[locale]}
-      </p>
-      <p style="margin-top: 1rem;">
+      <div class="site-footer__brand">
+        <img class="cross-mark" src="/icons/cross-byzantine.svg" alt="" width="28" height="28" style="filter: invert(1) sepia(1) saturate(3) hue-rotate(5deg); opacity: 0.85;" />
+        <div>
+          <h2>{siteConfig.name[locale]}</h2>
+          <p style="margin: 0; max-width: 30ch; color: rgba(255,250,244,0.78);">
+            {addr.street}, {addr.city}, {addr.region} {addr.postal}<br />
+            {addr.country[locale]}
+          </p>
+        </div>
+      </div>
+      <p style="margin-top: 1.25rem;">
         <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}>{siteConfig.phone}</a><br />
         <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
       </p>
     </div>
-    <nav aria-label="Footer">
-      <a href={dict.paths.schedule}>{dict.nav.schedule}</a>
-      <a href={dict.paths.news}>{dict.nav.news}</a>
-      <a href={dict.paths.livestream}>{dict.nav.livestream}</a>
-      <a href={dict.paths.pomelnice}>{dict.nav.pomelnice}</a>
-    </nav>
-    <nav aria-label="Footer secondary">
-      <a href={dict.paths.parish}>{dict.nav.parish}</a>
-      <a href={dict.paths.donate}>{dict.nav.donate}</a>
-      <a href={dict.paths.contact}>{dict.nav.contact}</a>
-    </nav>
+    <div>
+      <p class="site-footer__label">{locale === 'ro' ? 'Slujire' : 'Worship'}</p>
+      <nav aria-label="Footer">
+        <a href={dict.paths.schedule}>{dict.nav.schedule}</a>
+        <a href={dict.paths.news}>{dict.nav.news}</a>
+        <a href={dict.paths.livestream}>{dict.nav.livestream}</a>
+        <a href={dict.paths.pomelnice}>{dict.nav.pomelnice}</a>
+      </nav>
+    </div>
+    <div>
+      <p class="site-footer__label">{locale === 'ro' ? 'Parohie' : 'Parish'}</p>
+      <nav aria-label="Footer secondary">
+        <a href={dict.paths.parish}>{dict.nav.parish}</a>
+        <a href={dict.paths.donate}>{dict.nav.donate}</a>
+        <a href={dict.paths.contact}>{dict.nav.contact}</a>
+      </nav>
+    </div>
   </div>
   <div class="container site-footer__bottom">
-    <img src="/icons/cross-byzantine.svg" alt="" width="20" height="20" style="display:inline-block;vertical-align:middle;margin-right:0.5rem;filter:invert(1);opacity:0.75;" />
-    © {year} {siteConfig.name[locale]}. {dict.footer.rights} — {dict.footer.template}
+    <span>© {year} {siteConfig.name[locale]}. {dict.footer.rights}</span>
+    <span>{dict.footer.template}</span>
   </div>
 </footer>

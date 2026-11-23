@@ -14,12 +14,12 @@ const dict = t(locale);
       <p class="eyebrow">{dict.nav.donate}</p>
       <h1>{dict.donate.title}</h1>
       <p class="lede">{dict.donate.intro}</p>
-      <Ornament />
+      <Ornament variant="arch" align="start" />
     </div>
   </header>
   <section class="section">
     <div class="container grid-2">
-      <div>
+      <div class="card card--gold">
         <AmountForm locale={locale} kind="donate" />
       </div>
       <div class="media-frame">

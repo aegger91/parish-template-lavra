@@ -15,7 +15,7 @@ const dict = t(locale);
       <p class="eyebrow">{dict.nav.news}</p>
       <h1>{dict.news.title}</h1>
       <p class="lede">{dict.news.intro}</p>
-      <Ornament />
+      <Ornament variant="arch" align="start" />
     </div>
   </header>
   <section class="section">
@@ -24,19 +24,19 @@ const dict = t(locale);
       <ScheduleList locale={locale} items={upcomingEvents} />
     </div>
   </section>
-  <section class="section-tight" style="background:rgba(184,137,61,0.08);">
+  <section class="section-tight section--layered">
     <div class="container">
       <h2>{dict.news.archive}</h2>
-      <Ornament variant="embroidery" />
-      <ul class="news-list">
+      <Ornament variant="embroidery" align="start" />
+      <div class="card-grid">
         {newsItems.map((item) => (
-          <li class="news-item">
+          <article class="news-item card--interactive">
             <time datetime={item.date}>{formatShortDate(item.date, locale)}</time>
             <h3>{item.title.en}</h3>
             <p style="margin:0;">{item.summary.en}</p>
-          </li>
+          </article>
         ))}
-      </ul>
+      </div>
     </div>
   </section>
 </BaseLayout>

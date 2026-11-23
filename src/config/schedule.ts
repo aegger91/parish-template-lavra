@@ -59,8 +59,8 @@ export const nextFeast: ScheduleItem = {
     en: 'Saint Nicholas the Wonderworker',
   },
   description: {
-    ro: 'Hramul parohiei — Sfânta Liturghie arhierească.',
-    en: 'Parish feast day — hierarchical Divine Liturgy.',
+    ro: 'Hramul parohiei. Sfânta Liturghie arhierească.',
+    en: 'Parish feast day. Hierarchical Divine Liturgy.',
   },
   date: nextOrSameMonthDay(12, 6),
   startTime: '09:00',

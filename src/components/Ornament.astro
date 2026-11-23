@@ -1,10 +1,17 @@
 ---
 interface Props {
-  variant?: 'vine' | 'embroidery';
+  variant?: 'vine' | 'embroidery' | 'arch' | 'rope' | 'floral';
+  align?: 'center' | 'start';
 }
-const { variant = 'vine' } = Astro.props;
-const src = variant === 'embroidery' ? '/icons/ornament-embroidery.svg' : '/icons/ornament-vine.svg';
+const { variant = 'arch', align = 'center' } = Astro.props;
+const map = {
+  vine: '/icons/ornament-vine.svg',
+  embroidery: '/icons/ornament-embroidery.svg',
+  arch: '/icons/ornament-arch.svg',
+  rope: '/icons/ornament-rope.svg',
+  floral: '/icons/ornament-floral.svg',
+} as const;
 ---
-<div class="ornament" aria-hidden="true">
-  <img src={src} alt="" width="320" height="24" />
+<div class:list={['ornament', align === 'start' && 'ornament--start']} aria-hidden="true">
+  <img src={map[variant]} alt="" width="400" height="48" />
 </div>

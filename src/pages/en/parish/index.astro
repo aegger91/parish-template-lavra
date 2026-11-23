@@ -13,7 +13,7 @@ const dict = t(locale);
     <div class="container">
       <p class="eyebrow">{dict.nav.parish}</p>
       <h1>{dict.parish.title}</h1>
-      <Ornament />
+      <Ornament variant="arch" align="start" />
     </div>
   </header>
 
@@ -23,24 +23,26 @@ const dict = t(locale);
         <div>
           <h2>{dict.parish.aboutTitle}</h2>
           <p class="lede">{dict.parish.aboutText}</p>
-          <div class="icon-row" aria-hidden="true">
-            <img src="/icons/censer.svg" alt="" width="44" height="44" />
-            <img src="/icons/candela.svg" alt="" width="44" height="44" />
-            <img src="/icons/gospel.svg" alt="" width="44" height="44" />
-            <img src="/icons/prosphora.svg" alt="" width="44" height="44" />
+          <div class="icon-gallery" style="margin-top:1.5rem;" aria-hidden="true">
+            <div class="icon-tile"><img src="/icons/censer.svg" alt="" width="40" height="40" /><span>Censer</span></div>
+            <div class="icon-tile"><img src="/icons/candela.svg" alt="" width="40" height="40" /><span>Candela</span></div>
+            <div class="icon-tile"><img src="/icons/gospel.svg" alt="" width="40" height="40" /><span>Gospel</span></div>
+            <div class="icon-tile"><img src="/icons/prosphora.svg" alt="" width="40" height="40" /><span>Prosphora</span></div>
+            <div class="icon-tile"><img src="/icons/candle.svg" alt="" width="40" height="40" /><span>Candle</span></div>
+            <div class="icon-tile"><img src="/icons/iconostasis.svg" alt="" width="40" height="40" /><span>Iconostasis</span></div>
           </div>
         </div>
-        <div class="media-frame">
+        <div class="media-frame media-frame--arch">
           <img src={images.parish.src} alt={images.parish.alt.en} width="900" height="675" />
         </div>
       </div>
     </section>
   )}
 
-  <section class="section-tight" style="background:rgba(61,107,79,0.08);">
+  <section class="section-tight section--layered">
     <div class="container">
       <h2>{dict.parish.clergyTitle}</h2>
-      <Ornament variant="embroidery" />
+      <Ornament variant="embroidery" align="start" />
       <div class="clergy-list">
         {siteConfig.clergy.map((person) => (
           <article class="clergy-card">
@@ -60,13 +62,14 @@ const dict = t(locale);
       <div class="media-frame">
         <img src={images.interior.src} alt={images.interior.alt.en} width="900" height="675" loading="lazy" />
       </div>
-      <div>
+      <div class="card card--gold">
         <h2>{dict.parish.historyTitle}</h2>
         <p>{dict.parish.historyText}</p>
         {siteConfig.features.visitingBlock && (
           <>
+            <Ornament variant="floral" align="start" />
             <h3>{dict.parish.visitingTitle}</h3>
-            <p>{dict.parish.visitingText}</p>
+            <p style="margin-bottom:0;">{dict.parish.visitingText}</p>
           </>
         )}
       </div>

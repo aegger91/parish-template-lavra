@@ -22,7 +22,7 @@ const payload = items.map((item) => {
     description: item.description[locale],
     dateLabel: dates.primary,
     oldStyleLabel: dates.secondary,
-    time: `${item.startTime}–${item.endTime}`,
+    time: `${item.startTime}-${item.endTime}`,
     location: item.location?.[locale] ?? parish,
     ics: buildIcs(item, locale, parish),
     google: googleCalendarUrl(item, locale, parish),

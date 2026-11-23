@@ -59,8 +59,8 @@ export const images = {
   livestream: {
     src: '/images/livestream-poster.webp',
     alt: {
-      ro: 'Iconostas — imagine de fundal transmisie',
-      en: 'Iconostasis — livestream poster',
+      ro: 'Iconostas, imagine de fundal transmisie',
+      en: 'Iconostasis, livestream poster',
     },
   },
   og: {

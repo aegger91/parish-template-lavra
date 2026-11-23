@@ -27,7 +27,9 @@ const links = [
 <header class="site-header">
   <div class="container site-header__inner">
     <a class="brand" href={dict.paths.home}>
-      <img class="cross-mark" src="/icons/cross-trefoil.svg" alt="" width="24" height="24" />
+      <span class="brand__mark" aria-hidden="true">
+        <img src="/icons/cross-trefoil.svg" alt="" width="22" height="22" />
+      </span>
       <span class="brand__text">
         <span class="brand__name">{name}</span>
         <span class="brand__tag">{tag}</span>
