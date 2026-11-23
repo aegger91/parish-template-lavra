@@ -257,6 +257,69 @@
     }
   }
 
+  /* Schedule detail panel actions: PT Serif (clear roman), full even borders */
+  .schedule-panel-actions {
+    min-width: 0;
+  }
+  .schedule-panel-btn {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 2.875rem;
+    min-height: 2.875rem;
+    padding: 0 1rem;
+    margin: 0;
+    /* Georgia reads "Add" clearly; avoid small-caps button faces */
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: 0;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: none;
+    font-variant: normal;
+    font-variant-caps: normal;
+    font-feature-settings: "smcp" 0, "c2sc" 0;
+    color: var(--lavra-ink);
+    background: #fffdf6;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #b08948;
+    border-radius: 0.4rem;
+    box-shadow: none;
+    outline: none;
+    overflow: visible;
+    white-space: nowrap;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+  .schedule-panel-btn:hover {
+    background: #fff8ea;
+    border-color: var(--lavra-ochre-deep);
+  }
+  .schedule-panel-btn > span {
+    min-width: 0;
+    overflow: visible;
+    text-overflow: clip;
+    font: inherit;
+    text-transform: none;
+    font-variant: normal;
+  }
+  .schedule-panel-btn-live {
+    color: #fff8ea;
+    background: linear-gradient(180deg, #bd5a31, var(--lavra-terracotta-deep));
+    border-color: #6e2c14;
+  }
+  .schedule-panel-btn-live:hover {
+    background: linear-gradient(180deg, #c8653a, #92401f);
+    border-color: #6e2c14;
+    color: #fff8ea;
+  }
+
   /* Buttons drawn like painted plaques */
   .btn-lavra {
     display: inline-flex;

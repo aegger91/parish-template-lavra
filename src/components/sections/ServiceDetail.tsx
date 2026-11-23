@@ -82,7 +82,7 @@ export function ServiceDetailPanel({
 
   return (
     <Dialog open={!!target} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="border border-[#d5bd8c] bg-vellum p-6 sm:max-w-md" data-testid="schedule-detail-panel">
+        <DialogContent className="overflow-visible border border-[#d5bd8c] bg-vellum p-6 sm:max-w-md" data-testid="schedule-detail-panel">
         {d && cal && (
           <>
             <DialogTitle className="font-heading text-2xl font-bold leading-snug text-ink">{d.title}</DialogTitle>
@@ -114,45 +114,43 @@ export function ServiceDetailPanel({
               ) : null}
             </dl>
 
-            <div className="mt-2 flex flex-col gap-2">
-              <div className="grid gap-2 sm:grid-cols-2">
-                <button
-                  type="button"
-                  className="btn-lavra btn-ghost min-h-11 justify-center px-3 text-[0.95rem]"
-                  onClick={() => downloadIcs(cal, `${d.id}.ics`)}
-                  data-testid="add-to-calendar-ics"
-                >
-                  <CalendarPlus className="size-4 shrink-0" aria-hidden="true" />
-                  <span className="min-w-0">{t("schedule.addToCalendar")}</span>
-                </button>
-                <a
-                  href={googleCalendarUrl(cal)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-lavra btn-ghost min-h-11 justify-center px-3 text-[0.95rem]"
-                >
-                  <ExternalLink className="size-4 shrink-0" aria-hidden="true" />
-                  <span className="min-w-0">{t("schedule.googleCalendar")}</span>
-                </a>
-              </div>
+            <div className="schedule-panel-actions mt-3 flex flex-col gap-3">
+              <button
+                type="button"
+                className="schedule-panel-btn"
+                onClick={() => downloadIcs(cal, `${d.id}.ics`)}
+                data-testid="add-to-calendar-ics"
+              >
+                <CalendarPlus className="size-4 shrink-0" aria-hidden="true" />
+                <span>{t("schedule.addToCalendar")}</span>
+              </button>
+              <a
+                href={googleCalendarUrl(cal)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="schedule-panel-btn"
+              >
+                <ExternalLink className="size-4 shrink-0" aria-hidden="true" />
+                <span>{t("schedule.googleCalendar")}</span>
+              </a>
               <a
                 href={site.contact.map.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-lavra btn-ghost min-h-11 justify-center px-3 text-[0.95rem]"
+                className="schedule-panel-btn"
               >
                 <Navigation className="size-4 shrink-0" aria-hidden="true" />
-                <span className="min-w-0">{t("schedule.getDirections")}</span>
+                <span>{t("schedule.getDirections")}</span>
               </a>
               {showLive ? (
                 <a
                   href={site.livestream.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-lavra btn-primary min-h-11 justify-center px-3 text-[0.95rem]"
+                  className="schedule-panel-btn schedule-panel-btn-live"
                 >
                   <Radio className="size-4 shrink-0" aria-hidden="true" />
-                  <span className="min-w-0">{t("live.watch")}</span>
+                  <span>{t("live.watch")}</span>
                 </a>
               ) : null}
               {extra}
