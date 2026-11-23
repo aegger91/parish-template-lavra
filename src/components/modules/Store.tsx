@@ -177,7 +177,7 @@ export function ProductView({ id, pageId }: { id: string; pageId: string }) {
           </div>
           <div>
             <p className="rubric text-sm">{tr(products.categories.find((c) => c.id === p.category)?.label)}</p>
-            <h1 className="mt-2 text-[2.2rem] leading-[1.06] sm:text-[2.9rem]">{tr(p.name)}</h1>
+            <h1 className="mt-2 text-[2.2rem] leading-snug sm:text-[2.9rem]">{tr(p.name)}</h1>
             <p className="mt-3 font-heading text-3xl font-bold text-cinnabar">
               <Price value={v.price} />
             </p>
@@ -251,7 +251,7 @@ export function ProductView({ id, pageId }: { id: string; pageId: string }) {
 
         {related.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-3xl">{t("store.related")}</h2>
+            <h2 className="text-3xl leading-snug">{t("store.related")}</h2>
             <ul className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
               {related.map((r) => (
                 <li key={r.id}>
@@ -327,7 +327,7 @@ export function CartView({ section }: SectionProps) {
     <section id={section.id} className="pt-8 pb-10 sm:pt-12">
       <div className="container-lavra">
         <Breadcrumbs pageId="cart" />
-        <h1 className="mt-6 text-[2.4rem] sm:text-[3.2rem]">{t("cart.title")}</h1>
+        <h1 className="mt-6 text-[2.4rem] leading-snug sm:text-[3.2rem]">{t("cart.title")}</h1>
         {!cart.ready ? (
           <div className="mt-8 h-40 animate-pulse rounded-md bg-parchment-deep" aria-busy="true" aria-label={t("state.loading")} />
         ) : cart.items.length === 0 ? (
@@ -428,7 +428,7 @@ export function Checkout({ section }: SectionProps) {
     <section id={section.id} className="pt-8 pb-10 sm:pt-12">
       <div className="container-lavra">
         <Breadcrumbs pageId="checkout" />
-        <h1 className="mt-6 text-[2.4rem] sm:text-[3.2rem]">{t("checkout.title")}</h1>
+        <h1 className="mt-6 text-[2.4rem] leading-snug sm:text-[3.2rem]">{t("checkout.title")}</h1>
         {!cart.ready ? (
           <div className="mt-8 h-40 animate-pulse rounded-md bg-parchment-deep" aria-busy="true" />
         ) : cart.items.length === 0 && !result ? (

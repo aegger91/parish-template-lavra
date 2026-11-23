@@ -135,11 +135,11 @@ export function Header() {
     <header className="sticky top-0 z-40" data-condensed={condensed}>
       <div
         className={cn(
-          "hidden overflow-hidden border-b border-[#d9c49a] bg-parchment-deep/70 text-[0.85rem] text-ink-soft transition-[max-height,opacity] duration-300 md:block",
-          condensed ? "max-h-0 opacity-0" : "max-h-12 opacity-100",
+          "hidden border-b border-[#d9c49a] bg-parchment-deep/70 text-[0.85rem] text-ink-soft transition-[opacity,visibility] duration-300 md:block md:h-10",
+          condensed ? "pointer-events-none border-b-0 opacity-0 invisible" : "opacity-100 visible",
         )}
       >
-        <div className="container-lavra flex h-10 items-center justify-between gap-4">
+        <div className={cn("container-lavra flex h-10 items-center justify-between gap-4", condensed && "hidden")}>
           <div className="flex min-w-0 items-center gap-5">
             <span className="flex min-w-0 items-center gap-1.5 truncate">
               <MapPin className="size-3.5 shrink-0" aria-hidden="true" />
@@ -163,7 +163,7 @@ export function Header() {
           condensed && "shadow-[0_10px_24px_-18px_rgb(59_34_19/0.7)]",
         )}
       >
-        <div className={cn("container-lavra flex items-center justify-between gap-3 transition-[height] duration-300", condensed ? "h-16" : "h-[4.75rem] sm:h-[5.5rem]")}>
+        <div className="container-lavra flex h-[5.5rem] items-center justify-between gap-3">
           <Link href={`/${lang}/`} className="flex min-w-0 shrink items-center rounded-sm xl:min-w-[13rem] xl:max-w-[19rem]" aria-label={t("nav.homeAria", { name })}>
             <Logo
               style={site.logo.style}
@@ -220,7 +220,7 @@ export function Header() {
             />
           </div>
         </div>
-        <PaintedBand variant="teeth" className={cn("transition-[height] duration-300", condensed ? "h-1.5" : "h-2.5")} />
+        <PaintedBand variant="teeth" className="h-2" />
       </div>
     </header>
   );

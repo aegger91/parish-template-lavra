@@ -11,6 +11,7 @@ import { Cross } from "@/components/orthodox/Cross";
 import { ChapterMark, FrescoFrame } from "@/components/orthodox/Ornaments";
 import { Pictogram } from "@/components/orthodox/Pictogram";
 import { isLiveNow, upcomingServices, useDays, useParishToday } from "./useParishDays";
+import { useCivilWithOldStyle } from "./ServiceDetail";
 import { feastsInRange } from "@/lib/calendar";
 import { feasts } from "@/lib/content";
 
@@ -36,7 +37,7 @@ function Skeleton({ className }: { className?: string }) {
 }
 
 export function AtAGlance({ className }: { className?: string }) {
-  const { lang, t, tr, fmtDay, fmtTime, locale } = useI18n();
+  const { lang, t, tr, fmtDay, fmtTime } = useI18n();
   const now = useParishToday();
   const days = useDays(now ? now.jdn : null, now ? now.jdn + 21 : null);
   const live = isLiveNow(days, now);
@@ -44,9 +45,7 @@ export function AtAGlance({ className }: { className?: string }) {
   const next = now ? upcomingServices(days, now, 3) : [];
   const today = days[0];
   const nextFeast = now ? feastsInRange(now.jdn + 1, now.jdn + 120, site.calendar.style, feasts).find((f) => f.rank !== "commemoration") : undefined;
-  const churchMonth = today
-    ? new Intl.DateTimeFormat(locale, { month: "long", day: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(2001, today.church.m - 1, today.church.d)))
-    : "";
+  const civilWithOld = useCivilWithOldStyle();
   const showLivestream = isFeatureOn("livestream");
 
   return (
@@ -119,10 +118,11 @@ export function AtAGlance({ className }: { className?: string }) {
             </div>
           ) : (
             <div className="mt-1.5">
-              <p className="font-heading text-lg font-bold capitalize">{fmtDay(today.jdn, { weekday: "long", month: "long", day: "numeric" })}</p>
-              {site.calendar.showChurchDate && site.calendar.style === "julian" && (
-                <p className="text-[0.9rem] text-ink-soft">{t("glance.churchDate", { date: churchMonth })}</p>
-              )}
+              <p className="font-heading text-lg font-bold capitalize">
+                {site.calendar.style === "old" && site.calendar.showChurchDate
+                  ? civilWithOld(today.jdn, { weekday: "long", month: "long", day: "numeric" })
+                  : fmtDay(today.jdn, { weekday: "long", month: "long", day: "numeric" })}
+              </p>
               {today.feasts.length > 0 ? (
                 <p className={cn("mt-1.5 font-heading font-bold", today.feasts[0].rank === "commemoration" ? "text-ink" : "text-cinnabar")}>{tr(today.feasts[0].name)}</p>
               ) : (
@@ -191,7 +191,7 @@ export function Hero({ props, chapterMap = {} }: { props: HeroProps; chapterMap?
       >
         <div className="[grid-area:intro]">
           <ChapterMark label={tr(props.eyebrow)} />
-          <h1 id="home-hero-title" className="mt-4 text-[2.5rem] leading-[1.02] sm:text-6xl xl:text-[4.6rem]">
+          <h1 id="home-hero-title" className="mt-4 text-[2.5rem] leading-snug sm:text-6xl xl:text-[4.6rem]">
             {name}
           </h1>
           <p className="mt-5 max-w-2xl text-[1.12rem] leading-relaxed text-ink-soft sm:text-[1.2rem]">{tr(props.lead)}</p>

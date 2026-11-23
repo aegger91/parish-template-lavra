@@ -24,6 +24,8 @@ interface Slip {
   rows: NameRow[];
   commemoration: string;
   candle: string;
+  amount: number;
+  amountCustom: string;
 }
 
 const CLERGY_PREFIXES = ["infant", "priest", "deacon", "hieromonk", "monk", "nun"];
@@ -32,10 +34,14 @@ const prefixesFor = (type: SlipType) => (type === "repose" ? [...CLERGY_PREFIXES
 const cfg = site.zapiski;
 const typesFor = (type: SlipType) => cfg.commemorationTypes.filter((c) => c.appliesTo.includes(type));
 
+function slipDonation(s: Slip) {
+  if (s.amountCustom.trim()) return Number(s.amountCustom.replace(",", ".")) || 0;
+  return s.amount;
+}
+
 function slipTotal(s: Slip) {
-  const c = cfg.commemorationTypes.find((x) => x.id === s.commemoration)?.suggestedDonation ?? 0;
   const k = cfg.candles.find((x) => x.id === s.candle)?.price ?? 0;
-  return c + k;
+  return slipDonation(s) + k;
 }
 
 function SlipPaper({
@@ -70,7 +76,7 @@ function SlipPaper({
     >
       <div className={cn("flex flex-col items-center", repose ? "text-[#17110d]" : "text-cinnabar")}>
         <Cross variant="slavic" className="h-11 w-auto" title={t("zapiski.crossTitle")} />
-        <p className="label-sc mt-2 text-[1.2rem] font-bold tracking-[0.12em]">{t(repose ? "zapiski.repose" : "zapiski.health")}</p>
+        <p className="label-sc mt-2 text-[1.2rem] font-bold leading-snug tracking-[0.06em]">{t(repose ? "zapiski.repose" : "zapiski.health")}</p>
         <span className={cn("mt-1 h-px w-24", repose ? "bg-[#17110d]" : "bg-cinnabar/60")} />
       </div>
       <ol className="mt-3" aria-label={t("zapiski.namesLabel", { n: index + 1 })}>
@@ -130,6 +136,12 @@ function SlipPaper({
 function SlipOptions({ slip, onChange }: { slip: Slip; onChange: (s: Slip) => void }) {
   const { t, tr, fmtMoney } = useI18n();
   const types = typesFor(slip.type);
+  const selected = types.find((c) => c.id === slip.commemoration);
+  const suggested = selected?.suggestedDonation ?? 0;
+  const usingCustom = slip.amountCustom.trim().length > 0;
+  const zeroActive = !usingCustom && slip.amount === 0;
+  const suggestedActive = !usingCustom && slip.amount === suggested;
+
   return (
     <div className="grid content-start gap-5">
       <fieldset>
@@ -145,16 +157,57 @@ function SlipOptions({ slip, onChange }: { slip: Slip; onChange: (s: Slip) => vo
             >
               <input type="radio" name={`${slip.id}-comm`} checked={slip.commemoration === c.id} onChange={() => onChange({ ...slip, commemoration: c.id })} className="mt-1.5 size-4 shrink-0 accent-[var(--lavra-lapis)]" />
               <span className="min-w-0 flex-1">
-                <span className="flex flex-wrap items-baseline justify-between gap-x-3">
+                <span className="flex flex-wrap items-center gap-2">
                   <span className="font-heading text-[1.08rem] font-bold">{tr(c.label)}</span>
-                  <span className="text-[0.88rem] text-ink-soft">
+                  <span className="label-sc rounded-full border border-[#d8c294] bg-parchment/50 px-2 py-0.5 text-[0.72rem] font-normal text-ink-faint">
                     {t("zapiski.suggested")} {fmtMoney(c.suggestedDonation)}
                   </span>
                 </span>
-                {c.hint && <span className="block text-[0.9rem] text-ink-soft">{tr(c.hint)}</span>}
+                {c.hint && <span className="mt-1 block text-[0.9rem] text-ink-soft">{tr(c.hint)}</span>}
               </span>
             </label>
           ))}
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend className="label-sc text-[1.02rem] font-bold">{t("donate.amount")}</legend>
+        <div className="mt-2 flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => onChange({ ...slip, amount: 0, amountCustom: "" })}
+            className={cn(
+              "candle-glow relative grid min-w-[4.5rem] cursor-pointer place-items-center rounded-md border-2 bg-vellum px-3 py-3 font-heading text-lg font-extrabold transition",
+              zeroActive ? "border-terracotta bg-[#fbeedd] text-cinnabar shadow-[0_0_24px_-6px_rgb(var(--lavra-candle)/0.9)]" : "border-[#d8c294] text-ink hover:border-ochre",
+            )}
+          >
+            {fmtMoney(0)}
+          </button>
+          <button
+            type="button"
+            onClick={() => onChange({ ...slip, amount: suggested, amountCustom: "" })}
+            className={cn(
+              "candle-glow relative grid min-w-[4.5rem] cursor-pointer place-items-center rounded-md border-2 bg-vellum px-3 py-3 font-heading text-lg font-extrabold transition",
+              suggestedActive ? "border-terracotta bg-[#fbeedd] text-cinnabar shadow-[0_0_24px_-6px_rgb(var(--lavra-candle)/0.9)]" : "border-[#d8c294] text-ink hover:border-ochre",
+            )}
+          >
+            {fmtMoney(suggested)}
+          </button>
+        </div>
+        <div className="mt-4 grid gap-1.5">
+          <label htmlFor={`${slip.id}-amount-custom`} className="label-sc text-[0.95rem]">
+            {t("donate.custom")}
+          </label>
+          <div className="relative max-w-xs">
+            <span className="label-sc pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-[0.9rem] text-ink-soft">{site.donate.currency}</span>
+            <input
+              id={`${slip.id}-amount-custom`}
+              inputMode="decimal"
+              value={slip.amountCustom}
+              onChange={(e) => onChange({ ...slip, amountCustom: e.target.value.replace(/[^\d.,]/g, "") })}
+              placeholder="0"
+              className="h-11 w-full rounded-md border border-input bg-vellum ps-3 pe-14 text-base"
+            />
+          </div>
         </div>
       </fieldset>
       <div className="grid gap-1.5">
@@ -175,7 +228,15 @@ function SlipOptions({ slip, onChange }: { slip: Slip; onChange: (s: Slip) => vo
 }
 
 function makeSlip(type: SlipType, id: string): Slip {
-  return { id, type, rows: [0, 1, 2].map((n) => ({ id: `${id}-r${n}`, prefix: "", name: "" })), commemoration: typesFor(type)[0]?.id ?? "", candle: "" };
+  return {
+    id,
+    type,
+    rows: [0, 1, 2].map((n) => ({ id: `${id}-r${n}`, prefix: "", name: "" })),
+    commemoration: typesFor(type)[0]?.id ?? "",
+    candle: "",
+    amount: 0,
+    amountCustom: "",
+  };
 }
 
 export function Zapiski({ section }: SectionProps) {
@@ -243,7 +304,7 @@ export function Zapiski({ section }: SectionProps) {
         title: s.type === "health" ? { [lang]: t("zapiski.health") } : { [lang]: t("zapiski.repose") },
         subtitle: c?.label,
         quantity: 1,
-        unitPrice: c?.suggestedDonation ?? 0,
+        unitPrice: slipDonation(s),
         shippable: false,
         details: { type: s.type, names: namesOf(s), commemoration: s.commemoration },
       });

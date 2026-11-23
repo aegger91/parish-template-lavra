@@ -10,7 +10,8 @@ export interface Language {
 }
 
 export type LogoStyle = "circular-seal" | "kiot" | "square-image" | "wordmark";
-export type CalendarStyle = "julian" | "revised-julian" | "gregorian";
+/** Site calendar: old = Julian (Old Calendar), new = Revised Julian (New Calendar). */
+export type CalendarStyle = "old" | "new";
 export type FeatureKey = "livestream" | "sermons" | "store" | "serviceRequests" | "zapiski" | "getInvolved";
 
 export interface LinkRef {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Radio } from "lucide-react";
 import { site } from "@/lib/content";
@@ -12,6 +13,14 @@ import { FrescoFrame, PaintedBand } from "@/components/orthodox/Ornaments";
 import { Pictogram } from "@/components/orthodox/Pictogram";
 import { ChapterSection, GlowCard, Reveal } from "./common";
 import { useDays, useParishToday } from "./useParishDays";
+import type { ServiceOccurrence } from "@/lib/calendar";
+import {
+  type DetailTarget,
+  parishPlace,
+  ServiceDetailPanel,
+  ServiceRowButton,
+  serviceDetailTarget,
+} from "./ServiceDetail";
 
 export interface SectionProps {
   section: Section;
@@ -23,6 +32,15 @@ export function ServicesWeek({ section, numeral }: SectionProps) {
   const p = section.props;
   const now = useParishToday();
   const days = useDays(now ? now.jdn : null, now ? now.jdn + 6 : null);
+  const [detail, setDetail] = useState<DetailTarget | null>(null);
+
+  const openService = (s: ServiceOccurrence) => {
+    const title = tr(s.name);
+    const note = (s.note ? tr(s.note) : "") || t("schedule.defaultNote");
+    const place = parishPlace(tr);
+    setDetail(serviceDetailTarget(s, title, note, place));
+  };
+
   return (
     <ChapterSection
       id={section.id}
@@ -57,7 +75,7 @@ export function ServicesWeek({ section, numeral }: SectionProps) {
                   <GlowCard className="h-full p-5">
                     <div className="relative z-10">
                       <div className="flex items-baseline justify-between gap-2">
-                        <p className={cn("font-heading text-[1.7rem] font-extrabold leading-none", red ? "text-cinnabar" : "text-ink")}>
+                        <p className={cn("font-heading text-[1.7rem] font-extrabold leading-tight", red ? "text-cinnabar" : "text-ink")}>
                           {fmtDay(d.jdn, { day: "numeric" })}
                         </p>
                         <p className="label-sc text-right text-[0.85rem] capitalize text-ink-soft">
@@ -67,17 +85,23 @@ export function ServicesWeek({ section, numeral }: SectionProps) {
                       {feast && <p className="mt-2 font-heading text-[0.98rem] font-bold leading-snug text-cinnabar">{tr(feast.name)}</p>}
                       <ul className="mt-3 space-y-2">
                         {d.services.map((s) => (
-                          <li key={s.id} className="flex gap-3 text-[0.97rem]">
-                            <span className="w-14 shrink-0 tabular-nums font-bold text-lapis">{fmtTime(s.time)}</span>
-                            <span className="min-w-0">
-                              {tr(s.name)}
-                              {s.livestream && site.features.livestream && (
-                                <span className="ms-1.5 inline-flex translate-y-0.5 items-center text-cinnabar" title={t("live.streamed")}>
-                                  <Radio className="size-3.5" aria-hidden="true" />
-                                  <span className="sr-only">{t("live.streamed")}</span>
-                                </span>
-                              )}
-                            </span>
+                          <li key={s.id} className="text-[0.97rem]">
+                            <ServiceRowButton
+                              onOpen={() => openService(s)}
+                              label={t("schedule.openDetails", { name: tr(s.name) })}
+                              className="flex gap-3"
+                            >
+                              <span className="w-14 shrink-0 tabular-nums font-bold text-lapis">{fmtTime(s.time)}</span>
+                              <span className="min-w-0">
+                                {tr(s.name)}
+                                {s.livestream && site.features.livestream && (
+                                  <span className="ms-1.5 inline-flex translate-y-0.5 items-center text-cinnabar" title={t("live.streamed")}>
+                                    <Radio className="size-3.5" aria-hidden="true" />
+                                    <span className="sr-only">{t("live.streamed")}</span>
+                                  </span>
+                                )}
+                              </span>
+                            </ServiceRowButton>
                           </li>
                         ))}
                       </ul>
@@ -88,6 +112,7 @@ export function ServicesWeek({ section, numeral }: SectionProps) {
             })}
         </ol>
       )}
+      <ServiceDetailPanel target={detail} onClose={() => setDetail(null)} />
     </ChapterSection>
   );
 }
@@ -143,7 +168,7 @@ export function DonateCta({ section }: SectionProps) {
                 <Pictogram name="candle" className="size-11" />
               </span>
               <div>
-                <h2 className="text-3xl sm:text-4xl">{tr(p.title)}</h2>
+                <h2 className="text-3xl leading-snug sm:text-4xl">{tr(p.title)}</h2>
                 <p className="mt-2 max-w-2xl text-[1.07rem] text-ink-soft">{tr(p.text)}</p>
               </div>
               <Link href={linkHref(lang, p.cta.link)} className="btn-lavra btn-primary justify-self-start px-6 text-[1.1rem] md:justify-self-end">

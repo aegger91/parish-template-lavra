@@ -88,7 +88,7 @@ export function ChapterSection({
                 <ChapterMark tone={tone === "lapis" ? "light" : "dark"} label={label ?? t("chapter")} numeral={numeral} className="mb-3" />
               )}
               {title && (
-                <h2 id={`${id}-title`} className="text-[2rem] sm:text-[2.6rem]">
+                <h2 id={`${id}-title`} className="text-[2rem] leading-snug sm:text-[2.6rem]">
                   {title}
                 </h2>
               )}

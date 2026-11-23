@@ -27,7 +27,7 @@
     "showName": true
   },
   "calendar": {
-    "style": "julian",
+    "style": "old",
     "showChurchDate": true,
     "showFasting": true,
     "autoServiceRanks": ["great"],
@@ -133,7 +133,7 @@
   "donate": {
     "currency": "USD",
     "provider": "none",
-    "minimumAmount": 5,
+    "minimumAmount": 0,
     "oneTimePresets": [25, 50, 100, 250],
     "monthlyPresets": [10, 25, 50, 100],
     "defaultFund": "general",

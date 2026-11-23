@@ -58,8 +58,8 @@
       "type": "object",
       "required": ["style", "showChurchDate", "showFasting", "autoServiceRanks", "feastEveService", "feastDayService"],
       "properties": {
-        "style": { "description": "julian (Old Calendar), revised-julian (New Calendar) or gregorian (all feasts on civil dates).", "enum": ["julian", "revised-julian", "gregorian"] },
-        "showChurchDate": { "description": "Show the Julian church date in small numbers on the calendar.", "type": "boolean" },
+        "style": { "description": "calendarStyle: old (Julian / Old Calendar) or new (Revised Julian / New Calendar). Controls fixed feast dates and saint-of-the-day labels. Movable Pascha-based feasts are the same in both. Default: old.", "enum": ["old", "new"] },
+        "showChurchDate": { "description": "When style is old, show the civil date with Old Style in parentheses (e.g. Jan 7 (Dec 25 O.S.)).", "type": "boolean" },
         "showFasting": { "type": "boolean" },
         "autoServiceRanks": { "description": "Feast ranks that get the eve and day services below automatically.", "type": "array", "items": { "enum": ["pascha", "great", "major", "commemoration"] } },
         "feastEveService": { "$ref": "common.schema.json#/$defs/serviceTemplate" },
@@ -176,7 +176,7 @@
       "properties": {
         "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
         "provider": { "description": "Payment provider to connect in src/lib/handlers.ts. none keeps the sample placeholder.", "enum": ["none", "stripe", "authorize-net"] },
-        "minimumAmount": { "type": "number", "minimum": 0 },
+        "minimumAmount": { "description": "Legacy field; forms do not enforce a minimum. Prefer 0.", "type": "number", "minimum": 0 },
         "oneTimePresets": { "type": "array", "items": { "type": "number", "exclusiveMinimum": 0 } },
         "monthlyPresets": { "type": "array", "items": { "type": "number", "exclusiveMinimum": 0 } },
         "defaultFund": { "$ref": "common.schema.json#/$defs/id" },

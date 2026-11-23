@@ -7,7 +7,7 @@ import { connectEvents, connectNeeds, site } from "@/lib/content";
 import { connectLink, connectSignUp } from "@/lib/handlers";
 import { gregorianFromJdn, jdnFromGregorian, jdnFromIso, weekday } from "@/lib/calendar";
 import { pagePath } from "@/lib/routes";
-import type { ConnectEvent, NeedSlot } from "@/lib/types";
+import type { ConnectEvent, Localized, NeedSlot } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/components/providers";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
@@ -17,6 +17,7 @@ import { ChapterSection, EmptyState, GlowCard, Reveal } from "@/components/secti
 import type { SectionProps } from "@/components/sections/ContentSections";
 import { FilterChips } from "@/components/sections/MediaSections";
 import { useParishToday } from "@/components/sections/useParishDays";
+import { type DetailTarget, ServiceDetailPanel } from "@/components/sections/ServiceDetail";
 
 const STORE_KEY = `lavra-connect-${site.id}`;
 
@@ -158,19 +159,41 @@ function useWhen() {
     `${fmtIso(date, { weekday: "long", month: "long", day: "numeric" })}, ${fmtTime(time)}${end ? ` \u2013 ${fmtTime(end)}` : ""}`;
 }
 
+function eventDurationMinutes(time: string, endTime?: string): number {
+  if (!endTime) return 60;
+  const [h1, m1] = time.split(":").map(Number);
+  const [h2, m2] = endTime.split(":").map(Number);
+  const diff = h2 * 60 + m2 - (h1 * 60 + m1);
+  return diff > 0 ? diff : 60;
+}
+
+function eventDetailTarget(ev: ConnectEvent, tr: (v: Localized) => string): DetailTarget {
+  return {
+    kind: "event",
+    id: ev.id,
+    title: tr(ev.title),
+    note: tr(ev.description),
+    place: tr(ev.location),
+    jdn: jdnFromIso(ev.date),
+    time: ev.time,
+    endTime: ev.endTime,
+    durationMinutes: eventDurationMinutes(ev.time, ev.endTime),
+  };
+}
+
 function DateBlock({ iso }: { iso: string }) {
   const { fmtIso } = useI18n();
   const red = weekday(jdnFromIso(iso)) === 0;
   return (
     <div className="w-[4.6rem] shrink-0 overflow-hidden rounded-[4px] border border-[#cdb27c] bg-[#fffaf0] text-center shadow-sm" aria-hidden="true">
       <div className="label-sc bg-cinnabar px-1 py-0.5 text-[0.75rem] font-bold text-[#fff3df]">{fmtIso(iso, { month: "short" })}</div>
-      <div className={cn("font-heading text-[2rem] font-extrabold leading-[1.15]", red ? "text-cinnabar" : "text-ink")}>{fmtIso(iso, { day: "numeric" })}</div>
+      <div className={cn("font-heading text-[2rem] font-extrabold leading-snug", red ? "text-cinnabar" : "text-ink")}>{fmtIso(iso, { day: "numeric" })}</div>
       <div className="label-sc pb-1 text-[0.72rem] text-ink-soft">{fmtIso(iso, { weekday: "short" })}</div>
     </div>
   );
 }
 
-function EventCard({ ev, joined, onRsvp }: { ev: ConnectEvent; joined: boolean; onRsvp: () => void }) {
+function EventCard({ ev, joined, onOpenDetail, onRsvp }: { ev: ConnectEvent; joined: boolean; onOpenDetail: () => void; onRsvp: () => void }) {
   const { t, tr, fmtTime } = useI18n();
   const signups = ev.signups + (joined ? 1 : 0);
   const full = signups >= ev.capacity;
@@ -178,30 +201,32 @@ function EventCard({ ev, joined, onRsvp }: { ev: ConnectEvent; joined: boolean; 
   return (
     <GlowCard className="flex h-full flex-col p-4 sm:p-5">
       <div className="relative z-10 flex flex-1 flex-col">
-        <div className="flex gap-4">
-          <DateBlock iso={ev.date} />
-          <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rubric text-[0.8rem]">{tr(cat?.label)}</span>
-              <ConnectBadge />
+        <button type="button" onClick={onOpenDetail} className="flex flex-1 flex-col text-start transition hover:opacity-95">
+          <div className="flex gap-4">
+            <DateBlock iso={ev.date} />
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rubric text-[0.8rem]">{tr(cat?.label)}</span>
+                <ConnectBadge />
+              </div>
+              <h3 className="mt-1 text-[1.25rem] leading-tight">{tr(ev.title)}</h3>
+              <p className="mt-1.5 flex items-center gap-1.5 text-[0.93rem] text-ink-soft">
+                <Clock className="size-3.5 shrink-0" aria-hidden="true" />
+                {fmtTime(ev.time)}
+                {ev.endTime ? ` \u2013 ${fmtTime(ev.endTime)}` : ""}
+              </p>
+              <p className="flex items-center gap-1.5 text-[0.93rem] text-ink-soft">
+                <MapPin className="size-3.5 shrink-0" aria-hidden="true" />
+                {tr(ev.location)}
+              </p>
             </div>
-            <h3 className="mt-1 text-[1.25rem] leading-tight">{tr(ev.title)}</h3>
-            <p className="mt-1.5 flex items-center gap-1.5 text-[0.93rem] text-ink-soft">
-              <Clock className="size-3.5 shrink-0" aria-hidden="true" />
-              {fmtTime(ev.time)}
-              {ev.endTime ? ` \u2013 ${fmtTime(ev.endTime)}` : ""}
-            </p>
-            <p className="flex items-center gap-1.5 text-[0.93rem] text-ink-soft">
-              <MapPin className="size-3.5 shrink-0" aria-hidden="true" />
-              {tr(ev.location)}
-            </p>
           </div>
-        </div>
-        <p className="mt-3 text-[0.97rem] text-ink-soft">{tr(ev.description)}</p>
-        <p className="mt-2 flex items-center gap-1.5 text-[0.88rem] text-ink-faint">
-          <User className="size-3.5" aria-hidden="true" />
-          {t("connect.organizer")}: {tr(ev.organizer)}
-        </p>
+          <p className="mt-3 text-[0.97rem] text-ink-soft">{tr(ev.description)}</p>
+          <p className="mt-2 flex items-center gap-1.5 text-[0.88rem] text-ink-faint">
+            <User className="size-3.5" aria-hidden="true" />
+            {t("connect.organizer")}: {tr(ev.organizer)}
+          </p>
+        </button>
         <div className="mt-auto grid gap-3 pt-4">
           <Capacity signups={signups} capacity={ev.capacity} />
           {joined ? (
@@ -305,7 +330,7 @@ function EventsCalendar({ events, joined, onPick }: { events: ConnectEvent[]; jo
           {monthDays.length === 0 && <li className="p-5 text-center text-ink-soft">{t("connect.noEventsMonth")}</li>}
           {monthDays.map((j) => (
             <li key={j} className="flex gap-3 p-4">
-              <p className={cn("w-12 shrink-0 text-center font-heading text-[1.7rem] font-extrabold leading-none", weekday(j) === 0 ? "text-cinnabar" : "text-ink")}>
+              <p className={cn("w-12 shrink-0 text-center font-heading text-[1.7rem] font-extrabold leading-tight", weekday(j) === 0 ? "text-cinnabar" : "text-ink")}>
                 {gregorianFromJdn(j).d}
                 <span className="label-sc mt-1 block text-[0.72rem] font-normal text-ink-soft">{fmtDay(j, { weekday: "short" })}</span>
               </p>
@@ -334,6 +359,7 @@ export function Events({ section }: SectionProps) {
   const [view, setView] = useState<"list" | "calendar">(section.props.defaultView === "calendar" ? "calendar" : "list");
   const [cat, setCat] = useState("all");
   const [target, setTarget] = useState<SignupTarget | null>(null);
+  const [detail, setDetail] = useState<DetailTarget | null>(null);
 
   const events = useMemo(() => {
     const sorted = connectEvents.items.slice().sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
@@ -342,6 +368,8 @@ export function Events({ section }: SectionProps) {
   }, [today, cat]);
 
   const openRsvp = (ev: ConnectEvent) => setTarget({ kind: "event", id: ev.id, title: tr(ev.title), when: when(ev.date, ev.time, ev.endTime), where: tr(ev.location) });
+  const openDetail = (ev: ConnectEvent) => setDetail(eventDetailTarget(ev, tr));
+  const detailEvent = detail?.kind === "event" ? connectEvents.items.find((e) => e.id === detail.id) : undefined;
   const options = [{ id: "all", label: t("filter.all") }, ...connectEvents.categories.map((c) => ({ id: c.id, label: tr(c.label) }))];
 
   return (
@@ -370,12 +398,12 @@ export function Events({ section }: SectionProps) {
         </div>
         <div className="mt-7">
           {view === "calendar" ? (
-            <EventsCalendar events={events} joined={joined} onPick={openRsvp} />
+            <EventsCalendar events={events} joined={joined} onPick={openDetail} />
           ) : events.length ? (
             <ul className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {events.map((ev, i) => (
                 <Reveal as="li" key={ev.id} delay={(i % 3) * 60}>
-                  <EventCard ev={ev} joined={joined.includes(ev.id)} onRsvp={() => openRsvp(ev)} />
+                  <EventCard ev={ev} joined={joined.includes(ev.id)} onOpenDetail={() => openDetail(ev)} onRsvp={() => openRsvp(ev)} />
                 </Reveal>
               ))}
             </ul>
@@ -386,6 +414,28 @@ export function Events({ section }: SectionProps) {
         <p className="mt-6 text-[0.88rem] text-ink-faint">{t("connect.sourceNote")}</p>
       </div>
       <ConnectDialog target={target} onClose={() => setTarget(null)} onJoined={join} />
+      <ServiceDetailPanel
+        target={detail}
+        onClose={() => setDetail(null)}
+        extra={
+          detailEvent ? (() => {
+            const signups = detailEvent.signups + (joined.includes(detailEvent.id) ? 1 : 0);
+            const full = signups >= detailEvent.capacity;
+            return joined.includes(detailEvent.id) ? (
+              <p className="label-sc rounded-md bg-verdigris/15 px-3 py-2 text-center font-bold text-verdigris">{t("connect.going")}</p>
+            ) : (
+              <button
+                type="button"
+                onClick={() => openRsvp(detailEvent)}
+                disabled={full}
+                className="btn-lavra btn-lapis w-full disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {full ? t("connect.full") : t("connect.rsvp")}
+              </button>
+            );
+          })() : null
+        }
+      />
     </section>
   );
 }

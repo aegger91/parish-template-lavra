@@ -11,6 +11,7 @@ npm install
 npm run dev        # http://localhost:4317
 npm run build      # checks content, then writes the static site to out/
 npm run start      # serves out/ on http://localhost:4318
+npm run check:language-fit   # after build: scan all languages for clipped or overlapping text
 ```
 
 `out/` is plain HTML, CSS and JS. Each page has its own `index.html` and there is a `404.html`. Upload it to any static host.
@@ -66,7 +67,16 @@ Add a language to `site.json` → `languages`. Then add that language code to an
 ### Logo and calendar
 
 - `logo.style` is one of `circular-seal`, `kiot`, `square-image` or `wordmark`. The demo uses `square-image`.
-- `calendar.style` is `julian`, `revised-julian` or `gregorian`. Feasts in `feasts.json` use church dates, and the calendar moves them to civil dates.
+- `calendar.style` (`calendarStyle`) is `old` or `new` (default `old`). There is no calendar toggle for visitors. **Old** uses the Julian (Old Calendar) for fixed feasts and shows civil dates with “O.S.” where `showChurchDate` is on. **New** uses the Revised Julian (New Calendar). Movable Pascha-based feasts are the same in both styles. Fixed feast dates in `feasts.json` are stored on the church calendar; the template maps them to civil dates for display.
+- On the full schedule section, days in week and month views open a detail panel when clicked (services, feasts and fasting for that day).
+
+### Donations
+
+Online donations have **no minimum amount**. Parishioners may give any sum, including zero, when your payment handler allows it.
+
+### Language fit
+
+After `npm run build`, run `npm run check:language-fit` to load every visible page in each configured language at mobile, tablet and desktop widths and flag text that overflows its box or overlaps other text. The report is written to `/tmp/language-fit-report.json`. The check exits with code 0 when no issues are found.
 
 ## Connecting real services
 

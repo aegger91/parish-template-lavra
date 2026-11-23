@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { CalendarDays, CalendarRange, ChevronLeft, ChevronRight, Radio } from "lucide-react";
 import { site } from "@/lib/content";
-import { gregorianFromJdn, monthRange, startOfWeek, type DayInfo } from "@/lib/calendar";
+import { churchDate, formatYmd, gregorianFromJdn, monthRange, startOfWeek, type DayInfo, type ServiceOccurrence } from "@/lib/calendar";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/components/providers";
 import { Cross } from "@/components/orthodox/Cross";
@@ -11,6 +11,13 @@ import { PaintedBand } from "@/components/orthodox/Ornaments";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { useDays, useParishToday } from "./useParishDays";
 import type { SectionProps } from "./ContentSections";
+import {
+  type DetailTarget,
+  parishPlace,
+  ServiceDetailPanel,
+  ServiceRowButton,
+  serviceDetailTarget,
+} from "./ServiceDetail";
 
 type View = "week" | "month";
 
@@ -33,10 +40,20 @@ function FastMark({ d, withLabel = false }: { d: DayInfo; withLabel?: boolean })
   );
 }
 
-function ServiceLine({ s, compact = false, stacked = false }: { s: DayInfo["services"][number]; compact?: boolean; stacked?: boolean }) {
+function ServiceLine({
+  s,
+  compact = false,
+  stacked = false,
+  onOpen,
+}: {
+  s: ServiceOccurrence;
+  compact?: boolean;
+  stacked?: boolean;
+  onOpen: (s: ServiceOccurrence) => void;
+}) {
   const { tr, t, fmtTime } = useI18n();
-  return (
-    <li className={cn(stacked ? "grid gap-0.5" : "flex gap-2.5", compact ? "text-[0.8rem] leading-snug" : "text-[0.97rem] leading-snug")}>
+  const inner = (
+    <>
       <span className={cn("shrink-0 tabular-nums font-bold text-lapis", compact || stacked ? "w-auto" : "w-16")}>{fmtTime(s.time)}</span>
       <span className="min-w-0">
         {tr(s.name)}
@@ -48,21 +65,34 @@ function ServiceLine({ s, compact = false, stacked = false }: { s: DayInfo["serv
         )}
         {!compact && s.note && <span className="block text-[0.85rem] text-ink-soft">{tr(s.note)}</span>}
       </span>
+    </>
+  );
+  return (
+    <li className={cn(stacked ? "grid gap-0.5" : "flex gap-2.5", compact ? "text-[0.8rem] leading-snug" : "text-[0.97rem] leading-snug")}>
+      <ServiceRowButton
+        onOpen={() => onOpen(s)}
+        label={t("schedule.openDetails", { name: tr(s.name) })}
+        compact={compact}
+        className={cn(stacked ? "grid gap-0.5" : "flex gap-2.5", "items-start")}
+      >
+        {inner}
+      </ServiceRowButton>
     </li>
   );
 }
 
 function ChurchDate({ d, className }: { d: DayInfo; className?: string }) {
-  const { t } = useI18n();
-  if (!site.calendar.showChurchDate || site.calendar.style !== "julian") return null;
+  const { t, locale } = useI18n();
+  if (!site.calendar.showChurchDate || site.calendar.style !== "old") return null;
+  const church = formatYmd(locale, churchDate(d.jdn, "old"), { month: "short", day: "numeric" });
   return (
     <span className={cn("text-[0.75rem] tabular-nums text-ink-faint", className)} title={t("schedule.churchDateTitle")}>
-      {d.church.d}
+      {t("calendar.oldStyleShort", { date: church })}
     </span>
   );
 }
 
-function DayCard({ d, today }: { d: DayInfo; today: number }) {
+function DayCard({ d, today, onOpen }: { d: DayInfo; today: number; onOpen: (s: ServiceOccurrence) => void }) {
   const { tr, t, fmtDay } = useI18n();
   const feast = mainFeast(d);
   const red = isRedDay(d);
@@ -78,7 +108,7 @@ function DayCard({ d, today }: { d: DayInfo; today: number }) {
         <div className="flex items-start justify-between gap-2 border-b border-[#e3d0a7] pb-2">
           <div>
             <p className="label-sc text-[0.85rem] capitalize text-ink-soft">{fmtDay(d.jdn, { weekday: "long" })}</p>
-            <p className={cn("font-heading text-3xl font-extrabold leading-none", red ? "text-cinnabar" : "text-ink")}>{fmtDay(d.jdn, { day: "numeric" })}</p>
+            <p className={cn("font-heading text-3xl font-extrabold leading-tight", red ? "text-cinnabar" : "text-ink")}>{fmtDay(d.jdn, { day: "numeric" })}</p>
           </div>
           <div className="flex flex-col items-end gap-1">
             {d.jdn === today && <span className="label-sc rounded-full bg-ochre px-2 py-0.5 text-[0.72rem] font-bold text-[#2a1407]">{t("time.today")}</span>}
@@ -94,7 +124,7 @@ function DayCard({ d, today }: { d: DayInfo; today: number }) {
         {d.services.length ? (
           <ul className="mt-3 space-y-2.5">
             {d.services.map((s) => (
-              <ServiceLine key={s.id} s={s} stacked />
+              <ServiceLine key={s.id} s={s} stacked onOpen={onOpen} />
             ))}
           </ul>
         ) : (
@@ -108,19 +138,33 @@ function DayCard({ d, today }: { d: DayInfo; today: number }) {
   );
 }
 
-function WeekView({ days, today }: { days: DayInfo[]; today: number }) {
+function WeekView({ days, today, onOpen }: { days: DayInfo[]; today: number; onOpen: (s: ServiceOccurrence) => void }) {
   return (
     <ol className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
       {days.map((d) => (
         <li key={d.jdn} className={cn(!d.services.length && !d.feasts.length && "hidden md:block")}>
-          <DayCard d={d} today={today} />
+          <DayCard d={d} today={today} onOpen={onOpen} />
         </li>
       ))}
     </ol>
   );
 }
 
-function MonthView({ days, today, year, month, onPick }: { days: DayInfo[]; today: number; year: number; month: number; onPick: (d: DayInfo) => void }) {
+function MonthView({
+  days,
+  today,
+  year,
+  month,
+  onPick,
+  onOpen,
+}: {
+  days: DayInfo[];
+  today: number;
+  year: number;
+  month: number;
+  onPick: (d: DayInfo) => void;
+  onOpen: (s: ServiceOccurrence) => void;
+}) {
   const { tr, t, locale, fmtDay } = useI18n();
   const first = days[0];
   const lead = first ? first.weekday : 0;
@@ -134,7 +178,7 @@ function MonthView({ days, today, year, month, onPick }: { days: DayInfo[]; toda
         <div className="relative bg-[linear-gradient(180deg,var(--lavra-cinnabar),var(--lavra-terracotta-deep))] px-6 py-4 text-center text-[#fff2d6]">
           <Cross className="absolute start-6 top-1/2 h-10 -translate-y-1/2 text-ochre-light" />
           <Cross className="absolute end-6 top-1/2 h-10 -translate-y-1/2 text-ochre-light" />
-          <p className="font-heading text-4xl font-bold capitalize text-[#fff2d6]">{monthName}</p>
+          <p className="font-heading text-4xl font-bold leading-snug capitalize text-[#fff2d6]">{monthName}</p>
           <p className="label-sc mt-1 text-sm text-ochre-light">{t(`calendar.${site.calendar.style}`)}</p>
         </div>
         <PaintedBand variant="diamond" className="h-2.5" />
@@ -165,7 +209,7 @@ function MonthView({ days, today, year, month, onPick }: { days: DayInfo[]; toda
                 )}
               >
                 <span className="flex items-start justify-between">
-                  <span className={cn("font-heading text-[1.7rem] font-extrabold leading-none", red ? "text-cinnabar" : "text-ink")}>{gregorianFromJdn(d.jdn).d}</span>
+                  <span className={cn("font-heading text-[1.7rem] font-extrabold leading-tight", red ? "text-cinnabar" : "text-ink")}>{gregorianFromJdn(d.jdn).d}</span>
                   <span className="flex flex-col items-end gap-1">
                     <ChurchDate d={d} />
                     <FastMark d={d} />
@@ -178,7 +222,7 @@ function MonthView({ days, today, year, month, onPick }: { days: DayInfo[]; toda
                 )}
                 <ul className="mt-auto space-y-0.5 pt-1">
                   {d.services.slice(0, 3).map((s) => (
-                    <ServiceLine key={s.id} s={s} compact />
+                    <ServiceLine key={s.id} s={s} compact onOpen={onOpen} />
                   ))}
                 </ul>
               </button>
@@ -194,7 +238,7 @@ function MonthView({ days, today, year, month, onPick }: { days: DayInfo[]; toda
             <li key={d.jdn}>
               <div className={cn("fresco-card flex gap-4 p-4", d.jdn === today && "ring-2 ring-ochre")}>
                 <div className="relative z-10 w-14 shrink-0 text-center">
-                  <p className={cn("font-heading text-3xl font-extrabold leading-none", red ? "text-cinnabar" : "text-ink")}>{gregorianFromJdn(d.jdn).d}</p>
+                  <p className={cn("font-heading text-3xl font-extrabold leading-tight", red ? "text-cinnabar" : "text-ink")}>{gregorianFromJdn(d.jdn).d}</p>
                   <p className="label-sc mt-1 text-[0.75rem] capitalize text-ink-soft">{fmtDay(d.jdn, { weekday: "short" })}</p>
                   <ChurchDate d={d} className="mt-1 block" />
                 </div>
@@ -206,7 +250,7 @@ function MonthView({ days, today, year, month, onPick }: { days: DayInfo[]; toda
                   ))}
                   <ul className={cn("space-y-1.5", d.feasts.length && "mt-2")}>
                     {d.services.map((s) => (
-                      <ServiceLine key={s.id} s={s} />
+                      <ServiceLine key={s.id} s={s} onOpen={onOpen} />
                     ))}
                   </ul>
                   <div className="mt-1">
@@ -229,6 +273,14 @@ export function Schedule({ section }: SectionProps) {
   const [weekStart, setWeekStart] = useState<number | null>(null);
   const [ym, setYm] = useState<{ y: number; m: number } | null>(null);
   const [picked, setPicked] = useState<DayInfo | null>(null);
+  const [detail, setDetail] = useState<DetailTarget | null>(null);
+
+  const openService = (s: ServiceOccurrence) => {
+    const title = tr(s.name);
+    const note = (s.note ? tr(s.note) : "") || t("schedule.defaultNote");
+    const place = parishPlace(tr);
+    setDetail(serviceDetailTarget(s, title, note, place));
+  };
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search).get("view");
@@ -315,7 +367,7 @@ export function Schedule({ section }: SectionProps) {
             <span className="font-heading font-extrabold text-cinnabar">12</span>
             {t("schedule.legendRed")}
           </span>
-          {site.calendar.showChurchDate && site.calendar.style === "julian" && (
+          {site.calendar.showChurchDate && site.calendar.style === "old" && (
             <span className="inline-flex items-center gap-1.5">
               <span className="tabular-nums text-ink-faint">12</span>
               {t("schedule.legendChurch")}
@@ -342,9 +394,9 @@ export function Schedule({ section }: SectionProps) {
             ))}
           </div>
         ) : view === "week" ? (
-          <WeekView days={days} today={now.jdn} />
+          <WeekView days={days} today={now.jdn} onOpen={openService} />
         ) : (
-          <MonthView days={days} today={now.jdn} year={ym!.y} month={ym!.m} onPick={setPicked} />
+          <MonthView days={days} today={now.jdn} year={ym!.y} month={ym!.m} onPick={setPicked} onOpen={openService} />
         )}
       </div>
 
@@ -361,7 +413,7 @@ export function Schedule({ section }: SectionProps) {
               {picked.services.length ? (
                 <ul className="space-y-2.5">
                   {picked.services.map((s) => (
-                    <ServiceLine key={s.id} s={s} />
+                    <ServiceLine key={s.id} s={s} onOpen={openService} />
                   ))}
                 </ul>
               ) : (
@@ -372,6 +424,8 @@ export function Schedule({ section }: SectionProps) {
           )}
         </DialogContent>
       </Dialog>
+
+      <ServiceDetailPanel target={detail} onClose={() => setDetail(null)} />
     </section>
   );
 }

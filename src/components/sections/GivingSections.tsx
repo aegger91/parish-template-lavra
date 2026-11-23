@@ -19,7 +19,7 @@ export function DonationPicker({ section }: SectionProps) {
   const d = site.donate;
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
   const presets = frequency === "once" ? d.oneTimePresets : d.monthlyPresets;
-  const [amount, setAmount] = useState<number | null>(d.oneTimePresets[1] ?? d.oneTimePresets[0]);
+  const [amount, setAmount] = useState<number | null>(null);
   const [custom, setCustom] = useState("");
   const [fund, setFund] = useState(d.defaultFund);
   const [email, setEmail] = useState("");
@@ -32,15 +32,14 @@ export function DonationPicker({ section }: SectionProps) {
 
   const pickFrequency = (f: "once" | "monthly") => {
     setFrequency(f);
-    const list = f === "once" ? d.oneTimePresets : d.monthlyPresets;
-    setAmount(list[1] ?? list[0]);
+    setAmount(null);
     setCustom("");
   };
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!Number.isFinite(value) || value < d.minimumAmount) {
-      setError(t("donate.minimum", { amount: fmtMoney(d.minimumAmount) }));
+    if (!Number.isFinite(value)) {
+      setError(t("donate.chooseAmount"));
       return;
     }
     if (email && !isEmail(email)) {
@@ -125,8 +124,11 @@ export function DonationPicker({ section }: SectionProps) {
                     id="donate-custom"
                     inputMode="decimal"
                     value={custom}
-                    onChange={(e) => setCustom(e.target.value.replace(/[^\d.,]/g, ""))}
-                    placeholder={String(d.minimumAmount * 4)}
+                    onChange={(e) => {
+                      setCustom(e.target.value.replace(/[^\d.,]/g, ""));
+                      setAmount(null);
+                    }}
+                    placeholder="0"
                     className={cn(fieldClass, "w-full rounded-md border ps-3 pe-14")}
                     aria-describedby="donate-error"
                   />
@@ -160,7 +162,7 @@ export function DonationPicker({ section }: SectionProps) {
 
             <div className="mt-8 flex flex-col gap-4 border-t border-[#dcc69c] pt-6 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-[1.05rem]" aria-live="polite">
-                {Number.isFinite(value) && value > 0
+                {Number.isFinite(value)
                   ? t(frequency === "monthly" ? "donate.summaryMonthly" : "donate.summaryOnce", { amount: fmtMoney(value), fund: fundLabel })
                   : t("donate.chooseAmount")}
               </p>
@@ -180,7 +182,7 @@ export function DonationPicker({ section }: SectionProps) {
 
         <aside className="plaster-lapis relative overflow-hidden rounded-md p-6 sm:p-8">
           <Pictogram name="candle" className="size-14 text-ochre-light" />
-          <h2 className="mt-4 text-3xl">{t("donate.asideTitle")}</h2>
+          <h2 className="mt-4 text-3xl leading-snug">{t("donate.asideTitle")}</h2>
           <p className="mt-3 text-[#efe2c4]">{t("donate.asideText")}</p>
           <ul className="mt-6 space-y-3 text-[#efe2c4]">
             {["donate.use1", "donate.use2", "donate.use3"].map((k) => (
@@ -284,7 +286,7 @@ export function ContactPanel({ section }: SectionProps) {
       <div className="container-lavra grid gap-8 lg:grid-cols-2">
         <form onSubmit={onSubmit} noValidate className="fresco-card p-5 sm:p-8">
           <div className="relative z-10 grid gap-5">
-            <h2 className="text-3xl">{t("contact.formTitle")}</h2>
+            <h2 className="text-3xl leading-snug">{t("contact.formTitle")}</h2>
             <div className="grid gap-5 sm:grid-cols-2">
               <Field id="c-name" label={t("form.name")} required error={errors.name}>
                 <TextInput id="c-name" autoComplete="name" value={form.name} onChange={set("name")} error={errors.name} />

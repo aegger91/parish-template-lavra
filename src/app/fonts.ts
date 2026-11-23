@@ -1,3 +1,4 @@
+// @fontsource weight CSS files ship latin, latin-ext, cyrillic, and greek subsets (unicode-range in each @font-face).
 import "@fontsource/alegreya/400.css";
 import "@fontsource/alegreya/500.css";
 import "@fontsource/alegreya/700.css";

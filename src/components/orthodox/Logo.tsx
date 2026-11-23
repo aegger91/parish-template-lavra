@@ -106,7 +106,7 @@ export function Logo({ style, image, alt, name, subtitle, showName = true, compa
           )}
           <span
             className={cn(
-              "font-heading font-bold leading-[1.05] text-ink transition-all duration-300 [overflow-wrap:anywhere] sm:[overflow-wrap:normal]",
+              "font-heading font-bold leading-snug text-ink transition-[font-size] duration-300 [overflow-wrap:anywhere] sm:[overflow-wrap:normal]",
               compact ? "text-[1.05rem] sm:text-lg" : "text-lg sm:text-[1.4rem] xl:text-[1.3rem]",
               "[text-wrap:balance]",
             )}

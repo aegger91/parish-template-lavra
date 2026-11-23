@@ -64,7 +64,7 @@ export function PageHeader({ section, pageId }: SectionProps) {
         <Breadcrumbs pageId={pageId} />
         <div className="mt-6 max-w-3xl">
           {p.label && <p className="rubric text-sm">{tr(p.label)}</p>}
-          <h1 className="mt-2 text-[2.4rem] leading-[1.05] sm:text-[3.4rem]">{tr(p.title)}</h1>
+          <h1 className="mt-2 text-[2.4rem] leading-snug sm:text-[3.4rem]">{tr(p.title)}</h1>
           {p.intro && <p className="mt-4 text-[1.12rem] leading-relaxed text-ink-soft">{tr(p.intro)}</p>}
         </div>
         <OrnamentDivider className="mt-8 max-w-md" />
@@ -245,7 +245,7 @@ export function HistoryTimeline({ section }: SectionProps) {
                   <Reveal>
                     <GlowCard className={cn("p-6", left ? "md:text-end" : "")}>
                       <div className="relative z-10">
-                        <p className="font-heading text-4xl font-extrabold text-cinnabar">{h.year}</p>
+                        <p className="font-heading text-4xl font-extrabold leading-snug text-cinnabar">{h.year}</p>
                         <h2 className="mt-1 text-2xl">{tr(h.title)}</h2>
                         <p className="mt-2 text-ink-soft">{tr(h.text)}</p>
                       </div>
@@ -261,7 +261,7 @@ export function HistoryTimeline({ section }: SectionProps) {
                   <Reveal>
                     <GlowCard className="p-5">
                       <div className="relative z-10">
-                        <p className="font-heading text-3xl font-extrabold text-cinnabar">{h.year}</p>
+                        <p className="font-heading text-3xl font-extrabold leading-snug text-cinnabar">{h.year}</p>
                         <h2 className="mt-1 text-xl">{tr(h.title)}</h2>
                         <p className="mt-2 text-ink-soft">{tr(h.text)}</p>
                       </div>

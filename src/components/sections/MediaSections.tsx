@@ -15,6 +15,14 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import { Input } from "@/components/ui/input";
 import { ChapterSection, EmptyState, GlowCard, Reveal } from "./common";
 import { isLiveNow, upcomingServices, useDays, useParishToday } from "./useParishDays";
+import type { ServiceOccurrence } from "@/lib/calendar";
+import {
+  type DetailTarget,
+  parishPlace,
+  ServiceDetailPanel,
+  ServiceRowButton,
+  serviceDetailTarget,
+} from "./ServiceDetail";
 import type { SectionProps } from "./ContentSections";
 import { Breadcrumbs } from "./ContentSections";
 
@@ -245,7 +253,7 @@ export function NewsArticle({ id, pageId }: { id: string; pageId: string }) {
               {fmtIso(n.date, { year: "numeric", month: "long", day: "numeric" })}
             </time>
           </p>
-          <h1 className="mt-2 text-[2.3rem] leading-[1.06] sm:text-[3.2rem]">{tr(n.title)}</h1>
+          <h1 className="mt-2 text-[2.3rem] leading-snug sm:text-[3.2rem]">{tr(n.title)}</h1>
           <p className="mt-4 text-[1.15rem] text-ink-soft">{tr(n.summary)}</p>
           <FrescoFrame className="mt-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -492,6 +500,15 @@ export function Livestream({ section }: SectionProps) {
   const days = useDays(now ? now.jdn : null, now ? now.jdn + 14 : null);
   const live = isLiveNow(days, now);
   const next = now ? upcomingServices(days, now, 12).filter((s) => s.livestream).slice(0, 4) : [];
+  const [detail, setDetail] = useState<DetailTarget | null>(null);
+
+  const openService = (s: ServiceOccurrence) => {
+    const title = tr(s.name);
+    const note = (s.note ? tr(s.note) : "") || t("schedule.defaultNote");
+    const place = parishPlace(tr);
+    setDetail(serviceDetailTarget(s, title, note, place));
+  };
+
   return (
     <section id={section.id} className="py-8 sm:py-12">
       <div className="container-lavra grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
@@ -539,11 +556,13 @@ export function Livestream({ section }: SectionProps) {
             ) : next.length ? (
               <ul className="mt-3 divide-y divide-dashed divide-[#d9c49a]">
                 {next.map((s) => (
-                  <li key={s.id} className="py-3">
-                    <p className="font-heading text-lg font-bold leading-tight">{tr(s.name)}</p>
-                    <p className="text-[0.92rem] capitalize text-ink-soft">
-                      {fmtDay(s.jdn, { weekday: "long", month: "long", day: "numeric" })} · {fmtTime(s.time)}
-                    </p>
+                  <li key={s.id} className="py-1">
+                    <ServiceRowButton onOpen={() => openService(s)} label={t("schedule.openDetails", { name: tr(s.name) })}>
+                      <p className="font-heading text-lg font-bold leading-tight">{tr(s.name)}</p>
+                      <p className="text-[0.92rem] capitalize text-ink-soft">
+                        {fmtDay(s.jdn, { weekday: "long", month: "long", day: "numeric" })} · {fmtTime(s.time)}
+                      </p>
+                    </ServiceRowButton>
                   </li>
                 ))}
               </ul>
@@ -553,6 +572,7 @@ export function Livestream({ section }: SectionProps) {
           </div>
         </aside>
       </div>
+      <ServiceDetailPanel target={detail} onClose={() => setDetail(null)} />
     </section>
   );
 }

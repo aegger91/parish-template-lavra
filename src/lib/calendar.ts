@@ -94,36 +94,26 @@ export function orthodoxPaschaJdn(year: number) {
   return jdnFromJulian(year, month, day);
 }
 
-/** Western (Gregorian) Pascha, used only when calendar.style is "gregorian". */
-export function westernPaschaJdn(year: number) {
-  const a = year % 19;
-  const b = Math.floor(year / 100);
-  const c = year % 100;
-  const d = Math.floor(b / 4);
-  const e = b % 4;
-  const f = Math.floor((b + 8) / 25);
-  const g = Math.floor((b - f + 1) / 3);
-  const h = (19 * a + b - d - g + 15) % 30;
-  const i = Math.floor(c / 4);
-  const k = c % 4;
-  const l = (32 + 2 * e + 2 * i - h - k) % 7;
-  const m = Math.floor((a + 11 * h + 22 * l) / 451);
-  const month = Math.floor((h + l - 7 * m + 114) / 31);
-  const day = ((h + l - 7 * m + 114) % 31) + 1;
-  return jdnFromGregorian(year, month, day);
+/**
+ * Movable (Pascha-based) feasts use the Orthodox computus for both old and new calendars.
+ * Fixed feasts follow Julian (old) or Revised Julian / civil (new).
+ */
+export function paschaJdn(year: number, _style?: CalendarStyle) {
+  return orthodoxPaschaJdn(year);
 }
 
-export function paschaJdn(year: number, style: CalendarStyle) {
-  return style === "gregorian" ? westernPaschaJdn(year) : orthodoxPaschaJdn(year);
-}
-
-/** The church (liturgical) date for a civil day. */
+/** The church (liturgical) date for a civil day. Old = Julian; New = Revised Julian (civil). */
 export function churchDate(j: number, style: CalendarStyle): YMD {
-  return style === "julian" ? julianFromJdn(j) : gregorianFromJdn(j);
+  return style === "old" ? julianFromJdn(j) : gregorianFromJdn(j);
 }
 
 function churchJdn(style: CalendarStyle, y: number, m: number, d: number) {
-  return style === "julian" ? jdnFromJulian(y, m, d) : jdnFromGregorian(y, m, d);
+  return style === "old" ? jdnFromJulian(y, m, d) : jdnFromGregorian(y, m, d);
+}
+
+/** Short month+day in a locale (UTC civil parts). */
+export function formatYmd(locale: string, ymd: YMD, opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" }) {
+  return new Intl.DateTimeFormat(locale, { timeZone: "UTC", ...opts }).format(new Date(Date.UTC(2000, ymd.m - 1, ymd.d)));
 }
 
 export interface FeastOccurrence {

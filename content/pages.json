@@ -428,7 +428,7 @@
       "showInNav": true,
       "feature": "zapiski",
       "icon": "candle",
-      "title": {"en": "Zapiski and Candles", "sr": "Цедуље и свеће", "ro": "Pomelnice și lumânări"},
+      "title": {"en": "Prayer requests", "sr": "Цедуље и свеће", "ro": "Pomelnice și lumânări"},
       "summary": {
         "en": "Send names for commemoration and ask for a candle to be lit.",
         "sr": "Пошаљите имена за помен и замолите да се упали свећа.",
@@ -446,7 +446,7 @@
           "enabled": true,
           "props": {
             "label": {"en": "Services", "sr": "Богослужења", "ro": "Slujbe"},
-            "title": {"en": "Zapiski and candles", "sr": "Цедуље и свеће", "ro": "Pomelnice și lumânări"},
+            "title": {"en": "Commemoration names and candles", "sr": "Цедуље и свеће", "ro": "Pomelnice și lumânări"},
             "intro": {
               "en": "Sample text. Send names for commemoration and request candles.",
               "sr": "Пример текста. Пошаљите имена за помен и затражите свеће.",

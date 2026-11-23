@@ -61,7 +61,7 @@ export function LanguageSwitcher({ variant = "bar", className }: { variant?: "ba
                 aria-label={l.nativeName}
                 aria-current={l.code === lang ? "true" : undefined}
                 className={cn(
-                  "label-sc block min-w-9 rounded-full px-2 py-0.5 text-center text-[0.8rem] transition-colors",
+                  "label-sc block min-w-[2.5rem] rounded-full px-2 py-0.5 text-center text-[0.8rem] tabular-nums transition-colors",
                   l.code === lang ? "bg-lapis text-[#fff8ea]" : "text-ink-soft hover:bg-parchment-deep hover:text-ink",
                 )}
               >
