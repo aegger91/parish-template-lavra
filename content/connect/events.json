@@ -2,90 +2,114 @@
   "$schema": "../schemas/connect-events.schema.json",
   "source": "orthodoxconnect-sample",
   "categories": [
-    { "id": "fellowship", "label": { "en": "Fellowship", "sr": "Дружење", "ro": "Părtășie" } },
-    { "id": "education", "label": { "en": "Learning", "sr": "Учење", "ro": "Învățătură" } },
-    { "id": "youth", "label": { "en": "Youth", "sr": "Омладина", "ro": "Tineri" } },
-    { "id": "music", "label": { "en": "Choir", "sr": "Хор", "ro": "Cor" } },
-    { "id": "liturgical", "label": { "en": "Liturgical", "sr": "Богослужбено", "ro": "Liturgic" } }
+    {"id": "fellowship", "label": {"en": "Fellowship", "sr": "Дружење", "ro": "Părtășie"}},
+    {"id": "education", "label": {"en": "Learning", "sr": "Учење", "ro": "Învățătură"}},
+    {"id": "youth", "label": {"en": "Youth", "sr": "Омладина", "ro": "Tineri"}},
+    {"id": "music", "label": {"en": "Choir", "sr": "Хор", "ro": "Cor"}},
+    {"id": "liturgical", "label": {"en": "Liturgical", "sr": "Богослужбено", "ro": "Liturgic"}}
   ],
   "items": [
     {
       "id": "evt-book-discussion",
-      "title": { "en": "Book discussion after Liturgy", "sr": "Разговор о књизи после Литургије", "ro": "Discuție despre o carte după Liturghie" },
+      "title": {"en": "Book discussion after Liturgy", "sr": "Разговор о књизи после Литургије", "ro": "Discuție despre o carte după Liturghie"},
       "date": "2026-11-29",
       "time": "12:15",
       "endTime": "13:15",
-      "location": { "en": "Parish hall library", "sr": "Библиотека парохијског дома", "ro": "Biblioteca casei parohiale" },
+      "location": {"en": "Parish hall library", "sr": "Библиотека парохијског дома", "ro": "Biblioteca casei parohiale"},
       "capacity": 15,
       "signups": 9,
-      "organizer": { "en": "Fr. Stefan Sample", "sr": "јереј Стефан Узорић", "ro": "Pr. Ștefan Model" },
+      "organizer": {"en": "Fr. Stefan Sample", "sr": "јереј Стефан Узорић", "ro": "Pr. Ștefan Model"},
       "category": "education",
-      "description": { "en": "Sample event. We read one chapter a week. Newcomers welcome.", "sr": "Пример догађаја. Читамо једно поглавље недељно. Нови су добродошли.", "ro": "Eveniment exemplu. Citim un capitol pe săptămână. Cei noi sunt bineveniți." }
+      "description": {
+        "en": "Sample event. One or two lines of details go here.",
+        "sr": "Пример догађаја. Овде иде ред или два са детаљима.",
+        "ro": "Eveniment exemplu. Aici vin unul sau două rânduri cu detalii."
+      }
     },
     {
       "id": "evt-choir-workshop",
-      "title": { "en": "Choir workshop: Nativity hymns", "sr": "Радионица хора: божићне песме", "ro": "Atelier de cor: colinde și cântări de Crăciun" },
+      "title": {"en": "Choir workshop: Nativity hymns", "sr": "Радионица хора: божићне песме", "ro": "Atelier de cor: colinde și cântări de Crăciun"},
       "date": "2026-12-02",
       "time": "19:00",
       "endTime": "20:30",
-      "location": { "en": "Church choir loft", "sr": "Певница", "ro": "Strana bisericii" },
+      "location": {"en": "Church choir loft", "sr": "Певница", "ro": "Strana bisericii"},
       "capacity": 20,
       "signups": 20,
-      "organizer": { "en": "Ana Sample", "sr": "Ана Узорић", "ro": "Ana Model" },
+      "organizer": {"en": "Ana Sample", "sr": "Ана Узорић", "ro": "Ana Model"},
       "category": "music",
-      "description": { "en": "Sample event. Learn the troparion and kontakion of the feast.", "sr": "Пример догађаја. Учимо тропар и кондак празника.", "ro": "Eveniment exemplu. Învățăm troparul și condacul praznicului." }
+      "description": {
+        "en": "Sample event. One or two lines of details go here.",
+        "sr": "Пример догађаја. Овде иде ред или два са детаљима.",
+        "ro": "Eveniment exemplu. Aici vin unul sau două rânduri cu detalii."
+      }
     },
     {
       "id": "evt-fast-retreat",
-      "title": { "en": "Nativity Fast retreat morning", "sr": "Јутро сабрања у Божићном посту", "ro": "Dimineață de reculegere în Postul Crăciunului" },
+      "title": {"en": "Nativity Fast retreat morning", "sr": "Јутро сабрања у Божићном посту", "ro": "Dimineață de reculegere în Postul Crăciunului"},
       "date": "2026-12-05",
       "time": "10:00",
       "endTime": "13:00",
-      "location": { "en": "Church and parish hall", "sr": "Храм и парохијски дом", "ro": "Biserica și casa parohială" },
+      "location": {"en": "Church and parish hall", "sr": "Храм и парохијски дом", "ro": "Biserica și casa parohială"},
       "capacity": 30,
       "signups": 18,
-      "organizer": { "en": "V. Rev. Fr. John Example", "sr": "протојереј Јован Пример", "ro": "Pr. Ioan Exemplu" },
+      "organizer": {"en": "V. Rev. Fr. John Example", "sr": "протојереј Јован Пример", "ro": "Pr. Ioan Exemplu"},
       "category": "education",
-      "description": { "en": "Sample event. A short talk, quiet time, confession and a simple Lenten lunch.", "sr": "Пример догађаја. Кратко предавање, тишина, исповест и посни ручак.", "ro": "Eveniment exemplu. O scurtă cuvântare, liniște, spovedanie și un prânz de post." }
+      "description": {
+        "en": "Sample event. One or two lines of details go here.",
+        "sr": "Пример догађаја. Овде иде ред или два са детаљима.",
+        "ro": "Eveniment exemplu. Aici vin unul sau două rânduri cu detalii."
+      }
     },
     {
       "id": "evt-st-nicholas-children",
-      "title": { "en": "Children's St. Nicholas gathering", "sr": "Дечја свечаност за Светог Николу", "ro": "Întâlnirea copiilor de Sfântul Nicolae" },
+      "title": {"en": "Children's St. Nicholas gathering", "sr": "Дечја свечаност за Светог Николу", "ro": "Întâlnirea copiilor de Sfântul Nicolae"},
       "date": "2026-12-19",
       "time": "13:00",
       "endTime": "15:00",
-      "location": { "en": "Parish hall", "sr": "Парохијски дом", "ro": "Casa parohială" },
+      "location": {"en": "Parish hall", "sr": "Парохијски дом", "ro": "Casa parohială"},
       "capacity": 40,
       "signups": 23,
-      "organizer": { "en": "Church school team", "sr": "Тим веронауке", "ro": "Echipa școlii parohiale" },
+      "organizer": {"en": "Church school team", "sr": "Тим веронауке", "ro": "Echipa școlii parohiale"},
       "category": "youth",
-      "description": { "en": "Sample event. Stories of the saint, a short play and small gifts.", "sr": "Пример догађаја. Приче о светитељу, кратка представа и мали поклони.", "ro": "Eveniment exemplu. Povești despre sfânt, o mică scenetă și daruri." }
+      "description": {
+        "en": "Sample event. One or two lines of details go here.",
+        "sr": "Пример догађаја. Овде иде ред или два са детаљима.",
+        "ro": "Eveniment exemplu. Aici vin unul sau două rânduri cu detalii."
+      }
     },
     {
       "id": "evt-nativity-lunch",
-      "title": { "en": "Nativity lunch and carols", "sr": "Божићни ручак и песме", "ro": "Prânzul de Crăciun și colinde" },
+      "title": {"en": "Nativity lunch and carols", "sr": "Божићни ручак и песме", "ro": "Prânzul de Crăciun și colinde"},
       "date": "2027-01-07",
       "time": "12:30",
       "endTime": "15:00",
-      "location": { "en": "Parish hall", "sr": "Парохијски дом", "ro": "Casa parohială" },
+      "location": {"en": "Parish hall", "sr": "Парохијски дом", "ro": "Casa parohială"},
       "capacity": 120,
       "signups": 64,
-      "organizer": { "en": "Parish council", "sr": "Црквена општина", "ro": "Consiliul parohial" },
+      "organizer": {"en": "Parish council", "sr": "Црквена општина", "ro": "Consiliul parohial"},
       "category": "fellowship",
-      "description": { "en": "Sample event. Bring a dish to share if you can.", "sr": "Пример догађаја. Донесите јело за заједнички сто ако можете.", "ro": "Eveniment exemplu. Aduceți un fel de mâncare dacă puteți." }
+      "description": {
+        "en": "Sample event. One or two lines of details go here.",
+        "sr": "Пример догађаја. Овде иде ред или два са детаљима.",
+        "ro": "Eveniment exemplu. Aici vin unul sau două rânduri cu detalii."
+      }
     },
     {
       "id": "evt-theophany-blessings",
-      "title": { "en": "Theophany house blessings begin", "sr": "Почиње освећење домова после Богојављења", "ro": "Încep sfeștaniile de Bobotează" },
+      "title": {"en": "Theophany house blessings begin", "sr": "Почиње освећење домова после Богојављења", "ro": "Încep sfeștaniile de Bobotează"},
       "date": "2027-01-20",
       "time": "16:00",
       "endTime": "19:00",
-      "location": { "en": "Parish homes", "sr": "Домови парохијана", "ro": "Casele enoriașilor" },
+      "location": {"en": "Parish homes", "sr": "Домови парохијана", "ro": "Casele enoriașilor"},
       "capacity": 30,
       "signups": 11,
-      "organizer": { "en": "Parish office", "sr": "Парохијска канцеларија", "ro": "Cancelaria parohială" },
+      "organizer": {"en": "Parish office", "sr": "Парохијска канцеларија", "ro": "Cancelaria parohială"},
       "category": "liturgical",
-      "description": { "en": "Sample event. Sign up for a visit and the office will confirm a time.", "sr": "Пример догађаја. Пријавите се за посету и канцеларија ће потврдити време.", "ro": "Eveniment exemplu. Înscrieți-vă pentru o vizită și cancelaria confirmă ora." }
+      "description": {
+        "en": "Sample event. One or two lines of details go here.",
+        "sr": "Пример догађаја. Овде иде ред или два са детаљима.",
+        "ro": "Eveniment exemplu. Aici vin unul sau două rânduri cu detalii."
+      }
     }
   ]
 }

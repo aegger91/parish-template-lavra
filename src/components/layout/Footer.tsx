@@ -104,7 +104,7 @@ export function Footer() {
   const days = [0, 1, 2, 3, 4, 5, 6];
   const weekdayName = (d: number) =>
     new Intl.DateTimeFormat(locale, { weekday: "long", timeZone: "UTC" }).format(new Date(Date.UTC(2023, 0, 1 + d)));
-  const services = schedule.weekly.filter((w) => w.kind !== "class");
+  const services = schedule.weekly.filter((w) => !["class", "community"].includes(w.kind));
 
   return (
     <footer className="mt-20">

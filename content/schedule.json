@@ -8,7 +8,7 @@
       "durationMinutes": 30,
       "kind": "hours",
       "livestream": false,
-      "name": { "en": "Third and Sixth Hours", "sr": "Трећи и шести час", "ro": "Ceasurile al treilea și al șaselea" }
+      "name": {"en": "Third and Sixth Hours", "sr": "Трећи и шести час", "ro": "Ceasurile al treilea și al șaselea"}
     },
     {
       "id": "sun-liturgy",
@@ -17,8 +17,8 @@
       "durationMinutes": 100,
       "kind": "liturgy",
       "livestream": true,
-      "name": { "en": "Divine Liturgy", "sr": "Света Литургија", "ro": "Sfânta Liturghie" },
-      "note": { "en": "Coffee hour follows in the parish hall", "sr": "После службе кафа у парохијском дому", "ro": "Urmează cafeaua în casa parohială" }
+      "name": {"en": "Divine Liturgy", "sr": "Света Литургија", "ro": "Sfânta Liturghie"},
+      "note": {"en": "Coffee hour follows in the parish hall", "sr": "После службе кафа у парохијском дому", "ro": "Urmează cafeaua în casa parohială"}
     },
     {
       "id": "wed-akathist",
@@ -27,17 +27,17 @@
       "durationMinutes": 45,
       "kind": "akathist",
       "livestream": false,
-      "name": { "en": "Akathist to the Most Holy Theotokos", "sr": "Акатист Пресветој Богородици", "ro": "Acatistul Maicii Domnului" }
+      "name": {"en": "Akathist to the Most Holy Theotokos", "sr": "Акатист Пресветој Богородици", "ro": "Acatistul Maicii Domnului"}
     },
     {
-      "id": "thu-class",
+      "id": "thu-choir",
       "dayOfWeek": 4,
       "time": "19:00",
       "durationMinutes": 60,
-      "kind": "class",
+      "kind": "community",
       "livestream": false,
-      "name": { "en": "Adult class on the Faith", "sr": "Разговор о вери за одрасле", "ro": "Cateheză pentru adulți" },
-      "note": { "en": "Parish hall library", "sr": "Библиотека парохијског дома", "ro": "Biblioteca casei parohiale" }
+      "name": {"en": "Choir rehearsal", "sr": "Проба хора", "ro": "Repetiția corului"},
+      "note": {"en": "Parish hall", "sr": "Парохијски дом", "ro": "Casa parohială"}
     },
     {
       "id": "sat-vespers",
@@ -46,8 +46,8 @@
       "durationMinutes": 60,
       "kind": "vespers",
       "livestream": true,
-      "name": { "en": "Great Vespers", "sr": "Велико вечерње", "ro": "Vecernia mare" },
-      "note": { "en": "Confession after the service", "sr": "Исповест после службе", "ro": "Spovedanie după slujbă" }
+      "name": {"en": "Great Vespers", "sr": "Велико вечерње", "ro": "Vecernia mare"},
+      "note": {"en": "Confession after the service", "sr": "Исповест после службе", "ro": "Spovedanie după slujbă"}
     }
   ],
   "special": [
@@ -58,7 +58,11 @@
       "durationMinutes": 180,
       "kind": "community",
       "livestream": false,
-      "name": { "en": "Church cleaning before the Nativity (sample)", "sr": "Чишћење храма пред Божић (пример)", "ro": "Curățenia bisericii înainte de Crăciun (exemplu)" }
+      "name": {
+        "en": "Church cleaning before the Nativity (sample)",
+        "sr": "Чишћење храма пред Божић (пример)",
+        "ro": "Curățenia bisericii înainte de Crăciun (exemplu)"
+      }
     },
     {
       "id": "special-2026-12-19-moleben",
@@ -67,7 +71,7 @@
       "durationMinutes": 40,
       "kind": "moleben",
       "livestream": false,
-      "name": { "en": "Moleben to St. Nicholas", "sr": "Молебан Светом Николи", "ro": "Paraclisul Sfântului Ierarh Nicolae" }
+      "name": {"en": "Moleben to St. Nicholas", "sr": "Молебан Светом Николи", "ro": "Paraclisul Sfântului Ierarh Nicolae"}
     }
   ]
 }

@@ -61,7 +61,7 @@
       "properties": {
         "time": { "$ref": "#/$defs/time" },
         "durationMinutes": { "type": "integer", "minimum": 0 },
-        "kind": { "type": "string" },
+        "kind": { "description": "liturgy, vigil, vespers, hours, akathist, moleben and so on. class and community items are left out of the footer service times.", "type": "string" },
         "livestream": { "type": "boolean" },
         "name": { "$ref": "#/$defs/localized" }
       }
