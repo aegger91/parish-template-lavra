@@ -1,6 +1,6 @@
 ---
 import type { Locale } from '../i18n/ui';
-import { locales, localeLabels, t, localizedPath } from '../i18n/ui';
+import { locales, t, localizedPath } from '../i18n/ui';
 import { siteConfig } from '../config/site';
 import SerbianCross from '../icons/SerbianCross.astro';
 
@@ -12,50 +12,99 @@ const { locale, path } = Astro.props;
 const dict = t(locale);
 const cleanPath = path.replace(/^\/+|\/+$/g, '');
 
-const links = [
+/** Primary row kept short so logo + nav never collide */
+const primary = [
   { href: '', label: dict.nav.home },
   { href: 'parish', label: dict.nav.parish },
   { href: 'schedule', label: dict.nav.schedule },
+  { href: 'contact', label: dict.nav.contact },
+];
+
+const more = [
   { href: 'slava', label: dict.nav.slava },
   { href: 'events', label: dict.nav.events },
   { href: 'livestream', label: dict.nav.livestream },
   { href: 'pomen', label: dict.nav.pomen },
   { href: 'donate', label: dict.nav.donate },
-  { href: 'contact', label: dict.nav.contact },
 ];
+
+const allLinks = [
+  ...primary.slice(0, 3),
+  ...more,
+  primary[3],
+];
+
+const shortLang: Record<Locale, string> = {
+  sr: 'Ћир',
+  lat: 'Lat',
+  en: 'EN',
+};
 
 function isCurrent(href: string) {
   if (!href && !cleanPath) return true;
-  return cleanPath === href;
+  if (!href) return false;
+  return cleanPath === href || cleanPath.startsWith(href + '/');
 }
+
+const moreActive = more.some((l) => isCurrent(l.href));
 ---
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href={localizedPath(locale, '')}>
-      <SerbianCross size={36} title="" />
+    <a class="brand" href={localizedPath(locale, '')} data-brand>
+      <SerbianCross class="brand__mark" size={40} title="" decorative />
       <span class="brand__text">
         <span class="brand__name">{siteConfig.parishName[locale]}</span>
         <span class="brand__tag">{siteConfig.tagline[locale]}</span>
       </span>
     </a>
 
-    <button
-      type="button"
-      class="nav-toggle"
-      aria-expanded="false"
-      aria-controls="site-nav"
-      data-nav-toggle
-    >
-      <span aria-hidden="true"></span>
-      <span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">
-        {dict.a11y.menu}
-      </span>
-    </button>
-
     <nav class="site-nav" id="site-nav" data-site-nav aria-label={dict.a11y.menu}>
-      <ul class="site-nav__list">
+      <ul class="site-nav__list site-nav__list--primary">
         {
-          links.map((l) => (
+          primary.map((l) => (
+            <li>
+              <a
+                href={localizedPath(locale, l.href)}
+                aria-current={isCurrent(l.href) ? 'page' : undefined}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="nav-more" data-nav-more>
+          <button
+            type="button"
+            class="nav-more__btn"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-controls="nav-more-menu"
+            data-more-toggle
+            aria-current={moreActive ? 'true' : undefined}
+          >
+            {dict.nav.more}
+            <span class="nav-more__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="nav-more__menu" id="nav-more-menu" data-more-menu hidden>
+            {
+              more.map((l) => (
+                <li>
+                  <a
+                    href={localizedPath(locale, l.href)}
+                    aria-current={isCurrent(l.href) ? 'page' : undefined}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="site-nav__list site-nav__list--mobile">
+        {
+          allLinks.map((l) => (
             <li>
               <a
                 href={localizedPath(locale, l.href)}
@@ -67,7 +116,10 @@ function isCurrent(href: string) {
           ))
         }
       </ul>
-      <div class="lang-switch" role="navigation" aria-label={dict.a11y.lang}>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" role="navigation" aria-label={dict.a11y.lang} data-lang-switch>
         {
           locales.map((loc) => (
             <a
@@ -75,21 +127,66 @@ function isCurrent(href: string) {
               hreflang={loc === 'sr' ? 'sr-Cyrl' : loc === 'lat' ? 'sr-Latn' : 'en'}
               aria-current={loc === locale ? 'true' : undefined}
               lang={loc === 'sr' ? 'sr-Cyrl' : loc === 'lat' ? 'sr-Latn' : 'en'}
+              title={loc === 'sr' ? 'Ћирилица' : loc === 'lat' ? 'Latinica' : 'English'}
             >
-              {localeLabels[loc]}
+              {shortLang[loc]}
             </a>
           ))
         }
       </div>
-    </nav>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        data-nav-toggle
+      >
+        <span aria-hidden="true"></span>
+        <span class="visually-hidden">{dict.a11y.menu}</span>
+      </button>
+    </div>
   </div>
 </header>
 
 <script>
   const toggle = document.querySelector('[data-nav-toggle]');
   const nav = document.querySelector('[data-site-nav]');
+  const moreToggle = document.querySelector('[data-more-toggle]');
+  const moreMenu = document.querySelector('[data-more-menu]');
+
   toggle?.addEventListener('click', () => {
     const open = nav?.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  moreToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = moreMenu?.hasAttribute('hidden') === false;
+    if (open) {
+      moreMenu?.setAttribute('hidden', '');
+      moreToggle.setAttribute('aria-expanded', 'false');
+    } else {
+      moreMenu?.removeAttribute('hidden');
+      moreToggle.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const t = e.target;
+    if (!(t instanceof Node)) return;
+    if (moreMenu && moreToggle && !moreMenu.contains(t) && !moreToggle.contains(t)) {
+      moreMenu.setAttribute('hidden', '');
+      moreToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      moreMenu?.setAttribute('hidden', '');
+      moreToggle?.setAttribute('aria-expanded', 'false');
+      nav?.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
   });
 </script>

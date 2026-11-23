@@ -42,9 +42,9 @@ const feastItem = {
 };
 
 const lead = {
-  sr: 'Добродошли у нашу парохију. Богослужења, вести и контакт — на једном месту.',
-  lat: 'Dobrodošli u našu parohiju. Bogosluženja, vesti i kontakt — na jednom mestu.',
-  en: 'Welcome to our parish. Services, news, and contact — in one place.',
+  sr: 'Добродошли у нашу парохију. Богослужења, вести и контакт на једном месту.',
+  lat: 'Dobrodošli u našu parohiju. Bogosluženja, vesti i kontakt na jednom mestu.',
+  en: 'Welcome to our parish. Services, news, and contact in one place.',
 }[locale];
 ---
 <BaseLayout locale={locale} title="" path="">
@@ -60,7 +60,7 @@ const lead = {
     </div>
     <div class="home-hero__veil" aria-hidden="true"></div>
     <div class="home-hero__cross" aria-hidden="true">
-      <SerbianCross size={56} title="" />
+      <SerbianCross size={56} decorative />
     </div>
     <div class="home-hero__content">
       <p class="home-hero__tag slavonic">{siteConfig.tagline[locale]}</p>

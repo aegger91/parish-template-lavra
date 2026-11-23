@@ -33,18 +33,14 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--lapis-deep) 35%, transparent) 0%,
-      color-mix(in srgb, var(--lapis-deep) 55%, transparent) 45%,
-      color-mix(in srgb, var(--lapis-deep) 88%, transparent) 100%
-    ),
-    radial-gradient(
-      ellipse at 70% 20%,
-      color-mix(in srgb, var(--gold) 18%, transparent),
-      transparent 55%
-    );
+  /* Light top/mid so masonry reads; stronger only behind lower text */
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 42%,
+    color-mix(in srgb, var(--lapis-deep) 35%, transparent) 68%,
+    color-mix(in srgb, var(--lapis-deep) 72%, transparent) 100%
+  );
 }
 
 .home-hero__content {
@@ -62,7 +58,9 @@
   font-weight: 700;
   line-height: 1.05;
   color: var(--marble);
-  text-shadow: 0 2px 24px color-mix(in srgb, var(--ink) 35%, transparent);
+  text-shadow:
+    0 1px 2px color-mix(in srgb, var(--ink) 55%, transparent),
+    0 4px 28px color-mix(in srgb, var(--ink) 45%, transparent);
   max-width: 14ch;
 }
 
@@ -80,7 +78,8 @@
   margin: 0 0 var(--space-5);
   max-width: 28rem;
   font-size: clamp(1.1rem, 2vw, 1.3rem);
-  color: color-mix(in srgb, var(--marble) 92%, transparent);
+  color: color-mix(in srgb, var(--marble) 96%, transparent);
+  text-shadow: 0 1px 12px color-mix(in srgb, var(--ink) 50%, transparent);
 }
 
 .home-hero__cta {
@@ -91,12 +90,22 @@
 
 .home-hero__cross {
   position: absolute;
-  right: clamp(1rem, 4vw, 3rem);
-  top: clamp(5rem, 18vh, 9rem);
+  right: clamp(1.25rem, 5vw, 3.5rem);
+  top: clamp(5.5rem, 16vh, 8.5rem);
   z-index: 2;
-  opacity: 0.55;
-  width: clamp(2.5rem, 5vw, 3.5rem);
+  opacity: 0.35;
+  width: clamp(2.75rem, 5vw, 3.75rem);
+  color: var(--marble);
+  filter: drop-shadow(0 1px 10px color-mix(in srgb, var(--ink) 30%, transparent));
   animation: softGlow 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .home-hero__cross {
+    opacity: 0.22;
+    width: 2.25rem;
+  }
 }
 
 .feast-highlight {

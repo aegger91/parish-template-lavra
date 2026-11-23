@@ -6,9 +6,9 @@ export const images = {
   hero: {
     src: '/images/hero-monastery.webp',
     alt: {
-      sr: 'Манастир на брежуљку у јутарњем светлу',
-      lat: 'Manastir na brežuljku u jutarnjem svetlu',
-      en: 'Monastery on a hill in morning light',
+      sr: 'Манастир Грачаница',
+      lat: 'Manastir Gračanica',
+      en: 'Gračanica Monastery',
     },
   },
   parish: {

@@ -15,7 +15,7 @@ export interface ServiceItem {
   oldStyleDate?: { month: number; day: number };
 }
 
-/** Placeholder week of services — replace with parish data */
+/** Placeholder week of services - replace with parish data */
 export const weekServices: ServiceItem[] = [
   {
     id: 'vespers-sat',
@@ -67,8 +67,8 @@ export const weekServices: ServiceItem[] = [
       en: 'Akathist',
     },
     description: {
-      sr: 'Среда вече — акатист.',
-      lat: 'Sreda veče — akathist.',
+      sr: 'Среда вече: акатист.',
+      lat: 'Sreda veče: akathist.',
       en: 'Wednesday evening Akathist.',
     },
     date: '2026-12-02',

@@ -110,7 +110,7 @@ export default function SchedulePanel({
               >
                 <span className="schedule-item__title">{item.title}</span>
                 <span className="schedule-item__meta">
-                  {dateLabel} · {item.start}–{item.end}
+                  {dateLabel} · {item.start}-{item.end}
                 </span>
                 <span className="schedule-item__meta">{item.location}</span>
               </button>
@@ -161,7 +161,7 @@ export default function SchedulePanel({
                 active.oldStyleDate,
                 labels.oldStyleSuffix,
               )}{' '}
-              · {active.start}–{active.end}
+              · {active.start}-{active.end}
             </p>
             <p>
               <strong>{labels.location}:</strong> {active.location}

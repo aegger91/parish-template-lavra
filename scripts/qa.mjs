@@ -82,6 +82,105 @@ function startServer() {
   });
 }
 
+async function checkHeaderOverlap(page) {
+  return page.evaluate(() => {
+    const brand = document.querySelector('[data-brand]');
+    const nav = document.querySelector('[data-site-nav]');
+    const lang = document.querySelector('[data-lang-switch]');
+    if (!brand) return [{ type: 'header-missing', detail: 'brand' }];
+
+    const brandRect = brand.getBoundingClientRect();
+    const issues = [];
+
+    const visible = (el) => {
+      if (!el) return false;
+      const s = getComputedStyle(el);
+      if (s.display === 'none' || s.visibility === 'hidden') return false;
+      const r = el.getBoundingClientRect();
+      return r.width > 1 && r.height > 1;
+    };
+
+    const overlap = (a, b) =>
+      !(a.right <= b.left + 1 || a.left >= b.right - 1 || a.bottom <= b.top + 1 || a.top >= b.bottom - 1);
+
+    // Desktop inline nav (not the absolute mobile drawer)
+    if (nav && visible(nav) && getComputedStyle(nav).position !== 'absolute') {
+      const navRect = nav.getBoundingClientRect();
+      if (overlap(brandRect, navRect)) {
+        issues.push({
+          type: 'logo-nav-overlap',
+          brand: {
+            l: Math.round(brandRect.left),
+            r: Math.round(brandRect.right),
+            t: Math.round(brandRect.top),
+            b: Math.round(brandRect.bottom),
+          },
+          nav: {
+            l: Math.round(navRect.left),
+            r: Math.round(navRect.right),
+            t: Math.round(navRect.top),
+            b: Math.round(navRect.bottom),
+          },
+        });
+      }
+      // Require a clear horizontal gap between logo block and first nav item
+      const firstLink = nav.querySelector('.site-nav__list--primary a, .nav-more__btn');
+      if (firstLink) {
+        const lr = firstLink.getBoundingClientRect();
+        if (lr.width > 1 && brandRect.right > lr.left - 4) {
+          issues.push({
+            type: 'logo-nav-gap',
+            brandRight: Math.round(brandRect.right),
+            navLeft: Math.round(lr.left),
+            gap: Math.round(lr.left - brandRect.right),
+          });
+        }
+      }
+      for (const link of nav.querySelectorAll('.site-nav__list--primary a, .nav-more__btn')) {
+        const ls = getComputedStyle(link);
+        if (ls.display === 'none') continue;
+        const lr = link.getBoundingClientRect();
+        if (lr.width < 1) continue;
+        if (overlap(brandRect, lr)) {
+          issues.push({
+            type: 'logo-nav-item-overlap',
+            text: (link.textContent || '').trim().slice(0, 40),
+          });
+        }
+      }
+    }
+
+    if (lang && visible(lang)) {
+      const langRect = lang.getBoundingClientRect();
+      if (overlap(brandRect, langRect)) {
+        issues.push({ type: 'logo-lang-overlap' });
+      }
+    }
+
+    // Brand subtitle must stay inside the brand box when visible
+    const tag = brand.querySelector('.brand__tag');
+    if (tag && visible(tag)) {
+      const tr = tag.getBoundingClientRect();
+      if (tr.right > brandRect.right + 2) {
+        issues.push({
+          type: 'brand-tag-overflow',
+          tagRight: Math.round(tr.right),
+          brandRight: Math.round(brandRect.right),
+        });
+      }
+      if (tr.left < brandRect.left - 2) {
+        issues.push({
+          type: 'brand-tag-overflow-left',
+          tagLeft: Math.round(tr.left),
+          brandLeft: Math.round(brandRect.left),
+        });
+      }
+    }
+
+    return issues;
+  });
+}
+
 async function checkOverflow(page) {
   return page.evaluate(() => {
     const issues = [];
@@ -103,7 +202,6 @@ async function checkOverflow(page) {
           docWidth,
         });
       }
-      // clipped text heuristic: scrollWidth much larger than clientWidth on text nodes
       if (
         el.childElementCount === 0 &&
         (el.textContent || '').trim().length > 2 &&
@@ -111,7 +209,6 @@ async function checkOverflow(page) {
         style.overflow !== 'hidden' &&
         style.textOverflow !== 'ellipsis'
       ) {
-        // only flag if element itself clips visibly relative to viewport
         if (r.right > docWidth + 1) {
           issues.push({
             type: 'text-clip',
@@ -121,7 +218,6 @@ async function checkOverflow(page) {
         }
       }
     }
-    // dedupe
     const seen = new Set();
     return issues.filter((i) => {
       const k = `${i.type}:${i.tag}:${i.text}`;
@@ -219,8 +315,14 @@ async function main() {
               }
             }
 
+            const headerOverlap = await checkHeaderOverlap(page);
+            if (headerOverlap.length) {
+              status = 'fail';
+              notes.push(`header-overlap:${headerOverlap.map((h) => h.type).join(',')}`);
+              notes.push(JSON.stringify(headerOverlap.slice(0, 3)));
+            }
+
             const overflow = await checkOverflow(page);
-            // filter known harmless (sticky header offscreen bits etc.)
             const realOverflow = overflow.filter((o) => {
               if (o.class?.includes('skip-link')) return false;
               return true;

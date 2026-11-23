@@ -40,9 +40,9 @@ export const newsItems: NewsItem[] = [
       en: 'The choir is preparing for festal services.',
     },
     body: {
-      sr: 'Пробе се одржавају суботом после вечерње. Нови чланови су добродошли — јавите се хоровођи.',
-      lat: 'Probe se održavaju subotom posle večernje. Novi članovi su dobrodošli — javite se horovođi.',
-      en: 'Rehearsals are held on Saturdays after Vespers. New members are welcome — speak with the choir director.',
+      sr: 'Пробе се одржавају суботом после вечерње. Нови чланови су добродошли; јавите се хоровођи.',
+      lat: 'Probe se održavaju subotom posle večernje. Novi članovi su dobrodošli; javite se horovođi.',
+      en: 'Rehearsals are held on Saturdays after Vespers. New members are welcome; speak with the choir director.',
     },
   },
   {
