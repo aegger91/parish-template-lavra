@@ -1,0 +1,21 @@
+{
+  "$schema": "./schemas/gallery.schema.json",
+  "categories": [
+    { "id": "church", "label": { "en": "The church", "sr": "Храм", "ro": "Biserica" } },
+    { "id": "iconography", "label": { "en": "Iconography", "sr": "Живопис", "ro": "Pictura" } },
+    { "id": "feasts", "label": { "en": "Feasts", "sr": "Празници", "ro": "Praznice" } },
+    { "id": "community", "label": { "en": "Community", "sr": "Заједница", "ro": "Comunitate" } }
+  ],
+  "items": [
+    { "id": "g-church-summer", "category": "church", "image": "/images/hero-fresco.svg", "title": { "en": "The church in summer", "sr": "Храм лети", "ro": "Biserica vara" }, "alt": { "en": "Painted church with a central dome among ochre hills", "sr": "Сликани храм са кубетом међу окер брдима", "ro": "Biserică pictată cu turlă între dealuri ocru" } },
+    { "id": "g-church-winter", "category": "church", "image": "/images/gallery/church-winter.svg", "title": { "en": "First snow", "sr": "Први снег", "ro": "Prima ninsoare" }, "alt": { "en": "Painted church under snow at dusk", "sr": "Сликани храм под снегом у сумрак", "ro": "Biserică pictată sub zăpadă, la amurg" } },
+    { "id": "g-bell-tower", "category": "church", "image": "/images/gallery/bell-tower.svg", "title": { "en": "The bell tower", "sr": "Звоник", "ro": "Clopotnița" }, "alt": { "en": "Painted bell tower with three bells", "sr": "Сликани звоник са три звона", "ro": "Clopotniță pictată cu trei clopote" } },
+    { "id": "g-iconostasis", "category": "iconography", "image": "/images/gallery/iconostasis.svg", "title": { "en": "The iconostasis", "sr": "Иконостас", "ro": "Iconostasul" }, "alt": { "en": "Carved iconostasis with gilded arches", "sr": "Резбарени иконостас са позлаћеним луковима", "ro": "Iconostas sculptat cu arcade aurite" } },
+    { "id": "g-starry-vault", "category": "iconography", "image": "/images/gallery/starry-vault.svg", "title": { "en": "The starry vault", "sr": "Звездани свод", "ro": "Bolta înstelată" }, "alt": { "en": "Lapis blue vault painted with gold stars", "sr": "Свод боје лазура са златним звездама", "ro": "Boltă albastră pictată cu stele aurii" } },
+    { "id": "g-candles", "category": "feasts", "image": "/images/gallery/candle-stand.svg", "title": { "en": "Candles before the feast", "sr": "Свеће пред празник", "ro": "Lumânări înainte de praznic" }, "alt": { "en": "Brass candle stand full of lit beeswax candles", "sr": "Месингани свећњак пун упаљених воштаних свећа", "ro": "Sfeșnic de alamă plin cu lumânări de ceară aprinse" } },
+    { "id": "g-pascha-eggs", "category": "feasts", "image": "/images/gallery/pascha-eggs.svg", "title": { "en": "Red eggs for Pascha", "sr": "Црвена јаја за Васкрс", "ro": "Ouă roșii de Paști" }, "alt": { "en": "Basket of red Pascha eggs on an embroidered cloth", "sr": "Корпа црвених васкршњих јаја на везеном пешкиру", "ro": "Coș cu ouă roșii de Paști pe un ștergar cusut" } },
+    { "id": "g-gospel", "category": "iconography", "image": "/images/gallery/gospel-book.svg", "title": { "en": "The Gospel book", "sr": "Јеванђеље", "ro": "Evanghelia" }, "alt": { "en": "Gilded Gospel book on the altar table", "sr": "Позлаћено Јеванђеље на часној трпези", "ro": "Evanghelie aurită pe Sfânta Masă" } },
+    { "id": "g-refectory", "category": "community", "image": "/images/gallery/refectory.svg", "title": { "en": "Coffee hour", "sr": "Кафа после службе", "ro": "Cafeaua de după slujbă" }, "alt": { "en": "Long table with bread, fruit and cups in the parish hall", "sr": "Дуг сто са хлебом, воћем и шољама у парохијском дому", "ro": "Masă lungă cu pâine, fructe și căni în casa parohială" } },
+    { "id": "g-garden", "category": "community", "image": "/images/gallery/garden.svg", "title": { "en": "The church garden", "sr": "Порта храма", "ro": "Grădina bisericii" }, "alt": { "en": "Garden with cypress trees and beehives behind the church", "sr": "Порта са чемпресима и кошницама иза храма", "ro": "Grădină cu chiparoși și stupi în spatele bisericii" } }
+  ]
+}

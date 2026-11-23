@@ -1,0 +1,115 @@
+{
+  "$schema": "./schemas/service-requests.schema.json",
+  "items": [
+    {
+      "id": "zapiska",
+      "order": 1,
+      "illustration": "zapiska",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 2,
+      "action": {"type": "link", "page": "zapiski"},
+      "title": {"en": "Submit a Commemoration Note (Zapiska)", "sr": "Предајте цедуљу за помен", "ro": "Trimiteți un pomelnic"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "moleben",
+      "order": 2,
+      "illustration": "censer",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 30,
+      "action": {"type": "form"},
+      "title": {"en": "Moleben (Prayer Service)", "sr": "Молебан", "ro": "Paraclis sau Te Deum"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "baptism",
+      "order": 3,
+      "illustration": "font",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 60,
+      "action": {"type": "form"},
+      "title": {"en": "Baptism", "sr": "Крштење", "ro": "Botezul"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "confession",
+      "order": 4,
+      "illustration": "epitrachelion",
+      "image": null,
+      "price": "free",
+      "durationMinutes": 15,
+      "action": {"type": "form"},
+      "title": {"en": "Confession", "sr": "Исповест", "ro": "Spovedania"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "chrismation",
+      "order": 5,
+      "illustration": "chrism",
+      "image": null,
+      "price": "free",
+      "durationMinutes": 30,
+      "action": {"type": "form"},
+      "title": {"en": "Chrismation", "sr": "Миропомазање", "ro": "Mirungerea"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "wedding",
+      "order": 6,
+      "illustration": "crowns",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 60,
+      "action": {"type": "form"},
+      "title": {"en": "Wedding (Crowning)", "sr": "Венчање", "ro": "Cununia"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "unction",
+      "order": 7,
+      "illustration": "unction",
+      "image": null,
+      "price": "free",
+      "durationMinutes": 60,
+      "action": {"type": "form"},
+      "title": {"en": "Holy Unction", "sr": "Јелеосвећење", "ro": "Sfântul Maslu"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "blessing",
+      "order": 8,
+      "illustration": "aspergillum",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 30,
+      "action": {"type": "form"},
+      "title": {"en": "House / Car Blessing", "sr": "Освећење дома или аутомобила", "ro": "Sfeștanie pentru casă sau mașină"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "funeral",
+      "order": 9,
+      "illustration": "memorial",
+      "image": null,
+      "price": "donation",
+      "durationMinutes": 60,
+      "action": {"type": "form"},
+      "title": {"en": "Funeral and Panikhida", "sr": "Опело и парастос", "ro": "Înmormântare și parastas"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    },
+    {
+      "id": "counseling",
+      "order": 10,
+      "illustration": "lamp",
+      "image": null,
+      "price": "free",
+      "durationMinutes": 45,
+      "action": {"type": "form"},
+      "title": {"en": "Pastoral Counseling", "sr": "Духовни разговор", "ro": "Sfat duhovnicesc"},
+      "text": {"en": "Short description goes here.", "sr": "Овде иде кратак опис.", "ro": "Aici vine o scurtă descriere."}
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "site.schema.json",
+  "title": "Site settings",
+  "description": "Parish name, languages, logo, calendar, module switches and contact details.",
+  "type": "object",
+  "required": ["id", "template", "sampleNotice", "defaultLanguage", "languages", "parish", "logo", "calendar", "features", "store", "zapiski", "livestream", "orthodoxConnect", "contact", "donate", "socials"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "template": {
+      "type": "object",
+      "required": ["name", "slug", "version"],
+      "properties": { "name": { "type": "string" }, "slug": { "type": "string" }, "version": { "type": "string" } }
+    },
+    "sampleNotice": { "description": "Show the 'Sample content' badge and notes. Turn off when real content is in.", "type": "boolean" },
+    "defaultLanguage": { "description": "Language code used for fallback and the root redirect.", "type": "string" },
+    "languages": {
+      "description": "One or more languages. The switcher adapts to how many there are.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["code", "label", "nativeName", "shortLabel", "locale", "dir"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]+)*$" },
+          "label": { "type": "string" },
+          "nativeName": { "type": "string" },
+          "shortLabel": { "type": "string", "maxLength": 4 },
+          "locale": { "description": "BCP 47 locale for dates and numbers, for example sr-Cyrl-RS.", "type": "string" },
+          "dir": { "enum": ["ltr", "rtl"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "parish": {
+      "type": "object",
+      "required": ["name", "shortName", "tagline", "jurisdiction", "timeZone"],
+      "properties": {
+        "name": { "$ref": "common.schema.json#/$defs/localized" },
+        "shortName": { "$ref": "common.schema.json#/$defs/localized" },
+        "tagline": { "$ref": "common.schema.json#/$defs/localized" },
+        "jurisdiction": { "$ref": "common.schema.json#/$defs/localized" },
+        "timeZone": { "description": "IANA time zone, used for today's date and the live badge.", "type": "string" }
+      }
+    },
+    "logo": {
+      "type": "object",
+      "required": ["style", "image", "alt", "showName"],
+      "properties": {
+        "style": { "description": "circular-seal, kiot (arched icon-case frame), square-image (carved wood frame) or wordmark (text only).", "enum": ["circular-seal", "kiot", "square-image", "wordmark"] },
+        "image": { "oneOf": [{ "$ref": "common.schema.json#/$defs/imagePath" }, { "type": "null" }] },
+        "alt": { "$ref": "common.schema.json#/$defs/localized" },
+        "showName": { "type": "boolean" }
+      }
+    },
+    "calendar": {
+      "type": "object",
+      "required": ["style", "showChurchDate", "showFasting", "autoServiceRanks", "feastEveService", "feastDayService"],
+      "properties": {
+        "style": { "description": "julian (Old Calendar), revised-julian (New Calendar) or gregorian (all feasts on civil dates).", "enum": ["julian", "revised-julian", "gregorian"] },
+        "showChurchDate": { "description": "Show the Julian church date in small numbers on the calendar.", "type": "boolean" },
+        "showFasting": { "type": "boolean" },
+        "autoServiceRanks": { "description": "Feast ranks that get the eve and day services below automatically.", "type": "array", "items": { "enum": ["pascha", "great", "major", "commemoration"] } },
+        "feastEveService": { "$ref": "common.schema.json#/$defs/serviceTemplate" },
+        "feastDayService": { "$ref": "common.schema.json#/$defs/serviceTemplate" }
+      }
+    },
+    "features": {
+      "description": "Module switches. Turning one off hides its pages, nav items, sections and the cart icon where relevant.",
+      "type": "object",
+      "required": ["livestream", "sermons", "store", "serviceRequests", "zapiski", "getInvolved"],
+      "properties": {
+        "livestream": { "type": "boolean" },
+        "sermons": { "type": "boolean" },
+        "store": { "type": "boolean" },
+        "serviceRequests": { "type": "boolean" },
+        "zapiski": { "type": "boolean" },
+        "getInvolved": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "store": {
+      "type": "object",
+      "required": ["currency", "shipping", "pickup"],
+      "properties": {
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "shipping": {
+          "type": "object",
+          "required": ["flatRate", "freeOver", "countries"],
+          "properties": { "flatRate": { "type": "number", "minimum": 0 }, "freeOver": { "type": "number", "minimum": 0 }, "countries": { "type": "array", "items": { "type": "string" } } }
+        },
+        "pickup": { "type": "object", "required": ["label"], "properties": { "label": { "$ref": "common.schema.json#/$defs/localized" } } }
+      }
+    },
+    "zapiski": {
+      "type": "object",
+      "required": ["maxNamesPerSlip", "maxSlips", "commemorationTypes", "candles"],
+      "properties": {
+        "maxNamesPerSlip": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "maxSlips": { "type": "integer", "minimum": 1 },
+        "commemorationTypes": {
+          "description": "Use your local terms. appliesTo controls whether a type is offered on health slips, repose slips or both.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "appliesTo", "suggestedDonation", "label"],
+            "properties": {
+              "id": { "$ref": "common.schema.json#/$defs/id" },
+              "appliesTo": { "type": "array", "minItems": 1, "items": { "enum": ["health", "repose"] } },
+              "suggestedDonation": { "type": "number", "minimum": 0 },
+              "label": { "$ref": "common.schema.json#/$defs/localized" },
+              "hint": { "$ref": "common.schema.json#/$defs/localized" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "candles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "price", "label"],
+            "properties": { "id": { "$ref": "common.schema.json#/$defs/id" }, "price": { "type": "number", "minimum": 0 }, "label": { "$ref": "common.schema.json#/$defs/localized" } },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "livestream": {
+      "type": "object",
+      "required": ["status", "url", "embedUrl", "platformLabel"],
+      "properties": {
+        "status": { "description": "live or offline forces the badge; auto shows it during streamed services.", "enum": ["live", "offline", "auto"] },
+        "url": { "type": "string" },
+        "embedUrl": { "type": ["string", "null"] },
+        "platformLabel": { "$ref": "common.schema.json#/$defs/localized" }
+      }
+    },
+    "orthodoxConnect": {
+      "type": "object",
+      "required": ["appUrl", "parishId", "newsletter", "calendarFeed", "deepLinks"],
+      "properties": {
+        "appUrl": { "type": "string" },
+        "parishId": { "type": "string" },
+        "newsletter": { "description": "The footer signup only appears when enabled.", "type": "object", "required": ["enabled", "listId"], "properties": { "enabled": { "type": "boolean" }, "listId": { "type": "string" } } },
+        "calendarFeed": { "type": "object", "required": ["enabled", "url"], "properties": { "enabled": { "type": "boolean" }, "url": { "type": ["string", "null"] } } },
+        "deepLinks": {
+          "description": "URL patterns. {appUrl}, {parishId} and {id} are filled in.",
+          "type": "object",
+          "required": ["createEvent", "postNeed", "event", "need", "signIn"],
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "required": ["addressLines", "email", "phone", "officeHours", "parking", "transit", "map"],
+      "properties": {
+        "addressLines": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "officeHours": { "$ref": "common.schema.json#/$defs/localized" },
+        "parking": { "$ref": "common.schema.json#/$defs/localized" },
+        "transit": { "$ref": "common.schema.json#/$defs/localized" },
+        "map": {
+          "type": "object",
+          "required": ["embedUrl", "directionsUrl"],
+          "properties": { "embedUrl": { "description": "Map iframe URL. When null a drawn map is shown.", "type": ["string", "null"] }, "directionsUrl": { "type": "string" } }
+        }
+      }
+    },
+    "donate": {
+      "type": "object",
+      "required": ["currency", "provider", "minimumAmount", "oneTimePresets", "monthlyPresets", "defaultFund", "funds"],
+      "properties": {
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "provider": { "description": "Payment provider to connect in src/lib/handlers.ts. none keeps the sample placeholder.", "enum": ["none", "stripe", "authorize-net"] },
+        "minimumAmount": { "type": "number", "minimum": 0 },
+        "oneTimePresets": { "type": "array", "items": { "type": "number", "exclusiveMinimum": 0 } },
+        "monthlyPresets": { "type": "array", "items": { "type": "number", "exclusiveMinimum": 0 } },
+        "defaultFund": { "$ref": "common.schema.json#/$defs/id" },
+        "funds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "object", "required": ["id", "label"], "properties": { "id": { "$ref": "common.schema.json#/$defs/id" }, "label": { "$ref": "common.schema.json#/$defs/localized" } }, "additionalProperties": false }
+        }
+      }
+    },
+    "socials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "network", "url", "label"],
+        "properties": { "id": { "$ref": "common.schema.json#/$defs/id" }, "network": { "enum": ["facebook", "youtube", "instagram", "telegram", "x", "email"] }, "url": { "type": "string" }, "label": { "type": "string" } },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

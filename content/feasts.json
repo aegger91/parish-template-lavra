@@ -1,0 +1,46 @@
+{
+  "$schema": "./schemas/feasts.schema.json",
+  "fixed": [
+    { "id": "circumcision-basil", "month": 1, "day": 1, "rank": "major", "name": { "en": "Circumcision of the Lord; St. Basil the Great", "sr": "Обрезање Господње; Свети Василије Велики", "ro": "Tăierea împrejur a Domnului; Sfântul Vasile cel Mare" } },
+    { "id": "theophany", "month": 1, "day": 6, "rank": "great", "name": { "en": "Theophany of the Lord", "sr": "Богојављење", "ro": "Botezul Domnului (Boboteaza)" } },
+    { "id": "sava", "month": 1, "day": 14, "rank": "major", "name": { "en": "St. Sava, first Archbishop of Serbia", "sr": "Свети Сава", "ro": "Sfântul Sava, primul arhiepiscop al Serbiei" } },
+    { "id": "three-hierarchs", "month": 1, "day": 30, "rank": "major", "name": { "en": "The Three Holy Hierarchs", "sr": "Света три јерарха", "ro": "Sfinții Trei Ierarhi" } },
+    { "id": "meeting", "month": 2, "day": 2, "rank": "great", "name": { "en": "Meeting of the Lord in the Temple", "sr": "Сретење Господње", "ro": "Întâmpinarea Domnului" } },
+    { "id": "annunciation", "month": 3, "day": 25, "rank": "great", "name": { "en": "Annunciation of the Most Holy Theotokos", "sr": "Благовести", "ro": "Buna Vestire" } },
+    { "id": "nativity-forerunner", "month": 6, "day": 24, "rank": "major", "name": { "en": "Nativity of St. John the Baptist", "sr": "Рођење Светог Јована Крститеља", "ro": "Nașterea Sfântului Ioan Botezătorul" } },
+    { "id": "peter-paul", "month": 6, "day": 29, "rank": "major", "name": { "en": "Holy Apostles Peter and Paul", "sr": "Свети апостоли Петар и Павле", "ro": "Sfinții Apostoli Petru și Pavel" } },
+    { "id": "transfiguration", "month": 8, "day": 6, "rank": "great", "name": { "en": "Transfiguration of the Lord", "sr": "Преображење Господње", "ro": "Schimbarea la Față a Domnului" } },
+    { "id": "dormition", "month": 8, "day": 15, "rank": "great", "name": { "en": "Dormition of the Most Holy Theotokos", "sr": "Успење Пресвете Богородице", "ro": "Adormirea Maicii Domnului" } },
+    { "id": "beheading-forerunner", "month": 8, "day": 29, "rank": "major", "name": { "en": "Beheading of St. John the Baptist", "sr": "Усековање главе Светог Јована Крститеља", "ro": "Tăierea capului Sfântului Ioan Botezătorul" } },
+    { "id": "nativity-theotokos", "month": 9, "day": 8, "rank": "great", "name": { "en": "Nativity of the Most Holy Theotokos", "sr": "Рођење Пресвете Богородице", "ro": "Nașterea Maicii Domnului" } },
+    { "id": "exaltation-cross", "month": 9, "day": 14, "rank": "great", "name": { "en": "Exaltation of the Precious Cross", "sr": "Воздвижење Часног Крста", "ro": "Înălțarea Sfintei Cruci" } },
+    { "id": "protection", "month": 10, "day": 1, "rank": "major", "name": { "en": "Protection of the Most Holy Theotokos", "sr": "Покров Пресвете Богородице", "ro": "Acoperământul Maicii Domnului" } },
+    { "id": "paraskeva", "month": 10, "day": 14, "rank": "major", "name": { "en": "St. Paraskeva", "sr": "Света Петка", "ro": "Sfânta Cuvioasă Parascheva" } },
+    { "id": "demetrius", "month": 10, "day": 26, "rank": "major", "name": { "en": "Holy Great Martyr Demetrius", "sr": "Свети великомученик Димитрије", "ro": "Sfântul Mare Mucenic Dimitrie" } },
+    { "id": "archangels", "month": 11, "day": 8, "rank": "major", "name": { "en": "Synaxis of the Archangel Michael", "sr": "Сабор Светог архангела Михаила", "ro": "Soborul Sfinților Arhangheli Mihail și Gavriil" } },
+    { "id": "entry-theotokos", "month": 11, "day": 21, "rank": "great", "name": { "en": "Entry of the Most Holy Theotokos into the Temple", "sr": "Ваведење Пресвете Богородице", "ro": "Intrarea în Biserică a Maicii Domnului" } },
+    { "id": "andrew", "month": 11, "day": 30, "rank": "major", "name": { "en": "Holy Apostle Andrew the First-Called", "sr": "Свети апостол Андреј Првозвани", "ro": "Sfântul Apostol Andrei, cel întâi chemat" } },
+    { "id": "nicholas", "month": 12, "day": 6, "rank": "major", "name": { "en": "St. Nicholas the Wonderworker", "sr": "Свети Николај Мирликијски", "ro": "Sfântul Ierarh Nicolae" } },
+    { "id": "nativity-christ", "month": 12, "day": 25, "rank": "great", "name": { "en": "Nativity of Our Lord Jesus Christ", "sr": "Рождество Христово", "ro": "Nașterea Domnului" } }
+  ],
+  "movable": [
+    { "id": "clean-monday", "paschaOffset": -48, "rank": "commemoration", "name": { "en": "Clean Monday, Great Lent begins", "sr": "Чисти понедељак, почетак Великог поста", "ro": "Lunea curată, începutul Postului Mare" } },
+    { "id": "lazarus-saturday", "paschaOffset": -8, "rank": "major", "name": { "en": "Lazarus Saturday", "sr": "Лазарева субота", "ro": "Sâmbăta lui Lazăr" } },
+    { "id": "palm-sunday", "paschaOffset": -7, "rank": "great", "name": { "en": "Entry of the Lord into Jerusalem", "sr": "Улазак Господа у Јерусалим (Цвети)", "ro": "Intrarea Domnului în Ierusalim (Floriile)" } },
+    { "id": "holy-friday", "paschaOffset": -2, "rank": "major", "name": { "en": "Great and Holy Friday", "sr": "Велики петак", "ro": "Vinerea Mare" } },
+    {
+      "id": "pascha",
+      "paschaOffset": 0,
+      "rank": "pascha",
+      "name": { "en": "Pascha: the Resurrection of Christ", "sr": "Васкрсење Христово (Васкрс)", "ro": "Învierea Domnului (Paștile)" },
+      "services": [
+        { "id": "pascha-matins", "dayOffset": -1, "time": "23:30", "durationMinutes": 210, "kind": "matins", "livestream": true, "name": { "en": "Midnight Office, Paschal Matins and Liturgy", "sr": "Полуноћница, васкршње јутрење и Литургија", "ro": "Miezonoptica, Utrenia Învierii și Liturghia" } },
+        { "id": "pascha-vespers", "dayOffset": 0, "time": "13:00", "durationMinutes": 45, "kind": "vespers", "livestream": false, "name": { "en": "Agape Vespers", "sr": "Васкршње вечерње", "ro": "Vecernia Dragostei" } }
+      ]
+    },
+    { "id": "thomas-sunday", "paschaOffset": 7, "rank": "commemoration", "name": { "en": "Thomas Sunday", "sr": "Томина недеља", "ro": "Duminica Tomii" } },
+    { "id": "ascension", "paschaOffset": 39, "rank": "great", "name": { "en": "Ascension of the Lord", "sr": "Вазнесење Господње (Спасовдан)", "ro": "Înălțarea Domnului" } },
+    { "id": "pentecost", "paschaOffset": 49, "rank": "great", "name": { "en": "Pentecost, the Holy Trinity", "sr": "Силазак Светог Духа на апостоле (Тројице)", "ro": "Pogorârea Sfântului Duh (Rusaliile)" } },
+    { "id": "all-saints", "paschaOffset": 56, "rank": "commemoration", "name": { "en": "Sunday of All Saints", "sr": "Недеља свих светих", "ro": "Duminica Tuturor Sfinților" } }
+  ]
+}

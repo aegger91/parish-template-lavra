@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sermons.schema.json",
+  "title": "Sermons",
+  "description": "Audio, video or text sermons with an expandable transcript.",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "date",
+          "type",
+          "speaker",
+          "reading",
+          "durationMinutes",
+          "media",
+          "title",
+          "summary",
+          "transcript"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "date": {
+            "$ref": "common.schema.json#/$defs/date"
+          },
+          "type": {
+            "enum": [
+              "audio",
+              "video",
+              "text"
+            ]
+          },
+          "speaker": {
+            "description": "Clergy id",
+            "type": "string"
+          },
+          "reading": {
+            "type": "string"
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "media": {
+            "type": "object",
+            "required": [
+              "src",
+              "poster",
+              "embedUrl"
+            ],
+            "properties": {
+              "src": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "poster": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "embedUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "title": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "summary": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "transcript": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/localized"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

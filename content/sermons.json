@@ -1,0 +1,115 @@
+{
+  "$schema": "./schemas/sermons.schema.json",
+  "items": [
+    {
+      "id": "sermon-good-samaritan",
+      "date": "2026-11-22",
+      "type": "audio",
+      "speaker": "fr-john",
+      "reading": "Luke 10:25-37",
+      "durationMinutes": 14,
+      "media": {"src": "/media/sample-sermon.wav", "poster": null, "embedUrl": null},
+      "title": {"en": "Who is my neighbor?", "sr": "Ко је мој ближњи?", "ro": "Cine este aproapele meu?"},
+      "summary": {
+        "en": "A sample homily on the parable of the Good Samaritan.",
+        "sr": "Пример беседе о причи о милостивом Самарјанину.",
+        "ro": "O predică exemplu la pilda samarineanului milostiv."
+      },
+      "transcript": [
+        {
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
+        }
+      ]
+    },
+    {
+      "id": "sermon-rich-fool",
+      "date": "2026-11-15",
+      "type": "video",
+      "speaker": "fr-stefan",
+      "reading": "Luke 12:16-21",
+      "durationMinutes": 11,
+      "media": {"src": null, "poster": "/images/gallery/iconostasis.svg", "embedUrl": null},
+      "title": {"en": "Rich toward God", "sr": "Богат у Богу", "ro": "Bogat întru Dumnezeu"},
+      "summary": {
+        "en": "A sample video homily on the parable of the rich man and his barns.",
+        "sr": "Пример видео беседе о богаташу и његовим житницама.",
+        "ro": "O predică video exemplu despre bogatul și hambarele lui."
+      },
+      "transcript": [
+        {
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
+        }
+      ]
+    },
+    {
+      "id": "sermon-entry-theotokos",
+      "date": "2025-12-04",
+      "type": "text",
+      "speaker": "fr-john",
+      "reading": "Luke 10:38-42; 11:27-28",
+      "durationMinutes": 6,
+      "media": {"src": null, "poster": null, "embedUrl": null},
+      "title": {"en": "A child in the temple", "sr": "Дете у храму", "ro": "Un copil în templu"},
+      "summary": {
+        "en": "A sample written reflection for the feast of the Entry of the Theotokos.",
+        "sr": "Пример писане беседе за празник Ваведења.",
+        "ro": "O reflecție scrisă exemplu la praznicul Intrării în Biserică a Maicii Domnului."
+      },
+      "transcript": [
+        {
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
+        }
+      ]
+    },
+    {
+      "id": "sermon-jairus",
+      "date": "2026-11-01",
+      "type": "audio",
+      "speaker": "dn-mihai",
+      "reading": "Luke 8:41-56",
+      "durationMinutes": 9,
+      "media": {"src": "/media/sample-sermon.wav", "poster": null, "embedUrl": null},
+      "title": {"en": "Do not be afraid, only believe", "sr": "Не бој се, само веруј", "ro": "Nu te teme, crede numai"},
+      "summary": {
+        "en": "A sample homily on the healing of Jairus' daughter.",
+        "sr": "Пример беседе о исцељењу Јаирове кћери.",
+        "ro": "O predică exemplu despre învierea fiicei lui Iair."
+      },
+      "transcript": [
+        {
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
+        }
+      ]
+    },
+    {
+      "id": "sermon-sower",
+      "date": "2026-10-25",
+      "type": "video",
+      "speaker": "fr-stefan",
+      "reading": "Luke 8:5-15",
+      "durationMinutes": 12,
+      "media": {"src": null, "poster": "/images/gallery/garden.svg", "embedUrl": null},
+      "title": {"en": "The seed and the soil", "sr": "Семе и земља", "ro": "Sămânța și pământul"},
+      "summary": {
+        "en": "A sample video homily on the parable of the sower.",
+        "sr": "Пример видео беседе о причи о сејачу.",
+        "ro": "O predică video exemplu la pilda semănătorului."
+      },
+      "transcript": [
+        {
+          "en": "Sample transcript. The text of the sermon goes here.",
+          "sr": "Пример записа. Овде иде текст беседе.",
+          "ro": "Transcriere exemplu. Aici vine textul predicii."
+        }
+      ]
+    }
+  ]
+}

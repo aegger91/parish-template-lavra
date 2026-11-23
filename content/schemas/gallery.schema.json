@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gallery.schema.json",
+  "title": "Gallery",
+  "description": "Pictures with a filter category each.",
+  "type": "object",
+  "required": [
+    "categories",
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/category"
+      },
+      "minItems": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "image",
+          "title",
+          "alt"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "category": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "image": {
+            "$ref": "common.schema.json#/$defs/imagePath"
+          },
+          "title": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "alt": {
+            "$ref": "common.schema.json#/$defs/localized"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

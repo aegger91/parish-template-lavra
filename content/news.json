@@ -1,0 +1,110 @@
+{
+  "$schema": "./schemas/news.schema.json",
+  "categories": [
+    {"id": "announcements", "label": {"en": "Announcements", "sr": "Обавештења", "ro": "Anunțuri"}},
+    {"id": "liturgical", "label": {"en": "Liturgical life", "sr": "Богослужбени живот", "ro": "Viața liturgică"}},
+    {"id": "youth", "label": {"en": "Youth and church school", "sr": "Омладина и веронаука", "ro": "Tineri și școala parohială"}},
+    {"id": "charity", "label": {"en": "Charity", "sr": "Добротворство", "ro": "Filantropie"}}
+  ],
+  "items": [
+    {
+      "id": "nativity-fast-begins",
+      "date": "2026-11-20",
+      "category": "liturgical",
+      "image": "/images/gallery/candle-stand.svg",
+      "title": {"en": "The Nativity Fast begins", "sr": "Почиње Божићни пост", "ro": "Începe Postul Nașterii Domnului"},
+      "summary": {
+        "en": "Sample summary. The parish schedule for the fast.",
+        "sr": "Пример сажетка. Парохијски распоред за време поста.",
+        "ro": "Rezumat exemplu. Programul parohiei pentru post."
+      },
+      "body": [
+        {
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
+        }
+      ]
+    },
+    {
+      "id": "food-drive",
+      "date": "2026-11-15",
+      "category": "charity",
+      "image": "/images/gallery/refectory.svg",
+      "title": {"en": "Winter food drive", "sr": "Зимско сакупљање хране", "ro": "Colecta de alimente de iarnă"},
+      "summary": {
+        "en": "Bring canned goods, flour and oil to the parish hall through December.",
+        "sr": "Донесите конзерве, брашно и уље у парохијски дом током децембра.",
+        "ro": "Aduceți conserve, făină și ulei la casa parohială pe tot parcursul lui decembrie."
+      },
+      "body": [
+        {
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
+        }
+      ]
+    },
+    {
+      "id": "church-school-nicholas",
+      "date": "2026-11-08",
+      "category": "youth",
+      "image": "/images/gallery/garden.svg",
+      "title": {
+        "en": "Church school prepares for St. Nicholas",
+        "sr": "Веронаука се спрема за Светог Николу",
+        "ro": "Școala parohială se pregătește de Sfântul Nicolae"
+      },
+      "summary": {
+        "en": "Sample summary. Church school news for December.",
+        "sr": "Пример сажетка. Вести из веронауке за децембар.",
+        "ro": "Rezumat exemplu. Noutăți de la școala parohială pentru decembrie."
+      },
+      "body": [
+        {
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
+        }
+      ]
+    },
+    {
+      "id": "parish-assembly",
+      "date": "2026-10-30",
+      "category": "announcements",
+      "image": "/images/gallery/church-winter.svg",
+      "title": {"en": "Annual parish assembly", "sr": "Годишња парохијска скупштина", "ro": "Adunarea parohială anuală"},
+      "summary": {
+        "en": "All members are invited to hear the year's report and plans for the roof repair.",
+        "sr": "Сви чланови су позвани да чују годишњи извештај и планове за поправку крова.",
+        "ro": "Toți membrii sunt invitați să audă raportul anual și planurile pentru repararea acoperișului."
+      },
+      "body": [
+        {
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
+        }
+      ]
+    },
+    {
+      "id": "frescoes-cleaned",
+      "date": "2026-10-12",
+      "category": "liturgical",
+      "image": "/images/gallery/starry-vault.svg",
+      "title": {"en": "The vault frescoes are cleaned", "sr": "Очишћен живопис на своду", "ro": "Frescele bolții au fost curățate"},
+      "summary": {
+        "en": "After a summer of careful work, the stars on the vault shine again.",
+        "sr": "После лета пажљивог рада, звезде на своду поново сијају.",
+        "ro": "După o vară de muncă atentă, stelele de pe boltă strălucesc din nou."
+      },
+      "body": [
+        {
+          "en": "Sample article. The full text of the announcement goes here.",
+          "sr": "Пример чланка. Овде иде цео текст обавештења.",
+          "ro": "Articol exemplu. Aici vine textul complet al anunțului."
+        }
+      ]
+    }
+  ]
+}

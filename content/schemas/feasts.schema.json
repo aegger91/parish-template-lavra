@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "feasts.schema.json",
+  "title": "Feasts",
+  "description": "Fixed feasts use the church (Julian) month and day and are moved to civil dates by calendar.style. Movable feasts count days from Pascha.",
+  "type": "object",
+  "required": [
+    "fixed",
+    "movable"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "fixed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "month",
+          "day",
+          "rank",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "month": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "day": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+          },
+          "rank": {
+            "enum": [
+              "pascha",
+              "great",
+              "major",
+              "commemoration"
+            ]
+          },
+          "name": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "time",
+                "durationMinutes",
+                "kind",
+                "livestream",
+                "name",
+                "dayOffset"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "common.schema.json#/$defs/id"
+                },
+                "dayOffset": {
+                  "description": "Days from the feast, -1 for the eve",
+                  "type": "integer"
+                },
+                "time": {
+                  "$ref": "common.schema.json#/$defs/time"
+                },
+                "durationMinutes": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "livestream": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "$ref": "common.schema.json#/$defs/localized"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "movable": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "paschaOffset",
+          "rank",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "paschaOffset": {
+            "type": "integer"
+          },
+          "rank": {
+            "enum": [
+              "pascha",
+              "great",
+              "major",
+              "commemoration"
+            ]
+          },
+          "name": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "time",
+                "durationMinutes",
+                "kind",
+                "livestream",
+                "name",
+                "dayOffset"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "common.schema.json#/$defs/id"
+                },
+                "dayOffset": {
+                  "description": "Days from the feast, -1 for the eve",
+                  "type": "integer"
+                },
+                "time": {
+                  "$ref": "common.schema.json#/$defs/time"
+                },
+                "durationMinutes": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "livestream": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "$ref": "common.schema.json#/$defs/localized"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

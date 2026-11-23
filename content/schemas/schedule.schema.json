@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schedule.schema.json",
+  "title": "Service schedule",
+  "description": "Weekly services repeat every week. Special services are one-off dates. Feast services come from feasts.json.",
+  "type": "object",
+  "required": [
+    "weekly",
+    "special"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "weekly": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "time",
+          "durationMinutes",
+          "kind",
+          "livestream",
+          "name",
+          "dayOfWeek"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "dayOfWeek": {
+            "description": "0 is Sunday",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 6
+          },
+          "time": {
+            "$ref": "common.schema.json#/$defs/time"
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "kind": {
+            "type": "string"
+          },
+          "livestream": {
+            "type": "boolean"
+          },
+          "name": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "note": {
+            "$ref": "common.schema.json#/$defs/localized"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "special": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "time",
+          "durationMinutes",
+          "kind",
+          "livestream",
+          "name",
+          "date"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "date": {
+            "$ref": "common.schema.json#/$defs/date"
+          },
+          "time": {
+            "$ref": "common.schema.json#/$defs/time"
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "kind": {
+            "type": "string"
+          },
+          "livestream": {
+            "type": "boolean"
+          },
+          "name": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "note": {
+            "$ref": "common.schema.json#/$defs/localized"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "../schemas/connect-needs.schema.json",
+  "source": "orthodoxconnect-sample",
+  "categories": [
+    { "id": "coffee-hour", "icon": "church", "label": { "en": "Coffee hour", "sr": "Кафа после службе", "ro": "Cafeaua după slujbă" } },
+    { "id": "cleaning", "icon": "candle", "label": { "en": "Cleaning", "sr": "Чишћење", "ro": "Curățenie" } },
+    { "id": "choir", "icon": "gospel", "label": { "en": "Choir", "sr": "Хор", "ro": "Cor" } },
+    { "id": "food-drive", "icon": "bells", "label": { "en": "Food drive", "sr": "Сакупљање хране", "ro": "Colectă de alimente" } },
+    { "id": "meals", "icon": "chalice", "label": { "en": "Meals for families", "sr": "Оброци за породице", "ro": "Mese pentru familii" } }
+  ],
+  "items": [
+    {
+      "id": "need-coffee-hour",
+      "title": { "en": "Host coffee hour", "sr": "Припремите кафу после службе", "ro": "Găzduiți cafeaua de după slujbă" },
+      "category": "coffee-hour",
+      "location": { "en": "Parish hall", "sr": "Парохијски дом", "ro": "Casa parohială" },
+      "organizer": { "en": "Hospitality team", "sr": "Тим за гостопримство", "ro": "Echipa de primire" },
+      "description": { "en": "Sample need. Set out coffee, tea and something simple. Three helpers per Sunday.", "sr": "Пример потребе. Скувајте кафу и чај и изнесите нешто једноставно. Три помоћника по недељи.", "ro": "Nevoie exemplu. Pregătiți cafea, ceai și ceva simplu. Trei ajutoare în fiecare duminică." },
+      "slots": [
+        { "id": "need-coffee-hour-1129", "date": "2026-11-29", "time": "11:45", "capacity": 3, "signups": 3 },
+        { "id": "need-coffee-hour-1206", "date": "2026-12-06", "time": "11:45", "capacity": 3, "signups": 1 },
+        { "id": "need-coffee-hour-1213", "date": "2026-12-13", "time": "11:45", "capacity": 3, "signups": 0 },
+        { "id": "need-coffee-hour-1220", "date": "2026-12-20", "time": "11:45", "capacity": 3, "signups": 2 }
+      ]
+    },
+    {
+      "id": "need-cleaning",
+      "title": { "en": "Clean the church before the Nativity", "sr": "Очистите храм пред Божић", "ro": "Curățați biserica înainte de Crăciun" },
+      "category": "cleaning",
+      "location": { "en": "Church", "sr": "Храм", "ro": "Biserica" },
+      "organizer": { "en": "Sisterhood", "sr": "Сестринство", "ro": "Asociația femeilor" },
+      "description": { "en": "Sample need. Polish brass, wash floors and iron altar linens.", "sr": "Пример потребе. Гланцање месинга, прање подова и пеглање олтарског платна.", "ro": "Nevoie exemplu. Lustruit alama, spălat podelele și călcat pânzele altarului." },
+      "slots": [
+        { "id": "need-cleaning-1212", "date": "2026-12-12", "time": "10:00", "capacity": 10, "signups": 4 },
+        { "id": "need-cleaning-0102", "date": "2027-01-02", "time": "10:00", "capacity": 8, "signups": 1 }
+      ]
+    },
+    {
+      "id": "need-choir",
+      "title": { "en": "Altos and basses for the Nativity", "sr": "Алтови и басови за Божић", "ro": "Alto și bași pentru Crăciun" },
+      "category": "choir",
+      "location": { "en": "Church choir loft", "sr": "Певница", "ro": "Strana bisericii" },
+      "organizer": { "en": "Ana Sample", "sr": "Ана Узорић", "ro": "Ana Model" },
+      "description": { "en": "Sample need. No experience needed, only a willingness to come to practice.", "sr": "Пример потребе. Искуство није потребно, само спремност да долазите на пробе.", "ro": "Nevoie exemplu. Nu e nevoie de experiență, doar de dorința de a veni la repetiții." },
+      "slots": [
+        { "id": "need-choir-1202", "date": "2026-12-02", "time": "19:00", "capacity": 6, "signups": 2 },
+        { "id": "need-choir-1209", "date": "2026-12-09", "time": "19:00", "capacity": 6, "signups": 3 }
+      ]
+    },
+    {
+      "id": "need-food-drive",
+      "title": { "en": "Sort and deliver the winter food drive", "sr": "Сортирајте и разнесите зимску помоћ", "ro": "Sortați și duceți colecta de iarnă" },
+      "category": "food-drive",
+      "location": { "en": "Parish hall", "sr": "Парохијски дом", "ro": "Casa parohială" },
+      "organizer": { "en": "Charity committee", "sr": "Одбор за добротворство", "ro": "Comitetul de filantropie" },
+      "description": { "en": "Sample need. Drivers with a car are especially welcome.", "sr": "Пример потребе. Посебно су добродошли возачи са колима.", "ro": "Nevoie exemplu. Șoferii cu mașină sunt bineveniți în mod deosebit." },
+      "slots": [
+        { "id": "need-food-drive-1206", "date": "2026-12-06", "time": "12:00", "capacity": 8, "signups": 5 },
+        { "id": "need-food-drive-1213", "date": "2026-12-13", "time": "12:00", "capacity": 8, "signups": 1 }
+      ]
+    },
+    {
+      "id": "need-meals",
+      "title": { "en": "Meals for a family with a new baby", "sr": "Оброци за породицу са новорођенчетом", "ro": "Mese pentru o familie cu un nou-născut" },
+      "category": "meals",
+      "location": { "en": "Delivered to the family's home", "sr": "Доставља се породици кући", "ro": "Livrat la casa familiei" },
+      "organizer": { "en": "Parish office", "sr": "Парохијска канцеларија", "ro": "Cancelaria parohială" },
+      "description": { "en": "Sample need. One dinner per evening. The office shares the address after sign-up.", "sr": "Пример потребе. Једна вечера по вечери. Канцеларија шаље адресу после пријаве.", "ro": "Nevoie exemplu. O cină pe seară. Cancelaria trimite adresa după înscriere." },
+      "slots": [
+        { "id": "need-meals-1130", "date": "2026-11-30", "time": "17:30", "capacity": 1, "signups": 1 },
+        { "id": "need-meals-1202", "date": "2026-12-02", "time": "17:30", "capacity": 1, "signups": 0 },
+        { "id": "need-meals-1204", "date": "2026-12-04", "time": "17:30", "capacity": 1, "signups": 0 }
+      ]
+    }
+  ]
+}

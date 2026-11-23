@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "connect-needs.schema.json",
+  "title": "OrthodoxConnect volunteer needs",
+  "description": "Mirror of OrthodoxConnect need fields. Each slot has its own capacity and sign-up count.",
+  "type": "object",
+  "required": [
+    "source",
+    "categories",
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "source": {
+      "description": "Where the list comes from. orthodoxconnect-sample until the live feed is connected.",
+      "type": "string"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/category"
+      },
+      "minItems": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "category",
+          "location",
+          "organizer",
+          "description",
+          "slots"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "title": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "category": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "location": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "organizer": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "description": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "slots": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "date",
+                "time",
+                "capacity",
+                "signups"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "common.schema.json#/$defs/id"
+                },
+                "date": {
+                  "$ref": "common.schema.json#/$defs/date"
+                },
+                "time": {
+                  "$ref": "common.schema.json#/$defs/time"
+                },
+                "capacity": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "signups": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

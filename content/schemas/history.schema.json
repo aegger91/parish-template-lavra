@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "history.schema.json",
+  "title": "History timeline",
+  "description": "Timeline entries, oldest first.",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "year",
+          "icon",
+          "title",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "year": {
+            "type": "string"
+          },
+          "icon": {
+            "$ref": "common.schema.json#/$defs/pictogram"
+          },
+          "title": {
+            "$ref": "common.schema.json#/$defs/localized"
+          },
+          "text": {
+            "$ref": "common.schema.json#/$defs/localized"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

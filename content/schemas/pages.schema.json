@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pages.schema.json",
+  "title": "Pages and navigation",
+  "description": "Every page, its place in the menu, and its ordered list of sections. Reorder sections by moving them in the array; hide one with enabled: false.",
+  "type": "object",
+  "required": ["pages"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "pages": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/page" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "loc": { "$ref": "common.schema.json#/$defs/localized" },
+    "page": {
+      "type": "object",
+      "required": ["id", "slug", "parentId", "order", "showInNav", "title", "sections"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" },
+        "slug": { "description": "URL part. Empty string for the home page.", "type": "string", "pattern": "^([a-z0-9]+(-[a-z0-9]+)*)?$" },
+        "parentId": { "description": "Page id of the menu parent, or null for a top-level item.", "type": ["string", "null"] },
+        "order": { "description": "Position among siblings in the menu.", "type": "number" },
+        "showInNav": { "type": "boolean" },
+        "navLabel": { "description": "Shorter label for the menu, if the title is long.", "$ref": "#/$defs/loc" },
+        "overviewLabel": { "description": "Label for the parent page's own link inside its dropdown.", "$ref": "#/$defs/loc" },
+        "navPriority": { "description": "secondary items move into the More menu on narrower desktops.", "enum": ["primary", "secondary"] },
+        "navStyle": { "description": "button shows the item as the prominent header button (Donate).", "enum": ["link", "button"] },
+        "feature": { "description": "Hide this page when the module is switched off in site.json.", "$ref": "common.schema.json#/$defs/featureKey" },
+        "icon": { "$ref": "common.schema.json#/$defs/pictogram" },
+        "title": { "$ref": "#/$defs/loc" },
+        "summary": { "description": "One line shown on overview cards.", "$ref": "#/$defs/loc" },
+        "description": { "description": "Search engine description.", "$ref": "#/$defs/loc" },
+        "sections": { "type": "array", "items": { "$ref": "#/$defs/section" } }
+      },
+      "additionalProperties": false
+    },
+    "section": {
+      "type": "object",
+      "required": ["id", "type", "enabled", "props"],
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/id" },
+        "type": {
+          "enum": [
+            "hero", "welcome-text", "services-week", "donate-cta", "page-header", "subpage-cards", "module-links", "giving-ways", "faq",
+            "clergy-cards", "history-timeline", "schedule", "gallery-grid", "news-list", "latest-news", "latest-sermons", "sermon-archive",
+            "livestream", "donation-picker", "contact", "store-catalog", "cart", "checkout", "service-requests", "zapiski", "events", "needs",
+            "involved-highlights"
+          ]
+        },
+        "enabled": { "type": "boolean" },
+        "chapter": { "description": "Number this section as a chapter (II, III...) and list it in the hero contents.", "type": "boolean" },
+        "feature": { "$ref": "common.schema.json#/$defs/featureKey" },
+        "props": { "type": "object" }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        { "if": { "properties": { "type": { "const": "hero" } } }, "then": { "properties": { "props": { "$ref": "#/$defs/heroProps" } } } },
+        { "if": { "properties": { "type": { "const": "welcome-text" } } }, "then": { "properties": { "props": { "$ref": "#/$defs/welcomeProps" } } } },
+        { "if": { "properties": { "type": { "const": "page-header" } } }, "then": { "properties": { "props": { "$ref": "#/$defs/headerProps" } } } },
+        { "if": { "properties": { "type": { "const": "donate-cta" } } }, "then": { "properties": { "props": { "$ref": "#/$defs/donateCtaProps" } } } },
+        { "if": { "properties": { "type": { "const": "giving-ways" } } }, "then": { "properties": { "props": { "$ref": "#/$defs/iconCardsProps" } } } },
+        { "if": { "properties": { "type": { "const": "faq" } } }, "then": { "properties": { "props": { "$ref": "#/$defs/faqProps" } } } },
+        { "if": { "properties": { "type": { "const": "module-links" } } }, "then": { "properties": { "props": { "required": ["title", "pages"], "properties": { "title": { "$ref": "#/$defs/loc" }, "pages": { "type": "array", "items": { "type": "string" } } } } } } },
+        { "if": { "properties": { "type": { "enum": ["schedule", "events"] } } }, "then": { "properties": { "props": { "properties": { "defaultView": { "enum": ["week", "month", "list", "calendar"] } } } } } },
+        { "if": { "properties": { "type": { "enum": ["latest-news", "latest-sermons"] } } }, "then": { "properties": { "props": { "properties": { "title": { "$ref": "#/$defs/loc" }, "count": { "type": "integer", "minimum": 1, "maximum": 12 } } } } } }
+      ]
+    },
+    "heroProps": {
+      "type": "object",
+      "required": ["lead", "image", "imageAlt", "primaryCta"],
+      "properties": {
+        "eyebrow": { "$ref": "#/$defs/loc" },
+        "lead": { "description": "One or two lines under the parish name.", "$ref": "#/$defs/loc" },
+        "image": { "$ref": "common.schema.json#/$defs/imagePath" },
+        "imageAlt": { "$ref": "#/$defs/loc" },
+        "imageCaption": { "$ref": "#/$defs/loc" },
+        "primaryCta": { "$ref": "common.schema.json#/$defs/labelledLink" },
+        "secondaryCta": { "$ref": "common.schema.json#/$defs/labelledLink" },
+        "showCommemorationShortcut": { "type": "boolean" },
+        "chapters": {
+          "description": "Contents list in the hero. target is a section id on the same page.",
+          "type": "array",
+          "items": { "type": "object", "required": ["target", "label"], "properties": { "target": { "type": "string" }, "label": { "$ref": "#/$defs/loc" } }, "additionalProperties": false }
+        }
+      }
+    },
+    "welcomeProps": {
+      "description": "Optional About / Welcome text block. Keep it to a few short paragraphs.",
+      "type": "object",
+      "required": ["title", "paragraphs"],
+      "properties": {
+        "title": { "$ref": "#/$defs/loc" },
+        "paragraphs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/loc" } },
+        "image": { "$ref": "common.schema.json#/$defs/imagePath" },
+        "imageAlt": { "$ref": "#/$defs/loc" },
+        "links": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/labelledLink" } }
+      }
+    },
+    "headerProps": {
+      "type": "object",
+      "required": ["title"],
+      "properties": { "label": { "$ref": "#/$defs/loc" }, "title": { "$ref": "#/$defs/loc" }, "intro": { "$ref": "#/$defs/loc" } }
+    },
+    "donateCtaProps": {
+      "type": "object",
+      "required": ["title", "text", "cta"],
+      "properties": { "title": { "$ref": "#/$defs/loc" }, "text": { "$ref": "#/$defs/loc" }, "cta": { "$ref": "common.schema.json#/$defs/labelledLink" } }
+    },
+    "iconCardsProps": {
+      "type": "object",
+      "required": ["title", "items"],
+      "properties": {
+        "title": { "$ref": "#/$defs/loc" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "icon", "title", "text"],
+            "properties": { "id": { "$ref": "common.schema.json#/$defs/id" }, "icon": { "$ref": "common.schema.json#/$defs/pictogram" }, "title": { "$ref": "#/$defs/loc" }, "text": { "$ref": "#/$defs/loc" } },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "faqProps": {
+      "type": "object",
+      "required": ["title", "items"],
+      "properties": {
+        "title": { "$ref": "#/$defs/loc" },
+        "items": {
+          "type": "array",
+          "items": { "type": "object", "required": ["id", "q", "a"], "properties": { "id": { "$ref": "common.schema.json#/$defs/id" }, "q": { "$ref": "#/$defs/loc" }, "a": { "$ref": "#/$defs/loc" } }, "additionalProperties": false }
+        }
+      }
+    }
+  }
+}

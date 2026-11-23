@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "title": "Shared definitions",
+  "$defs": {
+    "id": {
+      "description": "Stable id. Lowercase letters, numbers and dashes. Never change it once published.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "localized": {
+      "description": "Text in one or more languages, keyed by language code. Missing languages fall back to the default language. A plain string is used for every language.",
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]+)*$" },
+          "additionalProperties": { "type": "string" }
+        }
+      ]
+    },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "time": { "description": "24 hour time, HH:MM", "type": "string", "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$" },
+    "imagePath": { "type": "string", "pattern": "^(/|https?://)" },
+    "featureKey": { "enum": ["livestream", "sermons", "store", "serviceRequests", "zapiski", "getInvolved"] },
+    "pictogram": {
+      "description": "Name of a drawn Orthodox pictogram from src/components/orthodox/Pictogram.tsx.",
+      "type": "string"
+    },
+    "link": {
+      "description": "Either a page id (with an optional #hash) or an external href.",
+      "type": "object",
+      "properties": {
+        "page": { "$ref": "#/$defs/id" },
+        "hash": { "type": "string" },
+        "href": { "type": "string" }
+      },
+      "anyOf": [{ "required": ["page"] }, { "required": ["href"] }],
+      "additionalProperties": false
+    },
+    "labelledLink": {
+      "type": "object",
+      "required": ["label", "link"],
+      "properties": { "label": { "$ref": "#/$defs/localized" }, "link": { "$ref": "#/$defs/link" } },
+      "additionalProperties": false
+    },
+    "category": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "icon": { "$ref": "#/$defs/pictogram" },
+        "label": { "$ref": "#/$defs/localized" }
+      },
+      "additionalProperties": false
+    },
+    "serviceTemplate": {
+      "type": "object",
+      "required": ["time", "durationMinutes", "kind", "livestream", "name"],
+      "properties": {
+        "time": { "$ref": "#/$defs/time" },
+        "durationMinutes": { "type": "integer", "minimum": 0 },
+        "kind": { "description": "liturgy, vigil, vespers, hours, akathist, moleben and so on. class and community items are left out of the footer service times.", "type": "string" },
+        "livestream": { "type": "boolean" },
+        "name": { "$ref": "#/$defs/localized" }
+      }
+    }
+  }
+}
