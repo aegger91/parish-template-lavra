@@ -66,13 +66,13 @@
   max-width: min(34rem, 92%);
 }
 
-/* Local panel behind copy: keeps gold eyebrow readable on pale masonry */
+/* Opaque panel behind copy: gold eyebrow stays clear over pale stone */
 .home-hero__content::before {
   content: '';
   position: absolute;
   z-index: -1;
-  inset: 6% -12% 2% -14%;
-  background: rgb(8 20 40 / 0.78);
+  inset: 4% -14% 0 -16%;
+  background: rgb(8 20 40 / 0.88);
   pointer-events: none;
 }
 
@@ -84,8 +84,8 @@
   }
 
   .home-hero__content::before {
-    inset: 4% -6% 0 -6%;
-    background: rgb(8 20 40 / 0.8);
+    inset: 2% -8% -2% -8%;
+    background: rgb(8 20 40 / 0.9);
   }
 }
 
@@ -107,10 +107,12 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-size: clamp(0.72rem, 1.4vw, 0.88rem);
-  color: var(--gold-bright);
+  color: #f0d78a;
+  font-weight: 600;
   text-shadow:
-    0 1px 2px color-mix(in srgb, var(--ink) 70%, transparent),
-    0 2px 16px color-mix(in srgb, var(--lapis-deep) 55%, transparent);
+    0 0 1px rgb(8 20 40 / 0.9),
+    0 1px 3px rgb(8 20 40 / 0.95),
+    0 2px 18px rgb(8 20 40 / 0.75);
 }
 
 .home-hero__lead {
