@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormShell from '../../components/FormShell.astro';
+import PhoneInput from '../../components/PhoneInput';
+import AmountField from '../../components/AmountField';
+import Rosette from '../../icons/Rosette.astro';
+import { locales, t, type Locale } from '../../i18n/ui';
+import { siteConfig } from '../../config/site';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+---
+<BaseLayout locale={locale} title={dict.donate.title} path="donate" description={dict.donate.intro}>
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
+        <Rosette size={28} />
+      </div>
+      <h1>{dict.donate.title}</h1>
+      <p>{dict.donate.intro}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0;">
+    <div class="container" style="max-width: 36rem;">
+      <FormShell submitLabel={dict.donate.submit} successMessage={dict.donate.success}>
+        <AmountField
+          client:load
+          id="donate-amount"
+          label={dict.donate.amount}
+          hint={dict.pomen.amountHint}
+          suggestedLabel={dict.donate.suggested}
+          otherLabel={dict.donate.other}
+          suggested={siteConfig.donationSuggested}
+          showProgress={siteConfig.showDonationProgress}
+          progressLabel={dict.donate.progressLabel}
+          progressCurrent={0}
+          progressGoal={0}
+        />
+        <div class="form-row">
+          <label for="donate-name">{dict.donate.name}</label>
+          <input id="donate-name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div class="form-row">
+          <label for="donate-email">{dict.donate.email}</label>
+          <input id="donate-email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <PhoneInput client:load id="donate-phone" label={dict.donate.phone} />
+        <div class="form-row">
+          <label for="donate-note">{dict.donate.note}</label>
+          <textarea id="donate-note" name="note"></textarea>
+        </div>
+      </FormShell>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+interface Props {
+  submitLabel: string;
+  successMessage: string;
+  className?: string;
+}
+const { submitLabel, successMessage, className = 'form' } = Astro.props;
+---
+<div data-form-shell>
+  <form class={className} data-form>
+    <slot />
+    <button type="submit" class="btn">{submitLabel}</button>
+  </form>
+  <div class="form-success" role="status" hidden data-form-success>
+    {successMessage}
+  </div>
+</div>
+<script>
+  document.querySelectorAll('[data-form-shell]').forEach((shell) => {
+    const form = shell.querySelector('[data-form]');
+    const success = shell.querySelector('[data-form-success]');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const f = e.currentTarget;
+      if (!(f instanceof HTMLFormElement)) return;
+      if (!f.checkValidity()) {
+        f.reportValidity();
+        return;
+      }
+      f.hidden = true;
+      if (success instanceof HTMLElement) success.hidden = false;
+    });
+  });
+</script>

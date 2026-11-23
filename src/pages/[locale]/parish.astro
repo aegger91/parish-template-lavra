@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Rosette from '../../icons/Rosette.astro';
+import { locales, t, type Locale } from '../../i18n/ui';
+import { siteConfig } from '../../config/site';
+import { images } from '../../config/images';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+---
+<BaseLayout locale={locale} title={dict.parish.title} path="parish">
+  <section class="page-hero">
+    <div class="container">
+      <p class="slavonic">✠</p>
+      <h1>{dict.parish.title}</h1>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container split-2">
+      <div>
+        <div class="section-ornament" style="justify-content: flex-start;">
+          <Rosette size={28} />
+        </div>
+        <h2>{dict.parish.about}</h2>
+        <div class="prose">
+          <p>{dict.parish.aboutText}</p>
+        </div>
+        <h2>{dict.parish.history}</h2>
+        <div class="prose">
+          <p>{dict.parish.historyText}</p>
+        </div>
+      </div>
+      <div class="media-frame">
+        <img
+          src={images.parish.src}
+          alt={images.parish.alt[locale]}
+          width="960"
+          height="720"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>{dict.parish.clergy}</h2>
+      </div>
+      <div class="clergy-grid">
+        {
+          siteConfig.clergy.map((c) => (
+            <article class="clergy-card">
+              <p class="role">{c.title[locale]}</p>
+              <h3>{c.name[locale]}</h3>
+              <p>{c.bio[locale]}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="media-frame">
+        <img
+          src={images.interior.src}
+          alt={images.interior.alt[locale]}
+          width="960"
+          height="720"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

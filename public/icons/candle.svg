@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 72" fill="none" aria-hidden="true">
+  <!-- Beeswax candle -->
+  <path d="M16 6c2 3 3 5 0 8-3-3-2-5 0-8z" fill="#c4a35a"/>
+  <path d="M16 12v4" stroke="currentColor" stroke-width="1.2"/>
+  <rect x="11" y="16" width="10" height="48" rx="1" fill="#d4bc7a" stroke="currentColor" stroke-width="1"/>
+  <path d="M13 20h6M13 28h6M13 36h6M13 44h6M13 52h6" stroke="#c4a35a" stroke-width="0.6" opacity="0.5"/>
+  <rect x="8" y="64" width="16" height="4" rx="1" fill="currentColor"/>
+</svg>

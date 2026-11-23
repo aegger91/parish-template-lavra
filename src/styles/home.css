@@ -1,0 +1,136 @@
+.home-hero {
+  position: relative;
+  min-height: min(92vh, 52rem);
+  display: flex;
+  align-items: flex-end;
+  color: var(--marble);
+  overflow: hidden;
+}
+
+.home-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.home-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: heroKen 18s ease-in-out infinite alternate;
+}
+
+@keyframes heroKen {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.home-hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--lapis-deep) 35%, transparent) 0%,
+      color-mix(in srgb, var(--lapis-deep) 55%, transparent) 45%,
+      color-mix(in srgb, var(--lapis-deep) 88%, transparent) 100%
+    ),
+    radial-gradient(
+      ellipse at 70% 20%,
+      color-mix(in srgb, var(--gold) 18%, transparent),
+      transparent 55%
+    );
+}
+
+.home-hero__content {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 2rem, var(--page));
+  margin-inline: auto;
+  padding-block: var(--space-8) var(--space-7);
+  animation: brandReveal 0.8s ease both;
+}
+
+.home-hero__brand {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--marble);
+  text-shadow: 0 2px 24px color-mix(in srgb, var(--ink) 35%, transparent);
+  max-width: 14ch;
+}
+
+.home-hero__tag {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  color: var(--gold-soft);
+  animation: softGlow 4s ease-in-out infinite;
+}
+
+.home-hero__lead {
+  margin: 0 0 var(--space-5);
+  max-width: 28rem;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: color-mix(in srgb, var(--marble) 92%, transparent);
+}
+
+.home-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.home-hero__cross {
+  position: absolute;
+  right: clamp(1rem, 4vw, 3rem);
+  top: clamp(5rem, 18vh, 9rem);
+  z-index: 2;
+  opacity: 0.55;
+  width: clamp(2.5rem, 5vw, 3.5rem);
+  animation: softGlow 5s ease-in-out infinite;
+}
+
+.feast-highlight {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: color-mix(in srgb, var(--lapis) 6%, var(--band-white));
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+}
+
+.feast-highlight .label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  margin: 0;
+}
+
+.feast-highlight h3 {
+  margin: 0;
+}
+
+.optional-blocks {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .optional-blocks {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.optional-block h2 {
+  margin-top: 0;
+}

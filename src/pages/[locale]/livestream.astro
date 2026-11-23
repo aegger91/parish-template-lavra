@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Rosette from '../../icons/Rosette.astro';
+import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
+import { siteConfig } from '../../config/site';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+const hasStream = siteConfig.livestreamUrl && !siteConfig.livestreamUrl.includes('PLACEHOLDER');
+---
+<BaseLayout locale={locale} title={dict.livestream.title} path="livestream" description={dict.livestream.intro}>
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
+        <Rosette size={28} />
+      </div>
+      <h1>{dict.livestream.title}</h1>
+      <p>{dict.livestream.intro}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0;">
+    <div class="container" style="max-width: 56rem;">
+      {
+        hasStream ? (
+          <div class="livestream-frame">
+            <iframe
+              src={siteConfig.livestreamUrl}
+              title={dict.livestream.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <div
+            class="livestream-frame"
+            style="display:grid; place-items:center; padding: var(--space-6); color: var(--marble); text-align:center;"
+          >
+            <div>
+              <img src="/icons/kandilo.svg" alt="" width="48" height="72" style="margin: 0 auto 1rem; filter: invert(0.9);" />
+              <p style="margin:0 0 1rem; max-width: 28rem;">{dict.livestream.offline}</p>
+              <a class="btn btn--gold" href={localizedPath(locale, 'schedule')}>{dict.nav.schedule}</a>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

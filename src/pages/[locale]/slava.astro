@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormShell from '../../components/FormShell.astro';
+import PhoneInput from '../../components/PhoneInput';
+import Rosette from '../../icons/Rosette.astro';
+import { locales, t, type Locale } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+---
+<BaseLayout locale={locale} title={dict.slava.title} path="slava" description={dict.slava.intro}>
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
+        <Rosette size={28} />
+      </div>
+      <h1>{dict.slava.title}</h1>
+      <p>{dict.slava.intro}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0;">
+    <div class="container split-2">
+      <div>
+        <h2>{dict.slava.formTitle}</h2>
+        <FormShell submitLabel={dict.slava.submit} successMessage={dict.slava.success}>
+          <div class="form-row">
+            <label for="slava-name">{dict.slava.name}</label>
+            <input id="slava-name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <PhoneInput client:load id="slava-phone" label={dict.slava.phone} required />
+          <div class="form-row">
+            <label for="slava-email">{dict.slava.email}</label>
+            <input id="slava-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="form-row">
+            <label for="slava-address">{dict.slava.address}</label>
+            <input id="slava-address" name="address" type="text" required autocomplete="street-address" />
+          </div>
+          <div class="form-row">
+            <label for="slava-type">{dict.slava.type}</label>
+            <select id="slava-type" name="type" required>
+              <option value="slava">{dict.slava.typeSlava}</option>
+              <option value="blessing">{dict.slava.typeBlessing}</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="slava-date">{dict.slava.preferredDate}</label>
+            <input id="slava-date" name="date" type="date" required />
+          </div>
+          <div class="form-row">
+            <label for="slava-notes">{dict.slava.notes}</label>
+            <textarea id="slava-notes" name="notes"></textarea>
+          </div>
+        </FormShell>
+      </div>
+      <div style="display: grid; gap: var(--space-4); justify-items: start; color: var(--lapis);">
+        <img src="/icons/slava-kolac.svg" alt="" width="96" height="84" />
+        <img src="/icons/candle.svg" alt="" width="40" height="90" />
+        <img src="/icons/prosphora.svg" alt="" width="80" height="80" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

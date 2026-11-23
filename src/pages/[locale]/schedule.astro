@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SchedulePanel from '../../components/SchedulePanel';
+import Rosette from '../../icons/Rosette.astro';
+import { locales, t, type Locale } from '../../i18n/ui';
+import { siteConfig } from '../../config/site';
+import { allServices } from '../../config/schedule';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+
+const items = allServices.map((s) => ({
+  id: s.id,
+  title: s.title[locale],
+  description: s.description[locale],
+  date: s.date,
+  start: s.start,
+  end: s.end,
+  location: s.location[locale],
+  oldStyleDate: s.oldStyleDate,
+  feast: s.feast?.[locale],
+}));
+---
+<BaseLayout locale={locale} title={dict.schedule.title} path="schedule" description={dict.schedule.intro}>
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
+        <Rosette size={28} />
+      </div>
+      <h1>{dict.schedule.title}</h1>
+      <p>{dict.schedule.intro}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0;">
+    <div class="container" style="max-width: 48rem;">
+      <SchedulePanel
+        client:load
+        items={items}
+        locale={locale}
+        calendarStyle={siteConfig.calendarStyle}
+        mapQuery={siteConfig.mapQuery}
+        labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
+      />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SchedulePanel from '../../components/SchedulePanel';
+import Rosette from '../../icons/Rosette.astro';
+import SerbianCross from '../../icons/SerbianCross.astro';
+import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
+import { siteConfig } from '../../config/site';
+import { images } from '../../config/images';
+import { weekServices, nextFeast } from '../../config/schedule';
+import { newsItems } from '../../config/news';
+import { formatDate } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+
+const scheduleItems = weekServices.map((s) => ({
+  id: s.id,
+  title: s.title[locale],
+  description: s.description[locale],
+  date: s.date,
+  start: s.start,
+  end: s.end,
+  location: s.location[locale],
+  oldStyleDate: s.oldStyleDate,
+  feast: s.feast?.[locale],
+}));
+
+const feastItem = {
+  id: nextFeast.id,
+  title: nextFeast.title[locale],
+  description: nextFeast.description[locale],
+  date: nextFeast.date,
+  start: nextFeast.start,
+  end: nextFeast.end,
+  location: nextFeast.location[locale],
+  oldStyleDate: nextFeast.oldStyleDate,
+  feast: nextFeast.feast?.[locale],
+};
+
+const lead = {
+  sr: 'Добродошли у нашу парохију. Богослужења, вести и контакт — на једном месту.',
+  lat: 'Dobrodošli u našu parohiju. Bogosluženja, vesti i kontakt — na jednom mestu.',
+  en: 'Welcome to our parish. Services, news, and contact — in one place.',
+}[locale];
+---
+<BaseLayout locale={locale} title="" path="">
+  <section class="home-hero">
+    <div class="home-hero__media">
+      <img
+        src={images.hero.src}
+        alt={images.hero.alt[locale]}
+        width="1600"
+        height="1200"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="home-hero__veil" aria-hidden="true"></div>
+    <div class="home-hero__cross" aria-hidden="true">
+      <SerbianCross size={56} title="" />
+    </div>
+    <div class="home-hero__content">
+      <p class="home-hero__tag slavonic">{siteConfig.tagline[locale]}</p>
+      <h1 class="home-hero__brand">{siteConfig.parishName[locale]}</h1>
+      <p class="home-hero__lead">{lead}</p>
+      <div class="home-hero__cta">
+        <a class="btn btn--gold" href={localizedPath(locale, 'schedule')}>{dict.home.viewSchedule}</a>
+        <a class="btn btn--ghost" href={localizedPath(locale, 'contact')} style="border-color: var(--gold-soft); color: var(--marble);">
+          {dict.nav.contact}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-ornament"><Rosette size={32} /></div>
+      <div class="section-head">
+        <h2>{dict.home.thisWeek}</h2>
+        <a href={localizedPath(locale, 'schedule')}>{dict.home.viewSchedule}</a>
+      </div>
+      <SchedulePanel
+        client:load
+        items={scheduleItems}
+        locale={locale}
+        calendarStyle={siteConfig.calendarStyle}
+        mapQuery={siteConfig.mapQuery}
+        labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
+      />
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-head">
+        <h2>{dict.home.nextFeast}</h2>
+      </div>
+      <div class="feast-highlight">
+        <p class="label">{feastItem.feast}</p>
+        <h3>{feastItem.title}</h3>
+        <SchedulePanel
+          client:load
+          items={[feastItem]}
+          locale={locale}
+          calendarStyle={siteConfig.calendarStyle}
+          mapQuery={siteConfig.mapQuery}
+          labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
+        />
+      </div>
+    </div>
+  </section>
+
+  {
+    (siteConfig.showAboutBlock || siteConfig.showVisitingBlock) && (
+      <section class="section" style="padding-top: 0;">
+        <div class="container optional-blocks">
+          {siteConfig.showAboutBlock && (
+            <div class="optional-block">
+              <h2>{dict.home.aboutTitle}</h2>
+              <p>{dict.home.aboutText}</p>
+              <a href={localizedPath(locale, 'parish')}>{dict.nav.parish}</a>
+            </div>
+          )}
+          {siteConfig.showVisitingBlock && (
+            <div class="optional-block">
+              <h2>{dict.home.visitingTitle}</h2>
+              <p>{dict.home.visitingText}</p>
+              <a href={localizedPath(locale, 'contact')}>{dict.nav.contact}</a>
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-head">
+        <h2>{dict.home.news}</h2>
+        <a href={localizedPath(locale, 'events')}>{dict.home.viewAll}</a>
+      </div>
+      <ul class="news-list">
+        {
+          newsItems.slice(0, 2).map((n) => (
+            <li class="news-item">
+              <time datetime={n.date}>{formatDate(n.date, locale)}</time>
+              <h3>
+                <a href={localizedPath(locale, `events/${n.id}`)}>{n.title[locale]}</a>
+              </h3>
+              <p>{n.summary[locale]}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-head">
+        <h2>{dict.home.gallery}</h2>
+      </div>
+      <div class="gallery-strip">
+        {
+          images.gallery.map((g) => (
+            <figure>
+              <img src={g.src} alt={g.alt[locale]} width="640" height="480" loading="lazy" />
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="donate-band">
+    <div class="container">
+      <h2>{dict.home.donateBand}</h2>
+      <p>{dict.home.donateBandText}</p>
+      <a class="btn btn--gold" href={localizedPath(locale, 'donate')}>{dict.home.donateCta}</a>
+    </div>
+  </section>
+</BaseLayout>

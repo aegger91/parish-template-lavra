@@ -1,0 +1,30 @@
+---
+interface Props {
+  class?: string;
+  size?: number;
+  title?: string;
+}
+const { class: className = '', size = 48, title = 'Serbian cross' } = Astro.props;
+---
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  role="img"
+  aria-label={title}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>{title}</title>
+  <!-- Orthodox cross with four ocila (firesteels) -->
+  <g fill="currentColor">
+    <rect x="44" y="12" width="12" height="76" rx="1" />
+    <rect x="22" y="28" width="56" height="10" rx="1" />
+    <rect x="34" y="48" width="32" height="6" rx="1" />
+    <!-- Ocila (C-shaped firesteels) in four quadrants -->
+    <path d="M18 22c0-6 5-10 10-10v6c-2 0-4 1.5-4 4s2 4 4 4v6c-5 0-10-4-10-10z" />
+    <path d="M82 22c0-6-5-10-10-10v6c2 0 4 1.5 4 4s-2 4-4 4v6c5 0 10-4 10-10z" />
+    <path d="M18 72c0-6 5-10 10-10v6c-2 0-4 1.5-4 4s2 4 4 4v6c-5 0-10-4-10-10z" />
+    <path d="M82 72c0-6-5-10-10-10v6c2 0 4 1.5 4 4s-2 4-4 4v6c5 0 10-4 10-10z" />
+  </g>
+</svg>

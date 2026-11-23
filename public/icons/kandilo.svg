@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 72" fill="none" aria-hidden="true">
+  <!-- Hanging oil lamp (kandilo) -->
+  <path d="M24 2v8" stroke="currentColor" stroke-width="1.5"/>
+  <circle cx="24" cy="2" r="2" fill="currentColor"/>
+  <path d="M14 12c3 4 6 5 10 5s7-1 10-5" stroke="currentColor" stroke-width="1.4"/>
+  <path d="M14 12 L24 28 L34 12" stroke="currentColor" stroke-width="1.2" fill="none"/>
+  <path d="M16 28h16l2 8H14l2-8z" fill="currentColor"/>
+  <ellipse cx="24" cy="28" rx="10" ry="2.5" fill="currentColor"/>
+  <path d="M18 36h12c1 8-2 16-6 22-4-6-7-14-6-22z" fill="currentColor" opacity="0.85"/>
+  <path d="M22 40c1 4 2 7 2 10" stroke="#c4a35a" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="24" cy="38" r="2" fill="#c4a35a"/>
+</svg>

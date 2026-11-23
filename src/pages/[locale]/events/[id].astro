@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { locales, t, localizedPath, type Locale } from '../../../i18n/ui';
+import { newsItems } from '../../../config/news';
+import { formatDate } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.flatMap((locale) =>
+    newsItems.map((n) => ({
+      params: { locale, id: n.id },
+    })),
+  );
+}
+
+const locale = Astro.params.locale as Locale;
+const id = Astro.params.id as string;
+const dict = t(locale);
+const item = newsItems.find((n) => n.id === id)!;
+---
+<BaseLayout locale={locale} title={item.title[locale]} path={`events/${item.id}`}>
+  <article class="section">
+    <div class="container" style="max-width: 42rem;">
+      <p class="slavonic">
+        <time datetime={item.date}>{formatDate(item.date, locale, { full: true })}</time>
+      </p>
+      <h1>{item.title[locale]}</h1>
+      <div class="prose">
+        <p>{item.body[locale]}</p>
+      </div>
+      <p>
+        <a href={localizedPath(locale, 'events')}>← {dict.events.title}</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+import type { Locale } from '../i18n/ui';
+import { locales, localeLabels, t, localizedPath } from '../i18n/ui';
+import { siteConfig } from '../config/site';
+import SerbianCross from '../icons/SerbianCross.astro';
+
+interface Props {
+  locale: Locale;
+  path: string;
+}
+const { locale, path } = Astro.props;
+const dict = t(locale);
+const cleanPath = path.replace(/^\/+|\/+$/g, '');
+
+const links = [
+  { href: '', label: dict.nav.home },
+  { href: 'parish', label: dict.nav.parish },
+  { href: 'schedule', label: dict.nav.schedule },
+  { href: 'slava', label: dict.nav.slava },
+  { href: 'events', label: dict.nav.events },
+  { href: 'livestream', label: dict.nav.livestream },
+  { href: 'pomen', label: dict.nav.pomen },
+  { href: 'donate', label: dict.nav.donate },
+  { href: 'contact', label: dict.nav.contact },
+];
+
+function isCurrent(href: string) {
+  if (!href && !cleanPath) return true;
+  return cleanPath === href;
+}
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href={localizedPath(locale, '')}>
+      <SerbianCross size={36} title="" />
+      <span class="brand__text">
+        <span class="brand__name">{siteConfig.parishName[locale]}</span>
+        <span class="brand__tag">{siteConfig.tagline[locale]}</span>
+      </span>
+    </a>
+
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      data-nav-toggle
+    >
+      <span aria-hidden="true"></span>
+      <span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">
+        {dict.a11y.menu}
+      </span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" data-site-nav aria-label={dict.a11y.menu}>
+      <ul class="site-nav__list">
+        {
+          links.map((l) => (
+            <li>
+              <a
+                href={localizedPath(locale, l.href)}
+                aria-current={isCurrent(l.href) ? 'page' : undefined}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="lang-switch" role="navigation" aria-label={dict.a11y.lang}>
+        {
+          locales.map((loc) => (
+            <a
+              href={localizedPath(loc, cleanPath)}
+              hreflang={loc === 'sr' ? 'sr-Cyrl' : loc === 'lat' ? 'sr-Latn' : 'en'}
+              aria-current={loc === locale ? 'true' : undefined}
+              lang={loc === 'sr' ? 'sr-Cyrl' : loc === 'lat' ? 'sr-Latn' : 'en'}
+            >
+              {localeLabels[loc]}
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const nav = document.querySelector('[data-site-nav]');
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+---
+<BaseLayout locale={locale} title={dict.notFound.title} path="404">
+  <section class="section">
+    <div class="container" style="text-align: center; max-width: 32rem;">
+      <p class="slavonic">✠</p>
+      <h1>{dict.notFound.title}</h1>
+      <p>{dict.notFound.text}</p>
+      <p style="margin-top: var(--space-5);">
+        <a class="btn" href={localizedPath(locale, '')}>{dict.notFound.home}</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

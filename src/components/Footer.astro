@@ -1,0 +1,61 @@
+---
+import type { Locale } from '../i18n/ui';
+import { t, localizedPath } from '../i18n/ui';
+import { siteConfig } from '../config/site';
+import Rosette from '../icons/Rosette.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const dict = t(locale);
+const year = new Date().getFullYear();
+---
+<footer style="margin-top: var(--space-8); background: var(--lapis-deep); color: var(--stone);">
+  <div class="morava-band" aria-hidden="true"></div>
+  <div class="container" style="padding-block: var(--space-7);">
+    <div class="section-ornament" style="color: var(--gold);">
+      <Rosette size={28} />
+    </div>
+    <div class="split-2">
+      <div>
+        <p class="slavonic" style="color: var(--gold-soft); margin: 0 0 var(--space-2);">
+          ✠ IC XC NI KA ✠
+        </p>
+        <h2 style="color: var(--marble); margin: 0 0 var(--space-3); font-size: 1.5rem;">
+          {siteConfig.parishName[locale]}
+        </h2>
+        <p style="margin: 0; color: var(--stone-warm);">
+          {siteConfig.tagline[locale]}
+        </p>
+      </div>
+      <div>
+        <p style="margin: 0 0 var(--space-2);">
+          <strong>{dict.footer.address}:</strong><br />
+          {siteConfig.address.street}<br />
+          {siteConfig.address.city}, {siteConfig.address.region} {siteConfig.address.postal}<br />
+          {siteConfig.address.country}
+        </p>
+        <p style="margin: 0 0 var(--space-2);">
+          <strong>{dict.footer.phone}:</strong>
+          <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} style="color: var(--gold-soft);">
+            {siteConfig.phone}
+          </a>
+        </p>
+        <p style="margin: 0;">
+          <strong>{dict.footer.email}:</strong>
+          <a href={`mailto:${siteConfig.email}`} style="color: var(--gold-soft);">
+            {siteConfig.email}
+          </a>
+        </p>
+      </div>
+    </div>
+    <p style="margin: var(--space-6) 0 0; font-size: 0.95rem; color: var(--stone-dark);">
+      © {year} {siteConfig.parishName[locale]}. {dict.footer.rights}
+      ·
+      <a href={localizedPath(locale, 'contact')} style="color: var(--gold-soft);">
+        {dict.nav.contact}
+      </a>
+    </p>
+  </div>
+</footer>

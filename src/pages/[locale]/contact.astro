@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormShell from '../../components/FormShell.astro';
+import PhoneInput from '../../components/PhoneInput';
+import Rosette from '../../icons/Rosette.astro';
+import { locales, t, type Locale } from '../../i18n/ui';
+import { siteConfig } from '../../config/site';
+import { images } from '../../config/images';
+import { directionsUrl } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+---
+<BaseLayout locale={locale} title={dict.contact.title} path="contact" description={dict.contact.intro}>
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
+        <Rosette size={28} />
+      </div>
+      <h1>{dict.contact.title}</h1>
+      <p>{dict.contact.intro}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0;">
+    <div class="container split-2">
+      <div>
+        <h2>{dict.contact.formTitle}</h2>
+        <FormShell submitLabel={dict.contact.submit} successMessage={dict.contact.success}>
+          <div class="form-row">
+            <label for="contact-name">{dict.contact.name}</label>
+            <input id="contact-name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div class="form-row">
+            <label for="contact-email">{dict.contact.email}</label>
+            <input id="contact-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <PhoneInput client:load id="contact-phone" label={dict.contact.phone} />
+          <div class="form-row">
+            <label for="contact-message">{dict.contact.message}</label>
+            <textarea id="contact-message" name="message" required></textarea>
+          </div>
+        </FormShell>
+      </div>
+      <div>
+        <h2>{dict.contact.visit}</h2>
+        <div class="media-frame" style="margin-bottom: var(--space-4);">
+          <img
+            src={images.contact.src}
+            alt={images.contact.alt[locale]}
+            width="960"
+            height="640"
+            loading="lazy"
+          />
+        </div>
+        <p>
+          {siteConfig.address.street}<br />
+          {siteConfig.address.city}, {siteConfig.address.region} {siteConfig.address.postal}<br />
+          {siteConfig.address.country}
+        </p>
+        <p>
+          <a class="btn btn--ghost" href={directionsUrl(siteConfig.mapQuery)} target="_blank" rel="noopener noreferrer">
+            {dict.schedule.directions}
+          </a>
+        </p>
+        <h3>{dict.contact.hours}</h3>
+        <p>{dict.contact.hoursText}</p>
+        <p>
+          <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}>{siteConfig.phone}</a><br />
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </p>
+        <div class="livestream-frame" style="aspect-ratio: 4/3; margin-top: var(--space-4);">
+          <iframe
+            src={siteConfig.mapEmbedUrl}
+            title={dict.contact.visit}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
