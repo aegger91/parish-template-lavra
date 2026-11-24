@@ -2,8 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormShell from '../../components/FormShell.astro';
 import PhoneInput from '../../components/PhoneInput';
-import Rosette from '../../icons/Rosette.astro';
-import { locales, t, type Locale } from '../../i18n/ui';
+import SchedulePanel from '../../components/SchedulePanel';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Tile from '../../components/Tile.astro';
+import OfficeLines from '../../components/OfficeLines.astro';
+import MoravaBorder from '../../icons/MoravaBorder.astro';
+import SerbianCross from '../../icons/SerbianCross.astro';
+import Icon from '../../icons/Icon.astro';
+import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
+import { localize, pages } from '../../i18n/pages';
+import { siteConfig } from '../../config/site';
+import { nextFeast, localizeServices } from '../../config/schedule';
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -11,57 +21,130 @@ export function getStaticPaths() {
 
 const locale = Astro.params.locale as Locale;
 const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.slava, locale);
+const href = (path: string) => localizedPath(locale, path);
+const feast = localizeServices([nextFeast], locale);
 ---
 <BaseLayout locale={locale} title={dict.slava.title} path="slava" description={dict.slava.intro}>
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
-        <Rosette size={28} />
+  <PageHero
+    image="/images/gallery-4.webp"
+    position="center 45%"
+    eyebrow={p.eyebrow}
+    title={dict.slava.title}
+    lead={dict.slava.intro}
+    crumbsLabel={c.crumbs}
+    crumbs={[{ label: dict.nav.home, href: href('') }, { label: dict.slava.title }]}
+    icon={{ src: '/images/fresco-studenica-saints.webp', alt: localize({ sr: 'Свети Сава и Свети Симеон, Студеница', en: 'Saint Sava and Saint Simeon, Studenica' }, locale), position: '30% 20%' }}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--gold" href="#request">{p.formTitle}</a>
+      <a class="btn btn--outline-light" href={href('contact')}>{dict.nav.contact}</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section reveal">
+    <div class="container split-feature">
+      <figure class="framed framed--tall">
+        <div class="framed__img">
+          <img src="/images/church-interior.webp" alt={localize({ sr: 'Иконостас', en: 'Iconostasis' }, locale)} loading="lazy" decoding="async" style="object-position: center 40%" />
+        </div>
+      </figure>
+      <div class="split-copy">
+        <p class="eyebrow">{p.featureEyebrow}</p>
+        <h2>{p.featureTitle}</h2>
+        <MoravaBorder variant="cross-line" />
+        <p>{p.featureText}</p>
+        <p class="date-chip"><Icon name="clock" size={20} /> {p.featureNote}</p>
+        <div class="feast-card">
+          <div class="feast-card__body">
+            <p class="eyebrow">{p.nextSlava}</p>
+            <SchedulePanel
+              client:load
+              items={feast}
+              locale={locale}
+              calendarStyle={siteConfig.calendarStyle}
+              mapQuery={siteConfig.mapQuery}
+              labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
+              variant="rich"
+              showBadge={false}
+            />
+          </div>
+        </div>
       </div>
-      <h1>{dict.slava.title}</h1>
-      <p>{dict.slava.intro}</p>
     </div>
   </section>
-  <section class="section" style="padding-top: 0;">
-    <div class="container split-2">
-      <div>
-        <h2>{dict.slava.formTitle}</h2>
+
+  <section class="section section--parchment reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.typesEyebrow} title={p.typesTitle} center />
+      <div class="tile-grid tile-grid--4">
+        {p.types.map((type) => <Tile icon={type.icon} title={type.name} text={type.text} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="request">
+    <div class="container form-layout">
+      <div class="form-card">
+        <header class="form-card__head">
+          <p class="eyebrow">{p.formEyebrow}</p>
+          <h2>{p.formTitle}</h2>
+        </header>
         <FormShell submitLabel={dict.slava.submit} successMessage={dict.slava.success}>
-          <div class="form-row">
-            <label for="slava-name">{dict.slava.name}</label>
-            <input id="slava-name" name="name" type="text" required autocomplete="name" />
-          </div>
-          <PhoneInput client:load id="slava-phone" label={dict.slava.phone} required />
-          <div class="form-row">
-            <label for="slava-email">{dict.slava.email}</label>
-            <input id="slava-email" name="email" type="email" required autocomplete="email" />
-          </div>
-          <div class="form-row">
-            <label for="slava-address">{dict.slava.address}</label>
-            <input id="slava-address" name="address" type="text" required autocomplete="street-address" />
-          </div>
-          <div class="form-row">
-            <label for="slava-type">{dict.slava.type}</label>
-            <select id="slava-type" name="type" required>
-              <option value="slava">{dict.slava.typeSlava}</option>
-              <option value="blessing">{dict.slava.typeBlessing}</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="slava-date">{dict.slava.preferredDate}</label>
-            <input id="slava-date" name="date" type="date" required />
-          </div>
-          <div class="form-row">
-            <label for="slava-notes">{dict.slava.notes}</label>
-            <textarea id="slava-notes" name="notes"></textarea>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="slava-name">{dict.slava.name}</label>
+              <input id="slava-name" name="name" type="text" required autocomplete="name" />
+            </div>
+            <PhoneInput client:load id="slava-phone" label={dict.slava.phone} required />
+            <div class="form-row">
+              <label for="slava-email">{dict.slava.email}</label>
+              <input id="slava-email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <label for="slava-address">{dict.slava.address}</label>
+              <input id="slava-address" name="address" type="text" required autocomplete="street-address" />
+            </div>
+            <div class="form-row">
+              <label for="slava-type">{dict.slava.type}</label>
+              <select id="slava-type" name="type" required>
+                <option value="slava">{dict.slava.typeSlava}</option>
+                <option value="blessing">{dict.slava.typeBlessing}</option>
+                {p.types.map((type) => <option value={type.id}>{type.name}</option>)}
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="slava-date">{dict.slava.preferredDate}</label>
+              <input id="slava-date" name="date" type="date" required />
+            </div>
+            <div class="form-row form-row--full">
+              <label for="slava-notes">{dict.slava.notes}</label>
+              <textarea id="slava-notes" name="notes"></textarea>
+            </div>
           </div>
         </FormShell>
       </div>
-      <div style="display: grid; gap: var(--space-4); justify-items: start; color: var(--lapis);">
-        <img src="/icons/slava-kolac.svg" alt="" width="96" height="84" />
-        <img src="/icons/candle.svg" alt="" width="40" height="90" />
-        <img src="/icons/prosphora.svg" alt="" width="80" height="80" />
-      </div>
+
+      <aside class="side-panel">
+        <span class="side-panel__mark" aria-hidden="true"><SerbianCross size={30} decorative /></span>
+        <h2>{c.office}</h2>
+        <p>{p.sideText}</p>
+        <ul class="side-list">
+          <li>
+            <span class="side-list__icon"><Icon name="calendar" size={20} /></span>
+            <span><strong>{p.featureNote}</strong></span>
+          </li>
+          <li>
+            <span class="side-list__icon"><Icon name="pin" size={20} /></span>
+            <span>
+              <strong>{c.address}</strong>
+              <span class="side-list__text">{siteConfig.address.street}, {siteConfig.address.city}</span>
+            </span>
+          </li>
+        </ul>
+        <OfficeLines locale={locale} />
+      </aside>
     </div>
   </section>
 </BaseLayout>

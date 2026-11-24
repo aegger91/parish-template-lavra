@@ -1,8 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Rosette from '../../icons/Rosette.astro';
+import SchedulePanel from '../../components/SchedulePanel';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Tile from '../../components/Tile.astro';
+import SerbianCross from '../../icons/SerbianCross.astro';
+import Icon from '../../icons/Icon.astro';
 import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
+import { localize, pages } from '../../i18n/pages';
 import { siteConfig } from '../../config/site';
+import { weekServices, localizeServices } from '../../config/schedule';
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -10,44 +17,78 @@ export function getStaticPaths() {
 
 const locale = Astro.params.locale as Locale;
 const dict = t(locale);
-const hasStream = siteConfig.livestreamUrl && !siteConfig.livestreamUrl.includes('PLACEHOLDER');
+const c = localize(pages.common, locale);
+const p = localize(pages.livestream, locale);
+const help = localize(pages.schedule.help, locale);
+const pomen = localize(pages.pomen.more, locale);
+const href = (path: string) => localizedPath(locale, path);
+const hasStream = !siteConfig.livestreamUrl.includes('PLACEHOLDER');
+const services = localizeServices(weekServices, locale);
 ---
 <BaseLayout locale={locale} title={dict.livestream.title} path="livestream" description={dict.livestream.intro}>
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
-        <Rosette size={28} />
+  <PageHero
+    image="/images/gallery-1.webp"
+    position="center 40%"
+    eyebrow={p.eyebrow}
+    title={dict.livestream.title}
+    lead={dict.livestream.intro}
+    crumbsLabel={c.crumbs}
+    crumbs={[{ label: dict.nav.home, href: href('') }, { label: dict.livestream.title }]}
+  />
+
+  <section class="section reveal">
+    <div class="container schedule-layout">
+      <div>
+        <p class="eyebrow live-dot">{p.eyebrow}</p>
+        <div class="player">
+          <div class="livestream-frame">
+            {hasStream ? (
+              <iframe
+                src={siteConfig.livestreamUrl}
+                title={dict.livestream.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            ) : (
+              <div class="player-offline">
+                <img src="/images/fresco-studenica-saints.webp" alt="" loading="lazy" decoding="async" />
+                <div class="player-offline__body">
+                  <span class="player-offline__ring" aria-hidden="true"><SerbianCross size={30} decorative /></span>
+                  <h2>{p.offlineTitle}</h2>
+                  <p>{p.offlineText}</p>
+                  <a class="btn btn--gold" href={href('schedule')}>{dict.nav.schedule}</a>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-      <h1>{dict.livestream.title}</h1>
-      <p>{dict.livestream.intro}</p>
+
+      <aside class="aside-card">
+        <h2>{p.nextTitle}</h2>
+        <SchedulePanel
+          client:load
+          items={services}
+          locale={locale}
+          calendarStyle={siteConfig.calendarStyle}
+          mapQuery={siteConfig.mapQuery}
+          labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
+          variant="rich"
+        />
+        <a class="more-link" href={href('schedule')}>{c.fullSchedule} <Icon name="arrow" size={18} /></a>
+      </aside>
     </div>
   </section>
-  <section class="section" style="padding-top: 0;">
-    <div class="container" style="max-width: 56rem;">
-      {
-        hasStream ? (
-          <div class="livestream-frame">
-            <iframe
-              src={siteConfig.livestreamUrl}
-              title={dict.livestream.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy"
-            />
-          </div>
-        ) : (
-          <div
-            class="livestream-frame"
-            style="display:grid; place-items:center; padding: var(--space-6); color: var(--marble); text-align:center;"
-          >
-            <div>
-              <img src="/icons/kandilo.svg" alt="" width="48" height="72" style="margin: 0 auto 1rem; filter: invert(0.9);" />
-              <p style="margin:0 0 1rem; max-width: 28rem;">{dict.livestream.offline}</p>
-              <a class="btn btn--gold" href={localizedPath(locale, 'schedule')}>{dict.nav.schedule}</a>
-            </div>
-          </div>
-        )
-      }
+
+  <section class="section section--parchment reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.helpEyebrow} title={p.helpTitle} center />
+      <div class="tile-grid">
+        <Tile icon="candle" title={dict.nav.pomen} text={help.pomen} href={href('pomen')} more={c.more} />
+        <Tile icon="heart" title={dict.nav.donate} text={pomen.donate} href={href('donate')} more={c.more} />
+        <Tile icon="calendar" title={dict.nav.schedule} text={c.upcoming} href={href('schedule')} more={c.more} />
+      </div>
     </div>
   </section>
 </BaseLayout>

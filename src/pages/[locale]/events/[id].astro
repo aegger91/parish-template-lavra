@@ -1,8 +1,18 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SchedulePanel from '../../../components/SchedulePanel';
+import PageHero from '../../../components/PageHero.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import NewsCard from '../../../components/NewsCard.astro';
+import OfficeLines from '../../../components/OfficeLines.astro';
+import SerbianCross from '../../../icons/SerbianCross.astro';
+import Icon from '../../../icons/Icon.astro';
 import { locales, t, localizedPath, type Locale } from '../../../i18n/ui';
-import { newsItems } from '../../../config/news';
+import { localize, pages } from '../../../i18n/pages';
 import { formatDate } from '../../../i18n/utils';
+import { newsItems } from '../../../config/news';
+import { siteConfig } from '../../../config/site';
+import { weekServices, localizeServices } from '../../../config/schedule';
 
 export function getStaticPaths() {
   return locales.flatMap((locale) =>
@@ -15,21 +25,79 @@ export function getStaticPaths() {
 const locale = Astro.params.locale as Locale;
 const id = Astro.params.id as string;
 const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.events, locale);
+const href = (path: string) => localizedPath(locale, path);
 const item = newsItems.find((n) => n.id === id)!;
+const others = newsItems.filter((n) => n.id !== id).sort((a, b) => b.date.localeCompare(a.date));
+const services = localizeServices(weekServices, locale);
+const paragraphs = item.body[locale].split(/\n\n+/);
 ---
-<BaseLayout locale={locale} title={item.title[locale]} path={`events/${item.id}`}>
-  <article class="section">
-    <div class="container" style="max-width: 42rem;">
-      <p class="slavonic">
-        <time datetime={item.date}>{formatDate(item.date, locale, { full: true })}</time>
-      </p>
-      <h1>{item.title[locale]}</h1>
-      <div class="prose">
-        <p>{item.body[locale]}</p>
-      </div>
-      <p>
-        <a href={localizedPath(locale, 'events')}>← {dict.events.title}</a>
-      </p>
+<BaseLayout locale={locale} title={item.title[locale]} path={`events/${item.id}`} description={item.summary[locale]}>
+  <PageHero
+    image={item.image}
+    position="center 45%"
+    eyebrow={formatDate(item.date, locale, { full: true })}
+    title={item.title[locale]}
+    lead={item.summary[locale]}
+    crumbsLabel={c.crumbs}
+    crumbs={[
+      { label: dict.nav.home, href: href('') },
+      { label: dict.events.title, href: href('events') },
+      { label: item.title[locale] },
+    ]}
+  />
+
+  <section class="section reveal">
+    <div class="container news-layout">
+      <article class="article">
+        <p class="news-date">
+          <Icon name="calendar" size={16} />
+          {p.published}: <time datetime={item.date}>{formatDate(item.date, locale, { full: true })}</time>
+        </p>
+        <p class="article__lead">{item.summary[locale]}</p>
+        <figure class="article__figure">
+          <img src={item.image} alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div class="article__body">
+          {paragraphs.map((para) => <p>{para}</p>)}
+        </div>
+        <footer class="article__foot">
+          <a class="btn btn--ghost" href={href('events')}>{p.back}</a>
+          <a class="more-link" href={href('contact')}>{dict.nav.contact} <Icon name="arrow" size={18} /></a>
+        </footer>
+      </article>
+
+      <aside class="aside-stack">
+        <div class="aside-card">
+          <h2>{c.upcoming}</h2>
+          <SchedulePanel
+            client:load
+            items={services}
+            locale={locale}
+            calendarStyle={siteConfig.calendarStyle}
+            mapQuery={siteConfig.mapQuery}
+            labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
+            variant="rich"
+          />
+          <a class="more-link" href={href('schedule')}>{c.fullSchedule} <Icon name="arrow" size={18} /></a>
+        </div>
+        <div class="side-panel side-panel--compact">
+          <span class="side-panel__mark" aria-hidden="true"><SerbianCross size={28} decorative /></span>
+          <h2>{p.questions}</h2>
+          <p>{p.questionsText}</p>
+          <OfficeLines locale={locale} hours={false} />
+        </div>
+      </aside>
     </div>
-  </article>
+  </section>
+
+  <section class="section section--parchment reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.eyebrow} title={p.moreTitle} center />
+      <div class="news-cards">
+        {others.map((n) => <NewsCard item={n} locale={locale} />)}
+      </div>
+    </div>
+  </section>
 </BaseLayout>

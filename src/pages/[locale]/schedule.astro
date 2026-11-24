@@ -1,10 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SchedulePanel from '../../components/SchedulePanel';
-import Rosette from '../../icons/Rosette.astro';
-import { locales, t, type Locale } from '../../i18n/ui';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import PhotoBand from '../../components/PhotoBand.astro';
+import Tile from '../../components/Tile.astro';
+import SerbianCross from '../../icons/SerbianCross.astro';
+import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
+import { localize, pages } from '../../i18n/pages';
+import { directionsUrl } from '../../i18n/utils';
 import { siteConfig } from '../../config/site';
-import { allServices } from '../../config/schedule';
+import { allServices, nextFeast, localizeServices } from '../../config/schedule';
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -12,39 +18,97 @@ export function getStaticPaths() {
 
 const locale = Astro.params.locale as Locale;
 const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.schedule, locale);
+const parish = localize(pages.parish, locale);
+const contact = localize(pages.contact, locale);
+const href = (path: string) => localizedPath(locale, path);
 
-const items = allServices.map((s) => ({
-  id: s.id,
-  title: s.title[locale],
-  description: s.description[locale],
-  date: s.date,
-  start: s.start,
-  end: s.end,
-  location: s.location[locale],
-  oldStyleDate: s.oldStyleDate,
-  feast: s.feast?.[locale],
-}));
+const items = localizeServices(allServices, locale);
+const feast = localizeServices([nextFeast], locale);
+const labels = { ...dict.schedule, openDetails: dict.a11y.openDetails };
 ---
 <BaseLayout locale={locale} title={dict.schedule.title} path="schedule" description={dict.schedule.intro}>
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
-        <Rosette size={28} />
+  <PageHero
+    image="/images/ljubostinja.webp"
+    position="center 42%"
+    eyebrow={p.eyebrow}
+    title={dict.schedule.title}
+    lead={dict.schedule.intro}
+    crumbsLabel={c.crumbs}
+    crumbs={[{ label: dict.nav.home, href: href('') }, { label: dict.schedule.title }]}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--gold" href={href('pomen')}>{dict.nav.pomen}</a>
+      <a class="btn btn--outline-light" href={href('livestream')}>{dict.nav.livestream}</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section reveal">
+    <div class="container schedule-layout">
+      <div>
+        <SectionHead eyebrow={p.eyebrow} title={c.upcoming} />
+        <SchedulePanel
+          client:load
+          items={items}
+          locale={locale}
+          calendarStyle={siteConfig.calendarStyle}
+          mapQuery={siteConfig.mapQuery}
+          labels={labels}
+          variant="rich"
+        />
       </div>
-      <h1>{dict.schedule.title}</h1>
-      <p>{dict.schedule.intro}</p>
+
+      <aside class="aside-stack">
+        <div class="side-panel">
+          <span class="side-panel__mark" aria-hidden="true"><SerbianCross size={30} decorative /></span>
+          <h2>{p.weeklyTitle}</h2>
+          <ul class="weekly">
+            {p.weekly.map((w) => (
+              <li>
+                <span class="weekly__day">{w.day}</span>
+                <span class="weekly__name">{w.name}</span>
+                <span class="weekly__time">{w.time}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="feast-card">
+          <div class="feast-card__media">
+            <img src="/images/fresco-gracanica.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <div class="feast-card__body">
+            <p class="eyebrow">{p.feastEyebrow}</p>
+            <SchedulePanel
+              client:load
+              items={feast}
+              locale={locale}
+              calendarStyle={siteConfig.calendarStyle}
+              mapQuery={siteConfig.mapQuery}
+              labels={labels}
+              variant="rich"
+              showBadge={false}
+            />
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
-  <section class="section" style="padding-top: 0;">
-    <div class="container" style="max-width: 48rem;">
-      <SchedulePanel
-        client:load
-        items={items}
-        locale={locale}
-        calendarStyle={siteConfig.calendarStyle}
-        mapQuery={siteConfig.mapQuery}
-        labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
-      />
+
+  <section class="section section--parchment reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.helpEyebrow} title={p.helpTitle} center />
+      <div class="tile-grid">
+        <Tile icon="candle" title={dict.nav.pomen} text={p.help.pomen} href={href('pomen')} more={c.more} />
+        <Tile icon="home" title={dict.nav.slava} text={p.help.slava} href={href('slava')} more={c.more} />
+        <Tile icon="broadcast" title={dict.nav.livestream} text={p.help.livestream} href={href('livestream')} more={c.more} />
+      </div>
     </div>
   </section>
+
+  <PhotoBand image="/images/gallery-2.webp" position="center 45%" title={parish.visitTitle} text={contact.mapText}>
+    <a class="btn btn--gold" href={directionsUrl(siteConfig.mapQuery)} target="_blank" rel="noopener noreferrer">{c.directions}</a>
+    <a class="btn btn--outline-light" href={href('contact')}>{dict.nav.contact}</a>
+  </PhotoBand>
 </BaseLayout>

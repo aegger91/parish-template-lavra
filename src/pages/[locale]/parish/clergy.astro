@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import PhotoBand from '../../../components/PhotoBand.astro';
+import MoravaBorder from '../../../icons/MoravaBorder.astro';
+import SerbianCross from '../../../icons/SerbianCross.astro';
+import Icon from '../../../icons/Icon.astro';
+import { locales, t, localizedPath, type Locale } from '../../../i18n/ui';
+import { localize, pages } from '../../../i18n/pages';
+import { siteConfig } from '../../../config/site';
+import { staff, council, rectorContact } from '../../../config/parish';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.clergy, locale);
+const s = localize(pages.slava, locale);
+const href = (path: string) => localizedPath(locale, path);
+
+const [rector, ...otherClergy] = siteConfig.clergy;
+const team = [
+  ...otherClergy.map((m) => ({ name: m.name[locale], role: m.title[locale], bio: m.bio[locale] })),
+  ...localize(staff, locale),
+];
+const councilList = localize(council, locale);
+---
+<BaseLayout locale={locale} title={p.title} path="parish/clergy" description={p.lead}>
+  <PageHero
+    image="/images/fresco-studenica-saints.webp"
+    position="center 28%"
+    eyebrow={dict.parish.title}
+    title={p.title}
+    lead={p.lead}
+    crumbsLabel={c.crumbs}
+    crumbs={[
+      { label: dict.nav.home, href: href('') },
+      { label: dict.parish.title, href: href('parish') },
+      { label: p.title },
+    ]}
+  />
+
+  <section class="section reveal">
+    <div class="container rector">
+      <figure class="portrait">
+        <SerbianCross size={84} decorative />
+        <figcaption class="portrait__label">{c.photoPlaceholder}</figcaption>
+      </figure>
+      <div class="split-copy">
+        <p class="eyebrow">{rector.title[locale]}</p>
+        <h2 class="rector__name">{rector.name[locale]}</h2>
+        <MoravaBorder variant="cross-line" />
+        <p>{rector.bio[locale]}</p>
+        <p>{p.rectorText}</p>
+        <ul class="contact-lines">
+          <li><Icon name="mail" size={20} /><a href={`mailto:${rectorContact.email}`}>{rectorContact.email}</a></li>
+          <li><Icon name="phone" size={20} /><a href={`tel:${rectorContact.phone.replace(/\D/g, '')}`}>{rectorContact.phone}</a></li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn--red" href={href('slava')}>{p.request}</a>
+          <a class="btn btn--ghost" href={href('contact')}>{dict.nav.contact}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--parchment reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.teamEyebrow} title={p.teamTitle} center />
+      <div class="people-grid">
+        {team.map((m) => (
+          <article class="person">
+            <figure class="portrait">
+              <SerbianCross size={52} decorative />
+              <figcaption class="portrait__label">{c.photoPlaceholder}</figcaption>
+            </figure>
+            <p class="person__role">{m.role}</p>
+            <h3>{m.name}</h3>
+            <p>{m.bio}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.councilEyebrow} title={p.councilTitle} text={p.councilText} center />
+      <div class="council">
+        {councilList.map((m) => (
+          <div class="council__item">
+            <p class="council__role">{m.role}</p>
+            <p class="council__name">{m.name}</p>
+          </div>
+        ))}
+      </div>
+      <p class="fine-print">{c.samples}</p>
+    </div>
+  </section>
+
+  <PhotoBand image="/images/decani.webp" position="center 40%" title={p.request} text={s.featureText}>
+    <a class="btn btn--gold" href={href('slava')}>{dict.nav.slava}</a>
+    <a class="btn btn--outline-light" href={href('pomen')}>{dict.nav.pomen}</a>
+  </PhotoBand>
+</BaseLayout>

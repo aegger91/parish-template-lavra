@@ -2,11 +2,15 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormShell from '../../components/FormShell.astro';
 import PhoneInput from '../../components/PhoneInput';
-import Rosette from '../../icons/Rosette.astro';
-import { locales, t, type Locale } from '../../i18n/ui';
+import PageHero from '../../components/PageHero.astro';
+import PhotoBand from '../../components/PhotoBand.astro';
+import MoravaBorder from '../../icons/MoravaBorder.astro';
+import Icon from '../../icons/Icon.astro';
+import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
+import { localize, pages } from '../../i18n/pages';
+import { directionsUrl } from '../../i18n/utils';
 import { siteConfig } from '../../config/site';
 import { images } from '../../config/images';
-import { directionsUrl } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -14,73 +18,128 @@ export function getStaticPaths() {
 
 const locale = Astro.params.locale as Locale;
 const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.contact, locale);
+const parish = localize(pages.parish, locale);
+const href = (path: string) => localizedPath(locale, path);
+const addr = siteConfig.address;
+const directions = directionsUrl(siteConfig.mapQuery);
 ---
 <BaseLayout locale={locale} title={dict.contact.title} path="contact" description={dict.contact.intro}>
-  <section class="page-hero">
+  <PageHero
+    image="/images/parish-exterior.webp"
+    position="center 50%"
+    eyebrow={p.eyebrow}
+    title={dict.contact.title}
+    lead={dict.contact.intro}
+    crumbsLabel={c.crumbs}
+    crumbs={[{ label: dict.nav.home, href: href('') }, { label: dict.contact.title }]}
+    overlap
+  />
+
+  <div class="inner-glance reveal">
     <div class="container">
-      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
-        <Rosette size={28} />
+      <div class="home-glance__inner home-glance__inner--4">
+        <div class="home-glance__cell">
+          <span class="glance-icon"><Icon name="pin" size={20} /></span>
+          <p class="home-glance__label">{c.address}</p>
+          <p class="home-glance__value">{addr.street}<br />{addr.city}, {addr.region} {addr.postal}</p>
+          <a class="home-glance__link" href={directions} target="_blank" rel="noopener noreferrer">{dict.schedule.directions}</a>
+        </div>
+        <div class="home-glance__cell">
+          <span class="glance-icon"><Icon name="phone" size={20} /></span>
+          <p class="home-glance__label">{c.phone}</p>
+          <p class="home-glance__value"><a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}>{siteConfig.phone}</a></p>
+        </div>
+        <div class="home-glance__cell">
+          <span class="glance-icon"><Icon name="mail" size={20} /></span>
+          <p class="home-glance__label">{c.email}</p>
+          <p class="home-glance__value"><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+        </div>
+        <div class="home-glance__cell">
+          <span class="glance-icon"><Icon name="clock" size={20} /></span>
+          <p class="home-glance__label">{dict.contact.hours}</p>
+          <p class="home-glance__value">{dict.contact.hoursText}</p>
+        </div>
       </div>
-      <h1>{dict.contact.title}</h1>
-      <p>{dict.contact.intro}</p>
     </div>
-  </section>
-  <section class="section" style="padding-top: 0;">
-    <div class="container split-2">
-      <div>
-        <h2>{dict.contact.formTitle}</h2>
+  </div>
+
+  <section class="section reveal">
+    <div class="container form-layout">
+      <div class="form-card">
+        <header class="form-card__head">
+          <p class="eyebrow">{p.formEyebrow}</p>
+          <h2>{dict.contact.formTitle}</h2>
+        </header>
         <FormShell submitLabel={dict.contact.submit} successMessage={dict.contact.success}>
-          <div class="form-row">
-            <label for="contact-name">{dict.contact.name}</label>
-            <input id="contact-name" name="name" type="text" required autocomplete="name" />
-          </div>
-          <div class="form-row">
-            <label for="contact-email">{dict.contact.email}</label>
-            <input id="contact-email" name="email" type="email" required autocomplete="email" />
-          </div>
-          <PhoneInput client:load id="contact-phone" label={dict.contact.phone} />
-          <div class="form-row">
-            <label for="contact-message">{dict.contact.message}</label>
-            <textarea id="contact-message" name="message" required></textarea>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="contact-name">{dict.contact.name}</label>
+              <input id="contact-name" name="name" type="text" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label for="contact-email">{dict.contact.email}</label>
+              <input id="contact-email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <PhoneInput client:load id="contact-phone" label={dict.contact.phone} />
+            <div class="form-row form-row--full">
+              <label for="contact-message">{dict.contact.message}</label>
+              <textarea id="contact-message" name="message" required rows="6"></textarea>
+            </div>
           </div>
         </FormShell>
       </div>
-      <div>
-        <h2>{dict.contact.visit}</h2>
-        <div class="media-frame" style="margin-bottom: var(--space-4);">
-          <img
-            src={images.contact.src}
-            alt={images.contact.alt[locale]}
-            width="960"
-            height="640"
-            loading="lazy"
-          />
+
+      <aside class="aside-card map-card">
+        <p class="eyebrow">{p.mapEyebrow}</p>
+        <h2>{p.mapTitle}</h2>
+        <div class="player">
+          <div class="livestream-frame map-frame">
+            <div class="map-fallback" aria-hidden="true">
+              <Icon name="pin" size={34} />
+              <strong>{siteConfig.parishName[locale]}</strong>
+              <span>{addr.street}, {addr.city}</span>
+            </div>
+            <iframe
+              src={siteConfig.mapEmbedUrl}
+              title={p.mapTitle}
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
-        <p>
-          {siteConfig.address.street}<br />
-          {siteConfig.address.city}, {siteConfig.address.region} {siteConfig.address.postal}<br />
-          {siteConfig.address.country}
-        </p>
-        <p>
-          <a class="btn btn--ghost" href={directionsUrl(siteConfig.mapQuery)} target="_blank" rel="noopener noreferrer">
-            {dict.schedule.directions}
-          </a>
-        </p>
-        <h3>{dict.contact.hours}</h3>
-        <p>{dict.contact.hoursText}</p>
-        <p>
-          <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}>{siteConfig.phone}</a><br />
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-        </p>
-        <div class="livestream-frame" style="aspect-ratio: 4/3; margin-top: var(--space-4);">
-          <iframe
-            src={siteConfig.mapEmbedUrl}
-            title={dict.contact.visit}
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+        <p class="map-card__text">{p.mapText}</p>
+        <a class="btn" href={directions} target="_blank" rel="noopener noreferrer">
+          <Icon name="pin" size={18} /> {c.directions}
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--parchment reveal">
+    <div class="container split-feature">
+      <figure class="framed">
+        <div class="framed__img">
+          <img src={images.contact.src} alt={images.contact.alt[locale]} width="1200" height="799" loading="lazy" decoding="async" />
+        </div>
+        <figcaption>{images.contact.alt[locale]}</figcaption>
+      </figure>
+      <div class="split-copy">
+        <p class="eyebrow">{dict.contact.visit}</p>
+        <h2>{parish.visitTitle}</h2>
+        <MoravaBorder variant="cross-line" />
+        <p>{parish.visitText}</p>
+        <div class="actions">
+          <a class="btn" href={href('schedule')}>{dict.nav.schedule}</a>
+          <a class="btn btn--ghost" href={href('livestream')}>{dict.nav.livestream}</a>
         </div>
       </div>
     </div>
   </section>
+
+  <PhotoBand image="/images/zica.webp" position="70% 55%" title={p.bandTitle} text={p.bandText}>
+    <a class="btn btn--gold" href={href('schedule')}>{dict.nav.schedule}</a>
+    <a class="btn btn--outline-light" href={href('slava')}>{dict.nav.slava}</a>
+  </PhotoBand>
 </BaseLayout>

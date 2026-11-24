@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import { locales, t, localizedPath, type Locale } from '../../../i18n/ui';
+import { localize, pages } from '../../../i18n/pages';
+import { galleryItems } from '../../../config/parish';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.gallery, locale);
+const href = (path: string) => localizedPath(locale, path);
+const items = localize(galleryItems, locale);
+const filters = [
+  { id: 'all', label: p.all },
+  { id: 'churches', label: p.churches },
+  { id: 'frescoes', label: p.frescoes },
+];
+---
+<BaseLayout locale={locale} title={p.title} path="parish/gallery" description={p.lead}>
+  <PageHero
+    image="/images/manasija-domes.webp"
+    position="center 40%"
+    eyebrow={dict.parish.title}
+    title={p.title}
+    lead={p.lead}
+    crumbsLabel={c.crumbs}
+    crumbs={[
+      { label: dict.nav.home, href: href('') },
+      { label: dict.parish.title, href: href('parish') },
+      { label: p.title },
+    ]}
+  />
+
+  <section class="section reveal" data-gallery>
+    <div class="container">
+      <div class="gallery-filters" role="group" aria-label={p.title} data-gallery-filters hidden>
+        {filters.map((f, i) => (
+          <button type="button" data-filter={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.label}</button>
+        ))}
+      </div>
+      <div class="gallery-grid">
+        {items.map((g, i) => (
+          <figure class="gallery-tile" data-category={g.category}>
+            <a href={g.src} data-index={i} aria-label={`${p.open}: ${g.caption}`}>
+              <img src={g.src} alt={g.caption} width={g.width} height={g.height} loading="lazy" decoding="async" />
+              <figcaption>{g.caption}</figcaption>
+            </a>
+          </figure>
+        ))}
+      </div>
+      <p class="fine-print">{p.note}</p>
+    </div>
+
+    <dialog class="lightbox" data-lightbox aria-label={p.title}>
+      <figure class="lightbox__figure">
+        <img alt="" data-lightbox-img />
+        <figcaption data-lightbox-caption></figcaption>
+      </figure>
+      <div class="lightbox__bar">
+        <button type="button" data-lightbox-prev aria-label={p.prev}>‹</button>
+        <button type="button" data-lightbox-close>{dict.schedule.close}</button>
+        <button type="button" data-lightbox-next aria-label={p.next}>›</button>
+      </div>
+    </dialog>
+  </section>
+</BaseLayout>
+
+<script>
+  const root = document.querySelector('[data-gallery]');
+  if (root) {
+    const filterBar = root.querySelector<HTMLElement>('[data-gallery-filters]');
+    const tiles = Array.from(root.querySelectorAll<HTMLElement>('.gallery-tile'));
+    const dialog = root.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const img = root.querySelector<HTMLImageElement>('[data-lightbox-img]');
+    const caption = root.querySelector<HTMLElement>('[data-lightbox-caption]');
+    let current = 0;
+
+    if (filterBar) {
+      filterBar.hidden = false;
+      filterBar.querySelectorAll<HTMLButtonElement>('button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.filter;
+          filterBar
+            .querySelectorAll('button')
+            .forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          tiles.forEach((tile) => {
+            tile.hidden = id !== 'all' && tile.dataset.category !== id;
+          });
+        });
+      });
+    }
+
+    const visible = () => tiles.filter((tile) => !tile.hidden);
+
+    function show(tile: HTMLElement) {
+      const link = tile.querySelector('a');
+      const picture = tile.querySelector('img');
+      if (!link || !picture || !img || !caption) return;
+      img.src = link.getAttribute('href') ?? '';
+      img.alt = picture.alt;
+      caption.textContent = picture.alt;
+      current = visible().indexOf(tile);
+    }
+
+    function step(delta: number) {
+      const list = visible();
+      if (!list.length) return;
+      show(list[(current + delta + list.length) % list.length]);
+    }
+
+    if (dialog && typeof dialog.showModal === 'function') {
+      tiles.forEach((tile) => {
+        tile.querySelector('a')?.addEventListener('click', (e) => {
+          e.preventDefault();
+          show(tile);
+          dialog.showModal();
+        });
+      });
+      root.querySelector('[data-lightbox-close]')?.addEventListener('click', () => dialog.close());
+      root.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => step(-1));
+      root.querySelector('[data-lightbox-next]')?.addEventListener('click', () => step(1));
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') step(-1);
+        if (e.key === 'ArrowRight') step(1);
+      });
+    }
+  }
+</script>

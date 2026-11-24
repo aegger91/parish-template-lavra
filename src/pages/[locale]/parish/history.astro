@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import PhotoBand from '../../../components/PhotoBand.astro';
+import SerbianCross from '../../../icons/SerbianCross.astro';
+import { locales, t, localizedPath, type Locale } from '../../../i18n/ui';
+import { localize, pages } from '../../../i18n/pages';
+import { milestones } from '../../../config/parish';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.history, locale);
+const href = (path: string) => localizedPath(locale, path);
+const items = localize(milestones, locale);
+---
+<BaseLayout locale={locale} title={p.title} path="parish/history" description={p.lead}>
+  <PageHero
+    image="/images/decani.webp"
+    position="center 42%"
+    eyebrow={dict.parish.title}
+    title={p.title}
+    lead={p.lead}
+    crumbsLabel={c.crumbs}
+    crumbs={[
+      { label: dict.nav.home, href: href('') },
+      { label: dict.parish.title, href: href('parish') },
+      { label: p.title },
+    ]}
+    icon={{ src: '/images/gallery-fresco.webp', alt: localize({ sr: 'Бели анђео, Милешева', en: 'The White Angel, Mileševa' }, locale), position: 'center 12%' }}
+  />
+
+  <section class="section reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.introEyebrow} title={p.introTitle} text={p.introText} center />
+      <ol class="timeline">
+        {items.map((m) => (
+          <li class="timeline__item">
+            <span class="timeline__node" aria-hidden="true">
+              <SerbianCross size={22} decorative />
+            </span>
+            <div class="timeline__copy">
+              <p class="timeline__year">{m.year}</p>
+              <h3>{m.title}</h3>
+              <p>{m.text}</p>
+            </div>
+            {m.image && (
+              <figure class="timeline__media">
+                <img src={m.image.src} alt={m.image.caption} loading="lazy" decoding="async" style={`object-position: ${m.image.position ?? 'center'}`} />
+                <figcaption>{m.image.caption}</figcaption>
+              </figure>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <PhotoBand image="/images/fresco-gracanica.webp" position="center 35%" title={p.ctaTitle} text={p.ctaText}>
+    <a class="btn btn--gold" href={href('parish/gallery')}>{dict.nav.gallery}</a>
+    <a class="btn btn--outline-light" href={href('parish/clergy')}>{dict.nav.clergy}</a>
+  </PhotoBand>
+</BaseLayout>

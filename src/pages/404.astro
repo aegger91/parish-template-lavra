@@ -1,24 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NotFound from '../components/NotFound.astro';
 import { t, localizedPath } from '../i18n/ui';
 
 const locale = 'sr';
 const dict = t(locale);
 ---
 <BaseLayout locale={locale} title={dict.notFound.title} path="404">
-  <section class="section">
-    <div class="container" style="text-align: center; max-width: 32rem;">
-      <p class="slavonic">✠</p>
-      <h1>{dict.notFound.title}</h1>
-      <p>{dict.notFound.text}</p>
-      <p style="margin-top: var(--space-5);">
-        <a class="btn" href={localizedPath('sr', '')}>{dict.notFound.home}</a>
-      </p>
-      <p style="margin-top: var(--space-4); font-size: 0.95rem;">
-        <a href={localizedPath('lat', '')}>Latinica</a>
-        ·
-        <a href={localizedPath('en', '')}>English</a>
-      </p>
-    </div>
-  </section>
+  <NotFound locale={locale}>
+    <p class="lang-alt">
+      <a href={localizedPath('lat', '')} lang="sr-Latn">Latinica</a>
+      <a href={localizedPath('en', '')} lang="en">English</a>
+    </p>
+  </NotFound>
 </BaseLayout>

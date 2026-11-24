@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import PhotoBand from '../../../components/PhotoBand.astro';
+import MoravaBorder from '../../../icons/MoravaBorder.astro';
+import Icon from '../../../icons/Icon.astro';
+import { locales, t, localizedPath, type Locale } from '../../../i18n/ui';
+import { localize, pages } from '../../../i18n/pages';
+import { formatServiceDateLabel, directionsUrl } from '../../../i18n/utils';
+import { siteConfig } from '../../../config/site';
+import { images } from '../../../config/images';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.parish, locale);
+const href = (path: string) => localizedPath(locale, path);
+
+const patronDate = formatServiceDateLabel(
+  '2027-01-27',
+  locale,
+  siteConfig.calendarStyle,
+  { month: 1, day: 14 },
+  dict.schedule.oldStyleSuffix,
+);
+
+const explore = [
+  { href: 'parish/clergy', title: dict.nav.clergy, text: p.cards.clergy, image: '/images/fresco-studenica-saints.webp', position: 'center 30%' },
+  { href: 'parish/history', title: dict.nav.history, text: p.cards.history, image: '/images/decani.webp', position: 'center 40%' },
+  { href: 'parish/gallery', title: dict.nav.gallery, text: p.cards.gallery, image: '/images/manasija-domes.webp', position: 'center' },
+  { href: 'events', title: dict.nav.events, text: p.cards.news, image: '/images/church-interior.webp', position: 'center 35%' },
+];
+---
+<BaseLayout locale={locale} title={dict.parish.title} path="parish" description={p.lead}>
+  <PageHero
+    image="/images/lazarica.webp"
+    position="center 38%"
+    eyebrow={siteConfig.tagline[locale]}
+    title={dict.parish.title}
+    lead={p.lead}
+    crumbsLabel={c.crumbs}
+    crumbs={[{ label: dict.nav.home, href: href('') }, { label: dict.parish.title }]}
+    icon={{ src: '/images/fresco-studenica-forerunner.webp', alt: localize({ sr: 'Живопис, Студеница', en: 'Wall paintings, Studenica' }, locale), position: 'center 18%' }}
+    overlap
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--gold" href={href('schedule')}>{dict.nav.schedule}</a>
+      <a class="btn btn--outline-light" href={href('contact')}>{dict.nav.contact}</a>
+    </Fragment>
+  </PageHero>
+
+  <div class="inner-glance reveal">
+    <div class="container">
+      <div class="home-glance__inner home-glance__inner--4 home-glance__inner--stats">
+        {p.stats.map((s) => (
+          <div class="home-glance__cell">
+            <p class="stat-value">{s.value}</p>
+            <p class="home-glance__meta">{s.label}</p>
+          </div>
+        ))}
+      </div>
+      <p class="glance-note">{c.samples}</p>
+    </div>
+  </div>
+
+  <section class="section reveal">
+    <div class="container split-feature">
+      <figure class="framed">
+        <div class="framed__img">
+          <img src={images.parish.src} alt={images.parish.alt[locale]} loading="lazy" decoding="async" />
+        </div>
+        <figcaption>{images.parish.alt[locale]}</figcaption>
+      </figure>
+      <div class="split-copy">
+        <p class="eyebrow">{p.aboutEyebrow}</p>
+        <h2>{p.aboutTitle}</h2>
+        <MoravaBorder variant="cross-line" />
+        <p>{p.aboutText1}</p>
+        <p>{p.aboutText2}</p>
+        <div class="actions">
+          <a class="btn" href={href('parish/clergy')}>{dict.nav.clergy}</a>
+          <a class="btn btn--ghost" href={href('parish/history')}>{dict.nav.history}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--parchment reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.exploreEyebrow} title={p.exploreTitle} center />
+      <div class="arch-cards arch-cards--4">
+        {explore.map((e) => (
+          <a class="arch-card" href={href(e.href)}>
+            <div class="arch-card__media">
+              <img src={e.image} alt="" loading="lazy" decoding="async" style={`object-position: ${e.position}`} />
+            </div>
+            <div class="arch-card__body">
+              <h3>{e.title}</h3>
+              <p>{e.text}</p>
+              <span class="more-link">{c.more} <Icon name="arrow" size={18} /></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="container split-feature split-feature--reverse">
+      <figure class="framed framed--tall framed--arch">
+        <div class="framed__img">
+          <img
+            src="/images/fresco-mileseva-sava.webp"
+            alt={localize({ sr: 'Свети Сава, фреска из Милешеве', en: 'Saint Sava, fresco from Mileševa' }, locale)}
+            loading="lazy"
+            decoding="async"
+            style="object-position: center 20%"
+          />
+        </div>
+      </figure>
+      <div class="split-copy">
+        <p class="eyebrow">{p.patronEyebrow}</p>
+        <h2>{p.patronTitle}</h2>
+        <MoravaBorder variant="cross-line" />
+        <p class="date-chip"><Icon name="calendar" size={20} /> {patronDate}</p>
+        <p>{p.patronText}</p>
+        <div class="actions">
+          <a class="btn btn--red" href={href('slava')}>{dict.nav.slava}</a>
+          <a class="btn btn--ghost" href={href('schedule')}>{dict.nav.schedule}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PhotoBand image="/images/gallery-4.webp" position="center 40%" title={p.visitTitle} text={p.visitText}>
+    <a class="btn btn--gold" href={href('schedule')}>{dict.nav.schedule}</a>
+    <a class="btn btn--outline-light" href={directionsUrl(siteConfig.mapQuery)} target="_blank" rel="noopener noreferrer">{c.directions}</a>
+  </PhotoBand>
+</BaseLayout>

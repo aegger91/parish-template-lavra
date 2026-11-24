@@ -3,8 +3,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormShell from '../../components/FormShell.astro';
 import PhoneInput from '../../components/PhoneInput';
 import AmountField from '../../components/AmountField';
-import Rosette from '../../icons/Rosette.astro';
-import { locales, t, type Locale } from '../../i18n/ui';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Tile from '../../components/Tile.astro';
+import OfficeLines from '../../components/OfficeLines.astro';
+import SerbianCross from '../../icons/SerbianCross.astro';
+import Icon from '../../icons/Icon.astro';
+import { locales, t, localizedPath, type Locale } from '../../i18n/ui';
+import { localize, pages } from '../../i18n/pages';
 import { siteConfig } from '../../config/site';
 
 export function getStaticPaths() {
@@ -13,47 +19,93 @@ export function getStaticPaths() {
 
 const locale = Astro.params.locale as Locale;
 const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.donate, locale);
+const href = (path: string) => localizedPath(locale, path);
 ---
 <BaseLayout locale={locale} title={dict.donate.title} path="donate" description={dict.donate.intro}>
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-ornament" style="justify-content: flex-start; margin-bottom: var(--space-3);">
-        <Rosette size={28} />
+  <PageHero
+    image="/images/gallery-2.webp"
+    position="center 45%"
+    eyebrow={p.eyebrow}
+    title={dict.donate.title}
+    lead={dict.donate.intro}
+    crumbsLabel={c.crumbs}
+    crumbs={[{ label: dict.nav.home, href: href('') }, { label: dict.donate.title }]}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--gold" href="#give">{dict.home.donateCta}</a>
+      <a class="btn btn--outline-light" href={href('pomen')}>{dict.nav.pomen}</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section reveal" id="give">
+    <div class="container form-layout">
+      <div class="form-card">
+        <header class="form-card__head">
+          <p class="eyebrow">{p.formEyebrow}</p>
+          <h2>{p.formTitle}</h2>
+          <p>{p.sampleNote}</p>
+        </header>
+        <FormShell submitLabel={dict.donate.submit} successMessage={dict.donate.success}>
+          <div class="amount-box">
+            <AmountField
+              client:load
+              id="donate-amount"
+              label={dict.donate.amount}
+              hint={dict.pomen.amountHint}
+              suggestedLabel={dict.donate.suggested}
+              otherLabel={dict.donate.other}
+              suggested={siteConfig.donationSuggested}
+              showProgress={siteConfig.showDonationProgress}
+              progressLabel={dict.donate.progressLabel}
+              progressCurrent={0}
+              progressGoal={0}
+            />
+          </div>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="donate-name">{dict.donate.name}</label>
+              <input id="donate-name" name="name" type="text" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label for="donate-email">{dict.donate.email}</label>
+              <input id="donate-email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <PhoneInput client:load id="donate-phone" label={dict.donate.phone} />
+            <div class="form-row form-row--full">
+              <label for="donate-note">{dict.donate.note}</label>
+              <textarea id="donate-note" name="note"></textarea>
+            </div>
+          </div>
+        </FormShell>
       </div>
-      <h1>{dict.donate.title}</h1>
-      <p>{dict.donate.intro}</p>
+
+      <aside class="side-panel">
+        <span class="side-panel__mark" aria-hidden="true"><SerbianCross size={30} decorative /></span>
+        <h2>{p.sideTitle}</h2>
+        <ul class="side-list">
+          {p.uses.map((u) => (
+            <li>
+              <span class="side-list__icon"><Icon name={u.icon} size={20} /></span>
+              <span>
+                <strong>{u.title}</strong>
+                <span class="side-list__text">{u.text}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <OfficeLines locale={locale} hours={false} />
+      </aside>
     </div>
   </section>
-  <section class="section" style="padding-top: 0;">
-    <div class="container" style="max-width: 36rem;">
-      <FormShell submitLabel={dict.donate.submit} successMessage={dict.donate.success}>
-        <AmountField
-          client:load
-          id="donate-amount"
-          label={dict.donate.amount}
-          hint={dict.pomen.amountHint}
-          suggestedLabel={dict.donate.suggested}
-          otherLabel={dict.donate.other}
-          suggested={siteConfig.donationSuggested}
-          showProgress={siteConfig.showDonationProgress}
-          progressLabel={dict.donate.progressLabel}
-          progressCurrent={0}
-          progressGoal={0}
-        />
-        <div class="form-row">
-          <label for="donate-name">{dict.donate.name}</label>
-          <input id="donate-name" name="name" type="text" required autocomplete="name" />
-        </div>
-        <div class="form-row">
-          <label for="donate-email">{dict.donate.email}</label>
-          <input id="donate-email" name="email" type="email" required autocomplete="email" />
-        </div>
-        <PhoneInput client:load id="donate-phone" label={dict.donate.phone} />
-        <div class="form-row">
-          <label for="donate-note">{dict.donate.note}</label>
-          <textarea id="donate-note" name="note"></textarea>
-        </div>
-      </FormShell>
+
+  <section class="section section--parchment reveal">
+    <div class="container">
+      <SectionHead eyebrow={p.otherEyebrow} title={p.otherTitle} center />
+      <div class="tile-grid">
+        {p.other.map((o) => <Tile icon={o.icon} title={o.title} text={o.text} />)}
+      </div>
     </div>
   </section>
 </BaseLayout>
