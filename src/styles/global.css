@@ -237,20 +237,15 @@ p {
   background: linear-gradient(90deg, currentColor, transparent);
 }
 
-.rule svg,
-.rule img {
-  width: 0.95rem;
-  height: 0.95rem;
+.rule svg {
+  width: 0.85rem;
+  height: 0.85rem;
   flex-shrink: 0;
-  filter: invert(67%) sepia(42%) saturate(520%) hue-rotate(6deg) brightness(92%);
+  color: inherit;
 }
 
 .rule--light {
   color: var(--gold-bright);
-}
-
-.rule--light img {
-  filter: invert(84%) sepia(28%) saturate(650%) hue-rotate(2deg) brightness(105%);
 }
 
 /* Buttons */
