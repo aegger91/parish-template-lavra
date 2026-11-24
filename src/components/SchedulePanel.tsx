@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import type { Locale } from '../i18n/ui';
 import {
   buildIcs,
+  dateParts,
   directionsUrl,
   formatServiceDateLabel,
   googleCalendarUrl,
@@ -40,6 +41,9 @@ interface Props {
   calendarStyle: 'new' | 'old';
   mapQuery: string;
   labels: Labels;
+  /** 'rich' adds a date tile and chevron for inner pages */
+  variant?: 'list' | 'rich';
+  showBadge?: boolean;
 }
 
 export default function SchedulePanel({
@@ -48,6 +52,8 @@ export default function SchedulePanel({
   calendarStyle,
   mapQuery,
   labels,
+  variant = 'list',
+  showBadge = true,
 }: Props) {
   const [active, setActive] = useState<SchedulePanelItem | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -88,10 +94,12 @@ export default function SchedulePanel({
 
   return (
     <>
-      <span className="calendar-badge">
-        {calendarStyle === 'old' ? labels.calendarOld : labels.calendarNew}
-      </span>
-      <ul className="schedule-list">
+      {showBadge && (
+        <span className="calendar-badge">
+          {calendarStyle === 'old' ? labels.calendarOld : labels.calendarNew}
+        </span>
+      )}
+      <ul className={variant === 'rich' ? 'schedule-list schedule-list--rich' : 'schedule-list'}>
         {items.map((item) => {
           const dateLabel = formatServiceDateLabel(
             item.date,
@@ -108,11 +116,34 @@ export default function SchedulePanel({
                 onClick={() => setActive(item)}
                 aria-label={`${labels.openDetails}: ${item.title}`}
               >
-                <span className="schedule-item__title">{item.title}</span>
-                <span className="schedule-item__meta">
-                  {dateLabel} · {item.start}-{item.end}
-                </span>
-                <span className="schedule-item__meta">{item.location}</span>
+                {variant === 'rich' ? (
+                  <>
+                    <span className="schedule-item__date" aria-hidden="true">
+                      <span className="schedule-item__day">{dateParts(item.date, locale).day}</span>
+                      <span className="schedule-item__month">{dateParts(item.date, locale).month}</span>
+                    </span>
+                    <span className="schedule-item__body">
+                      <span className="schedule-item__title">{item.title}</span>
+                      <span className="schedule-item__meta">
+                        {dateLabel} · {item.start}-{item.end}
+                      </span>
+                      <span className="schedule-item__meta">{item.location}</span>
+                    </span>
+                    <span className="schedule-item__chevron" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9.2 5.8 15.4 12l-6.2 6.2" />
+                      </svg>
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="schedule-item__title">{item.title}</span>
+                    <span className="schedule-item__meta">
+                      {dateLabel} · {item.start}-{item.end}
+                    </span>
+                    <span className="schedule-item__meta">{item.location}</span>
+                  </>
+                )}
               </button>
             </li>
           );

@@ -1,0 +1,19 @@
+---
+import Icon from '../icons/Icon.astro';
+
+interface Props {
+  icon: string;
+  title: string;
+  text?: string;
+  href?: string;
+  more?: string;
+}
+const { icon, title, text, href, more } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+<Tag class="tile" href={href}>
+  <span class="tile__icon"><Icon name={icon} size={24} /></span>
+  <h3>{title}</h3>
+  {text && <p>{text}</p>}
+  {href && more && <span class="more-link">{more} <Icon name="arrow" size={18} /></span>}
+</Tag>

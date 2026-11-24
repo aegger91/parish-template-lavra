@@ -1,0 +1,79 @@
+---
+import MoravaBorder from '../icons/MoravaBorder.astro';
+import SerbianCross from '../icons/SerbianCross.astro';
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  image: string;
+  position?: string;
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  crumbs: Crumb[];
+  crumbsLabel: string;
+  icon?: { src: string; alt: string; position?: string };
+  /** Leave room below for an overlapping info bar */
+  overlap?: boolean;
+}
+
+const {
+  image,
+  position = 'center 45%',
+  eyebrow,
+  title,
+  lead,
+  crumbs,
+  crumbsLabel,
+  icon,
+  overlap = false,
+} = Astro.props;
+const hasActions = Astro.slots.has('actions');
+---
+<section class:list={['inner-hero', icon && 'inner-hero--icon', overlap && 'inner-hero--overlap']}>
+  <div class="inner-hero__media" aria-hidden="true">
+    <img src={image} alt="" fetchpriority="high" decoding="async" style={`object-position: ${position}`} />
+  </div>
+  <div class="inner-hero__veil" aria-hidden="true"></div>
+  <div class="container inner-hero__grid">
+    <div class="inner-hero__content">
+      <nav class="crumbs" aria-label={crumbsLabel}>
+        <ol>
+          {crumbs.map((c, i) => (
+            <li>
+              {c.href && i < crumbs.length - 1 ? (
+                <a href={c.href}>{c.label}</a>
+              ) : (
+                <span aria-current="page">{c.label}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+      {eyebrow && <p class="inner-hero__tag">{eyebrow}</p>}
+      <h1 class="inner-hero__title">{title}</h1>
+      <div class="inner-hero__divider">
+        <MoravaBorder variant="cross-line" />
+      </div>
+      {lead && <p class="inner-hero__lead">{lead}</p>}
+      {hasActions && (
+        <div class="inner-hero__actions">
+          <slot name="actions" />
+        </div>
+      )}
+    </div>
+    {icon && (
+      <figure class="arch-icon">
+        <span class="arch-icon__cross" aria-hidden="true">
+          <SerbianCross size={34} decorative />
+        </span>
+        <span class="arch-icon__frame">
+          <img src={icon.src} alt={icon.alt} loading="eager" style={`object-position: ${icon.position ?? 'center top'}`} />
+        </span>
+      </figure>
+    )}
+  </div>
+</section>

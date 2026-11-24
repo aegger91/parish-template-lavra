@@ -1,0 +1,24 @@
+---
+import MoravaBorder from '../icons/MoravaBorder.astro';
+
+interface Props {
+  image: string;
+  position?: string;
+  title: string;
+  text?: string;
+}
+const { image, position = 'center', title, text } = Astro.props;
+---
+<section class="photo-band reveal">
+  <div class="photo-band__media" aria-hidden="true">
+    <img src={image} alt="" loading="lazy" decoding="async" style={`object-position: ${position}`} />
+  </div>
+  <div class="container">
+    <MoravaBorder variant="cross-line" />
+    <h2>{title}</h2>
+    {text && <p>{text}</p>}
+    <div class="actions">
+      <slot />
+    </div>
+  </div>
+</section>

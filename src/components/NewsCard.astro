@@ -1,0 +1,24 @@
+---
+import Icon from '../icons/Icon.astro';
+import { t, localizedPath, type Locale } from '../i18n/ui';
+import { formatDate } from '../i18n/utils';
+import type { NewsItem } from '../config/news';
+
+interface Props {
+  item: NewsItem;
+  locale: Locale;
+}
+const { item, locale } = Astro.props;
+const dict = t(locale);
+---
+<a class="news-card" href={localizedPath(locale, `events/${item.id}`)}>
+  <div class="news-card__media">
+    <img src={item.image} alt="" loading="lazy" decoding="async" />
+  </div>
+  <div class="news-card__body">
+    <time class="news-date" datetime={item.date}>{formatDate(item.date, locale, { full: true })}</time>
+    <h3>{item.title[locale]}</h3>
+    <p>{item.summary[locale]}</p>
+    <span class="more-link">{dict.events.readMore} <Icon name="arrow" size={18} /></span>
+  </div>
+</a>

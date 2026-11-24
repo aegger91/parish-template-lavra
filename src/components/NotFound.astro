@@ -1,0 +1,53 @@
+---
+import MoravaBorder from '../icons/MoravaBorder.astro';
+import Tile from './Tile.astro';
+import { t, localizedPath, type Locale } from '../i18n/ui';
+import { localize, pages } from '../i18n/pages';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const dict = t(locale);
+const c = localize(pages.common, locale);
+const p = localize(pages.notFound, locale);
+const parish = localize(pages.parish, locale);
+const help = localize(pages.schedule.help, locale);
+const href = (path: string) => localizedPath(locale, path);
+---
+<section class="inner-hero inner-hero--center">
+  <div class="inner-hero__media" aria-hidden="true">
+    <img src="/images/manasija-domes.webp" alt="" style="object-position: center 40%" />
+  </div>
+  <div class="inner-hero__veil" aria-hidden="true"></div>
+  <div class="container inner-hero__grid">
+    <div class="inner-hero__content">
+      <p class="big-number" aria-hidden="true">404</p>
+      <h1 class="inner-hero__title">{dict.notFound.title}</h1>
+      <div class="inner-hero__divider">
+        <MoravaBorder variant="cross-line" />
+      </div>
+      <p class="inner-hero__lead">{dict.notFound.text}</p>
+      <div class="inner-hero__actions">
+        <a class="btn btn--gold" href={href('')}>{dict.notFound.home}</a>
+        <a class="btn btn--outline-light" href={href('contact')}>{dict.nav.contact}</a>
+      </div>
+      <slot />
+    </div>
+  </div>
+</section>
+
+<section class="section section--parchment reveal">
+  <div class="container">
+    <header class="inner-head inner-head--center">
+      <h2>{p.linksTitle}</h2>
+      <MoravaBorder variant="cross-line" />
+    </header>
+    <div class="tile-grid tile-grid--4">
+      <Tile icon="home" title={dict.nav.parish} text={parish.lead} href={href('parish')} more={c.more} />
+      <Tile icon="calendar" title={dict.nav.schedule} text={c.upcoming} href={href('schedule')} more={c.more} />
+      <Tile icon="candle" title={dict.nav.pomen} text={help.pomen} href={href('pomen')} more={c.more} />
+      <Tile icon="mail" title={dict.nav.contact} text={dict.contact.intro} href={href('contact')} more={c.more} />
+    </div>
+  </div>
+</section>

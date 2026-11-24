@@ -1,0 +1,17 @@
+---
+import Icon from '../icons/Icon.astro';
+import { t, type Locale } from '../i18n/ui';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  locale: Locale;
+  hours?: boolean;
+}
+const { locale, hours = true } = Astro.props;
+const dict = t(locale);
+---
+<ul class="contact-lines">
+  <li><Icon name="phone" size={20} /><a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}>{siteConfig.phone}</a></li>
+  <li><Icon name="mail" size={20} /><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+  {hours && <li><Icon name="clock" size={20} /><span>{dict.contact.hoursText}</span></li>}
+</ul>

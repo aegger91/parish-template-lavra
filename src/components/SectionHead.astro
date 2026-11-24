@@ -1,0 +1,18 @@
+---
+import MoravaBorder from '../icons/MoravaBorder.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  center?: boolean;
+  id?: string;
+}
+const { eyebrow, title, text, center = false, id } = Astro.props;
+---
+<header class:list={['inner-head', center && 'inner-head--center']}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h2 id={id}>{title}</h2>
+  <MoravaBorder variant="cross-line" />
+  {text && <p>{text}</p>}
+</header>
