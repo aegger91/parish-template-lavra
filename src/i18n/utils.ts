@@ -104,7 +104,15 @@ export function formatDate(
 ): string {
   const d = new Date(iso + 'T12:00:00');
   const months = opts?.full ? monthNamesFull[locale] : monthNames[locale];
+  if (opts?.full && locale !== 'en') {
+    return `${d.getDate()}. ${months[d.getMonth()]} ${d.getFullYear()}.`;
+  }
   return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+export function dateParts(iso: string, locale: Locale): { day: number; month: string } {
+  const d = new Date(iso + 'T12:00:00');
+  return { day: d.getDate(), month: monthNames[locale][d.getMonth()] };
 }
 
 export function formatServiceDateLabel(

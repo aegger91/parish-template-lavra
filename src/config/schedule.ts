@@ -162,3 +162,20 @@ export const allServices: ServiceItem[] = [
     oldStyleDate: { month: 12, day: 5 },
   },
 ];
+
+/** Flatten services to one locale for SchedulePanel, sorted by date and time */
+export function localizeServices(list: ServiceItem[], locale: 'sr' | 'lat' | 'en') {
+  return [...list]
+    .sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start))
+    .map((s) => ({
+      id: s.id,
+      title: s.title[locale],
+      description: s.description[locale],
+      date: s.date,
+      start: s.start,
+      end: s.end,
+      location: s.location[locale],
+      oldStyleDate: s.oldStyleDate,
+      feast: s.feast?.[locale],
+    }));
+}
