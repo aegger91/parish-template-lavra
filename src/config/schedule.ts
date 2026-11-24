@@ -16,7 +16,18 @@ export type ScheduleItem = {
 /** Offset in days: Old Style (Julian) is typically 13 days behind New Style */
 export const OLD_STYLE_OFFSET_DAYS = 13;
 
-export const thisWeekServices: ScheduleItem[] = [
+const thisWeekServicesRaw: ScheduleItem[] = [
+  {
+    id: 'akathist-wed',
+    title: { ro: 'Acatist', en: 'Akathist' },
+    description: {
+      ro: 'Acatistul Maicii Domnului.',
+      en: 'Akathist to the Theotokos.',
+    },
+    date: nextWeekdayDate(3),
+    startTime: '18:00',
+    endTime: '18:45',
+  },
   {
     id: 'vespers-sat',
     title: { ro: 'Vecernie', en: 'Vespers' },
@@ -39,18 +50,12 @@ export const thisWeekServices: ScheduleItem[] = [
     startTime: '09:00',
     endTime: '11:00',
   },
-  {
-    id: 'akathist-wed',
-    title: { ro: 'Acatist', en: 'Akathist' },
-    description: {
-      ro: 'Acatistul Maicii Domnului.',
-      en: 'Akathist to the Theotokos.',
-    },
-    date: nextWeekdayDate(3),
-    startTime: '18:00',
-    endTime: '18:45',
-  },
 ];
+
+/** Always chronological by date, then start time */
+export const thisWeekServices: ScheduleItem[] = [...thisWeekServicesRaw].sort(
+  (a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime),
+);
 
 export const nextFeast: ScheduleItem = {
   id: 'feast-nicholas',
@@ -91,7 +96,7 @@ export const upcomingEvents: ScheduleItem[] = [
     startTime: '12:00',
     endTime: '13:30',
   },
-];
+].sort((a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime));
 
 export const newsItems = [
   {

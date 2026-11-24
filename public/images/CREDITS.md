@@ -11,7 +11,7 @@ All photos are stored locally as WebP under `public/images/`. Swap files via `sr
 | `gallery-02.webp` | Mănăstirea Sucevița | [Wikimedia Commons — Sucevita.jpg](https://commons.wikimedia.org/wiki/File:Sucevita.jpg) | see file page |
 | `gallery-03.webp` | Mănăstirea Curtea de Argeș | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Manastirea_Curtea_de_Arges_03.JPG) | see file page |
 | `gallery-04.webp` | Mănăstirea Moldovița | [Wikimedia Commons — Oliver Mark](https://commons.wikimedia.org/wiki/File:Oliver_Mark_-_Moldovi%C8%9Ba_Monastery,_Bukovina_2018.jpg) | see file page |
-| `donate-band.webp` | Candles in a church | [Unsplash — photo-1507692049790-de58290a4334](https://unsplash.com/photos/de58290a4334) | Unsplash License |
+| `donate-band.webp` | Mănăstirea Putna (exterior) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:M%C4%83n%C4%83stirea_Putna_-_vedere_frontal%C4%83.JPG) | see file page |
 | `contact-visit.webp` | Mănăstirea Putna | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:M%C4%83n%C4%83stirea_Putna_-_vedere_frontal%C4%83.JPG) | see file page |
 | `livestream-poster.webp` | Moldovița monastery (poster) | same as gallery-04 | see file page |
 | `og-default.webp` | Voroneț (social) | same as hero | see file page |

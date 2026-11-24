@@ -44,6 +44,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -53,6 +54,7 @@ body {
   font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.65;
+  overflow-x: clip;
   background: var(--cream);
   background-image:
     radial-gradient(ellipse 80% 40% at 50% 0%, rgba(26, 74, 115, 0.06), transparent 60%),
@@ -576,6 +578,11 @@ p {
   pointer-events: auto;
 }
 
+.panel[hidden],
+.panel-backdrop[hidden] {
+  display: none !important;
+}
+
 .panel {
   position: fixed;
   top: 0;
@@ -591,10 +598,15 @@ p {
   box-shadow: var(--shadow);
   transform: translateX(100%);
   transition: transform 0.28s ease;
+  /* Keep closed panels out of scroll metrics while animating */
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .panel.is-open {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .panel__header {
@@ -1184,7 +1196,9 @@ p {
 }
 
 .donate-band__shade {
-  background: linear-gradient(105deg, rgba(69, 18, 23, 0.9), rgba(15, 47, 74, 0.72) 55%, rgba(107, 29, 36, 0.55));
+  background:
+    linear-gradient(105deg, rgba(15, 47, 74, 0.88), rgba(69, 18, 23, 0.78) 55%, rgba(15, 47, 74, 0.7)),
+    rgba(15, 20, 18, 0.25);
 }
 
 .donate-band__content {
@@ -1325,6 +1339,27 @@ p {
   border: 0;
 }
 
+/* Scroll reveal: hidden only when JS is active and motion is allowed */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(0.85rem);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* No JS / noscript: always visible */
+.no-js .reveal,
+html:not(.js) .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1337,6 +1372,12 @@ p {
   }
   .hero__media img {
     transform: none;
+  }
+  .js .reveal,
+  .js .reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 

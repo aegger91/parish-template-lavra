@@ -45,8 +45,8 @@ export const images = {
   donate: {
     src: '/images/donate-band.webp',
     alt: {
-      ro: 'Lumânări de ceară în biserică',
-      en: 'Beeswax candles in church',
+      ro: 'Mănăstirea Putna, exterior calm',
+      en: 'Putna Monastery, calm exterior',
     },
   },
   contact: {

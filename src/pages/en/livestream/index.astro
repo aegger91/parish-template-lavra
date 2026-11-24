@@ -9,7 +9,7 @@ const locale = 'en' as const;
 const dict = t(locale);
 ---
 <BaseLayout locale={locale} title={dict.livestream.title} current="livestream">
-  <header class="page-hero">
+  <header class="reveal page-hero">
     <div class="container">
       <p class="eyebrow">{dict.nav.livestream}</p>
       <h1>{dict.livestream.title}</h1>
@@ -17,7 +17,7 @@ const dict = t(locale);
       <Ornament />
     </div>
   </header>
-  <section class="section">
+  <section class="reveal section">
     <div class="container">
       <div class="livestream-frame">
         <img src={images.livestream.src} alt={images.livestream.alt.en} width="1280" height="720" />

@@ -9,7 +9,7 @@ const locale = 'en' as const;
 const dict = t(locale);
 ---
 <BaseLayout locale={locale} title={dict.parish.title} current="parish">
-  <header class="page-hero">
+  <header class="reveal page-hero">
     <div class="container">
       <p class="eyebrow">{dict.nav.parish}</p>
       <h1>{dict.parish.title}</h1>
@@ -18,7 +18,7 @@ const dict = t(locale);
   </header>
 
   {siteConfig.features.aboutBlock && (
-    <section class="section">
+    <section class="reveal section">
       <div class="container grid-2">
         <div>
           <h2>{dict.parish.aboutTitle}</h2>
@@ -34,7 +34,7 @@ const dict = t(locale);
     </section>
   )}
 
-  <section class="section section--band">
+  <section class="reveal section section--band">
     <div class="container">
       <h2>{dict.parish.clergyTitle}</h2>
       <Ornament />
@@ -52,7 +52,7 @@ const dict = t(locale);
     </div>
   </section>
 
-  <section class="section">
+  <section class="reveal section">
     <div class="container grid-2">
       <div class="media-frame">
         <img src={images.interior.src} alt={images.interior.alt.en} width="900" height="675" loading="lazy" />

@@ -8,7 +8,7 @@ const locale = 'en' as const;
 const dict = t(locale);
 ---
 <BaseLayout locale={locale} title={dict.pomelnice.title} current="pomelnice">
-  <header class="page-hero">
+  <header class="reveal page-hero">
     <div class="container">
       <p class="eyebrow">{dict.nav.pomelnice}</p>
       <h1>{dict.pomelnice.title}</h1>
@@ -16,7 +16,7 @@ const dict = t(locale);
       <Ornament />
     </div>
   </header>
-  <section class="section">
+  <section class="reveal section">
     <div class="container" style="max-width:42rem;">
       <div class="card card--gold">
         <AmountForm locale={locale} kind="pomelnice" />
