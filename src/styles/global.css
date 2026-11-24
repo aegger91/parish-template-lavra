@@ -838,15 +838,30 @@ h3 {
   }
 }
 
-@keyframes brandReveal {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/*
+  Scroll / entrance reveal — never leave content hidden.
+  Default (and no-js / reduced-motion / forced / fallback): fully visible.
+  Only html.js without reduced-motion may start at opacity 0.
+*/
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.js .reveal.is-visible,
+html.js .reveal.reveal-forced,
+html.reveal-fallback .reveal,
+html.no-js .reveal {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -855,5 +870,11 @@ h3 {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  html.js .reveal,
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

@@ -63,7 +63,6 @@
   padding-block: var(--space-8) var(--space-7);
   max-width: min(38rem, 100%);
   margin-left: max(1rem, calc((100% - min(100% - 2rem, var(--page))) / 2));
-  animation: brandReveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (max-width: 768px) {

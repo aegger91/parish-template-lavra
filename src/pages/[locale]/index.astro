@@ -77,7 +77,7 @@ const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
       />
     </div>
     <div class="home-hero__veil" aria-hidden="true"></div>
-    <div class="home-hero__content">
+    <div class="home-hero__content reveal">
       <p class="home-hero__tag">{siteConfig.tagline[locale]}</p>
       <h1 class="home-hero__brand">{siteConfig.parishName[locale]}</h1>
       <div class="home-hero__divider" aria-hidden="true">
@@ -94,7 +94,7 @@ const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
     </div>
   </section>
 
-  <section class="home-glance" aria-label={dict.home.glanceLabel}>
+  <section class="home-glance reveal" aria-label={dict.home.glanceLabel}>
     <div class="container">
       <div class="home-glance__inner">
         <a class="home-glance__cell" href={localizedPath(locale, 'schedule')}>
@@ -118,7 +118,7 @@ const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
     </div>
   </section>
 
-  <section class="section home-layer">
+  <section class="section home-layer reveal">
     <div class="container">
       <div class="home-layer__inner">
         <p class="eyebrow">{dict.home.chapterWeek}</p>
@@ -138,7 +138,7 @@ const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
     </div>
   </section>
 
-  <section class="section section--parchment">
+  <section class="section section--parchment reveal">
     <div class="container">
       <div class="slava-feature">
         <div>
@@ -178,7 +178,7 @@ const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
 
   {
     (siteConfig.showAboutBlock || siteConfig.showVisitingBlock) && (
-      <section class="section section--quiet">
+      <section class="section section--quiet reveal">
         <div class="container">
           <MoravaBorder variant="line" />
           <div class="optional-blocks">
@@ -204,7 +204,7 @@ const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
     )
   }
 
-  <section class="section section--parchment">
+  <section class="section section--parchment reveal">
     <div class="container fresco-panel">
       <div class="fresco-panel__frame">
         <img
@@ -240,7 +240,7 @@ const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
     </div>
   </section>
 
-  <section class="section">
+  <section class="section reveal">
     <div class="container">
       <p class="eyebrow">{dict.home.chapterGallery}</p>
       <div class="section-head">
@@ -258,7 +258,7 @@ const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
     </div>
   </section>
 
-  <section class="donate-band">
+  <section class="donate-band reveal">
     <div class="container">
       <MoravaBorder variant="line" />
       <h2>{dict.home.donateBand}</h2>
