@@ -63,7 +63,7 @@ export const images = {
     {
       src: '/images/gallery-4.webp',
       alt: {
-        sr: 'Манастирски двориште',
+        sr: 'Манастирско двориште',
         lat: 'Manastirsko dvorište',
         en: 'Monastery courtyard',
       },
