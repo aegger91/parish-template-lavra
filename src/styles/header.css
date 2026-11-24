@@ -2,10 +2,13 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--parchment) 92%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid color-mix(in srgb, var(--gold-dim) 28%, transparent);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--serbian-red) 18%, transparent);
+  background: color-mix(in srgb, var(--marble) 94%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-dim) 22%, transparent);
+}
+
+.site-rule {
+  line-height: 0;
 }
 
 .site-header__inner {
@@ -129,8 +132,8 @@
 .lang-switch {
   display: inline-flex;
   align-items: stretch;
-  border: 1px solid color-mix(in srgb, var(--lapis) 45%, transparent);
-  background: var(--band-white);
+  border: 1px solid color-mix(in srgb, var(--gold-dim) 40%, transparent);
+  background: var(--marble);
   flex-shrink: 0;
 }
 
@@ -142,17 +145,44 @@
   text-decoration: none;
   padding: 0.35rem 0.45rem;
   color: var(--ink-muted);
-  border-right: 1px solid color-mix(in srgb, var(--lapis) 30%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--gold-dim) 28%, transparent);
   line-height: 1;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .lang-switch a:last-child {
   border-right: 0;
 }
 
+.lang-switch a:hover {
+  color: var(--lapis-deep);
+}
+
 .lang-switch a[aria-current='true'] {
-  background: var(--lapis);
+  background: var(--lapis-deep);
   color: var(--marble);
+}
+
+.header-donate {
+  display: none;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 0.45rem 0.95rem;
+  color: var(--lapis-deep);
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  border: 1px solid var(--gold-dim);
+  white-space: nowrap;
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header-donate:hover {
+  color: var(--lapis-deep);
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--gold-dim) 28%, transparent);
 }
 
 .site-nav {
@@ -206,8 +236,8 @@
 .site-nav a:hover,
 .nav-more__btn[aria-current='true'],
 .nav-more__btn:hover {
-  color: var(--oxblood);
-  background: color-mix(in srgb, var(--stone) 55%, transparent);
+  color: var(--serbian-red);
+  background: color-mix(in srgb, var(--parchment) 70%, transparent);
 }
 
 .nav-more {
@@ -288,12 +318,37 @@
     flex-shrink: 0;
   }
 
+  .header-donate {
+    display: inline-flex;
+    align-items: center;
+  }
+
   .site-nav a,
   .nav-more__btn {
     padding: 0.4rem 0.55rem;
     font-size: 0.92rem;
     white-space: nowrap;
     width: auto;
+    background: transparent;
+    position: relative;
+  }
+
+  .site-nav a[aria-current='page'],
+  .site-nav a:hover,
+  .nav-more__btn[aria-current='true'],
+  .nav-more__btn:hover {
+    background: transparent;
+  }
+
+  .site-nav a[aria-current='page']::after,
+  .nav-more__btn[aria-current='true']::after {
+    content: '';
+    position: absolute;
+    left: 0.55rem;
+    right: 0.55rem;
+    bottom: 0.15rem;
+    height: 1px;
+    background: var(--serbian-red);
   }
 
   .nav-more__menu {
@@ -302,8 +357,8 @@
     top: calc(100% + 0.35rem);
     min-width: 12rem;
     background: var(--marble);
-    border: 1px solid color-mix(in srgb, var(--brick) 35%, transparent);
-    box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--gold-dim) 35%, transparent);
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--ink) 12%, transparent);
     padding: 0.35rem;
     z-index: 60;
   }
@@ -333,14 +388,26 @@
   }
 }
 
-/* Very narrow phones: keep brand from colliding with lang+menu */
-@media (max-width: 400px) {
+/* Narrow phones: keep brand from colliding with lang+menu+donate */
+@media (max-width: 520px) {
   .brand__tag {
+    display: none;
+  }
+
+  .header-donate {
     display: none;
   }
 
   .lang-switch a {
     padding: 0.35rem 0.35rem;
     font-size: 0.62rem;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 899px) {
+  .header-donate {
+    display: inline-flex;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.82rem;
   }
 }

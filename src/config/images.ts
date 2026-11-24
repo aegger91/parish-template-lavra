@@ -6,9 +6,9 @@ export const images = {
   hero: {
     src: '/images/hero-monastery.webp',
     alt: {
-      sr: 'Храм Светог Саве у Београду',
-      lat: 'Hram Svetog Save u Beogradu',
-      en: 'Church of Saint Sava in Belgrade',
+      sr: 'Манастир Грачаница',
+      lat: 'Manastir Gračanica',
+      en: 'Gračanica Monastery',
     },
   },
   fresco: {
@@ -22,9 +22,9 @@ export const images = {
   parish: {
     src: '/images/parish-exterior.webp',
     alt: {
-      sr: 'Фасада православног храма',
-      lat: 'Fasada pravoslavnog hrama',
-      en: 'Exterior of an Orthodox church',
+      sr: 'Манастир Студеница, црква Светог Николе',
+      lat: 'Manastir Studenica, crkva Svetog Nikole',
+      en: 'Studenica Monastery, Church of St. Nicholas',
     },
   },
   interior: {

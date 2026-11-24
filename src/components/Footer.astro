@@ -21,17 +21,19 @@ const footerLinks = [
 ];
 ---
 <footer class="site-footer">
-  <MoravaBorder variant="band" />
+  <div class="site-footer__rule" aria-hidden="true">
+    <MoravaBorder variant="band" />
+  </div>
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
       <div class="site-footer__mark" aria-hidden="true">
-        <SerbianCross size={44} decorative />
+        <SerbianCross size={40} decorative />
       </div>
-      <p class="slavonic site-footer__icxc">✠ IC XC NIKA ✠</p>
+      <p class="slavonic site-footer__icxc">IC XC NIKA</p>
       <h2>{siteConfig.parishName[locale]}</h2>
       <p class="site-footer__tag">{siteConfig.tagline[locale]}</p>
       <div class="site-footer__ornament">
-        <MoravaBorder variant="rosette-line" />
+        <MoravaBorder variant="line" />
       </div>
     </div>
 
@@ -73,10 +75,19 @@ const footerLinks = [
 
 <style>
   .site-footer {
-    margin-top: var(--space-8);
+    margin-top: 0;
     background:
       linear-gradient(180deg, var(--lapis-deep) 0%, #081528 100%);
     color: var(--parchment);
+  }
+
+  .site-footer__rule {
+    background: var(--lapis-deep);
+    line-height: 0;
+  }
+
+  .site-footer__rule :global(.morava-ornament--band) {
+    background: transparent;
   }
 
   .site-footer__inner {

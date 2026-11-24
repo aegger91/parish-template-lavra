@@ -28,6 +28,15 @@ const scheduleItems = weekServices.map((s) => ({
   feast: s.feast?.[locale],
 }));
 
+const nextService = weekServices[0];
+const nextServiceLabel = formatServiceDateLabel(
+  nextService.date,
+  locale,
+  siteConfig.calendarStyle,
+  nextService.oldStyleDate,
+  dict.schedule.oldStyleSuffix,
+);
+
 const feastItem = {
   id: nextFeast.id,
   title: nextFeast.title[locale],
@@ -54,15 +63,7 @@ const lead = {
   en: 'Welcome to our parish. Services, news, and contact in one place.',
 }[locale];
 
-const iconItems = [
-  { src: '/icons/censer.svg', label: dict.home.icons.censer },
-  { src: '/icons/kandilo.svg', label: dict.home.icons.kandilo },
-  { src: '/icons/candle.svg', label: dict.home.icons.candle },
-  { src: '/icons/iconostasis.svg', label: dict.home.icons.iconostasis },
-  { src: '/icons/gospel.svg', label: dict.home.icons.gospel },
-  { src: '/icons/prosphora.svg', label: dict.home.icons.prosphora },
-  { src: '/icons/slava-kolac.svg', label: dict.home.icons.kolac },
-];
+const addressLine = `${siteConfig.address.street}, ${siteConfig.address.city}`;
 ---
 <BaseLayout locale={locale} title="" path="">
   <section class="home-hero">
@@ -70,24 +71,48 @@ const iconItems = [
       <img
         src={images.hero.src}
         alt={images.hero.alt[locale]}
-        width="2400"
-        height="1800"
+        width="2560"
+        height="2048"
         fetchpriority="high"
       />
     </div>
     <div class="home-hero__veil" aria-hidden="true"></div>
     <div class="home-hero__content">
-      <p class="home-hero__tag slavonic">{siteConfig.tagline[locale]}</p>
+      <p class="home-hero__tag">{siteConfig.tagline[locale]}</p>
       <h1 class="home-hero__brand">{siteConfig.parishName[locale]}</h1>
+      <div class="home-hero__divider" aria-hidden="true">
+        <MoravaBorder variant="cross-line" />
+      </div>
       <p class="home-hero__lead">{lead}</p>
       <div class="home-hero__cta">
         <a class="btn btn--gold" href={localizedPath(locale, 'schedule')}>{dict.home.viewSchedule}</a>
-        <a
-          class="btn btn--ghost"
-          href={localizedPath(locale, 'contact')}
-          style="border-color: var(--gold-soft); color: var(--marble);"
-        >
+        <a class="btn btn--outline-light" href={localizedPath(locale, 'contact')}>
           {dict.nav.contact}
+        </a>
+        <a class="home-hero__link" href={localizedPath(locale, 'pomen')}>{dict.nav.pomen}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-glance" aria-label={dict.home.glanceLabel}>
+    <div class="container">
+      <div class="home-glance__inner">
+        <a class="home-glance__cell" href={localizedPath(locale, 'schedule')}>
+          <p class="home-glance__label">{dict.home.glanceNext}</p>
+          <p class="home-glance__title">{nextService.title[locale]}</p>
+          <p class="home-glance__meta">
+            {nextServiceLabel} · {nextService.start}–{nextService.end}
+          </p>
+        </a>
+        <a class="home-glance__cell" href={localizedPath(locale, 'slava')}>
+          <p class="home-glance__label">{dict.home.glanceFeast}</p>
+          <p class="home-glance__title">{feastItem.title}</p>
+          <p class="home-glance__meta">{feastDateLabel}</p>
+        </a>
+        <a class="home-glance__cell" href={localizedPath(locale, 'contact')}>
+          <p class="home-glance__label">{dict.home.glanceVisit}</p>
+          <p class="home-glance__title">{addressLine}</p>
+          <p class="home-glance__meta">{siteConfig.phone}</p>
         </a>
       </div>
     </div>
@@ -96,7 +121,7 @@ const iconItems = [
   <section class="section home-layer">
     <div class="container">
       <div class="home-layer__inner">
-        <MoravaBorder variant="rosette-line" />
+        <p class="eyebrow">{dict.home.chapterWeek}</p>
         <div class="section-head">
           <h2>{dict.home.thisWeek}</h2>
           <a href={localizedPath(locale, 'schedule')}>{dict.home.viewSchedule}</a>
@@ -115,44 +140,59 @@ const iconItems = [
 
   <section class="section section--parchment">
     <div class="container">
-      <MoravaBorder variant="line" />
-      <div class="feast-feature">
-        <p class="feast-feature__label">{dict.home.featuredSlava} · {dict.home.nextFeast}</p>
-        <h3>{feastItem.title}</h3>
-        <p class="feast-feature__meta">
-          {feastDateLabel} · {feastItem.start}-{feastItem.end} · {feastItem.location}
-        </p>
-        <p>{feastItem.description}</p>
-        <SchedulePanel
-          client:load
-          items={[feastItem]}
-          locale={locale}
-          calendarStyle={siteConfig.calendarStyle}
-          mapQuery={siteConfig.mapQuery}
-          labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
-        />
-        <p>
-          <a class="btn btn--red" href={localizedPath(locale, 'slava')}>{dict.nav.slava}</a>
-        </p>
+      <div class="slava-feature">
+        <div>
+          <p class="eyebrow">{dict.home.featuredSlava}</p>
+          <div class="feast-feature">
+            <p class="feast-feature__label">{dict.home.nextFeast}</p>
+            <h3>{feastItem.title}</h3>
+            <p class="feast-feature__meta">
+              {feastDateLabel} · {feastItem.start}–{feastItem.end} · {feastItem.location}
+            </p>
+            <p>{feastItem.description}</p>
+            <SchedulePanel
+              client:load
+              items={[feastItem]}
+              locale={locale}
+              calendarStyle={siteConfig.calendarStyle}
+              mapQuery={siteConfig.mapQuery}
+              labels={{ ...dict.schedule, openDetails: dict.a11y.openDetails }}
+            />
+            <p>
+              <a class="btn btn--red" href={localizedPath(locale, 'slava')}>{dict.nav.slava}</a>
+            </p>
+          </div>
+        </div>
+        <div class="slava-feature__media">
+          <img
+            src={images.parish.src}
+            alt={images.parish.alt[locale]}
+            width="1800"
+            height="1350"
+            loading="lazy"
+          />
+        </div>
       </div>
     </div>
   </section>
 
   {
     (siteConfig.showAboutBlock || siteConfig.showVisitingBlock) && (
-      <section class="section">
+      <section class="section section--quiet">
         <div class="container">
-          <MoravaBorder variant="rosette-line" />
-          <div class="optional-blocks card-grid card-grid--2">
+          <MoravaBorder variant="line" />
+          <div class="optional-blocks">
             {siteConfig.showAboutBlock && (
-              <div class="card optional-block">
+              <div class="optional-block">
+                <p class="eyebrow">{dict.home.chapterAbout}</p>
                 <h2>{dict.home.aboutTitle}</h2>
                 <p>{dict.home.aboutText}</p>
                 <a href={localizedPath(locale, 'parish')}>{dict.nav.parish}</a>
               </div>
             )}
             {siteConfig.showVisitingBlock && (
-              <div class="card optional-block">
+              <div class="optional-block">
+                <p class="eyebrow">{dict.home.chapterVisit}</p>
                 <h2>{dict.home.visitingTitle}</h2>
                 <p>{dict.home.visitingText}</p>
                 <a href={localizedPath(locale, 'contact')}>{dict.nav.contact}</a>
@@ -165,25 +205,6 @@ const iconItems = [
   }
 
   <section class="section section--parchment">
-    <div class="container">
-      <MoravaBorder variant="line" />
-      <div class="section-head">
-        <h2>{dict.home.iconGallery}</h2>
-      </div>
-      <div class="icon-gallery">
-        {
-          iconItems.map((item) => (
-            <div class="icon-gallery__item">
-              <img src={item.src} alt="" width="48" height="48" loading="lazy" />
-              <span>{item.label}</span>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
     <div class="container fresco-panel">
       <div class="fresco-panel__frame">
         <img
@@ -195,11 +216,11 @@ const iconItems = [
         />
       </div>
       <div class="fresco-panel__copy">
-        <MoravaBorder variant="line" />
+        <p class="eyebrow">{dict.home.chapterHeritage}</p>
         <h2>{dict.home.frescoTitle}</h2>
         <p>{dict.home.frescoText}</p>
-        <div class="section-head" style="margin-top: var(--space-5);">
-          <h3 style="margin:0;">{dict.home.news}</h3>
+        <div class="section-head" style="margin-top: var(--space-6);">
+          <h3 style="margin:0; font-size: clamp(1.35rem, 2.2vw, 1.7rem);">{dict.home.news}</h3>
           <a href={localizedPath(locale, 'events')}>{dict.home.viewAll}</a>
         </div>
         <ul class="news-list">
@@ -221,7 +242,7 @@ const iconItems = [
 
   <section class="section">
     <div class="container">
-      <MoravaBorder variant="rosette-line" />
+      <p class="eyebrow">{dict.home.chapterGallery}</p>
       <div class="section-head">
         <h2>{dict.home.gallery}</h2>
       </div>

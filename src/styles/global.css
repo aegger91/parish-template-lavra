@@ -1,4 +1,4 @@
-/* Serbian Orthodox parish — Serbo-Byzantine / Morava premium palette */
+/* Serbian Orthodox parish — flagship Serbo-Byzantine editorial palette */
 :root {
   --serbian-red: #8b1e2d;
   --serbian-red-deep: #5c121c;
@@ -10,22 +10,22 @@
   --gold-soft: #dfc078;
   --gold-dim: #8f7340;
   --gold-bright: #e8d09a;
-  --parchment: #f4ebd8;
-  --parchment-deep: #e8dcc4;
-  --stone: #ddd2c0;
+  --parchment: #f3ebe0;
+  --parchment-deep: #e6dccf;
+  --stone: #d9cfc0;
   --stone-warm: #cfc0a8;
   --stone-dark: #6a5e4e;
-  --marble: #faf6ee;
+  --marble: #faf7f2;
   --ink: #1a1510;
-  --ink-muted: #4e463c;
+  --ink-muted: #5a5248;
   --brick: #9c3f36;
-  --band-white: #faf6ee;
+  --band-white: #faf7f2;
   --band-brick: #9c3f36;
   --oxblood: #8b1e2d;
   --oxblood-deep: #5c121c;
 
-  --font-serif: 'Cormorant Garamond', 'EB Garamond', 'Source Serif 4', 'Noto Serif', serif;
-  --font-display: 'Cormorant Garamond', 'Old Standard TT', 'EB Garamond', serif;
+  --font-serif: 'Source Serif 4', 'EB Garamond', 'Noto Serif', serif;
+  --font-display: 'Cormorant Garamond', 'EB Garamond', 'Source Serif 4', serif;
   --font-ui: 'Source Serif 4', 'EB Garamond', serif;
 
   --space-1: 0.25rem;
@@ -33,17 +33,18 @@
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3.25rem;
-  --space-8: 5rem;
+  --space-6: 2.25rem;
+  --space-7: 3.75rem;
+  --space-8: 5.5rem;
 
-  --measure: 42rem;
-  --page: 74rem;
-  --radius: 3px;
+  --measure: 40rem;
+  --page: 72rem;
+  --radius: 2px;
   --focus: 2px solid var(--gold);
-  --header-h: 4.5rem;
-  --shadow-soft: 0 10px 36px color-mix(in srgb, var(--lapis-deep) 12%, transparent);
-  --shadow-card: 0 4px 24px color-mix(in srgb, var(--ink) 8%, transparent);
+  --header-h: 4.25rem;
+  --shadow-soft: 0 18px 48px color-mix(in srgb, var(--lapis-deep) 14%, transparent);
+  --shadow-card: 0 6px 28px color-mix(in srgb, var(--ink) 7%, transparent);
+  --shadow-lift: 0 12px 32px color-mix(in srgb, var(--lapis-deep) 16%, transparent);
 }
 
 *,
@@ -59,26 +60,12 @@ html {
 body {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: 1.125rem;
-  line-height: 1.65;
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: var(--ink);
-  background:
-    radial-gradient(ellipse at 20% 0%, color-mix(in srgb, var(--gold) 8%, transparent), transparent 45%),
-    radial-gradient(ellipse at 90% 10%, color-mix(in srgb, var(--serbian-red) 6%, transparent), transparent 40%),
-    linear-gradient(180deg, var(--marble) 0%, var(--parchment) 45%, var(--stone) 100%);
-  background-attachment: fixed;
+  background: var(--marble);
   min-height: 100vh;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cpath d='M36 8 L40 28 L60 28 L44 40 L50 60 L36 48 L22 60 L28 40 L12 28 L32 28 Z' fill='%23163a6b'/%3E%3C/svg%3E");
-  background-size: 72px 72px;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -91,6 +78,7 @@ a {
   color: var(--lapis);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
+  transition: color 0.2s ease;
 }
 
 a:hover {
@@ -112,27 +100,37 @@ h3,
 h4 {
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.18;
+  line-height: 1.12;
   color: var(--lapis-deep);
   letter-spacing: 0.01em;
 }
 
 h1 {
-  font-size: clamp(2.1rem, 4.5vw, 3.25rem);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
 }
 
 h2 {
-  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  font-size: clamp(1.7rem, 3.2vw, 2.35rem);
 }
 
 h3 {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--serbian-red);
 }
 
 .slavonic {
   font-family: var(--font-display);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-size: 0.72rem;
   color: var(--gold-dim);
@@ -164,14 +162,15 @@ h3 {
 }
 
 .section--parchment {
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--parchment) 92%, transparent), var(--parchment-deep));
-  border-block: 1px solid color-mix(in srgb, var(--gold-dim) 28%, transparent);
+  background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-deep) 100%);
+}
+
+.section--quiet {
+  background: var(--marble);
 }
 
 .section--lapis {
-  background:
-    linear-gradient(145deg, var(--lapis-deep) 0%, var(--lapis) 55%, var(--serbian-red-deep) 130%);
+  background: linear-gradient(145deg, var(--lapis-deep) 0%, var(--lapis) 55%, var(--serbian-red-deep) 130%);
   color: var(--parchment);
 }
 
@@ -183,7 +182,7 @@ h3 {
 .section-head {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-3);
   margin-bottom: var(--space-5);
@@ -194,8 +193,20 @@ h3 {
 }
 
 .section-head a {
+  font-family: var(--font-display);
   font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
   white-space: nowrap;
+  text-decoration: none;
+  color: var(--serbian-red);
+  border-bottom: 1px solid color-mix(in srgb, var(--serbian-red) 35%, transparent);
+  padding-bottom: 0.1rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.section-head a:hover {
+  border-color: var(--serbian-red);
 }
 
 .morava-ornament {
@@ -206,7 +217,7 @@ h3 {
 }
 
 .morava-ornament svg {
-  width: min(100%, 20rem);
+  width: min(100%, 18rem);
   height: auto;
   display: block;
 }
@@ -214,11 +225,13 @@ h3 {
 .morava-ornament--band {
   margin: 0;
   width: 100%;
+  color: var(--gold);
+  background: var(--marble);
 }
 
 .morava-ornament--band svg {
   width: 100%;
-  height: 12px;
+  height: 8px;
 }
 
 .btn {
@@ -226,24 +239,31 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: 0.7rem 1.45rem;
+  padding: 0.75rem 1.5rem;
   font-family: var(--font-display);
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-decoration: none;
   border: 1px solid var(--lapis);
   background: var(--lapis);
   color: var(--marble);
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .btn:hover {
   background: var(--lapis-deep);
   color: var(--marble);
   border-color: var(--lapis-deep);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lift);
 }
 
 .btn--ghost {
@@ -257,13 +277,14 @@ h3 {
 }
 
 .btn--gold {
-  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 100%);
   border-color: var(--gold-dim);
   color: var(--lapis-deep);
+  box-shadow: 0 1px 0 color-mix(in srgb, white 35%, transparent) inset;
 }
 
 .btn--gold:hover {
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold-soft));
+  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-soft) 100%);
   color: var(--lapis-deep);
 }
 
@@ -278,6 +299,18 @@ h3 {
   color: var(--marble);
 }
 
+.btn--outline-light {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--gold-soft) 70%, transparent);
+  color: var(--marble);
+}
+
+.btn--outline-light:hover {
+  background: color-mix(in srgb, var(--marble) 12%, transparent);
+  color: var(--marble);
+  border-color: var(--gold-bright);
+}
+
 .prose {
   max-width: var(--measure);
 }
@@ -288,8 +321,10 @@ h3 {
 }
 
 .page-hero {
-  padding-block: var(--space-6) var(--space-5);
+  padding-block: var(--space-7) var(--space-5);
   position: relative;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--parchment) 70%, var(--marble)), var(--marble));
 }
 
 .page-hero h1 {
@@ -300,23 +335,23 @@ h3 {
   margin: 0;
   color: var(--ink-muted);
   max-width: var(--measure);
+  font-size: 1.15rem;
 }
 
-/* Cards */
+/* Cards — reserved for interactive containers */
 .card {
-  background: color-mix(in srgb, var(--marble) 88%, white);
-  border: 1px solid color-mix(in srgb, var(--gold-dim) 28%, transparent);
+  background: var(--marble);
+  border: 1px solid color-mix(in srgb, var(--gold-dim) 22%, transparent);
   box-shadow: var(--shadow-card);
   padding: var(--space-5);
   position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--serbian-red), var(--gold), var(--lapis));
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
 }
 
 .card-grid {
@@ -367,6 +402,13 @@ h3 {
   background: var(--marble);
   border: 1px solid color-mix(in srgb, var(--stone-dark) 35%, transparent);
   border-radius: var(--radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input:hover,
+.form select:hover,
+.form textarea:hover {
+  border-color: color-mix(in srgb, var(--gold-dim) 55%, transparent);
 }
 
 .form textarea {
@@ -387,6 +429,11 @@ h3 {
   border: 1px solid var(--stone-dark);
   color: var(--ink);
   cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.chip:hover {
+  border-color: var(--gold-dim);
 }
 
 .chip[aria-pressed='true'] {
@@ -416,27 +463,32 @@ h3 {
   display: grid;
   gap: var(--space-1);
   padding: var(--space-4) var(--space-5);
-  background: var(--marble);
-  border: 1px solid color-mix(in srgb, var(--gold-dim) 25%, transparent);
-  border-left: 4px solid var(--serbian-red);
-  box-shadow: var(--shadow-card);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-dim) 22%, transparent);
+  border-left: 2px solid transparent;
+  box-shadow: none;
   cursor: pointer;
   font: inherit;
   color: inherit;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, padding-left 0.25s ease;
+}
+
+.schedule-item:first-child {
+  border-top: 1px solid color-mix(in srgb, var(--gold-dim) 22%, transparent);
 }
 
 .schedule-item:hover {
-  border-color: var(--gold);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-soft);
+  background: color-mix(in srgb, var(--parchment) 65%, transparent);
+  border-left-color: var(--serbian-red);
+  padding-left: calc(var(--space-5) + 0.25rem);
 }
 
 .schedule-item__title {
   font-family: var(--font-display);
   font-weight: 600;
   color: var(--lapis-deep);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 
 .schedule-item__meta {
@@ -448,11 +500,11 @@ h3 {
   display: inline-block;
   font-family: var(--font-display);
   font-size: 0.68rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--serbian-red);
-  border: 1px solid color-mix(in srgb, var(--serbian-red) 40%, transparent);
-  background: color-mix(in srgb, var(--serbian-red) 6%, var(--marble));
+  border: 1px solid color-mix(in srgb, var(--serbian-red) 35%, transparent);
+  background: color-mix(in srgb, var(--serbian-red) 5%, var(--marble));
   padding: 0.2rem 0.55rem;
   margin-bottom: var(--space-4);
 }
@@ -516,6 +568,12 @@ h3 {
   cursor: pointer;
   font-size: 1.25rem;
   line-height: 1;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.icon-btn:hover {
+  border-color: var(--gold-dim);
+  color: var(--serbian-red);
 }
 
 /* Gallery */
@@ -528,6 +586,7 @@ h3 {
 @media (min-width: 768px) {
   .gallery-strip {
     grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
   }
 }
 
@@ -535,7 +594,7 @@ h3 {
   margin: 0;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  border: 1px solid color-mix(in srgb, var(--gold-dim) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold-dim) 28%, transparent);
   box-shadow: var(--shadow-card);
 }
 
@@ -543,91 +602,49 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.55s ease;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .gallery-strip figure:hover img {
-  transform: scale(1.05);
-}
-
-.icon-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-}
-
-@media (min-width: 700px) {
-  .icon-gallery {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 1100px) {
-  .icon-gallery {
-    grid-template-columns: repeat(7, 1fr);
-  }
-}
-
-.icon-gallery__item {
-  display: grid;
-  gap: var(--space-3);
-  justify-items: center;
-  text-align: center;
-  padding: var(--space-4) var(--space-3);
-  background: var(--marble);
-  border: 1px solid color-mix(in srgb, var(--gold-dim) 22%, transparent);
-  color: var(--lapis);
-  min-height: 8.5rem;
-}
-
-.icon-gallery__item img {
-  width: 3rem;
-  height: auto;
-  filter: none;
-}
-
-.icon-gallery__item span {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink-muted);
-  line-height: 1.3;
+  transform: scale(1.06);
 }
 
 .donate-band {
-  background:
-    linear-gradient(135deg, var(--lapis-deep) 0%, var(--lapis) 45%, var(--serbian-red-deep) 110%);
+  background: linear-gradient(135deg, var(--lapis-deep) 0%, var(--lapis) 42%, var(--serbian-red-deep) 115%);
   color: var(--marble);
-  padding-block: var(--space-7);
+  padding-block: var(--space-8);
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
 .donate-band::before {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.08;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='18' fill='none' stroke='%23c9a14a' stroke-width='1'/%3E%3C/svg%3E");
-  background-size: 80px 80px;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Ccircle cx='48' cy='48' r='20' fill='none' stroke='%23c9a14a' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 96px 96px;
   pointer-events: none;
+}
+
+.donate-band .container {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
 }
 
 .donate-band h2 {
   color: var(--gold-soft);
-  margin: 0 0 var(--space-3);
-  position: relative;
+  margin: 0;
 }
 
 .donate-band p {
-  margin: 0 0 var(--space-5);
-  max-width: 36rem;
-  color: color-mix(in srgb, var(--marble) 90%, transparent);
-  position: relative;
-}
-
-.donate-band .btn {
-  position: relative;
+  margin: 0;
+  max-width: 32rem;
+  color: color-mix(in srgb, var(--marble) 88%, transparent);
+  font-size: 1.15rem;
 }
 
 .news-list {
@@ -639,17 +656,24 @@ h3 {
 }
 
 .news-item {
-  padding: var(--space-5);
-  background: var(--marble);
-  border: 1px solid color-mix(in srgb, var(--gold-dim) 22%, transparent);
-  box-shadow: var(--shadow-card);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-dim) 25%, transparent);
+  padding-bottom: var(--space-4);
+}
+
+.news-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 
 .news-item time {
   display: block;
   font-family: var(--font-display);
   font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold-dim);
   margin-bottom: var(--space-2);
@@ -657,6 +681,7 @@ h3 {
 
 .news-item h3 {
   margin: 0 0 var(--space-2);
+  font-size: 1.25rem;
 }
 
 .news-item h3 a {
@@ -666,6 +691,11 @@ h3 {
 
 .news-item h3 a:hover {
   color: var(--serbian-red);
+}
+
+.news-item p {
+  margin: 0;
+  color: var(--ink-muted);
 }
 
 .clergy-grid {
@@ -682,14 +712,20 @@ h3 {
 .clergy-card {
   padding: var(--space-5);
   background: var(--marble);
-  border: 1px solid color-mix(in srgb, var(--gold-dim) 25%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold-dim) 22%, transparent);
   box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.clergy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
 }
 
 .clergy-card .role {
   font-family: var(--font-display);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--serbian-red);
   margin: 0 0 var(--space-2);
@@ -701,7 +737,7 @@ h3 {
 
 .media-frame {
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--gold-dim) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold-dim) 40%, transparent);
   box-shadow: var(--shadow-card);
 }
 
@@ -709,6 +745,11 @@ h3 {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.media-frame:hover img {
+  transform: scale(1.03);
 }
 
 .livestream-frame {
@@ -742,32 +783,18 @@ h3 {
 /* Featured feast / slava */
 .feast-feature {
   display: grid;
-  gap: var(--space-5);
-  padding: var(--space-6);
-  background:
-    linear-gradient(160deg, color-mix(in srgb, var(--parchment) 70%, white), var(--marble));
-  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
-  box-shadow: var(--shadow-soft);
+  gap: var(--space-4);
+  padding: var(--space-6) 0 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   position: relative;
-  overflow: hidden;
-}
-
-.feast-feature::after {
-  content: '';
-  position: absolute;
-  right: -2rem;
-  top: -2rem;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold) 22%, transparent), transparent 70%);
-  pointer-events: none;
 }
 
 .feast-feature__label {
   font-family: var(--font-display);
   font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--serbian-red);
   margin: 0;
@@ -775,12 +802,20 @@ h3 {
 
 .feast-feature h3 {
   margin: 0;
-  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
 }
 
 .feast-feature__meta {
   color: var(--ink-muted);
   margin: 0;
+  font-size: 1.05rem;
+}
+
+.feast-feature > p:not(.feast-feature__label):not(.feast-feature__meta) {
+  max-width: 36rem;
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 1.12rem;
 }
 
 @keyframes fadeIn {
@@ -806,21 +841,11 @@ h3 {
 @keyframes brandReveal {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes softGlow {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-  50% {
-    opacity: 0.75;
   }
 }
 
