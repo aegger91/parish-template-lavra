@@ -18,6 +18,9 @@ const widths = [360, 768, 1280];
 const routes = [
   '',
   'parish',
+  'parish/clergy',
+  'parish/history',
+  'parish/gallery',
   'schedule',
   'slava',
   'events',

@@ -21,6 +21,9 @@ export const ui = {
       donate: 'Прилог',
       contact: 'Контакт',
       more: 'Још',
+      clergy: 'Свештенство',
+      history: 'Историја',
+      gallery: 'Галерија',
     },
     footer: {
       rights: 'Сва права задржана.',
@@ -186,6 +189,9 @@ export const ui = {
       donate: 'Prilog',
       contact: 'Kontakt',
       more: 'Još',
+      clergy: 'Sveštenstvo',
+      history: 'Istorija',
+      gallery: 'Galerija',
     },
     footer: {
       rights: 'Sva prava zadržana.',
@@ -351,6 +357,9 @@ export const ui = {
       donate: 'Donate',
       contact: 'Contact',
       more: 'More',
+      clergy: 'Clergy',
+      history: 'History',
+      gallery: 'Gallery',
     },
     footer: {
       rights: 'All rights reserved.',

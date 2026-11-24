@@ -1,8 +1,8 @@
 {
   "summary": {
-    "checks": 99,
+    "checks": 126,
     "failures": 0,
-    "passed": 99
+    "passed": 126
   },
   "results": [
     {
@@ -49,6 +49,69 @@
     },
     {
       "locale": "sr",
+      "route": "parish/clergy",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
+      "route": "parish/clergy",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
+      "route": "parish/clergy",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
+      "route": "parish/history",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
+      "route": "parish/history",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
+      "route": "parish/history",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
+      "route": "parish/gallery",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
+      "route": "parish/gallery",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
+      "route": "parish/gallery",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "sr",
       "route": "schedule",
       "width": 360,
       "status": "ok",
@@ -280,6 +343,69 @@
     },
     {
       "locale": "lat",
+      "route": "parish/clergy",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
+      "route": "parish/clergy",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
+      "route": "parish/clergy",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
+      "route": "parish/history",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
+      "route": "parish/history",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
+      "route": "parish/history",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
+      "route": "parish/gallery",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
+      "route": "parish/gallery",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
+      "route": "parish/gallery",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "lat",
       "route": "schedule",
       "width": 360,
       "status": "ok",
@@ -505,6 +631,69 @@
     {
       "locale": "en",
       "route": "parish",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/clergy",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/clergy",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/clergy",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/history",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/history",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/history",
+      "width": 1280,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/gallery",
+      "width": 360,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/gallery",
+      "width": 768,
+      "status": "ok",
+      "notes": []
+    },
+    {
+      "locale": "en",
+      "route": "parish/gallery",
       "width": 1280,
       "status": "ok",
       "notes": []
