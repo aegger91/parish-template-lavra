@@ -1,11 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#1a3560"/>
-  <g fill="#c4a35a">
-    <rect x="29" y="4" width="6" height="56"/>
-    <rect x="8" y="29" width="48" height="6"/>
-    <text x="16" y="24" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700">С</text>
-    <text x="48" y="24" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700">С</text>
-    <text x="16" y="52" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700">С</text>
-    <text x="48" y="52" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700">С</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="geometricPrecision">
+  <rect width="64" height="64" fill="#0b1f3a"/>
+  <g fill="#c9a14a">
+    <rect x="30.25" y="4" width="3.5" height="56"/>
+    <rect x="23.5" y="12" width="17" height="3.25"/>
+    <rect x="12" y="24.25" width="40" height="3.5"/>
+    <path d="M20.5 43.6 L43.5 48.85 L43.5 52.35 L20.5 47.1 Z"/>
   </g>
 </svg>

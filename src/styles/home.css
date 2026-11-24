@@ -118,10 +118,11 @@
 .home-hero__divider .morava-ornament {
   margin-bottom: 0;
   justify-content: flex-start;
+  width: min(100%, 14rem);
 }
 
-.home-hero__divider svg {
-  width: 11rem;
+.home-hero__divider .morava-ornament__rail {
+  max-width: none;
 }
 
 .home-hero__lead {

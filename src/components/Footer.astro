@@ -3,7 +3,6 @@ import type { Locale } from '../i18n/ui';
 import { t, localizedPath } from '../i18n/ui';
 import { siteConfig } from '../config/site';
 import SerbianCross from '../icons/SerbianCross.astro';
-import MoravaBorder from '../icons/MoravaBorder.astro';
 
 interface Props {
   locale: Locale;
@@ -21,9 +20,7 @@ const footerLinks = [
 ];
 ---
 <footer class="site-footer">
-  <div class="site-footer__rule" aria-hidden="true">
-    <MoravaBorder variant="band" />
-  </div>
+  <div class="site-footer__edge site-footer__edge--top" aria-hidden="true"></div>
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
       <div class="site-footer__mark" aria-hidden="true">
@@ -32,9 +29,6 @@ const footerLinks = [
       <p class="slavonic site-footer__icxc">IC XC NIKA</p>
       <h2>{siteConfig.parishName[locale]}</h2>
       <p class="site-footer__tag">{siteConfig.tagline[locale]}</p>
-      <div class="site-footer__ornament">
-        <MoravaBorder variant="line" />
-      </div>
     </div>
 
     <div class="site-footer__cols">
@@ -71,6 +65,7 @@ const footerLinks = [
       </p>
     </div>
   </div>
+  <div class="site-footer__edge site-footer__edge--bottom" aria-hidden="true"></div>
 </footer>
 
 <style>
@@ -81,13 +76,10 @@ const footerLinks = [
     color: var(--parchment);
   }
 
-  .site-footer__rule {
-    background: var(--lapis-deep);
-    line-height: 0;
-  }
-
-  .site-footer__rule :global(.morava-ornament--band) {
-    background: transparent;
+  .site-footer__edge {
+    height: 1px;
+    width: 100%;
+    background: color-mix(in srgb, var(--gold-soft) 70%, var(--gold));
   }
 
   .site-footer__inner {
@@ -132,17 +124,6 @@ const footerLinks = [
     color: color-mix(in srgb, var(--parchment) 75%, transparent);
   }
 
-  .site-footer__ornament {
-    margin-top: var(--space-4);
-    color: var(--gold);
-    justify-content: flex-start;
-  }
-
-  .site-footer__ornament :global(.morava-ornament) {
-    justify-content: flex-start;
-    margin-bottom: 0;
-  }
-
   .site-footer__cols {
     display: grid;
     gap: var(--space-5);
@@ -178,7 +159,6 @@ const footerLinks = [
   }
 
   .site-footer__base {
-    border-top: 1px solid color-mix(in srgb, var(--gold) 22%, transparent);
     padding-block: var(--space-4);
   }
 

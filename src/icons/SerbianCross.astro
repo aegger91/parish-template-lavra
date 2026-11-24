@@ -1,4 +1,12 @@
 ---
+/**
+ * Canonical Orthodox (Serbian/Russian) three-bar cross.
+ * - Centered vertical stem
+ * - Short upper titulus
+ * - Longer main crossbar
+ * - Slanted footrest: viewer's left end higher, right end lower
+ * Reuse this component everywhere a cross appears.
+ */
 interface Props {
   class?: string;
   size?: number;
@@ -8,7 +16,7 @@ interface Props {
 const {
   class: className = '',
   size = 40,
-  title = 'Serbian cross',
+  title = 'Orthodox cross',
   decorative = false,
 } = Astro.props;
 ---
@@ -21,48 +29,20 @@ const {
   aria-hidden={decorative ? 'true' : undefined}
   aria-label={decorative ? undefined : title}
   xmlns="http://www.w3.org/2000/svg"
+  shape-rendering="geometricPrecision"
 >
   {!decorative && <title>{title}</title>}
   <g fill="currentColor">
-    <!-- Equal-armed Byzantine cross -->
-    <rect x="29" y="4" width="6" height="56" />
-    <rect x="8" y="29" width="48" height="6" />
-    <!-- Four Cyrillic С (ocila): traditional Serbian cross -->
-    <text
-      x="16"
-      y="24"
-      text-anchor="middle"
-      font-family="Georgia, 'Times New Roman', serif"
-      font-size="16"
-      font-weight="700"
-      >С</text
-    >
-    <text
-      x="48"
-      y="24"
-      text-anchor="middle"
-      font-family="Georgia, 'Times New Roman', serif"
-      font-size="16"
-      font-weight="700"
-      >С</text
-    >
-    <text
-      x="16"
-      y="52"
-      text-anchor="middle"
-      font-family="Georgia, 'Times New Roman', serif"
-      font-size="16"
-      font-weight="700"
-      >С</text
-    >
-    <text
-      x="48"
-      y="52"
-      text-anchor="middle"
-      font-family="Georgia, 'Times New Roman', serif"
-      font-size="16"
-      font-weight="700"
-      >С</text
-    >
+    <!-- Vertical stem (centered on x=32) -->
+    <rect x="30.25" y="4" width="3.5" height="56" />
+    <!-- Titulus (short upper bar) -->
+    <rect x="23.5" y="12" width="17" height="3.25" />
+    <!-- Main crossbar (longest) -->
+    <rect x="12" y="24.25" width="40" height="3.5" />
+    <!--
+      Footrest (suppedaneum): slanted so the viewer's left end is higher
+      (smaller y) and the right end is lower (larger y).
+    -->
+    <path d="M20.5 43.6 L43.5 48.85 L43.5 52.35 L20.5 47.1 Z" />
   </g>
 </svg>

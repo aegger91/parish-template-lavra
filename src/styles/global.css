@@ -212,26 +212,61 @@ h3 {
 .morava-ornament {
   color: var(--gold-dim);
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 0.65rem;
   margin-bottom: var(--space-5);
 }
 
-.morava-ornament svg {
-  width: min(100%, 18rem);
-  height: auto;
+.morava-ornament__rail {
+  flex: 1 1 auto;
+  height: 1px;
+  max-width: 7rem;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.morava-ornament__cross {
+  flex: 0 0 auto;
   display: block;
+  color: currentColor;
+}
+
+.morava-ornament__ring {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  opacity: 0.85;
+}
+
+.morava-ornament__ring .morava-ornament__cross {
+  opacity: 1;
 }
 
 .morava-ornament--band {
   margin: 0;
   width: 100%;
   color: var(--gold);
-  background: var(--marble);
+  background: transparent;
+  gap: 0;
 }
 
-.morava-ornament--band svg {
+.morava-ornament__rule {
+  display: block;
   width: 100%;
-  height: 8px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--gold-dim) 15%, transparent) 0%,
+    var(--gold) 35%,
+    var(--gold-bright) 50%,
+    var(--gold) 65%,
+    color-mix(in srgb, var(--gold-dim) 15%, transparent) 100%
+  );
 }
 
 .btn {
