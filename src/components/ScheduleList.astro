@@ -3,24 +3,30 @@ import type { Locale } from '../config/site';
 import { siteConfig } from '../config/site';
 import type { ScheduleItem } from '../config/schedule';
 import { t } from '../i18n/ui';
-import { displayDates } from '../utils/dates';
-import { buildIcs, googleCalendarUrl } from '../utils/dates';
+import { displayDates, formatShortDate, buildIcs, googleCalendarUrl } from '../utils/dates';
 
 interface Props {
   locale: Locale;
   items: ScheduleItem[];
+  layout?: 'week' | 'list';
 }
-const { locale, items } = Astro.props;
+const { locale, items, layout = 'list' } = Astro.props;
 const dict = t(locale);
 const parish = siteConfig.name[locale];
 
 const payload = items.map((item) => {
   const dates = displayDates(item.date, locale);
+  const [y, m, d] = item.date.split('-').map(Number);
+  const dt = new Date(y, m - 1, d, 12);
+  const dayName = dt.toLocaleDateString(locale === 'ro' ? 'ro-RO' : 'en-GB', { weekday: 'short' });
   return {
     id: item.id,
     title: item.title[locale],
     description: item.description[locale],
     dateLabel: dates.primary,
+    shortDate: formatShortDate(item.date, locale),
+    dayNum: String(d),
+    dayName,
     oldStyleLabel: dates.secondary,
     time: `${item.startTime}-${item.endTime}`,
     location: item.location?.[locale] ?? parish,
@@ -31,35 +37,44 @@ const payload = items.map((item) => {
 });
 ---
 <div data-schedule-root>
-  <ul class="schedule-list">
-    {payload.map((item) => (
-      <li>
-        <button
-          type="button"
-          class="schedule-item"
-          data-schedule-open={item.id}
-          aria-haspopup="dialog"
-        >
-          <div class="schedule-item__meta">
-            <span>{item.dateLabel}</span>
-            <span>{item.time}</span>
-            {item.oldStyleLabel && (
-              <span class="old-style">{dict.schedule.oldStyleLabel}: {item.oldStyleLabel}</span>
-            )}
-          </div>
+  {layout === 'week' ? (
+    <div class="schedule-week">
+      {payload.map((item) => (
+        <button type="button" class="schedule-card" data-schedule-open={item.id} aria-haspopup="dialog">
+          <div class="schedule-card__day">{item.dayName}</div>
+          <div class="schedule-card__date">{item.dayNum}</div>
+          <div class="schedule-card__time">{item.time}</div>
           <h3>{item.title}</h3>
-          <p style="margin:0;color:var(--ink-muted);">{item.description}</p>
+          {item.oldStyleLabel && <div class="schedule-card__old">{dict.schedule.oldStyleLabel}: {item.oldStyleLabel}</div>}
         </button>
-      </li>
-    ))}
-  </ul>
+      ))}
+    </div>
+  ) : (
+    <ul class="schedule-list">
+      {payload.map((item) => (
+        <li>
+          <button type="button" class="schedule-item" data-schedule-open={item.id} aria-haspopup="dialog">
+            <div class="schedule-item__meta">
+              <span>{item.dateLabel}</span>
+              <span>{item.time}</span>
+              {item.oldStyleLabel && (
+                <span class="old-style">{dict.schedule.oldStyleLabel}: {item.oldStyleLabel}</span>
+              )}
+            </div>
+            <h3>{item.title}</h3>
+            <p style="margin:0;color:var(--ink-2);">{item.description}</p>
+          </button>
+        </li>
+      ))}
+    </ul>
+  )}
 
   <div class="panel-backdrop" data-panel-backdrop hidden></div>
   <aside class="panel" data-schedule-panel role="dialog" aria-modal="true" aria-labelledby="schedule-panel-title" hidden>
     <div class="panel__header">
       <div>
         <p class="eyebrow" style="margin:0 0 0.35rem;">{dict.schedule.addToCalendar}</p>
-        <h2 id="schedule-panel-title" data-panel-title style="margin:0;font-size:1.35rem;"></h2>
+        <h2 id="schedule-panel-title" data-panel-title style="margin:0;font-size:1.4rem;"></h2>
       </div>
       <button type="button" class="btn btn-secondary" data-panel-close>{dict.schedule.close}</button>
     </div>

@@ -20,7 +20,6 @@ const links = [
   { key: 'news', href: dict.paths.news, label: dict.nav.news },
   { key: 'livestream', href: dict.paths.livestream, label: dict.nav.livestream },
   { key: 'pomelnice', href: dict.paths.pomelnice, label: dict.nav.pomelnice },
-  { key: 'donate', href: dict.paths.donate, label: dict.nav.donate },
   { key: 'contact', href: dict.paths.contact, label: dict.nav.contact },
 ] as const;
 ---
@@ -28,7 +27,7 @@ const links = [
   <div class="container site-header__inner">
     <a class="brand" href={dict.paths.home}>
       <span class="brand__mark" aria-hidden="true">
-        <img src="/icons/cross-trefoil.svg" alt="" width="22" height="22" />
+        <img src="/icons/cross-trefoil.svg" alt="" width="20" height="20" />
       </span>
       <span class="brand__text">
         <span class="brand__name">{name}</span>
@@ -44,6 +43,7 @@ const links = [
 
     <div class="header-tools">
       <LanguageSwitcher locale={locale} />
+      <a class="btn btn-gold header-donate" href={dict.paths.donate}>{dict.nav.donate}</a>
       <button
         class="menu-toggle"
         type="button"
@@ -64,6 +64,7 @@ const links = [
       {links.map((link) => (
         <a href={link.href} aria-current={current === link.key ? 'page' : undefined}>{link.label}</a>
       ))}
+      <a href={dict.paths.donate}>{dict.nav.donate}</a>
     </nav>
   </div>
 </header>

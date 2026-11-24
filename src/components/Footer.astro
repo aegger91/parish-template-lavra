@@ -15,16 +15,16 @@ const addr = siteConfig.address;
   <div class="container site-footer__grid">
     <div>
       <div class="site-footer__brand">
-        <img class="cross-mark" src="/icons/cross-byzantine.svg" alt="" width="28" height="28" style="filter: invert(1) sepia(1) saturate(3) hue-rotate(5deg); opacity: 0.85;" />
+        <img src="/icons/cross-byzantine.svg" alt="" width="28" height="28" style="filter: invert(1) sepia(1) saturate(2.5) hue-rotate(5deg); opacity: 0.85;" />
         <div>
           <h2>{siteConfig.name[locale]}</h2>
-          <p style="margin: 0; max-width: 30ch; color: rgba(255,250,244,0.78);">
+          <p style="margin:0;max-width:30ch;color:rgba(255,252,247,0.75);">
             {addr.street}, {addr.city}, {addr.region} {addr.postal}<br />
             {addr.country[locale]}
           </p>
         </div>
       </div>
-      <p style="margin-top: 1.25rem;">
+      <p style="margin-top:1.2rem;">
         <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}>{siteConfig.phone}</a><br />
         <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
       </p>

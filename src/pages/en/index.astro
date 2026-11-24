@@ -12,33 +12,24 @@ const locale = 'en' as const;
 const dict = t(locale);
 const feastDates = displayDates(nextFeast.date, locale);
 
-const icons = [
-  { src: '/icons/censer.svg', label: 'Censer' },
-  { src: '/icons/candela.svg', label: 'Candela' },
-  { src: '/icons/candle.svg', label: 'Candle' },
-  { src: '/icons/gospel.svg', label: 'Gospel' },
-  { src: '/icons/prosphora.svg', label: 'Prosphora' },
-  { src: '/icons/iconostasis.svg', label: 'Iconostasis' },
-];
 ---
 <BaseLayout locale={locale} title={dict.nav.home} current="home" description={siteConfig.tagline.en}>
   <section class="hero" aria-label="Hero">
     <div class="hero__media">
-      <img src={images.hero.src} alt={images.hero.alt.en} width="1600" height="1000" fetchpriority="high" />
+      <img src={images.hero.src} alt={images.hero.alt.en} width="1800" height="1200" fetchpriority="high" />
     </div>
     <div class="hero__shade"></div>
     <div class="container hero__content">
+      <p class="eyebrow" style="color:var(--gold-bright);">{siteConfig.tagline.en}</p>
       <p class="hero__brand">{siteConfig.name.en}</p>
-      <p class="hero__headline">{siteConfig.tagline.en}</p>
+      <Ornament light />
       <p class="hero__text">Romanian Orthodox worship for the local community.</p>
       <div class="hero__actions">
-        <a class="btn btn-primary" href={dict.paths.schedule}>{dict.home.heroCta}</a>
+        <a class="btn btn-gold" href={dict.paths.schedule}>{dict.home.heroCta}</a>
         <a class="btn btn-ghost" href={dict.paths.contact}>{dict.home.heroSecondary}</a>
       </div>
     </div>
-    <div class="hero__ornament" aria-hidden="true">
-      <img src="/icons/ornament-arch.svg" alt="" width="480" height="48" />
-    </div>
+    <div class="hero__floor" aria-hidden="true"><span class="hero__floor-rule"></span></div>
   </section>
 
   <section class="section">
@@ -48,35 +39,35 @@ const icons = [
           <p class="eyebrow">{dict.home.thisWeek}</p>
           <h2>{dict.home.thisWeek}</h2>
         </div>
-        <span class="calendar-badge">
-          {siteConfig.calendarStyle === 'old' ? dict.schedule.calendarOld : dict.schedule.calendarNew}
-        </span>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
+          <span class="calendar-badge">
+            {siteConfig.calendarStyle === 'old' ? dict.schedule.calendarOld : dict.schedule.calendarNew}
+          </span>
+          <a class="section-link" href={dict.paths.schedule}>{dict.home.viewAll} →</a>
+        </div>
       </div>
-      <Ornament variant="arch" align="start" />
-      <ScheduleList locale={locale} items={thisWeekServices} />
-      <p style="margin-top:1.35rem;">
-        <a class="btn btn-secondary" href={dict.paths.schedule}>{dict.home.viewAll}</a>
-      </p>
+      <Ornament />
+      <ScheduleList locale={locale} items={thisWeekServices} layout="week" />
     </div>
   </section>
 
-  <section class="section-tight section--layered">
+  <section class="section section--band">
     <div class="container">
       <p class="eyebrow">{dict.home.nextFeast}</p>
       <h2>{dict.home.nextFeast}</h2>
-      <Ornament variant="floral" align="start" />
-      <div class="feast-block">
+      <Ornament />
+      <div class="feast">
         <div>
           <h3>{nextFeast.title.en}</h3>
           <p>{nextFeast.description.en}</p>
-          <p class="feast-block__date">{feastDates.primary}</p>
-          <div class="feast-block__meta">
+          <p class="feast__date">{feastDates.primary}</p>
+          <div class="feast__meta">
             <span>{nextFeast.startTime}-{nextFeast.endTime}</span>
             {feastDates.secondary && (
               <span class="old-style">{dict.schedule.oldStyleLabel}: {feastDates.secondary}</span>
             )}
           </div>
-          <p style="margin-top:1.25rem;margin-bottom:0;">
+          <p style="margin-top:1.35rem;margin-bottom:0;">
             <a class="btn btn-accent" href={dict.paths.news}>{dict.home.viewAll}</a>
           </p>
         </div>
@@ -94,12 +85,12 @@ const icons = [
           <p class="eyebrow">{dict.home.news}</p>
           <h2>{dict.home.news}</h2>
         </div>
-        <a href={dict.paths.news}>{dict.home.viewAll}</a>
+        <a class="section-link" href={dict.paths.news}>{dict.home.viewAll} →</a>
       </div>
-      <Ornament variant="embroidery" align="start" />
+      <Ornament />
       <div class="card-grid">
         {newsItems.slice(0, 3).map((item) => (
-          <article class="news-item card--interactive">
+          <article class="news-item card--lift">
             <time datetime={item.date}>{formatShortDate(item.date, locale)}</time>
             <h3>{item.title.en}</h3>
             <p style="margin:0;">{item.summary.en}</p>
@@ -109,25 +100,17 @@ const icons = [
     </div>
   </section>
 
-  <section class="section-tight section--layered">
+  <section class="section section--band">
     <div class="container">
       <p class="eyebrow">{dict.home.gallery}</p>
       <h2>{dict.home.gallery}</h2>
-      <Ornament variant="rope" align="start" />
+      <Ornament />
       <div class="gallery-strip" role="list">
         {images.gallery.map((img) => (
           <figure role="listitem">
             <img src={img.src} alt={img.alt.en} width="640" height="512" loading="lazy" />
             <figcaption>{img.alt.en}</figcaption>
           </figure>
-        ))}
-      </div>
-      <div class="icon-gallery" aria-label="Liturgical icons">
-        {icons.map((icon) => (
-          <div class="icon-tile">
-            <img src={icon.src} alt="" width="40" height="40" />
-            <span>{icon.label}</span>
-          </div>
         ))}
       </div>
     </div>
@@ -141,9 +124,9 @@ const icons = [
     <div class="container donate-band__content">
       <p class="eyebrow" style="color:var(--gold-bright);">{dict.nav.donate}</p>
       <h2 style="color:var(--white);">{dict.home.donateBandTitle}</h2>
-      <Ornament variant="vine" align="start" />
-      <p style="max-width:36ch;color:rgba(255,250,244,0.9);">{dict.home.donateBandText}</p>
-      <a class="btn btn-ghost" href={dict.paths.donate}>{dict.home.donateBandCta}</a>
+      <Ornament light />
+      <p style="max-width:34ch;color:rgba(255,252,247,0.9);">{dict.home.donateBandText}</p>
+      <a class="btn btn-gold" href={dict.paths.donate}>{dict.home.donateBandCta}</a>
     </div>
   </section>
 </BaseLayout>
