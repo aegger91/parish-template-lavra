@@ -35,7 +35,7 @@ export function LanguageSwitcher({ variant = "bar", className }: { variant?: "ba
             lang={l.code}
             aria-current={l.code === lang ? "true" : undefined}
             className={cn(
-              "label-sc rounded-full border px-3 py-1.5 text-sm transition-colors",
+              "label-sc inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border px-4 py-1.5 text-sm transition-colors",
               l.code === lang ? "border-lapis bg-lapis text-[#fff8ea]" : "border-[#c9ad78] bg-vellum hover:border-ochre",
             )}
           >
@@ -50,7 +50,8 @@ export function LanguageSwitcher({ variant = "bar", className }: { variant?: "ba
     return (
       <nav aria-label={t("lang.switch")} className={cn("flex items-center", className)}>
         <Languages className="me-1.5 size-4 text-ink-soft" aria-hidden="true" />
-        <ul className="flex items-center rounded-full border border-[#cdb383] bg-vellum/80 p-0.5">
+        {/* The pill track is drawn behind 44px-tall links so the visible size stays small while the tap area does not. */}
+        <ul className="relative isolate flex items-center px-0.5 before:absolute before:inset-x-0 before:top-1/2 before:-z-10 before:h-7 before:-translate-y-1/2 before:rounded-full before:border before:border-[#cdb383] before:bg-vellum">
           {langs.map((l) => (
             <li key={l.code}>
               <Link
@@ -60,12 +61,16 @@ export function LanguageSwitcher({ variant = "bar", className }: { variant?: "ba
                 title={l.nativeName}
                 aria-label={l.nativeName}
                 aria-current={l.code === lang ? "true" : undefined}
-                className={cn(
-                  "label-sc block min-w-[2.5rem] rounded-full px-2 py-0.5 text-center text-[0.8rem] tabular-nums transition-colors",
-                  l.code === lang ? "bg-lapis text-[#fff8ea]" : "text-ink-soft hover:bg-parchment-deep hover:text-ink",
-                )}
+                className="group/lang grid min-h-11 min-w-11 place-items-center rounded-full"
               >
-                {l.shortLabel}
+                <span
+                  className={cn(
+                    "label-sc block min-w-[2.5rem] rounded-full px-2 py-0.5 text-center text-[0.8rem] tabular-nums transition-colors",
+                    l.code === lang ? "bg-lapis text-[#fff8ea]" : "text-ink-soft group-hover/lang:bg-parchment-deep group-hover/lang:text-ink",
+                  )}
+                >
+                  {l.shortLabel}
+                </span>
               </Link>
             </li>
           ))}
@@ -77,7 +82,7 @@ export function LanguageSwitcher({ variant = "bar", className }: { variant?: "ba
   const current = langs.find((l) => l.code === lang);
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={cn("label-sc flex items-center gap-1.5 rounded-full border border-[#cdb383] bg-vellum px-3 py-1 text-sm", className)} aria-label={t("lang.switch")}>
+      <DropdownMenuTrigger className={cn("label-sc flex min-h-11 max-w-full items-center gap-1.5 rounded-full border border-[#cdb383] bg-vellum px-3 py-1 text-sm", className)} aria-label={t("lang.switch")}>
         <Languages className="size-4" aria-hidden="true" />
         {current?.nativeName}
         <ChevronDown className="size-3.5" aria-hidden="true" />
@@ -87,7 +92,7 @@ export function LanguageSwitcher({ variant = "bar", className }: { variant?: "ba
           <MenuPrimitive.LinkItem
             key={l.code}
             render={<Link href={hrefFor(l.code)} hrefLang={l.code} lang={l.code} />}
-            className="block rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+            className="flex min-h-11 items-center rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
           >
             {l.nativeName}
           </MenuPrimitive.LinkItem>

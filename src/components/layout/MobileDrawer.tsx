@@ -40,7 +40,7 @@ export function MobileDrawer({ trigger }: { trigger: ReactNode }) {
       >
         <PaintedBand variant="diamond" />
         <SheetHeader className="gap-1 px-5 pt-5 pb-3 text-start">
-          <SheetTitle className="flex items-center gap-2 font-heading text-xl font-bold">
+          <SheetTitle className="flex items-center gap-2 pe-12 font-heading text-xl font-bold">
             <Cross className="h-6 text-cinnabar" />
             {t("nav.menu")}
           </SheetTitle>
@@ -68,7 +68,7 @@ export function MobileDrawer({ trigger }: { trigger: ReactNode }) {
                             <Link
                               href={h}
                               aria-current={pathname === h ? "page" : undefined}
-                              className={cn("flex items-center gap-2.5 rounded px-2 py-2.5 text-base no-underline! hover:bg-parchment-deep/60", pathname === h && "text-cinnabar")}
+                              className={cn("flex min-h-11 items-center gap-2.5 rounded px-2 py-2.5 text-base no-underline! hover:bg-parchment-deep/60", pathname === h && "text-cinnabar")}
                             >
                               <Pictogram name={it.page.icon ?? "church"} className="size-5 text-ochre-deep" />
                               {it.text}
@@ -84,7 +84,7 @@ export function MobileDrawer({ trigger }: { trigger: ReactNode }) {
                   <Link
                     href={href(n)}
                     aria-current={pathname === href(n) ? "page" : undefined}
-                    className={cn("block px-2 py-3 font-heading text-lg font-bold", pathname === href(n) && "text-cinnabar")}
+                    className={cn("flex min-h-11 items-center px-2 py-3 font-heading text-lg font-bold", pathname === href(n) && "text-cinnabar")}
                   >
                     {label(n)}
                   </Link>
@@ -106,11 +106,11 @@ export function MobileDrawer({ trigger }: { trigger: ReactNode }) {
               <MapPin className="mt-1 size-4 shrink-0" aria-hidden="true" />
               <span>{site.contact.addressLines.join(", ")}</span>
             </p>
-            <a className="flex items-center gap-2" href={`tel:${site.contact.phone.replace(/[^\d+]/g, "")}`}>
+            <a className="flex min-h-11 items-center gap-2" href={`tel:${site.contact.phone.replace(/[^\d+]/g, "")}`}>
               <Phone className="size-4" aria-hidden="true" />
               {site.contact.phone}
             </a>
-            <a className="flex items-center gap-2" href={`mailto:${site.contact.email}`}>
+            <a className="flex min-h-11 items-center gap-2 [overflow-wrap:anywhere]" href={`mailto:${site.contact.email}`}>
               <Mail className="size-4" aria-hidden="true" />
               {site.contact.email}
             </a>

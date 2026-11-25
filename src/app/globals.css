@@ -85,7 +85,7 @@
   }
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: calc(var(--lavra-header-h-condensed) + 1rem);
+    scroll-padding-top: var(--lavra-header-stuck);
   }
   @media (prefers-reduced-motion: no-preference) {
     html {
@@ -125,6 +125,21 @@
   .grid > * {
     min-width: 0;
   }
+  /* Touch-size targets on phones and tablets. Inline links inside running text stay inline. */
+  @media (max-width: 1023.98px) {
+    :where(a[href], button, summary, select, [role="button"], [role="tab"], [role="menuitem"]):not(.sr-only) {
+      min-height: 2.75rem;
+    }
+    :where(a[href], button, select, [role="button"], [role="tab"]):not(.sr-only) {
+      min-width: 2.75rem;
+    }
+    :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="hidden"])) {
+      min-height: 2.75rem;
+    }
+    :where(input[type="range"]) {
+      height: 2.75rem;
+    }
+  }
   ::selection {
     background: rgb(196 138 44 / 0.35);
   }
@@ -150,6 +165,12 @@
     .container-lavra {
       padding-inline: 2.5rem;
     }
+  }
+
+  /* Pinned header surface: an opaque colour under the paper grain, so content never shows through. */
+  .header-solid {
+    background-color: #f4e9d1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.24 0 0 0 0 0.12 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   /* Small caps labels, like rubrics in an old service book */
@@ -272,8 +293,8 @@
     min-height: 2.875rem;
     padding: 0 1rem;
     margin: 0;
-    /* Georgia reads "Add" clearly; avoid small-caps button faces */
-    font-family: Georgia, "Times New Roman", Times, serif;
+    /* A plain roman (no small caps) that also covers Cyrillic and Romanian diacritics */
+    font-family: var(--lavra-font-body);
     font-weight: 700;
     font-size: 1.02rem;
     letter-spacing: 0;

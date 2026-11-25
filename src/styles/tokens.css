@@ -29,11 +29,12 @@
   --lavra-candle: 255 196 110;
 
   /* Font roles */
-  --lavra-font-heading: "Alegreya", "PT Serif", Georgia, serif;
-  --lavra-font-label: "Alegreya SC", "Alegreya", Georgia, serif;
-  --lavra-font-body: "PT Serif", Georgia, "Times New Roman", serif;
-  --lavra-font-ornament: "Alegreya SC", "Alegreya", Georgia, serif;
-  --lavra-font-button: "Alegreya SC", "Alegreya", Georgia, serif;
+  /* Alegreya and PT Serif ship Latin, Latin Extended and Cyrillic subsets. Noto Serif covers scripts they lack. */
+  --lavra-font-heading: "Alegreya", "PT Serif", "Noto Serif", Georgia, serif;
+  --lavra-font-label: "Alegreya SC", "Alegreya", "PT Serif", "Noto Serif", Georgia, serif;
+  --lavra-font-body: "PT Serif", "Noto Serif", Georgia, "Times New Roman", serif;
+  --lavra-font-ornament: "Alegreya SC", "Alegreya", "Noto Serif", Georgia, serif;
+  --lavra-font-button: "Alegreya SC", "Alegreya", "PT Serif", "Noto Serif", Georgia, serif;
 
   /* Type scale */
   --lavra-text-body: 1.0625rem;
@@ -49,7 +50,12 @@
   /* Layout */
   --lavra-container: 78rem;
   --lavra-header-h: 5.5rem;
-  --lavra-header-h-condensed: 4rem;
+  --lavra-header-band: 0.5rem;
+  --lavra-header-stuck: calc(var(--lavra-header-h) + var(--lavra-header-band));
+  --lavra-topbar-h: 2.75rem;
+  --lavra-header-logo-w: 15.5rem;
+  --lavra-header-actions-w: 12rem;
+  --lavra-sticky-offset: calc(var(--lavra-header-stuck) + 1.25rem);
 
   /* Paper texture strength (0 to 1) */
   --lavra-paper-grain: 0.5;

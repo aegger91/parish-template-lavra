@@ -106,14 +106,13 @@ export function Logo({ style, image, alt, name, subtitle, showName = true, compa
           )}
           <span
             className={cn(
-              "font-heading font-bold leading-snug text-ink transition-[font-size] duration-300 [overflow-wrap:anywhere] sm:[overflow-wrap:normal]",
-              compact ? "text-[1.05rem] sm:text-lg" : "text-lg sm:text-[1.4rem] xl:text-[1.3rem]",
-              "[text-wrap:balance]",
+              "font-heading font-bold text-ink hyphens-auto [overflow-wrap:anywhere] [text-wrap:balance]",
+              compact ? "text-[1.05rem] leading-tight sm:text-lg" : "text-lg leading-snug sm:text-[1.4rem] xl:text-[1.2rem] xl:leading-tight",
             )}
           >
             {name}
           </span>
-          {subtitle && !compact && <span className="label-sc mt-0.5 hidden text-[0.78rem] leading-tight text-ink-soft sm:block xl:hidden min-[1600px]:block">{subtitle}</span>}
+          {subtitle && !compact && <span className="label-sc mt-0.5 hidden text-[0.78rem] leading-tight text-ink-soft [text-wrap:balance] sm:block xl:hidden">{subtitle}</span>}
         </span>
       )}
     </span>
