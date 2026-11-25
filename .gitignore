@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# copied from node_modules by scripts/copy-fonts.mjs
+/public/fonts/
+
 # production
 /build
 

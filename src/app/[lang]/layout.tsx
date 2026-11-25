@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { preload } from "react-dom";
 import "../fonts";
 import "../globals.css";
 import { site, uiStrings } from "@/lib/content";
+import { criticalFontUrls } from "@/lib/fonts";
 import { makeT, tr } from "@/lib/i18n";
 import { languageCodes } from "@/lib/routes";
 import { CartProvider, I18nProvider } from "@/components/providers";
@@ -36,6 +38,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
   const language = site.languages.find((l) => l.code === lang);
   if (!language) notFound();
   const t = makeT(uiStrings, lang, site.defaultLanguage);
+  for (const href of criticalFontUrls(lang)) preload(href, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
 
   return (
     <html lang={language.locale ?? lang} dir={language.dir} suppressHydrationWarning>
