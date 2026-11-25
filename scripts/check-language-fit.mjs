@@ -198,7 +198,7 @@ async function main() {
     process.exit(1);
   }
 
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_PATH || undefined });
   const context = await browser.newContext();
   const tab = await context.newPage();
   const allIssues = [];

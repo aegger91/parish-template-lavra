@@ -6,7 +6,7 @@ const viewports = [360, 768, 1280];
 mkdirSync("/opt/cursor/artifacts", { recursive: true });
 mkdirSync("/tmp/lavra-qa", { recursive: true });
 
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_PATH || undefined });
 const report = [];
 
 for (const width of viewports) {

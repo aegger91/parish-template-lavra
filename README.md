@@ -12,6 +12,7 @@ npm run dev        # http://localhost:4317
 npm run build      # checks content, then writes the static site to out/
 npm run start      # serves out/ on http://localhost:4318
 npm run check:language-fit   # after build: scan all languages for clipped or overlapping text
+npm run check:layout         # after npm run start: header, alignment, tap-target and overflow checks at 7 widths
 ```
 
 `out/` is plain HTML, CSS and JS. Each page has its own `index.html` and there is a `404.html`. Upload it to any static host.
@@ -57,7 +58,7 @@ The menu is built from `pages.json`:
 
 - `parentId` nests a page under another one.
 - `order` sorts sibling pages.
-- `navPriority: "secondary"` moves an item into the More menu on narrower screens.
+- `navPriority: "secondary"` puts an item in the More menu on desktop, so the main row fits in every language. On phones and tablets every item is in the side menu.
 - `navStyle: "button"` shows an item as the Donate button.
 
 ### Languages
@@ -77,6 +78,10 @@ Online donations have **no minimum amount**. Parishioners may give any sum, incl
 ### Language fit
 
 After `npm run build`, run `npm run check:language-fit` to load every visible page in each configured language at mobile, tablet and desktop widths and flag text that overflows its box or overlaps other text. The report is written to `/tmp/language-fit-report.json`. The check exits with code 0 when no issues are found.
+
+`npm run check:layout` (with `npm run start` running) goes further: every page and language at 360, 375, 390, 414, 768, 1024 and 1440 px. It checks sideways overflow, clipped and overlapping text, that the pinned header is opaque and stays on top while the page scrolls, that the logo, menu and buttons sit in the same place in every language, the mobile menu, the language switcher, and 44 px tap targets below 1024 px. Pass `-- --shots <dir>` to save screenshots. Set `CHROME_PATH` to use an installed Chrome instead of a Playwright browser.
+
+Header layout rules that keep languages aligned: the header row is a fixed height; on desktop the logo and the buttons have fixed-width columns and the menu is centred between them; the parish name wraps to balanced lines inside its column instead of pushing the menu.
 
 ## Connecting real services
 

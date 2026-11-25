@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/copy-fonts.mjs",
     "dev": "next dev -p 4317",
+    "prebuild": "node scripts/copy-fonts.mjs",
     "build": "npm run validate && next build",
     "start": "npx --yes serve out -l 4318",
     "lint": "eslint",
     "validate": "node scripts/validate-content.mjs",
     "art": "node scripts/generate-art.mts",
     "typecheck": "tsc --noEmit",
-    "check:language-fit": "node scripts/check-language-fit.mjs"
+    "check:language-fit": "node scripts/check-language-fit.mjs",
+    "check:layout": "node scripts/qa-layout.mjs --base http://127.0.0.1:4318 --out /tmp/qa-layout"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
