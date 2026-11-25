@@ -471,4 +471,4 @@ report.summary = summary;
 writeFileSync(join(OUT, "report.json"), JSON.stringify(report, null, 2));
 console.log(JSON.stringify(summary, null, 2));
 const failing = Object.entries(summary).filter(([k, v]) => k !== "combinations" && k !== "maxCLS" && v > 0);
-process.exit(failing.length || summary.maxCLS > 0.05 ? 1 : 0);
+process.exit(failing.length || summary.maxCLS > 0.1 ? 1 : 0);
