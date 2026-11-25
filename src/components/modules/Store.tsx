@@ -35,13 +35,13 @@ function Qty({ value, onChange, max, label }: { value: number; onChange: (n: num
   const { t } = useI18n();
   return (
     <div className="inline-flex items-center rounded-md border border-[#c9ad78] bg-vellum" role="group" aria-label={label}>
-      <button type="button" className="grid size-10 place-items-center disabled:opacity-40" onClick={() => onChange(value - 1)} disabled={value <= 1} aria-label={t("store.decrease")}>
+      <button type="button" className="grid size-11 place-items-center disabled:opacity-40" onClick={() => onChange(value - 1)} disabled={value <= 1} aria-label={t("store.decrease")}>
         <Minus className="size-4" aria-hidden="true" />
       </button>
       <span className="w-9 text-center tabular-nums" aria-live="polite">
         {value}
       </span>
-      <button type="button" className="grid size-10 place-items-center disabled:opacity-40" onClick={() => onChange(value + 1)} disabled={max != null && value >= max} aria-label={t("store.increase")}>
+      <button type="button" className="grid size-11 place-items-center disabled:opacity-40" onClick={() => onChange(value + 1)} disabled={max != null && value >= max} aria-label={t("store.increase")}>
         <Plus className="size-4" aria-hidden="true" />
       </button>
     </div>
@@ -354,7 +354,7 @@ export function CartView({ section }: SectionProps) {
                 ))}
               </ul>
             </div>
-            <aside className="fresco-card h-fit p-5 sm:p-6 lg:sticky lg:top-24">
+            <aside className="fresco-card h-fit p-5 sm:p-6 lg:sticky lg:top-(--lavra-sticky-offset)">
               <div className="relative z-10">
                 <p className="flex items-baseline justify-between text-lg">
                   <span className="label-sc">{t("cart.subtotal")}</span>
@@ -527,7 +527,7 @@ export function Checkout({ section }: SectionProps) {
               </section>
             </div>
 
-            <aside className="fresco-card h-fit overflow-hidden p-0 lg:sticky lg:top-24">
+            <aside className="fresco-card h-fit overflow-hidden p-0 lg:sticky lg:top-(--lavra-sticky-offset)">
               <PaintedBand variant="teeth" />
               <div className="relative z-10 p-5 sm:p-6">
                 <h2 className="text-2xl">{t("checkout.summary")}</h2>

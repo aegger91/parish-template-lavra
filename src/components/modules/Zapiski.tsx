@@ -81,7 +81,7 @@ function SlipPaper({
       </div>
       <ol className="mt-3" aria-label={t("zapiski.namesLabel", { n: index + 1 })}>
         {slip.rows.map((r, i) => (
-          <li key={r.id} className="flex items-end gap-1.5 py-1">
+          <li key={r.id} className="grid grid-cols-[1.25rem_minmax(0,1fr)_auto] items-end gap-x-1.5 py-1 sm:flex">
             <span className="w-5 shrink-0 pb-2 text-end font-heading text-[0.95rem] text-ink-faint tabular-nums">{i + 1}.</span>
             <label className="sr-only" htmlFor={`${r.id}-prefix`}>
               {t("zapiski.prefix")}
@@ -90,7 +90,7 @@ function SlipPaper({
               id={`${r.id}-prefix`}
               value={r.prefix}
               onChange={(e) => setRow(r.id, { prefix: e.target.value })}
-              className="h-9 w-[6.4rem] shrink-0 truncate rounded border border-[#e2d3b4] bg-transparent px-1 text-[0.86rem] text-ink-soft"
+              className="h-9 w-auto min-w-0 max-w-full shrink-0 justify-self-start rounded border [field-sizing:content] sm:max-w-[45%] border-[#e2d3b4] bg-transparent px-1 text-[0.86rem] text-ink-soft"
             >
               <option value="">{t("zapiski.prefix.none")}</option>
               {prefixesFor(slip.type).map((p) => (
@@ -109,9 +109,9 @@ function SlipPaper({
               autoComplete="off"
               onChange={(e) => setRow(r.id, { name: e.target.value })}
               placeholder={i === 0 ? t("zapiski.namePlaceholder") : ""}
-              className="h-9 min-w-0 flex-1 border-0 border-b border-dashed border-[#b9a17a] bg-transparent px-1 font-heading text-[1.12rem] text-ink outline-none placeholder:text-ink-faint/70 focus:border-solid focus:border-lapis"
+              className="col-span-2 col-start-2 row-start-2 h-9 min-w-0 flex-1 border-0 border-b border-dashed border-[#b9a17a] bg-transparent px-1 font-heading text-[1.12rem] text-ink outline-none placeholder:text-ink-faint/70 focus:border-solid focus:border-lapis"
             />
-            <button type="button" onClick={() => removeRow(r.id)} className="grid size-9 shrink-0 place-items-center rounded text-ink-faint hover:bg-cinnabar/10 hover:text-cinnabar" aria-label={t("zapiski.removeName", { n: i + 1 })}>
+            <button type="button" onClick={() => removeRow(r.id)} className="grid size-11 shrink-0 place-items-center rounded text-ink-faint hover:bg-cinnabar/10 hover:text-cinnabar" aria-label={t("zapiski.removeName", { n: i + 1 })}>
               <X className="size-4" aria-hidden="true" />
             </button>
           </li>
@@ -371,7 +371,7 @@ export function Zapiski({ section }: SectionProps) {
                         ))}
                       </div>
                       {slips.length > 1 && (
-                        <button type="button" onClick={() => setSlips((l) => l.filter((x) => x.id !== s.id))} className="grid size-9 place-items-center rounded-md border border-[#d8c294] text-ink-soft hover:border-cinnabar hover:text-cinnabar" aria-label={t("zapiski.removeSlip", { n: i + 1 })}>
+                        <button type="button" onClick={() => setSlips((l) => l.filter((x) => x.id !== s.id))} className="grid size-11 place-items-center rounded-md border border-[#d8c294] text-ink-soft hover:border-cinnabar hover:text-cinnabar" aria-label={t("zapiski.removeSlip", { n: i + 1 })}>
                           <Trash2 className="size-4" aria-hidden="true" />
                         </button>
                       )}
@@ -401,7 +401,7 @@ export function Zapiski({ section }: SectionProps) {
             </div>
           </div>
 
-          <aside className="fresco-card h-fit p-5 sm:p-6 xl:sticky xl:top-24" aria-labelledby="zap-summary">
+          <aside className="fresco-card h-fit p-5 sm:p-6 xl:sticky xl:top-(--lavra-sticky-offset)" aria-labelledby="zap-summary">
             <div className="relative z-10 grid gap-4">
               <h2 id="zap-summary" className="text-2xl">
                 {t("zapiski.summary")}

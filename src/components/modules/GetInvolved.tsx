@@ -65,7 +65,7 @@ function Capacity({ signups, capacity }: { signups: number; capacity: number }) 
   const pct = Math.min(100, Math.round((signups / capacity) * 100));
   return (
     <div className="grid gap-1">
-      <div className="flex justify-between gap-2 text-[0.85rem]">
+      <div className="flex min-w-0 flex-wrap justify-between gap-x-2 gap-y-0.5 text-[0.85rem]">
         <span className="inline-flex items-center gap-1 text-ink-soft">
           <Users className="size-3.5" aria-hidden="true" />
           {t("connect.signedUp", { n: signups, capacity })}
@@ -279,13 +279,13 @@ function EventsCalendar({ events, joined, onPick }: { events: ConnectEvent[]; jo
     <div className="fresco-card overflow-hidden p-0">
       <div className="relative z-10">
         <div className="flex items-center justify-between gap-2 bg-cinnabar px-3 py-2.5 text-[#fff3df] sm:px-5">
-          <button type="button" onClick={() => shift(-1)} className="grid size-10 place-items-center rounded hover:bg-white/10" aria-label={t("schedule.prevMonth")}>
+          <button type="button" onClick={() => shift(-1)} className="grid size-11 place-items-center rounded hover:bg-white/10" aria-label={t("schedule.prevMonth")}>
             <ChevronLeft className="size-5 rtl:rotate-180" aria-hidden="true" />
           </button>
           <p className="font-heading text-[1.4rem] font-bold capitalize sm:text-[1.7rem]" aria-live="polite">
             {fmtDay(startJdn, { month: "long", year: "numeric" })}
           </p>
-          <button type="button" onClick={() => shift(1)} className="grid size-10 place-items-center rounded hover:bg-white/10" aria-label={t("schedule.nextMonth")}>
+          <button type="button" onClick={() => shift(1)} className="grid size-11 place-items-center rounded hover:bg-white/10" aria-label={t("schedule.nextMonth")}>
             <ChevronRight className="size-5 rtl:rotate-180" aria-hidden="true" />
           </button>
         </div>
@@ -454,7 +454,7 @@ function SlotRow({ slot, joined, onSign }: { slot: NeedSlot; joined: boolean; on
       {joined ? (
         <span className="label-sc rounded-md bg-verdigris/15 px-3 py-2 text-center text-[0.9rem] font-bold text-verdigris">{t("connect.youreIn")}</span>
       ) : (
-        <button type="button" onClick={onSign} disabled={full} className="btn-lavra btn-lapis min-h-10 px-4 py-1.5 text-[0.95rem] disabled:cursor-not-allowed disabled:opacity-50">
+        <button type="button" onClick={onSign} disabled={full} className="btn-lavra btn-lapis min-h-11 px-4 py-1.5 text-[0.95rem] disabled:cursor-not-allowed disabled:opacity-50">
           {full ? t("connect.full") : t("connect.signUp")}
         </button>
       )}

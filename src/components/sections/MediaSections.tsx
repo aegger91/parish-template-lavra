@@ -323,7 +323,7 @@ function AudioPlayer({ src, title }: { src: string; title: string }) {
           if (a) a.currentTime = Number(e.target.value);
         }}
         aria-label={t("player.seek")}
-        className="h-1.5 min-w-0 flex-1 cursor-pointer accent-[var(--lavra-terracotta)]"
+        className="h-11 min-w-0 flex-1 cursor-pointer accent-[var(--lavra-terracotta)]"
       />
       <span className="w-20 shrink-0 text-end text-[0.85rem] tabular-nums text-ink-soft">
         {fmtClock(time)} / {fmtClock(dur)}
@@ -517,10 +517,11 @@ export function Livestream({ section }: SectionProps) {
             {site.livestream.embedUrl ? (
               <iframe src={site.livestream.embedUrl} title={t("live.player")} className="aspect-video w-full" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen />
             ) : (
-              <div className="relative aspect-video w-full overflow-hidden bg-[#1b1209]">
+              <div className="relative grid aspect-video w-full place-items-center bg-[#1b1209]">
+                {/* No overflow clipping here, so the 16:9 box can grow taller when the message needs more room. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/gallery/iconostasis.svg" alt="" className="absolute inset-0 size-full object-cover opacity-55" />
-                <div className="relative grid size-full place-items-center p-6 text-center">
+                <div className="relative grid place-items-center p-6 text-center">
                   <div className="max-w-md">
                     {live ? (
                       <span className="label-sc inline-flex items-center gap-2 rounded-full bg-cinnabar px-3 py-1 font-bold text-white">

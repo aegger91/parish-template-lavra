@@ -204,7 +204,7 @@ export function ClergyCards({ section }: SectionProps) {
                   <h2 className="mt-1 text-[1.45rem]">{tr(c.name)}</h2>
                   <p className="mt-3 line-clamp-3 text-[0.97rem] text-ink-soft">{tr(c.bio)}</p>
                   <Dialog>
-                    <DialogTrigger className="btn-lavra btn-ghost mt-auto min-h-10 px-4 text-[0.95rem]" style={{ marginTop: "1.25rem" }}>
+                    <DialogTrigger className="btn-lavra btn-ghost mt-auto min-h-11 px-4 text-[0.95rem]" style={{ marginTop: "1.25rem" }}>
                       {t("clergy.readBio")}
                     </DialogTrigger>
                     <DialogContent className="max-h-[90vh] overflow-y-auto border border-[#d5bd8c] bg-vellum p-6 sm:max-w-lg">

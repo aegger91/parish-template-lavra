@@ -57,12 +57,11 @@ export function AtAGlance({ className }: { className?: string }) {
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="rubric text-sm">{t("glance.title")}</p>
           {live && (
-            <Link
-              href={pagePath(lang, "livestream")}
-              className="label-sc inline-flex items-center gap-2 rounded-full bg-cinnabar px-3 py-1 text-[0.82rem] font-bold text-white shadow-[0_0_16px_-2px_rgb(224_65_42/0.8)]"
-            >
-              <span className="live-dot" aria-hidden="true" />
-              {t("live.now")}
+            <Link href={pagePath(lang, "livestream")} className="-my-2 inline-flex min-h-11 items-center rounded-full">
+              <span className="label-sc inline-flex items-center gap-2 rounded-full bg-cinnabar px-3 py-1 text-[0.82rem] font-bold text-white shadow-[0_0_16px_-2px_rgb(224_65_42/0.8)]">
+                <span className="live-dot" aria-hidden="true" />
+                {t("live.now")}
+              </span>
             </Link>
           )}
         </div>
@@ -159,12 +158,12 @@ export function AtAGlance({ className }: { className?: string }) {
           </address>
           <p className="mt-1 text-[0.88rem] text-ink-soft">{tr(site.contact.parking)}</p>
           <div className="mt-3 flex flex-wrap gap-2">
-            <a href={site.contact.map.directionsUrl} target="_blank" rel="noopener noreferrer" className="btn-lavra btn-ghost min-h-10 px-3 text-[0.92rem]">
+            <a href={site.contact.map.directionsUrl} target="_blank" rel="noopener noreferrer" className="btn-lavra btn-ghost min-h-11 px-3 text-[0.92rem]">
               <Navigation className="size-4" aria-hidden="true" />
               {t("glance.getDirections")}
             </a>
             {showLivestream && (
-              <Link href={pagePath(lang, "livestream")} className="btn-lavra btn-ghost min-h-10 px-3 text-[0.92rem]">
+              <Link href={pagePath(lang, "livestream")} className="btn-lavra btn-ghost min-h-11 px-3 text-[0.92rem]">
                 <Radio className="size-4" aria-hidden="true" />
                 {live ? t("live.watch") : t("live.watchOnline")}
               </Link>
@@ -217,7 +216,7 @@ export function Hero({ props, chapterMap = {} }: { props: HeroProps; chapterMap?
         </div>
 
         <aside className="[grid-area:card] lg:pt-3" aria-label={t("glance.title")}>
-          <div className="lg:sticky lg:top-24">
+          <div className="lg:sticky lg:top-(--lavra-sticky-offset)">
             <AtAGlance />
           </div>
         </aside>

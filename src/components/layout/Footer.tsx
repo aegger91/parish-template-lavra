@@ -125,14 +125,14 @@ export function Footer() {
                 <span>{site.contact.addressLines.join(", ")}</span>
               </li>
               <li>
-                <a className="flex gap-2.5 hover:text-white" href={`tel:${site.contact.phone.replace(/[^\d+]/g, "")}`}>
-                  <Phone className="mt-1 size-4 shrink-0 text-ochre-light" aria-hidden="true" />
+                <a className="flex gap-2.5 hover:text-white max-lg:min-h-11 max-lg:items-center" href={`tel:${site.contact.phone.replace(/[^\d+]/g, "")}`}>
+                  <Phone className="size-4 shrink-0 text-ochre-light lg:mt-1" aria-hidden="true" />
                   {site.contact.phone}
                 </a>
               </li>
               <li>
-                <a className="flex gap-2.5 hover:text-white" href={`mailto:${site.contact.email}`}>
-                  <Mail className="mt-1 size-4 shrink-0 text-ochre-light" aria-hidden="true" />
+                <a className="flex gap-2.5 [overflow-wrap:anywhere] hover:text-white max-lg:min-h-11 max-lg:items-center" href={`mailto:${site.contact.email}`}>
+                  <Mail className="size-4 shrink-0 text-ochre-light lg:mt-1" aria-hidden="true" />
                   {site.contact.email}
                 </a>
               </li>
@@ -142,7 +142,7 @@ export function Footer() {
                 <li key={s.id}>
                   <a
                     href={s.url}
-                    className="grid size-10 place-items-center rounded-full border border-ochre-light/40 text-ochre-light transition hover:border-ochre-light hover:bg-white/10"
+                    className="grid size-11 place-items-center rounded-full border border-ochre-light/40 text-ochre-light transition hover:border-ochre-light hover:bg-white/10"
                     aria-label={s.label}
                   >
                     <SocialIcon network={s.network} />
@@ -170,17 +170,17 @@ export function Footer() {
                   </div>
                 ))}
             </dl>
-            <Link href={pagePath(lang, "services")} className="mt-4 inline-block text-ochre-light underline underline-offset-4 hover:text-white">
+            <Link href={pagePath(lang, "services")} className="mt-4 inline-flex items-center text-ochre-light underline underline-offset-4 hover:text-white max-lg:min-h-11">
               {t("footer.fullSchedule")}
             </Link>
           </div>
 
           <div className="lg:col-span-2">
             <h2 className="label-sc text-lg text-ochre-light">{t("footer.explore")}</h2>
-            <ul className="mt-4 space-y-2 text-[0.97rem]">
+            <ul className="mt-4 grid gap-x-6 text-[0.97rem] max-lg:grid-cols-[repeat(auto-fill,minmax(10rem,1fr))] lg:space-y-2">
               {[...links, ...buttons].map((n) => (
                 <li key={n.id}>
-                  <Link href={href(n)} className="hover:text-white hover:underline">
+                  <Link href={href(n)} className="hover:text-white hover:underline max-lg:inline-flex max-lg:min-h-11 max-lg:min-w-11 max-lg:items-center">
                     {label(n)}
                   </Link>
                 </li>
